@@ -33,6 +33,8 @@ import {
   loadMidjourneyUploads,
   writeMidjourneyUploads,
 } from "@/lib/midjourney/loadUploads";
+import { fetchCampaignCopy } from "@/lib/marketing-translator/client";
+import type { LocalizedCopyPackage } from "@/lib/marketing-translator/schema";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Campaign Planner — the orchestrator.
@@ -171,6 +173,70 @@ export async function planCampaign(
     }
   }
 
+  // 2c. Replace every concept's copy_package with marketing-translator
+  // output. ai-campaign-banner is the visual / layout / rendering layer
+  // only — the source of headline / subheadline / cta / disclaimer is the
+  // marketing-translator service. The LLM's strategic_idea / visual
+  // direction / midjourney prompts are kept; only the copy fields are
+  // overwritten before manifest construction.
+  const targetLocale = mapLanguageToLocale(brief.language);
+  const copyByConceptId = new Map<string, LocalizedCopyPackage>();
+  for (const concept of refined.concepts) {
+    const copy = await fetchCampaignCopy({
+      brief: {
+        marketingMessage: brief.marketing_message,
+        campaignGoal: brief.campaign_goal,
+        targetAudience: brief.target_audience,
+        notes: brief.notes,
+      },
+      targetLocale,
+      tone: brief.tone,
+      riskWarningRequired: brief.risk_warning_required,
+      conceptHint: {
+        conceptId: concept.concept_id,
+        name: concept.name,
+        strategicIdea: concept.strategic_idea,
+      },
+    }).catch((err) => {
+      throw new Error(
+        `marketing-translator failed for concept ${concept.concept_id}: ${redactSecret((err as Error).message)}`,
+      );
+    });
+    copyByConceptId.set(concept.concept_id, copy);
+  }
+  refined = {
+    ...refined,
+    concepts: refined.concepts.map((c) => {
+      const localized = copyByConceptId.get(c.concept_id);
+      if (!localized) return c;
+      return {
+        ...c,
+        copy_package: {
+          ...c.copy_package,
+          headline: localized.headline,
+          subheadline: localized.subheadline,
+          body: localized.body ?? c.copy_package.body,
+          cta: localized.cta,
+          disclaimer: localized.disclaimer,
+          // Drop fields that came from the LLM and no longer match the
+          // localized headline/cta. headline_emphasis was a verbatim
+          // prefix of the LLM headline; alternates / platform variations
+          // are out of contract for the translator service.
+          headline_emphasis: undefined,
+          alternative_headlines: [],
+          alternative_ctas: [],
+          platform_copy_variations: [],
+        },
+      };
+    }),
+  };
+  const translatorWarnings: string[] = [];
+  for (const [conceptId, copy] of copyByConceptId) {
+    for (const note of copy.complianceNotes) {
+      translatorWarnings.push(`marketing-translator [${conceptId}]: ${note}`);
+    }
+  }
+
   // 3. Optional image generation. When the operator opted in, send each
   // concept's background prompt to OpenAI Images and persist the result as an
   // approved upload. After this runs we reload the build context so the next
@@ -237,6 +303,7 @@ export async function planCampaign(
     visualSpecsByConceptId,
   });
   for (const w of visualPlannerWarnings) warnings.push(w);
+  for (const w of translatorWarnings) warnings.push(w);
   // Phase 4 — drop the cosmetic "Using Midjourney upload as background" line
   // when a generated background actually drove the bg branch in
   // buildElements. The MJ pick happens in `pickAssets` BEFORE the resolver
@@ -397,6 +464,26 @@ function redactSecret(s: string): string {
   return s
     .replace(/Bearer\s+[A-Za-z0-9._-]+/gi, "Bearer [redacted]")
     .replace(/sk-[A-Za-z0-9._-]{8,}/g, "sk-[redacted]");
+}
+
+// Map the brief's 2-letter language code to the BCP-47 locale that
+// marketing-translator's /api/campaign-copy expects. The translator only
+// supports a fixed set of EU LTR locales today; ar/he are rejected so the
+// operator picks a different language rather than getting silent fallback.
+function mapLanguageToLocale(language: string): string {
+  const map: Record<string, string> = {
+    en: "en-GB",
+    fr: "fr-FR",
+    it: "it-IT",
+    nl: "nl-NL",
+  };
+  const locale = map[language];
+  if (!locale) {
+    throw new Error(
+      `marketing-translator does not yet support language "${language}". Supported: ${Object.keys(map).join(", ")}.`,
+    );
+  }
+  return locale;
 }
 
 // ── File IO ─────────────────────────────────────────────────────────────────
