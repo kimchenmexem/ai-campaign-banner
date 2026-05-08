@@ -1,0 +1,723 @@
+{
+  "generated_at": "2026-05-06T12:59:39.213Z",
+  "pack_id": "mexem-v1",
+  "built": [
+    {
+      "id": "asset_background_eeb4bc9be4d4",
+      "type": "background",
+      "variant": "linear_gradient",
+      "recipe": "institutional-blue-1",
+      "recommended_use": "Conservative awareness banners; deep navy → mid blue",
+      "tags": [
+        "background",
+        "linear_gradient",
+        "generated_only",
+        "palette:institutional",
+        "tone:trustworthy",
+        "pack:mexem-v1",
+        "recipe:institutional-blue-1"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_7bbe59a0bda1",
+      "type": "background",
+      "variant": "linear_gradient",
+      "recipe": "institutional-blue-2",
+      "recommended_use": "Mid-funnel ads; horizontal navy ramp",
+      "tags": [
+        "background",
+        "linear_gradient",
+        "generated_only",
+        "palette:institutional",
+        "tone:premium",
+        "pack:mexem-v1",
+        "recipe:institutional-blue-2"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_d8c54a39e54a",
+      "type": "background",
+      "variant": "radial_gradient",
+      "recipe": "institutional-blue-3-radial",
+      "recommended_use": "Hero + CTA-centered layouts; spotlight effect",
+      "tags": [
+        "background",
+        "radial_gradient",
+        "generated_only",
+        "palette:institutional",
+        "tone:premium",
+        "pack:mexem-v1",
+        "recipe:institutional-blue-3-radial"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_3305d0af5342",
+      "type": "background",
+      "variant": "mesh_gradient",
+      "recipe": "institutional-blue-4-mesh",
+      "recommended_use": "Soft brand-blue mesh — pairs well with white headlines",
+      "tags": [
+        "background",
+        "mesh_gradient",
+        "generated_only",
+        "palette:institutional",
+        "tone:friendly",
+        "pack:mexem-v1",
+        "recipe:institutional-blue-4-mesh"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_762a6c4a0c8a",
+      "type": "background",
+      "variant": "vignette",
+      "recipe": "dark-trading-1-vignette",
+      "recommended_use": "Power-user trading concepts; near-black with vignette",
+      "tags": [
+        "background",
+        "vignette",
+        "generated_only",
+        "palette:dark-trading",
+        "tone:serious",
+        "pack:mexem-v1",
+        "recipe:dark-trading-1-vignette"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_6da09b74f962",
+      "type": "background",
+      "variant": "mesh_gradient",
+      "recipe": "dark-trading-2-mesh",
+      "recommended_use": "Trading dashboards / candle hero; deep mesh",
+      "tags": [
+        "background",
+        "mesh_gradient",
+        "generated_only",
+        "palette:dark-trading",
+        "tone:serious",
+        "pack:mexem-v1",
+        "recipe:dark-trading-2-mesh"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_a189e7357496",
+      "type": "background",
+      "variant": "radial_gradient",
+      "recipe": "dark-trading-3-radial",
+      "recommended_use": "Centered product visuals on near-black",
+      "tags": [
+        "background",
+        "radial_gradient",
+        "generated_only",
+        "palette:dark-trading",
+        "tone:serious",
+        "pack:mexem-v1",
+        "recipe:dark-trading-3-radial"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_a32098af61df",
+      "type": "background",
+      "variant": "diagonal_split",
+      "recipe": "global-investing-1-diagonal",
+      "recommended_use": "Geographic / global theme — diagonal split, blue + accent",
+      "tags": [
+        "background",
+        "diagonal_split",
+        "generated_only",
+        "palette:global",
+        "tone:bold",
+        "pack:mexem-v1",
+        "recipe:global-investing-1-diagonal"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_dcf505616ed4",
+      "type": "background",
+      "variant": "mesh_gradient",
+      "recipe": "global-investing-2-mesh",
+      "recommended_use": "International equities concepts — wide blue mesh",
+      "tags": [
+        "background",
+        "mesh_gradient",
+        "generated_only",
+        "palette:global",
+        "tone:bold",
+        "pack:mexem-v1",
+        "recipe:global-investing-2-mesh"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_c26b1aba232c",
+      "type": "background",
+      "variant": "linear_gradient",
+      "recipe": "global-investing-3-linear",
+      "recommended_use": "Market-open hero; blue → accent ramp at 45°",
+      "tags": [
+        "background",
+        "linear_gradient",
+        "generated_only",
+        "palette:global",
+        "tone:bold",
+        "pack:mexem-v1",
+        "recipe:global-investing-3-linear"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_91af1a59c9ee",
+      "type": "background",
+      "variant": "radial_gradient",
+      "recipe": "clean-etf-1-radial-light",
+      "recommended_use": "ETF / passive product banners — calm spotlight",
+      "tags": [
+        "background",
+        "radial_gradient",
+        "generated_only",
+        "palette:clean-etf",
+        "tone:calm",
+        "pack:mexem-v1",
+        "recipe:clean-etf-1-radial-light"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_background_02fd9eea7bd4",
+      "type": "background",
+      "variant": "linear_gradient",
+      "recipe": "clean-etf-2-linear",
+      "recommended_use": "ETF list / explainer; soft horizontal ramp",
+      "tags": [
+        "background",
+        "linear_gradient",
+        "generated_only",
+        "palette:clean-etf",
+        "tone:calm",
+        "pack:mexem-v1",
+        "recipe:clean-etf-2-linear"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_cta_4d1ef5a50fd5",
+      "type": "cta",
+      "variant": "primary_pill",
+      "recipe": "cta-en-short-pill",
+      "recommended_use": "Primary action, English, short copy. Generic awareness.",
+      "tags": [
+        "cta",
+        "primary_pill",
+        "element",
+        "lang:en",
+        "length:short",
+        "weight:standard",
+        "pack:mexem-v1",
+        "recipe:cta-en-short-pill"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_cta_1e270347f1d3",
+      "type": "cta",
+      "variant": "primary_block",
+      "recipe": "cta-en-medium-block",
+      "recommended_use": "Primary block, English, medium copy. Conversion banners.",
+      "tags": [
+        "cta",
+        "primary_block",
+        "element",
+        "lang:en",
+        "length:medium",
+        "weight:standard",
+        "pack:mexem-v1",
+        "recipe:cta-en-medium-block"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_cta_8354b5f47f01",
+      "type": "cta",
+      "variant": "bottom_band",
+      "recipe": "cta-en-long-bottom-band",
+      "recommended_use": "Bottom-band yellow CTA across the canvas; high-conversion",
+      "tags": [
+        "cta",
+        "bottom_band",
+        "element",
+        "lang:en",
+        "length:long",
+        "weight:loud",
+        "placement:bottom_band",
+        "pack:mexem-v1",
+        "recipe:cta-en-long-bottom-band"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_cta_aad5210adca9",
+      "type": "cta",
+      "variant": "outline",
+      "recipe": "cta-en-ghost-outline",
+      "recommended_use": "Ghost / outline CTA on rich photographic backgrounds",
+      "tags": [
+        "cta",
+        "outline",
+        "element",
+        "lang:en",
+        "length:short",
+        "weight:ghost",
+        "pack:mexem-v1",
+        "recipe:cta-en-ghost-outline"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_cta_376f92513bf6",
+      "type": "cta",
+      "variant": "primary_pill",
+      "recipe": "cta-he-short-pill",
+      "recommended_use": "Hebrew primary, short copy",
+      "tags": [
+        "cta",
+        "primary_pill",
+        "element",
+        "lang:he",
+        "length:short",
+        "weight:standard",
+        "pack:mexem-v1",
+        "recipe:cta-he-short-pill"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_cta_9ef1f1cca960",
+      "type": "cta",
+      "variant": "primary_block",
+      "recipe": "cta-he-medium-block",
+      "recommended_use": "Hebrew primary, medium copy. Conversion banners.",
+      "tags": [
+        "cta",
+        "primary_block",
+        "element",
+        "lang:he",
+        "length:medium",
+        "weight:standard",
+        "pack:mexem-v1",
+        "recipe:cta-he-medium-block"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_cta_a416527221bc",
+      "type": "cta",
+      "variant": "bottom_band",
+      "recipe": "cta-he-long-bottom-band",
+      "recommended_use": "Hebrew bottom-band yellow CTA",
+      "tags": [
+        "cta",
+        "bottom_band",
+        "element",
+        "lang:he",
+        "length:long",
+        "weight:loud",
+        "placement:bottom_band",
+        "pack:mexem-v1",
+        "recipe:cta-he-long-bottom-band"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_cta_9ab7894acc4f",
+      "type": "cta",
+      "variant": "accent_pill",
+      "recipe": "cta-he-accent-pill",
+      "recommended_use": "Hebrew accent pill — yellow on dark",
+      "tags": [
+        "cta",
+        "accent_pill",
+        "element",
+        "lang:he",
+        "length:short",
+        "weight:accent",
+        "pack:mexem-v1",
+        "recipe:cta-he-accent-pill"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_fx_overlay_b1c7cb51358c",
+      "type": "fx_overlay",
+      "variant": "glow",
+      "recipe": "fx-glow-center",
+      "recommended_use": "Soft white glow behind hero subjects",
+      "tags": [
+        "fx_overlay",
+        "glow",
+        "effect:glow",
+        "intent:focus",
+        "pack:mexem-v1",
+        "recipe:fx-glow-center"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_fx_overlay_f37b1f2513a3",
+      "type": "fx_overlay",
+      "variant": "glow",
+      "recipe": "fx-glow-accent",
+      "recommended_use": "Yellow brand-accent glow — bottom-band emphasis",
+      "tags": [
+        "fx_overlay",
+        "glow",
+        "effect:glow",
+        "intent:cta-emphasis",
+        "pack:mexem-v1",
+        "recipe:fx-glow-accent"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_fx_overlay_1e4acae358bf",
+      "type": "fx_overlay",
+      "variant": "vignette",
+      "recipe": "fx-vignette-soft",
+      "recommended_use": "Soft vignette to push attention to center",
+      "tags": [
+        "fx_overlay",
+        "vignette",
+        "effect:vignette",
+        "intent:focus",
+        "pack:mexem-v1",
+        "recipe:fx-vignette-soft"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_fx_overlay_cb427bf8fa0f",
+      "type": "fx_overlay",
+      "variant": "vignette",
+      "recipe": "fx-vignette-strong",
+      "recommended_use": "Strong vignette for cinematic / serious banners",
+      "tags": [
+        "fx_overlay",
+        "vignette",
+        "effect:vignette",
+        "intent:cinematic",
+        "pack:mexem-v1",
+        "recipe:fx-vignette-strong"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_fx_overlay_ee436f421f3f",
+      "type": "fx_overlay",
+      "variant": "corner_swoosh",
+      "recipe": "fx-market-lines-tl",
+      "recommended_use": "Brand-yellow market line sweeping out of top-left",
+      "tags": [
+        "fx_overlay",
+        "corner_swoosh",
+        "effect:market-lines",
+        "intent:directional",
+        "pack:mexem-v1",
+        "recipe:fx-market-lines-tl"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_fx_overlay_03e14e8803d3",
+      "type": "fx_overlay",
+      "variant": "corner_swoosh",
+      "recipe": "fx-market-lines-br",
+      "recommended_use": "Brand-yellow market line sweeping out of bottom-right",
+      "tags": [
+        "fx_overlay",
+        "corner_swoosh",
+        "effect:market-lines",
+        "intent:directional",
+        "pack:mexem-v1",
+        "recipe:fx-market-lines-br"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_fx_overlay_506c3dada255",
+      "type": "fx_overlay",
+      "variant": "noise_grain",
+      "recipe": "fx-particles-grain",
+      "recommended_use": "Subtle film grain — adds texture to flat gradients",
+      "tags": [
+        "fx_overlay",
+        "noise_grain",
+        "effect:particles",
+        "intent:texture",
+        "pack:mexem-v1",
+        "recipe:fx-particles-grain"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_fx_overlay_3d580da1f2c8",
+      "type": "fx_overlay",
+      "variant": "light_ray",
+      "recipe": "fx-glass-light-ray",
+      "recommended_use": "Diagonal light ray — glass / premium reflection feel",
+      "tags": [
+        "fx_overlay",
+        "light_ray",
+        "effect:glass-reflection",
+        "intent:premium",
+        "pack:mexem-v1",
+        "recipe:fx-glass-light-ray"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_trading_ui_76662d45f065",
+      "type": "trading_ui",
+      "variant": "candle_chart",
+      "recipe": "tui-candle-up",
+      "recommended_use": "Bullish candle chart hero",
+      "tags": [
+        "trading_ui",
+        "candle_chart",
+        "up",
+        "widget:candle-chart",
+        "trend:up",
+        "pack:mexem-v1",
+        "recipe:tui-candle-up"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_trading_ui_68c9dbe2a0ae",
+      "type": "trading_ui",
+      "variant": "ticker_strip",
+      "recipe": "tui-watchlist",
+      "recommended_use": "Multi-ticker watchlist strip — works as bottom band",
+      "tags": [
+        "trading_ui",
+        "ticker_strip",
+        "up",
+        "widget:watchlist",
+        "shape:strip",
+        "pack:mexem-v1",
+        "recipe:tui-watchlist"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_trading_ui_54a2389f2f93",
+      "type": "trading_ui",
+      "variant": "price_card",
+      "recipe": "tui-etf-card",
+      "recommended_use": "ETF price card (e.g. VTI / IWDA / SPY)",
+      "tags": [
+        "trading_ui",
+        "price_card",
+        "up",
+        "widget:etf-card",
+        "shape:card",
+        "pack:mexem-v1",
+        "recipe:tui-etf-card"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_trading_ui_a73f9161a380",
+      "type": "trading_ui",
+      "variant": "portfolio_donut",
+      "recipe": "tui-portfolio-donut",
+      "recommended_use": "Portfolio composition / allocation card",
+      "tags": [
+        "trading_ui",
+        "portfolio_donut",
+        "up",
+        "widget:portfolio-card",
+        "shape:square",
+        "pack:mexem-v1",
+        "recipe:tui-portfolio-donut"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_trading_ui_96dfa7816916",
+      "type": "trading_ui",
+      "variant": "ticker_strip",
+      "recipe": "tui-market-ticker",
+      "recommended_use": "Indices / market-open ticker strip",
+      "tags": [
+        "trading_ui",
+        "ticker_strip",
+        "down",
+        "widget:market-ticker",
+        "shape:strip",
+        "pack:mexem-v1",
+        "recipe:tui-market-ticker"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_trading_ui_e6bedcbf96a9",
+      "type": "trading_ui",
+      "variant": "price_card",
+      "recipe": "tui-order-ticket",
+      "recommended_use": "Pseudo order-ticket card (price + change)",
+      "tags": [
+        "trading_ui",
+        "price_card",
+        "down",
+        "widget:order-ticket",
+        "shape:card",
+        "pack:mexem-v1",
+        "recipe:tui-order-ticket"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_trading_ui_ffc7e5cdd89d",
+      "type": "trading_ui",
+      "variant": "candle_chart",
+      "recipe": "tui-futures-panel",
+      "recommended_use": "Futures-style candle panel (e.g. ES, NQ)",
+      "tags": [
+        "trading_ui",
+        "candle_chart",
+        "down",
+        "widget:futures-panel",
+        "trend:down",
+        "pack:mexem-v1",
+        "recipe:tui-futures-panel"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_trading_ui_f94f8be1ab39",
+      "type": "trading_ui",
+      "variant": "price_card",
+      "recipe": "tui-forex-pair",
+      "recommended_use": "Forex pair price card (e.g. EUR/USD)",
+      "tags": [
+        "trading_ui",
+        "price_card",
+        "up",
+        "widget:forex-pair",
+        "shape:card",
+        "pack:mexem-v1",
+        "recipe:tui-forex-pair"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_mockup_e66ffc185c8c",
+      "type": "mockup",
+      "variant": "phone",
+      "recipe": "mock-phone-1-stocks",
+      "recommended_use": "Phone with stock app screenshot",
+      "tags": [
+        "mockup",
+        "phone",
+        "heuristic",
+        "device:phone",
+        "context:stocks",
+        "pack:mexem-v1",
+        "recipe:mock-phone-1-stocks"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_mockup_a53f75ba88c8",
+      "type": "mockup",
+      "variant": "phone",
+      "recipe": "mock-phone-2-order-dialog",
+      "recommended_use": "Phone with order dialog",
+      "tags": [
+        "mockup",
+        "phone",
+        "heuristic",
+        "device:phone",
+        "context:order-flow",
+        "pack:mexem-v1",
+        "recipe:mock-phone-2-order-dialog"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_mockup_db6a1deca96a",
+      "type": "mockup",
+      "variant": "phone",
+      "recipe": "mock-phone-3-asml",
+      "recommended_use": "Phone with single-stock detail (ASML)",
+      "tags": [
+        "mockup",
+        "phone",
+        "heuristic",
+        "device:phone",
+        "context:single-stock",
+        "pack:mexem-v1",
+        "recipe:mock-phone-3-asml"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_mockup_8d65bbb2ec6d",
+      "type": "mockup",
+      "variant": "laptop",
+      "recipe": "mock-laptop-1-desktop",
+      "recommended_use": "Laptop with full desktop platform screenshot",
+      "tags": [
+        "mockup",
+        "laptop",
+        "heuristic",
+        "device:laptop",
+        "context:desktop-platform",
+        "pack:mexem-v1",
+        "recipe:mock-laptop-1-desktop"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_mockup_913547632cf6",
+      "type": "mockup",
+      "variant": "tablet",
+      "recipe": "mock-tablet-1-charts",
+      "recommended_use": "Tablet with order-dialog screenshot (charts context)",
+      "tags": [
+        "mockup",
+        "tablet",
+        "explicit_manifest",
+        "device:tablet",
+        "context:charts",
+        "pack:mexem-v1",
+        "recipe:mock-tablet-1-charts"
+      ],
+      "approved": true
+    },
+    {
+      "id": "asset_mockup_6e5f25bdde9b",
+      "type": "mockup",
+      "variant": "tablet",
+      "recipe": "mock-tablet-2-signin",
+      "recommended_use": "Tablet with sign-in / onboarding screen",
+      "tags": [
+        "mockup",
+        "tablet",
+        "explicit_manifest",
+        "device:tablet",
+        "context:onboarding",
+        "pack:mexem-v1",
+        "recipe:mock-tablet-2-signin"
+      ],
+      "approved": true
+    }
+  ],
+  "failed": []
+}

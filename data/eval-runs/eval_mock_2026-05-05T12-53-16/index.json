@@ -1,0 +1,34 @@
+{
+  "run_id": "eval_mock_2026-05-05T12-53-16",
+  "provider": "mock",
+  "generated_at": "2026-05-05T12:53:17.046Z",
+  "count": 5,
+  "failures": [],
+  "campaigns": [
+    {
+      "campaign_id": "cam_00b25dd4",
+      "campaign_name": "Confidence at the close (and 2 alternates)",
+      "warnings": 10
+    },
+    {
+      "campaign_id": "cam_81bcd263",
+      "campaign_name": "Confidence at the close (and 2 alternates)",
+      "warnings": 10
+    },
+    {
+      "campaign_id": "cam_7da51983",
+      "campaign_name": "Confidence at the close (and 2 alternates)",
+      "warnings": 10
+    },
+    {
+      "campaign_id": "cam_5900276c",
+      "campaign_name": "Confidence at the close (and 2 alternates)",
+      "warnings": 10
+    },
+    {
+      "campaign_id": "cam_9ab25c34",
+      "campaign_name": "Confidence at the close (and 2 alternates)",
+      "warnings": 10
+    }
+  ]
+}

@@ -1,0 +1,3401 @@
+{
+  "plan": {
+    "campaign_id": "cam_6437fe53",
+    "brand_id": "brand_001",
+    "source_brief": {
+      "brief_id": "brief_cfb2dfa0f29e",
+      "brand_id": "brand_001",
+      "marketing_message": "Join 50,000+ European investors using MEXEM's commission-free ETP offer. No hidden fees, no minimum deposits.",
+      "target_audience": "Self-directed retail traders, 25–55",
+      "campaign_goal": "conversion",
+      "tone": [
+        "confident",
+        "trustworthy",
+        "premium"
+      ],
+      "platforms": [
+        "instagram-feed",
+        "linkedin"
+      ],
+      "required_formats": [
+        "1200x628",
+        "1080x1080",
+        "1080x1920"
+      ],
+      "preferred_contexts": [
+        "stocks",
+        "etfs"
+      ],
+      "risk_warning_required": true,
+      "language": "en",
+      "created_at": "2026-05-05T12:55:50.991Z"
+    },
+    "campaign_name": "Trade Without Barriers",
+    "campaign_summary": "Showcasing MEXEM's commission-free ETP offer and transparent pricing for over 50,000 European investors, emphasizing market access and financial clarity.",
+    "ai_provider": "openai",
+    "concepts": [
+      {
+        "concept_id": "concept_1",
+        "name": "Zero Commission, Full Control",
+        "strategic_idea": "Highlight the elimination of trading fees with MEXEM's commission-free ETPs.",
+        "target_emotion": "freedom",
+        "tone": "confident",
+        "visual_direction": {
+          "description": "A glass prism refracts light on a deep navy background, symbolizing the clarity and freedom from financial barriers.",
+          "primary_palette": [
+            "#204489",
+            "#FFFFFF"
+          ],
+          "composition": "hero_left_mockup_right",
+          "mood_keywords": [
+            "clear",
+            "liberation",
+            "transparent"
+          ]
+        },
+        "copy_package": {
+          "headline": "Trade Without Commission Limits",
+          "subheadline": "Join 50,000+ investors enjoying zero-fee ETP trades.",
+          "cta": "Open an account",
+          "disclaimer": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+          "alternative_headlines": [
+            "Eliminate Trading Costs",
+            "Zero Fees, Maximum Freedom"
+          ],
+          "alternative_ctas": [
+            "Join now",
+            "Start trading"
+          ],
+          "platform_copy_variations": []
+        },
+        "desired_visual_context": "etfs",
+        "midjourney_prompt_pack": [
+          {
+            "prompt_id": "concept_1-bg",
+            "intended_use": "background",
+            "context": "etfs",
+            "aspect_ratio": "16:9",
+            "prompt_text": "Abstract geometric forms created using glass and light refractions against a deep navy background. No numbers, no letters, no UI."
+          },
+          {
+            "prompt_id": "concept_1-deco",
+            "intended_use": "decorative",
+            "context": "etfs",
+            "aspect_ratio": "1:1",
+            "prompt_text": "A simple, elegant geometric shape made of brushed metal with reflections on a dark background. No numbers, no letters."
+          },
+          {
+            "prompt_id": "concept_1-hero",
+            "intended_use": "hero_visual",
+            "context": "etfs",
+            "aspect_ratio": "1:1",
+            "prompt_text": "A glass prism on a clean studio backdrop with dramatic lighting highlighting its edges. No text, no UI."
+          }
+        ],
+        "design_elements": {
+          "eyebrow": "ETF TRADING",
+          "stat": {
+            "number": "$0",
+            "label": "PER ETF TRADE"
+          }
+        },
+        "campaign_id": "cam_6437fe53",
+        "ad_specs": [
+          {
+            "ad_id": "ad_concept_1_1200x628",
+            "campaign_id": "cam_6437fe53",
+            "concept_id": "concept_1",
+            "format": "1200x628",
+            "canvas_width": 1200,
+            "canvas_height": 628,
+            "channel": "leaderboard",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1200x628",
+              "specId": "spec_demo_1200x628",
+              "conceptId": "concept_1",
+              "campaignId": "cam_6437fe53",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1200,
+                "height": 628
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#004267",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(110deg, #004267 0%, #004F7B 100%)"
+                },
+                {
+                  "id": "el_brand_pattern",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 5,
+                  "opacity": 0.51,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22628%22%20viewBox%3D%220%200%201200%20628%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22p%22%20width%3D%2264%22%20height%3D%2264%22%20patternUnits%3D%22userSpaceOnUse%22%20patternTransform%3D%22rotate(18)%22%3E%3Cline%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%2264%22%20stroke%3D%22%23D81222%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.18%22%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22628%22%20fill%3D%22url(%23p)%22%2F%3E%3C%2Fsvg%3E",
+                  "object_fit": "fill",
+                  "alt_text": "brand-color geometric pattern",
+                  "bannerbear": {
+                    "layer_name": "brand_pattern",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "brand-pattern",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 61,
+                  "y": 87,
+                  "width": 224,
+                  "height": 56,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Header"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 277,
+                  "y": 159,
+                  "width": 647,
+                  "height": 151,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Trade Without Commission Limits",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 63,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 277,
+                  "y": 317,
+                  "width": 647,
+                  "height": 30,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Join 50,000+ investors enjoying zero-fee ETP trades.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 22,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 277,
+                  "y": 416,
+                  "width": 647,
+                  "height": 56,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Open an account →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 28,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 28,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1200x628 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 496,
+                  "width": 1078,
+                  "height": 22,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 14,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-06T06:48:14.814Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "etfs",
+              "selected_context": "etfs",
+              "intended_device_type": "laptop",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "laptop-etfs",
+              "composite_public_path": "/generated-preview-composites/laptop-etfs.png",
+              "mockup_filename": "mockup-macbook.png",
+              "screenshot_filename": "Screenshot 2025-02-17 112522.png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_1_1080x1080",
+            "campaign_id": "cam_6437fe53",
+            "concept_id": "concept_1",
+            "format": "1080x1080",
+            "canvas_width": 1080,
+            "canvas_height": 1080,
+            "channel": "instagram-feed",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1080",
+              "specId": "spec_demo_1080x1080",
+              "conceptId": "concept_1",
+              "campaignId": "cam_6437fe53",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1080
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#004267",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(110deg, #004267 0%, #004F7B 100%)"
+                },
+                {
+                  "id": "el_brand_pattern",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 5,
+                  "opacity": 0.51,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221080%22%20height%3D%221080%22%20viewBox%3D%220%200%201080%201080%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22p%22%20width%3D%2264%22%20height%3D%2264%22%20patternUnits%3D%22userSpaceOnUse%22%20patternTransform%3D%22rotate(18)%22%3E%3Cline%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%2264%22%20stroke%3D%22%23D81222%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.18%22%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Crect%20width%3D%221080%22%20height%3D%221080%22%20fill%3D%22url(%23p)%22%2F%3E%3C%2Fsvg%3E",
+                  "object_fit": "fill",
+                  "alt_text": "brand-color geometric pattern",
+                  "bannerbear": {
+                    "layer_name": "brand_pattern",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "brand-pattern",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 61,
+                  "y": 87,
+                  "width": 320,
+                  "height": 80,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Header"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 457,
+                  "width": 958,
+                  "height": 200,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Trade Without Commission Limits",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 87,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 667,
+                  "width": 958,
+                  "height": 98,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Join 50,000+ investors enjoying zero-fee ETP trades.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 35,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 840,
+                  "width": 958,
+                  "height": 77,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Open an account →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 39,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1080 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 941,
+                  "width": 958,
+                  "height": 29,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 18,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-06T06:48:14.815Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "etfs",
+              "selected_context": "etfs",
+              "intended_device_type": "tablet",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "tablet-etfs",
+              "composite_public_path": "/generated-preview-composites/tablet-etfs.png",
+              "mockup_filename": "ipad-3.png",
+              "screenshot_filename": "Order dialog (Light).png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "explicit_manifest"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_1_1080x1920",
+            "campaign_id": "cam_6437fe53",
+            "concept_id": "concept_1",
+            "format": "1080x1920",
+            "canvas_width": 1080,
+            "canvas_height": 1920,
+            "channel": "instagram-story",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1920",
+              "specId": "spec_demo_1080x1920",
+              "conceptId": "concept_1",
+              "campaignId": "cam_6437fe53",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1920
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#004267",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(110deg, #004267 0%, #004F7B 100%)"
+                },
+                {
+                  "id": "el_brand_pattern",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 5,
+                  "opacity": 0.51,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221080%22%20height%3D%221920%22%20viewBox%3D%220%200%201080%201920%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22p%22%20width%3D%2264%22%20height%3D%2264%22%20patternUnits%3D%22userSpaceOnUse%22%20patternTransform%3D%22rotate(18)%22%3E%3Cline%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%2264%22%20stroke%3D%22%23D81222%22%20stroke-width%3D%222%22%20stroke-opacity%3D%220.3%22%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Crect%20width%3D%221080%22%20height%3D%221920%22%20fill%3D%22url(%23p)%22%2F%3E%3C%2Fsvg%3E",
+                  "object_fit": "fill",
+                  "alt_text": "brand-color geometric pattern",
+                  "bannerbear": {
+                    "layer_name": "brand_pattern",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "brand-pattern",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 61,
+                  "y": 87,
+                  "width": 352,
+                  "height": 88,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629608/brands/brand_001/logos/logo-white-p.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-p",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-p.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Header"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 643,
+                  "width": 958,
+                  "height": 343,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Trade Without Commission Limits",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 104,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 1006,
+                  "width": 958,
+                  "height": 147,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Join 50,000+ investors enjoying zero-fee ETP trades.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 35,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 1667,
+                  "width": 958,
+                  "height": 84,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Open an account →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 42,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1920 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 1775,
+                  "width": 958,
+                  "height": 35,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 18,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-06T06:48:14.816Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "etfs",
+              "selected_context": "etfs",
+              "intended_device_type": "phone",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "phone-etfs",
+              "composite_public_path": "/generated-preview-composites/phone-etfs.png",
+              "mockup_filename": "iphone-1.png",
+              "screenshot_filename": "tesla_stock_mobileApp.png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          }
+        ],
+        "visual_layout_spec": {
+          "spec_version": "1.0.0",
+          "layout_type": "pattern_immersive",
+          "composition": "visual_leading",
+          "hierarchy": {
+            "primary_focus": "headline",
+            "secondary_focus": "subheadline",
+            "emphasis_level": "quiet"
+          },
+          "text_strategy": {
+            "headline_position": "center",
+            "headline_scale": "large",
+            "text_alignment": "center",
+            "max_text_density": "medium"
+          },
+          "visual_strategy": {
+            "primary_visual": "abstract_gradient",
+            "visual_position": "background",
+            "visual_weight": "subtle",
+            "use_mockup": false,
+            "use_screenshot": false,
+            "use_motif": false,
+            "use_pattern": true,
+            "motif_hint": "gradient_orb"
+          },
+          "brand_strategy": {
+            "background_style": "gradient",
+            "palette_intensity": "calm",
+            "accent_usage": "subtle",
+            "logo_prominence": "standard"
+          },
+          "cta_strategy": {
+            "placement": "bottom_center",
+            "weight": "loud",
+            "width": "full_text_block"
+          },
+          "spacing": {
+            "density": "minimal",
+            "padding": "airy",
+            "safe_area_priority": "normal"
+          },
+          "format_adaptation": {},
+          "rationale": "The abstract gradient conveys freedom and clarity, aligning with the idea of commission-free trading. The calm palette and minimal density reinforce a premium, confident tone."
+        }
+      },
+      {
+        "concept_id": "concept_2",
+        "name": "Clarity in Costs",
+        "strategic_idea": "Showcase MEXEM’s transparent pricing, revealing costs that others hide.",
+        "target_emotion": "trust",
+        "tone": "trustworthy",
+        "visual_direction": {
+          "description": "A sheet of translucent paper on a navy surface, illuminated from below to emphasize transparency.",
+          "primary_palette": [
+            "#002B4B",
+            "#FFFFFF"
+          ],
+          "composition": "hero_center",
+          "mood_keywords": [
+            "transparent",
+            "clear",
+            "illuminated"
+          ]
+        },
+        "copy_package": {
+          "headline": "Trade with Full Cost Clarity",
+          "subheadline": "Experience transparent trading with MEXEM, no hidden fees.",
+          "cta": "View live rates",
+          "disclaimer": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+          "alternative_headlines": [
+            "Transparent Fees, No Surprises",
+            "See Costs Clearly"
+          ],
+          "alternative_ctas": [
+            "Learn about fees",
+            "Discover transparency"
+          ],
+          "platform_copy_variations": []
+        },
+        "desired_visual_context": "stocks",
+        "midjourney_prompt_pack": [
+          {
+            "prompt_id": "concept_2-bg",
+            "intended_use": "background",
+            "context": "stocks",
+            "aspect_ratio": "16:9",
+            "prompt_text": "Translucent sheets layered under soft lighting on a dark background, highlighting layering and transparency. No text, no UI."
+          },
+          {
+            "prompt_id": "concept_2-deco",
+            "intended_use": "decorative",
+            "context": "stocks",
+            "aspect_ratio": "1:1",
+            "prompt_text": "Abstract circular glass motif with light passing through, on a dark navy backdrop. No numbers, no letters."
+          },
+          {
+            "prompt_id": "concept_2-hero",
+            "intended_use": "hero_visual",
+            "context": "stocks",
+            "aspect_ratio": "1:1",
+            "prompt_text": "A polished crystal lens on a minimalist studio surface, catching the light. No text, no UI."
+          }
+        ],
+        "design_elements": {
+          "eyebrow": "TRANSPARENT PRICING",
+          "stat": {
+            "number": "0%",
+            "label": "HIDDEN FEES"
+          }
+        },
+        "campaign_id": "cam_6437fe53",
+        "ad_specs": [
+          {
+            "ad_id": "ad_concept_2_1200x628",
+            "campaign_id": "cam_6437fe53",
+            "concept_id": "concept_2",
+            "format": "1200x628",
+            "canvas_width": 1200,
+            "canvas_height": 628,
+            "channel": "leaderboard",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1200x628",
+              "specId": "spec_demo_1200x628",
+              "conceptId": "concept_2",
+              "campaignId": "cam_6437fe53",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1200,
+                "height": 628
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#004267",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(0deg, #004267 0%, #004267 100%)"
+                },
+                {
+                  "id": "el_motif_chart_silhouette",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 8,
+                  "opacity": 0.6,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22628%22%20viewBox%3D%220%200%201200%20628%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23D81222%22%20stop-opacity%3D%220.18%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23D81222%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M%200.0%20489.8%20L%20180.0%20439.6%20L%20384.0%20389.4%20L%20600.0%20282.6%20L%20840.0%20314.0%20L%201020.0%20201.0%20L%201200.0%20175.8%20L%201200%20628%20L%200%20628%20Z%22%20fill%3D%22url(%23g)%22%2F%3E%3Cpath%20d%3D%22M%200.0%20489.8%20L%20180.0%20439.6%20L%20384.0%20389.4%20L%20600.0%20282.6%20L%20840.0%20314.0%20L%201020.0%20201.0%20L%201200.0%20175.8%22%20fill%3D%22none%22%20stroke%3D%22%23D81222%22%20stroke-width%3D%223%22%20stroke-opacity%3D%220.32%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E",
+                  "object_fit": "fill",
+                  "alt_text": "generated brand-color motif: chart_silhouette",
+                  "bannerbear": {
+                    "layer_name": "motif_chart_silhouette",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "motif-chart_silhouette",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 50,
+                  "y": 71,
+                  "width": 224,
+                  "height": 56,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Header"
+                  }
+                },
+                {
+                  "id": "el_accent",
+                  "type": "shape",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 962,
+                  "y": -238,
+                  "width": 528,
+                  "height": 528,
+                  "z_index": 15,
+                  "opacity": 0.92,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#D81222",
+                  "border_radius": 264,
+                  "bannerbear": {
+                    "layer_name": "accent_shape",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "ELLIPSE",
+                    "component_role": "accent",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Decorative"
+                  }
+                },
+                {
+                  "id": "el_eyebrow",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 189,
+                  "width": 660,
+                  "height": 20,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "TRANSPARENT PRICING",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 14,
+                  "line_height": 1.2,
+                  "letter_spacing": 2,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "eyebrow",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "eyebrow",
+                    "style_ref": "text/eyebrow-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 217,
+                  "width": 660,
+                  "height": 125,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Trade with Full Cost Clarity",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 52,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 350,
+                  "width": 660,
+                  "height": 30,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Experience transparent trading with MEXEM, no hidden fees.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 20,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 396,
+                  "width": 373,
+                  "height": 56,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "View live rates →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 28,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 28,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1200x628 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 516,
+                  "width": 1100,
+                  "height": 22,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 14,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-06T06:48:14.816Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "stocks",
+              "selected_context": "stocks",
+              "intended_device_type": "laptop",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "laptop-stocks",
+              "composite_public_path": "/generated-preview-composites/laptop-stocks.png",
+              "mockup_filename": "mockup-macbook.png",
+              "screenshot_filename": "Screenshot 2025-02-17 112522.png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_2_1080x1080",
+            "campaign_id": "cam_6437fe53",
+            "concept_id": "concept_2",
+            "format": "1080x1080",
+            "canvas_width": 1080,
+            "canvas_height": 1080,
+            "channel": "instagram-feed",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1080",
+              "specId": "spec_demo_1080x1080",
+              "conceptId": "concept_2",
+              "campaignId": "cam_6437fe53",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1080
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#004267",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(0deg, #004267 0%, #004267 100%)"
+                },
+                {
+                  "id": "el_motif_chart_silhouette",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 8,
+                  "opacity": 0.6,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221080%22%20height%3D%221080%22%20viewBox%3D%220%200%201080%201080%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23D81222%22%20stop-opacity%3D%220.18%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23D81222%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M%200.0%20842.4%20L%20162.0%20756.0%20L%20345.6%20669.6%20L%20540.0%20486.0%20L%20756.0%20540.0%20L%20918.0%20345.6%20L%201080.0%20302.4%20L%201080%201080%20L%200%201080%20Z%22%20fill%3D%22url(%23g)%22%2F%3E%3Cpath%20d%3D%22M%200.0%20842.4%20L%20162.0%20756.0%20L%20345.6%20669.6%20L%20540.0%20486.0%20L%20756.0%20540.0%20L%20918.0%20345.6%20L%201080.0%20302.4%22%20fill%3D%22none%22%20stroke%3D%22%23D81222%22%20stroke-width%3D%223%22%20stroke-opacity%3D%220.32%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E",
+                  "object_fit": "fill",
+                  "alt_text": "generated brand-color motif: chart_silhouette",
+                  "bannerbear": {
+                    "layer_name": "motif_chart_silhouette",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "motif-chart_silhouette",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 50,
+                  "y": 71,
+                  "width": 320,
+                  "height": 80,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Header"
+                  }
+                },
+                {
+                  "id": "el_stat_number",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 199,
+                  "width": 980,
+                  "height": 250,
+                  "z_index": 15,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "0%",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 238,
+                  "line_height": 0.95,
+                  "letter_spacing": -2,
+                  "text_align": "center",
+                  "color": "#D81222",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "stat_number",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "stat_number",
+                    "style_ref": "text/stat-number-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Stat"
+                  }
+                },
+                {
+                  "id": "el_stat_label",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 457,
+                  "width": 980,
+                  "height": 34,
+                  "z_index": 15,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "HIDDEN FEES",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 24,
+                  "line_height": 1.2,
+                  "letter_spacing": 2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "stat_label",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "stat_label",
+                    "style_ref": "text/stat-label-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Stat"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 531,
+                  "width": 980,
+                  "height": 166,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Trade with Full Cost Clarity",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 72,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 709,
+                  "width": 980,
+                  "height": 98,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Experience transparent trading with MEXEM, no hidden fees.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 35,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 823,
+                  "width": 442,
+                  "height": 77,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "View live rates →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 39,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1080 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 961,
+                  "width": 980,
+                  "height": 29,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 18,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-06T06:48:14.817Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "stocks",
+              "selected_context": "stocks",
+              "intended_device_type": "tablet",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "tablet-stocks",
+              "composite_public_path": "/generated-preview-composites/tablet-stocks.png",
+              "mockup_filename": "ipad-3.png",
+              "screenshot_filename": "Order dialog (Light).png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "explicit_manifest"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_2_1080x1920",
+            "campaign_id": "cam_6437fe53",
+            "concept_id": "concept_2",
+            "format": "1080x1920",
+            "canvas_width": 1080,
+            "canvas_height": 1920,
+            "channel": "instagram-story",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1920",
+              "specId": "spec_demo_1080x1920",
+              "conceptId": "concept_2",
+              "campaignId": "cam_6437fe53",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1920
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#004267",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(0deg, #004267 0%, #004267 100%)"
+                },
+                {
+                  "id": "el_motif_chart_silhouette",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 8,
+                  "opacity": 0.6,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221080%22%20height%3D%221920%22%20viewBox%3D%220%200%201080%201920%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23D81222%22%20stop-opacity%3D%220.18%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23D81222%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M%200.0%201497.6%20L%20162.0%201344.0%20L%20345.6%201190.4%20L%20540.0%20864.0%20L%20756.0%20960.0%20L%20918.0%20614.4%20L%201080.0%20537.6%20L%201080%201920%20L%200%201920%20Z%22%20fill%3D%22url(%23g)%22%2F%3E%3Cpath%20d%3D%22M%200.0%201497.6%20L%20162.0%201344.0%20L%20345.6%201190.4%20L%20540.0%20864.0%20L%20756.0%20960.0%20L%20918.0%20614.4%20L%201080.0%20537.6%22%20fill%3D%22none%22%20stroke%3D%22%23D81222%22%20stroke-width%3D%223%22%20stroke-opacity%3D%220.32%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E",
+                  "object_fit": "fill",
+                  "alt_text": "generated brand-color motif: chart_silhouette",
+                  "bannerbear": {
+                    "layer_name": "motif_chart_silhouette",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "motif-chart_silhouette",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 50,
+                  "y": 71,
+                  "width": 352,
+                  "height": 88,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629608/brands/brand_001/logos/logo-white-p.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-p",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-p.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Header"
+                  }
+                },
+                {
+                  "id": "el_stat_number",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 281,
+                  "width": 980,
+                  "height": 250,
+                  "z_index": 15,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "0%",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 238,
+                  "line_height": 0.95,
+                  "letter_spacing": -2,
+                  "text_align": "center",
+                  "color": "#D81222",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "stat_number",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "stat_number",
+                    "style_ref": "text/stat-number-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Stat"
+                  }
+                },
+                {
+                  "id": "el_stat_label",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 539,
+                  "width": 980,
+                  "height": 34,
+                  "z_index": 15,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "HIDDEN FEES",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 24,
+                  "line_height": 1.2,
+                  "letter_spacing": 2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "stat_label",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "stat_label",
+                    "style_ref": "text/stat-label-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Stat"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 687,
+                  "width": 980,
+                  "height": 284,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Trade with Full Cost Clarity",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 86,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 1087,
+                  "width": 980,
+                  "height": 147,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Experience transparent trading with MEXEM, no hidden fees.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 35,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 365,
+                  "y": 987,
+                  "width": 442,
+                  "height": 84,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "View live rates →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 42,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1920 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 1795,
+                  "width": 980,
+                  "height": 35,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 20,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-06T06:48:14.817Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "stocks",
+              "selected_context": "stocks",
+              "intended_device_type": "phone",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "phone-stocks",
+              "composite_public_path": "/generated-preview-composites/phone-stocks.png",
+              "mockup_filename": "iphone-1.png",
+              "screenshot_filename": "IMG_3975.PNG",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          }
+        ],
+        "visual_layout_spec": {
+          "spec_version": "1.0.0",
+          "layout_type": "editorial_type",
+          "composition": "text_leading",
+          "hierarchy": {
+            "primary_focus": "headline",
+            "secondary_focus": "stat",
+            "emphasis_level": "quiet"
+          },
+          "text_strategy": {
+            "headline_position": "left",
+            "headline_scale": "standard",
+            "text_alignment": "left",
+            "max_text_density": "medium"
+          },
+          "visual_strategy": {
+            "primary_visual": "motif",
+            "visual_position": "right",
+            "visual_weight": "balanced",
+            "use_mockup": false,
+            "use_screenshot": false,
+            "use_motif": true,
+            "use_pattern": false,
+            "motif_hint": "chart_silhouette"
+          },
+          "brand_strategy": {
+            "background_style": "solid",
+            "palette_intensity": "calm",
+            "accent_usage": "none",
+            "logo_prominence": "standard"
+          },
+          "cta_strategy": {
+            "placement": "below_headline",
+            "weight": "loud",
+            "width": "fit_text"
+          },
+          "spacing": {
+            "density": "balanced",
+            "padding": "standard",
+            "safe_area_priority": "normal"
+          },
+          "format_adaptation": {},
+          "rationale": "The editorial layout highlights the clarity of transparent pricing. A calm palette and balanced density enhance trust, while the chart motif reinforces the concept of visibility."
+        }
+      },
+      {
+        "concept_id": "concept_3",
+        "name": "Global Market Gateway",
+        "strategic_idea": "Emphasize seamless access to global markets through MEXEM's platform.",
+        "target_emotion": "adventure",
+        "tone": "premium",
+        "visual_direction": {
+          "description": "An abstract globe made of lines and nodes against a dark background, symbolizing global connectivity.",
+          "primary_palette": [
+            "#004267",
+            "#FFFFFF"
+          ],
+          "composition": "hero_left",
+          "mood_keywords": [
+            "connectivity",
+            "global",
+            "innovative"
+          ]
+        },
+        "copy_package": {
+          "headline": "Access 150+ Global Markets",
+          "subheadline": "Trade worldwide seamlessly with MEXEM.",
+          "cta": "Explore markets",
+          "disclaimer": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+          "alternative_headlines": [
+            "Trade Across the Globe",
+            "World Markets at Your Fingertips"
+          ],
+          "alternative_ctas": [
+            "See market list",
+            "Browse exchanges"
+          ],
+          "platform_copy_variations": []
+        },
+        "desired_visual_context": "premium_fintech",
+        "midjourney_prompt_pack": [
+          {
+            "prompt_id": "concept_3-bg",
+            "intended_use": "background",
+            "context": "premium_fintech",
+            "aspect_ratio": "16:9",
+            "prompt_text": "Geometric lines forming a globe with nodes, set against a deep navy abstract background. No text, no UI."
+          },
+          {
+            "prompt_id": "concept_3-deco",
+            "intended_use": "decorative",
+            "context": "premium_fintech",
+            "aspect_ratio": "1:1",
+            "prompt_text": "A small, polished metal sphere reflecting light on a dark surface. No numbers, no letters."
+          },
+          {
+            "prompt_id": "concept_3-hero",
+            "intended_use": "hero_visual",
+            "context": "premium_fintech",
+            "aspect_ratio": "1:1",
+            "prompt_text": "A world globe made of glass and metal, illuminated by soft backlight on a clean backdrop. No text, no UI."
+          }
+        ],
+        "design_elements": {
+          "eyebrow": "GLOBAL ACCESS",
+          "stat": {
+            "number": "150+",
+            "label": "MARKETS AVAILABLE"
+          }
+        },
+        "campaign_id": "cam_6437fe53",
+        "ad_specs": [
+          {
+            "ad_id": "ad_concept_3_1200x628",
+            "campaign_id": "cam_6437fe53",
+            "concept_id": "concept_3",
+            "format": "1200x628",
+            "canvas_width": 1200,
+            "canvas_height": 628,
+            "channel": "leaderboard",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1200x628",
+              "specId": "spec_demo_1200x628",
+              "conceptId": "concept_3",
+              "campaignId": "cam_6437fe53",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1200,
+                "height": 628
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#00122C",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(110deg, #00122C 0%, #002B4B 14%, #004267 29%, #004F7B 43%, #005786 57%, #005D8D 71%, #006291 86%, #006A97 100%)"
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 40,
+                  "y": 57,
+                  "width": 244,
+                  "height": 61,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Header"
+                  }
+                },
+                {
+                  "id": "el_visual",
+                  "type": "image",
+                  "role": "product_visual",
+                  "source": "local_mockup_composite",
+                  "x": 466,
+                  "y": 65,
+                  "width": 694,
+                  "height": 419,
+                  "z_index": 20,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777896426/brands/brand_001/generated-composites/laptop-general_platform.png",
+                  "cloudinary_public_id": "brands/brand_001/generated-composites/laptop-general_platform",
+                  "local_public_path": "/generated-preview-composites/laptop-general_platform.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Product mockup with platform screenshot",
+                  "bannerbear": {
+                    "layer_name": "product_mockup",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "hero-mockup-composite",
+                    "exportable": true,
+                    "parent_frame_hint": "Ad / 1200x628 / Visual"
+                  },
+                  "composite_refs": {
+                    "composite_public_path": "/generated-preview-composites/laptop-general_platform.png",
+                    "composite_id": "laptop-general_platform",
+                    "original_mockup_asset_path": "brand-input/mockup devices/mockup-macbook.png",
+                    "original_mockup_filename": "mockup-macbook.png",
+                    "original_screenshot_asset_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 112522.png",
+                    "original_screenshot_filename": "Screenshot 2025-02-17 112522.png",
+                    "screenshot_context": "general_platform",
+                    "screenshot_context_confidence": "explicit_tag",
+                    "mockup_slot_source": "heuristic"
+                  },
+                  "notes": "composite · general_platform"
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 166,
+                  "width": 402,
+                  "height": 223,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Access 150+ Global Markets",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 69,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 55,
+                  "y": 454,
+                  "width": 373,
+                  "height": 56,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Explore markets →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 28,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#D81222",
+                  "border_radius": 28,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1200x628 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 534,
+                  "width": 1120,
+                  "height": 22,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 14,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-06T06:48:14.817Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "general_platform",
+              "selected_context": "general_platform",
+              "intended_device_type": "laptop",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "laptop-general_platform",
+              "composite_public_path": "/generated-preview-composites/laptop-general_platform.png",
+              "mockup_filename": "mockup-macbook.png",
+              "screenshot_filename": "Screenshot 2025-02-17 112522.png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_3_1080x1080",
+            "campaign_id": "cam_6437fe53",
+            "concept_id": "concept_3",
+            "format": "1080x1080",
+            "canvas_width": 1080,
+            "canvas_height": 1080,
+            "channel": "instagram-feed",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1080",
+              "specId": "spec_demo_1080x1080",
+              "conceptId": "concept_3",
+              "campaignId": "cam_6437fe53",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1080
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#00122C",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(110deg, #00122C 0%, #002B4B 14%, #004267 29%, #004F7B 43%, #005786 57%, #005D8D 71%, #006291 86%, #006A97 100%)"
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 40,
+                  "y": 57,
+                  "width": 352,
+                  "height": 88,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Header"
+                  }
+                },
+                {
+                  "id": "el_visual",
+                  "type": "image",
+                  "role": "product_visual",
+                  "source": "local_mockup_composite",
+                  "x": 40,
+                  "y": 620,
+                  "width": 1000,
+                  "height": 280,
+                  "z_index": 20,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777896423/brands/brand_001/generated-composites/tablet-general_platform.png",
+                  "cloudinary_public_id": "brands/brand_001/generated-composites/tablet-general_platform",
+                  "local_public_path": "/generated-preview-composites/tablet-general_platform.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Product mockup with platform screenshot",
+                  "bannerbear": {
+                    "layer_name": "product_mockup",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "hero-mockup-composite",
+                    "exportable": true,
+                    "parent_frame_hint": "Ad / 1080x1080 / Visual"
+                  },
+                  "composite_refs": {
+                    "composite_public_path": "/generated-preview-composites/tablet-general_platform.png",
+                    "composite_id": "tablet-general_platform",
+                    "original_mockup_asset_path": "brand-input/mockup devices/ipad-3.png",
+                    "original_mockup_filename": "ipad-3.png",
+                    "original_screenshot_asset_path": "brand-input/Platform screenshot/Order dialog (Light).png",
+                    "original_screenshot_filename": "Order dialog (Light).png",
+                    "screenshot_context": "general_platform",
+                    "screenshot_context_confidence": "explicit_tag",
+                    "mockup_slot_source": "explicit_manifest"
+                  },
+                  "notes": "composite · general_platform"
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 201,
+                  "width": 1000,
+                  "height": 281,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Access 150+ Global Markets",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 122,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 324,
+                  "y": 878,
+                  "width": 442,
+                  "height": 77,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Explore markets →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#D81222",
+                  "border_radius": 39,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1080 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 979,
+                  "width": 1000,
+                  "height": 29,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 18,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-06T06:48:14.817Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "general_platform",
+              "selected_context": "general_platform",
+              "intended_device_type": "tablet",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "tablet-general_platform",
+              "composite_public_path": "/generated-preview-composites/tablet-general_platform.png",
+              "mockup_filename": "ipad-3.png",
+              "screenshot_filename": "Order dialog (Light).png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "explicit_manifest"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_3_1080x1920",
+            "campaign_id": "cam_6437fe53",
+            "concept_id": "concept_3",
+            "format": "1080x1920",
+            "canvas_width": 1080,
+            "canvas_height": 1920,
+            "channel": "instagram-story",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1920",
+              "specId": "spec_demo_1080x1920",
+              "conceptId": "concept_3",
+              "campaignId": "cam_6437fe53",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1920
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#00122C",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(110deg, #00122C 0%, #002B4B 14%, #004267 29%, #004F7B 43%, #005786 57%, #005D8D 71%, #006291 86%, #006A97 100%)"
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 40,
+                  "y": 57,
+                  "width": 388,
+                  "height": 97,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629608/brands/brand_001/logos/logo-white-p.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-p",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-p.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Header"
+                  }
+                },
+                {
+                  "id": "el_visual",
+                  "type": "image",
+                  "role": "product_visual",
+                  "source": "local_mockup_composite",
+                  "x": 40,
+                  "y": 916,
+                  "width": 1000,
+                  "height": 684,
+                  "z_index": 20,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777895848/brands/brand_001/generated-composites/phone-general_platform.png",
+                  "cloudinary_public_id": "brands/brand_001/generated-composites/phone-general_platform",
+                  "local_public_path": "/generated-preview-composites/phone-general_platform.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Product mockup with platform screenshot",
+                  "bannerbear": {
+                    "layer_name": "product_mockup",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "hero-mockup-composite",
+                    "exportable": true,
+                    "parent_frame_hint": "Ad / 1080x1920 / Visual"
+                  },
+                  "composite_refs": {
+                    "composite_public_path": "/generated-preview-composites/phone-general_platform.png",
+                    "composite_id": "phone-general_platform",
+                    "original_mockup_asset_path": "brand-input/mockup devices/iphone-1.png",
+                    "original_mockup_filename": "iphone-1.png",
+                    "original_screenshot_asset_path": "brand-input/Platform screenshot/application_signin_page.PNG",
+                    "original_screenshot_filename": "application_signin_page.PNG",
+                    "screenshot_context": "general_platform",
+                    "screenshot_context_confidence": "explicit_tag",
+                    "mockup_slot_source": "heuristic"
+                  },
+                  "notes": "composite · general_platform"
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 218,
+                  "width": 1000,
+                  "height": 479,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Access 150+ Global Markets",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 145,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 324,
+                  "y": 1705,
+                  "width": 442,
+                  "height": 84,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Explore markets →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#D81222",
+                  "border_radius": 42,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1920 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 1813,
+                  "width": 1000,
+                  "height": 35,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 20,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-06T06:48:14.818Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "general_platform",
+              "selected_context": "general_platform",
+              "intended_device_type": "phone",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "phone-general_platform",
+              "composite_public_path": "/generated-preview-composites/phone-general_platform.png",
+              "mockup_filename": "iphone-1.png",
+              "screenshot_filename": "application_signin_page.PNG",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          }
+        ],
+        "visual_layout_spec": {
+          "spec_version": "1.0.0",
+          "layout_type": "mockup_hero",
+          "composition": "hero_overlay",
+          "hierarchy": {
+            "primary_focus": "headline",
+            "secondary_focus": "mockup",
+            "emphasis_level": "balanced"
+          },
+          "text_strategy": {
+            "headline_position": "top",
+            "headline_scale": "hero",
+            "text_alignment": "center",
+            "max_text_density": "low"
+          },
+          "visual_strategy": {
+            "primary_visual": "mockup",
+            "visual_position": "center",
+            "visual_weight": "dominant",
+            "use_mockup": true,
+            "use_screenshot": false,
+            "use_motif": false,
+            "use_pattern": false,
+            "motif_hint": "node_network"
+          },
+          "brand_strategy": {
+            "background_style": "deep_gradient",
+            "palette_intensity": "standard",
+            "accent_usage": "cta_only",
+            "logo_prominence": "prominent"
+          },
+          "cta_strategy": {
+            "placement": "bottom_center",
+            "weight": "loud",
+            "width": "fit_text"
+          },
+          "spacing": {
+            "density": "balanced",
+            "padding": "tight",
+            "safe_area_priority": "high"
+          },
+          "format_adaptation": {},
+          "rationale": "The mockup hero layout emphasizes global access, with a dominant visual symbolizing connectivity. A standard palette and balanced density support a premium, adventurous tone."
+        }
+      }
+    ],
+    "warnings": [
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "downgrade: concept_1/1200x628: composition=visual_leading → hero_overlay (template=pattern_immersive doesn't support it, format=1200x628)",
+      "downgrade: concept_1/1200x628: cta.weight=loud → standard (accent_usage=subtle doesn't permit accent fill)",
+      "downgrade: concept_1/1080x1080: composition=visual_leading → hero_overlay (template=pattern_immersive doesn't support it, format=1080x1080)",
+      "downgrade: concept_1/1080x1080: cta.weight=loud → standard (accent_usage=subtle doesn't permit accent fill)",
+      "downgrade: concept_1/1080x1920: composition=visual_leading → hero_overlay (template=pattern_immersive doesn't support it, format=1080x1920)",
+      "downgrade: concept_1/1080x1920: cta.weight=loud → standard (accent_usage=subtle doesn't permit accent fill)",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "downgrade: concept_2/1200x628: composition=text_leading → hero_overlay (template=editorial_type doesn't support it, format=1200x628)",
+      "downgrade: concept_2/1200x628: cta.weight=loud → standard (accent_usage=none doesn't permit accent fill)",
+      "downgrade: concept_2/1080x1080: composition=text_leading → hero_overlay (template=editorial_type doesn't support it, format=1080x1080)",
+      "downgrade: concept_2/1080x1080: cta.weight=loud → standard (accent_usage=none doesn't permit accent fill)",
+      "downgrade: concept_2/1080x1920: composition=text_leading → hero_overlay (template=editorial_type doesn't support it, format=1080x1920)",
+      "downgrade: concept_2/1080x1920: cta.weight=loud → standard (accent_usage=none doesn't permit accent fill)",
+      "Using Midjourney upload as background (upload_id=mu_cb5e31b0ea35, prompt_id=charts_01).",
+      "downgrade: concept_3/1200x628: composition=hero_overlay → text_leading (template=mockup_hero doesn't support it, format=1200x628)",
+      "downgrade: concept_3/1200x628: headline_position=top → auto (vertical anchor handled by composition)",
+      "downgrade: concept_3/1200x628: visual_position=center → auto (no safe builder)",
+      "downgrade: concept_3/1080x1080: composition=hero_overlay → text_leading (template=mockup_hero doesn't support it, format=1080x1080)",
+      "downgrade: concept_3/1080x1080: headline_position=top → auto (vertical anchor handled by composition)",
+      "downgrade: concept_3/1080x1080: visual_position=center → auto (no safe builder)",
+      "downgrade: concept_3/1080x1920: composition=hero_overlay → text_leading (template=mockup_hero doesn't support it, format=1080x1920)",
+      "downgrade: concept_3/1080x1920: headline_position=top → auto (vertical anchor handled by composition)",
+      "downgrade: concept_3/1080x1920: visual_position=center → auto (no safe builder)"
+    ],
+    "created_at": "2026-05-05T13:04:35.843Z"
+  },
+  "renders": [
+    {
+      "ad_id": "ad_concept_1_1200x628",
+      "campaign_id": "cam_6437fe53",
+      "concept_id": "concept_1",
+      "format": "1200x628",
+      "canvas_width": 1200,
+      "canvas_height": 628,
+      "output_local_path": "public/rendered-ads/campaigns/cam_6437fe53/concept_1_1200x628.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_6437fe53/concept_1_1200x628.png",
+      "status": "completed",
+      "rendered_at": "2026-05-06T06:48:15.062Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "59286d7eb63be4f0",
+      "bytes": 313818,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1080",
+      "campaign_id": "cam_6437fe53",
+      "concept_id": "concept_1",
+      "format": "1080x1080",
+      "canvas_width": 1080,
+      "canvas_height": 1080,
+      "output_local_path": "public/rendered-ads/campaigns/cam_6437fe53/concept_1_1080x1080.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_6437fe53/concept_1_1080x1080.png",
+      "status": "completed",
+      "rendered_at": "2026-05-06T06:48:16.256Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "cd19d71a03d4aa96",
+      "bytes": 464100,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1920",
+      "campaign_id": "cam_6437fe53",
+      "concept_id": "concept_1",
+      "format": "1080x1920",
+      "canvas_width": 1080,
+      "canvas_height": 1920,
+      "output_local_path": "public/rendered-ads/campaigns/cam_6437fe53/concept_1_1080x1920.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_6437fe53/concept_1_1080x1920.png",
+      "status": "completed",
+      "rendered_at": "2026-05-06T06:48:17.236Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "a25dbfa11166fa78",
+      "bytes": 768670,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_2_1200x628",
+      "campaign_id": "cam_6437fe53",
+      "concept_id": "concept_2",
+      "format": "1200x628",
+      "canvas_width": 1200,
+      "canvas_height": 628,
+      "output_local_path": "public/rendered-ads/campaigns/cam_6437fe53/concept_2_1200x628.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_6437fe53/concept_2_1200x628.png",
+      "status": "completed",
+      "rendered_at": "2026-05-06T06:48:18.275Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "4bf6a5868b80bcc1",
+      "bytes": 273809,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1080",
+      "campaign_id": "cam_6437fe53",
+      "concept_id": "concept_2",
+      "format": "1080x1080",
+      "canvas_width": 1080,
+      "canvas_height": 1080,
+      "output_local_path": "public/rendered-ads/campaigns/cam_6437fe53/concept_2_1080x1080.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_6437fe53/concept_2_1080x1080.png",
+      "status": "completed",
+      "rendered_at": "2026-05-06T06:48:19.214Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "f9d922d3a61208aa",
+      "bytes": 435825,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1920",
+      "campaign_id": "cam_6437fe53",
+      "concept_id": "concept_2",
+      "format": "1080x1920",
+      "canvas_width": 1080,
+      "canvas_height": 1920,
+      "output_local_path": "public/rendered-ads/campaigns/cam_6437fe53/concept_2_1080x1920.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_6437fe53/concept_2_1080x1920.png",
+      "status": "completed",
+      "rendered_at": "2026-05-06T06:48:20.187Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "09b578cfbfdcde4d",
+      "bytes": 636449,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_3_1200x628",
+      "campaign_id": "cam_6437fe53",
+      "concept_id": "concept_3",
+      "format": "1200x628",
+      "canvas_width": 1200,
+      "canvas_height": 628,
+      "output_local_path": "public/rendered-ads/campaigns/cam_6437fe53/concept_3_1200x628.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_6437fe53/concept_3_1200x628.png",
+      "status": "completed",
+      "rendered_at": "2026-05-06T06:48:21.204Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "649a44813c9318ea",
+      "bytes": 288526,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_3_1080x1080",
+      "campaign_id": "cam_6437fe53",
+      "concept_id": "concept_3",
+      "format": "1080x1080",
+      "canvas_width": 1080,
+      "canvas_height": 1080,
+      "output_local_path": "public/rendered-ads/campaigns/cam_6437fe53/concept_3_1080x1080.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_6437fe53/concept_3_1080x1080.png",
+      "status": "completed",
+      "rendered_at": "2026-05-06T06:48:27.993Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "6cdbbeb56ad0d038",
+      "bytes": 408933,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_3_1080x1920",
+      "campaign_id": "cam_6437fe53",
+      "concept_id": "concept_3",
+      "format": "1080x1920",
+      "canvas_width": 1080,
+      "canvas_height": 1920,
+      "output_local_path": "public/rendered-ads/campaigns/cam_6437fe53/concept_3_1080x1920.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_6437fe53/concept_3_1080x1920.png",
+      "status": "completed",
+      "rendered_at": "2026-05-06T06:48:28.972Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "230befc27491e9fb",
+      "bytes": 591001,
+      "warnings": []
+    }
+  ]
+}

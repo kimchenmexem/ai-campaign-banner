@@ -1,0 +1,492 @@
+{
+  "generated_at": "2026-05-08T06:01:00.560Z",
+  "output_dir": "/generated-preview-composites/",
+  "composites": [
+    {
+      "composite_id": "tablet-charts",
+      "mockup_source_path": "brand-input/mockup devices/ipad-3.png",
+      "mockup_original_filename": "ipad-3.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/Order dialog (Light).png",
+      "screenshot_original_filename": "Order dialog (Light).png",
+      "public_path": "/generated-preview-composites/tablet-charts.png",
+      "device_type": "tablet",
+      "screenshot_context": "charts",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 200,
+        "y": 137,
+        "width": 1565,
+        "height": 1095,
+        "border_radius": 26,
+        "corners": [
+          {
+            "x": 206,
+            "y": 137
+          },
+          {
+            "x": 1765,
+            "y": 137
+          },
+          {
+            "x": 1761,
+            "y": 1229
+          },
+          {
+            "x": 200,
+            "y": 1232
+          }
+        ]
+      },
+      "slot_source": "explicit_manifest",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1965,
+        "height": 1359
+      },
+      "created_at": "2026-05-08T06:00:58.784Z"
+    },
+    {
+      "composite_id": "tablet-stocks",
+      "mockup_source_path": "brand-input/mockup devices/ipad-3.png",
+      "mockup_original_filename": "ipad-3.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/Order dialog (Light).png",
+      "screenshot_original_filename": "Order dialog (Light).png",
+      "public_path": "/generated-preview-composites/tablet-stocks.png",
+      "device_type": "tablet",
+      "screenshot_context": "stocks",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 200,
+        "y": 137,
+        "width": 1565,
+        "height": 1095,
+        "border_radius": 26,
+        "corners": [
+          {
+            "x": 206,
+            "y": 137
+          },
+          {
+            "x": 1765,
+            "y": 137
+          },
+          {
+            "x": 1761,
+            "y": 1229
+          },
+          {
+            "x": 200,
+            "y": 1232
+          }
+        ]
+      },
+      "slot_source": "explicit_manifest",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1965,
+        "height": 1359
+      },
+      "created_at": "2026-05-08T06:00:59.272Z"
+    },
+    {
+      "composite_id": "tablet-general_platform",
+      "mockup_source_path": "brand-input/mockup devices/ipad-3.png",
+      "mockup_original_filename": "ipad-3.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/Order dialog (Light).png",
+      "screenshot_original_filename": "Order dialog (Light).png",
+      "public_path": "/generated-preview-composites/tablet-general_platform.png",
+      "device_type": "tablet",
+      "screenshot_context": "general_platform",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 200,
+        "y": 137,
+        "width": 1565,
+        "height": 1095,
+        "border_radius": 26,
+        "corners": [
+          {
+            "x": 206,
+            "y": 137
+          },
+          {
+            "x": 1765,
+            "y": 137
+          },
+          {
+            "x": 1761,
+            "y": 1229
+          },
+          {
+            "x": 200,
+            "y": 1232
+          }
+        ]
+      },
+      "slot_source": "explicit_manifest",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1965,
+        "height": 1359
+      },
+      "created_at": "2026-05-08T06:00:59.760Z"
+    },
+    {
+      "composite_id": "tablet-etfs",
+      "mockup_source_path": "brand-input/mockup devices/ipad-3.png",
+      "mockup_original_filename": "ipad-3.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/Order dialog (Light).png",
+      "screenshot_original_filename": "Order dialog (Light).png",
+      "public_path": "/generated-preview-composites/tablet-etfs.png",
+      "device_type": "tablet",
+      "screenshot_context": "etfs",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 200,
+        "y": 137,
+        "width": 1565,
+        "height": 1095,
+        "border_radius": 26,
+        "corners": [
+          {
+            "x": 206,
+            "y": 137
+          },
+          {
+            "x": 1765,
+            "y": 137
+          },
+          {
+            "x": 1761,
+            "y": 1229
+          },
+          {
+            "x": 200,
+            "y": 1232
+          }
+        ]
+      },
+      "slot_source": "explicit_manifest",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1965,
+        "height": 1359
+      },
+      "created_at": "2026-05-08T06:01:00.218Z"
+    },
+    {
+      "composite_id": "phone-charts",
+      "mockup_source_path": "brand-input/mockup devices/iphone-1.png",
+      "mockup_original_filename": "iphone-1.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/IMG_3975.PNG",
+      "screenshot_original_filename": "IMG_3975.PNG",
+      "public_path": "/generated-preview-composites/phone-charts.png",
+      "device_type": "phone",
+      "screenshot_context": "charts",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 105,
+        "y": 81,
+        "width": 1289,
+        "height": 1853,
+        "border_radius": 90
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1499,
+        "height": 2014
+      },
+      "created_at": "2026-05-08T06:01:00.266Z"
+    },
+    {
+      "composite_id": "phone-stocks",
+      "mockup_source_path": "brand-input/mockup devices/iphone-1.png",
+      "mockup_original_filename": "iphone-1.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/IMG_3975.PNG",
+      "screenshot_original_filename": "IMG_3975.PNG",
+      "public_path": "/generated-preview-composites/phone-stocks.png",
+      "device_type": "phone",
+      "screenshot_context": "stocks",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 105,
+        "y": 81,
+        "width": 1289,
+        "height": 1853,
+        "border_radius": 90
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1499,
+        "height": 2014
+      },
+      "created_at": "2026-05-08T06:01:00.306Z"
+    },
+    {
+      "composite_id": "phone-general_platform",
+      "mockup_source_path": "brand-input/mockup devices/iphone-1.png",
+      "mockup_original_filename": "iphone-1.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/application_signin_page.PNG",
+      "screenshot_original_filename": "application_signin_page.PNG",
+      "public_path": "/generated-preview-composites/phone-general_platform.png",
+      "device_type": "phone",
+      "screenshot_context": "general_platform",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 105,
+        "y": 81,
+        "width": 1289,
+        "height": 1853,
+        "border_radius": 90
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1499,
+        "height": 2014
+      },
+      "created_at": "2026-05-08T06:01:00.346Z"
+    },
+    {
+      "composite_id": "phone-etfs",
+      "mockup_source_path": "brand-input/mockup devices/iphone-1.png",
+      "mockup_original_filename": "iphone-1.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/tesla_stock_mobileApp.png",
+      "screenshot_original_filename": "tesla_stock_mobileApp.png",
+      "public_path": "/generated-preview-composites/phone-etfs.png",
+      "device_type": "phone",
+      "screenshot_context": "etfs",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 105,
+        "y": 81,
+        "width": 1289,
+        "height": 1853,
+        "border_radius": 90
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1499,
+        "height": 2014
+      },
+      "created_at": "2026-05-08T06:01:00.395Z"
+    },
+    {
+      "composite_id": "smartwatch-charts",
+      "mockup_source_path": "brand-input/mockup devices/iwatch-2.png",
+      "mockup_original_filename": "iwatch-2.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/IMG_3975.PNG",
+      "screenshot_original_filename": "IMG_3975.PNG",
+      "public_path": "/generated-preview-composites/smartwatch-charts.png",
+      "device_type": "smartwatch",
+      "screenshot_context": "charts",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 101,
+        "y": 180,
+        "width": 359,
+        "height": 640,
+        "border_radius": 65
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 561,
+        "height": 1000
+      },
+      "created_at": "2026-05-08T06:01:00.414Z"
+    },
+    {
+      "composite_id": "smartwatch-stocks",
+      "mockup_source_path": "brand-input/mockup devices/iwatch-2.png",
+      "mockup_original_filename": "iwatch-2.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/IMG_3975.PNG",
+      "screenshot_original_filename": "IMG_3975.PNG",
+      "public_path": "/generated-preview-composites/smartwatch-stocks.png",
+      "device_type": "smartwatch",
+      "screenshot_context": "stocks",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 101,
+        "y": 180,
+        "width": 359,
+        "height": 640,
+        "border_radius": 65
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 561,
+        "height": 1000
+      },
+      "created_at": "2026-05-08T06:01:00.431Z"
+    },
+    {
+      "composite_id": "smartwatch-general_platform",
+      "mockup_source_path": "brand-input/mockup devices/iwatch-2.png",
+      "mockup_original_filename": "iwatch-2.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/application_signin_page.PNG",
+      "screenshot_original_filename": "application_signin_page.PNG",
+      "public_path": "/generated-preview-composites/smartwatch-general_platform.png",
+      "device_type": "smartwatch",
+      "screenshot_context": "general_platform",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 101,
+        "y": 180,
+        "width": 359,
+        "height": 640,
+        "border_radius": 65
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 561,
+        "height": 1000
+      },
+      "created_at": "2026-05-08T06:01:00.447Z"
+    },
+    {
+      "composite_id": "smartwatch-etfs",
+      "mockup_source_path": "brand-input/mockup devices/iwatch-2.png",
+      "mockup_original_filename": "iwatch-2.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/tesla_stock_mobileApp.png",
+      "screenshot_original_filename": "tesla_stock_mobileApp.png",
+      "public_path": "/generated-preview-composites/smartwatch-etfs.png",
+      "device_type": "smartwatch",
+      "screenshot_context": "etfs",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 101,
+        "y": 180,
+        "width": 359,
+        "height": 640,
+        "border_radius": 65
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 561,
+        "height": 1000
+      },
+      "created_at": "2026-05-08T06:01:00.467Z"
+    },
+    {
+      "composite_id": "laptop-charts",
+      "mockup_source_path": "brand-input/mockup devices/mockup-macbook.png",
+      "mockup_original_filename": "mockup-macbook.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 112522.png",
+      "screenshot_original_filename": "Screenshot 2025-02-17 112522.png",
+      "public_path": "/generated-preview-composites/laptop-charts.png",
+      "device_type": "laptop",
+      "screenshot_context": "charts",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 130,
+        "y": 38,
+        "width": 740,
+        "height": 394,
+        "border_radius": 4
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1000,
+        "height": 635
+      },
+      "created_at": "2026-05-08T06:01:00.492Z"
+    },
+    {
+      "composite_id": "laptop-stocks",
+      "mockup_source_path": "brand-input/mockup devices/mockup-macbook.png",
+      "mockup_original_filename": "mockup-macbook.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 112522.png",
+      "screenshot_original_filename": "Screenshot 2025-02-17 112522.png",
+      "public_path": "/generated-preview-composites/laptop-stocks.png",
+      "device_type": "laptop",
+      "screenshot_context": "stocks",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 130,
+        "y": 38,
+        "width": 740,
+        "height": 394,
+        "border_radius": 4
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1000,
+        "height": 635
+      },
+      "created_at": "2026-05-08T06:01:00.515Z"
+    },
+    {
+      "composite_id": "laptop-general_platform",
+      "mockup_source_path": "brand-input/mockup devices/mockup-macbook.png",
+      "mockup_original_filename": "mockup-macbook.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 112522.png",
+      "screenshot_original_filename": "Screenshot 2025-02-17 112522.png",
+      "public_path": "/generated-preview-composites/laptop-general_platform.png",
+      "device_type": "laptop",
+      "screenshot_context": "general_platform",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 130,
+        "y": 38,
+        "width": 740,
+        "height": 394,
+        "border_radius": 4
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1000,
+        "height": 635
+      },
+      "created_at": "2026-05-08T06:01:00.538Z"
+    },
+    {
+      "composite_id": "laptop-etfs",
+      "mockup_source_path": "brand-input/mockup devices/mockup-macbook.png",
+      "mockup_original_filename": "mockup-macbook.png",
+      "screenshot_source_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 112522.png",
+      "screenshot_original_filename": "Screenshot 2025-02-17 112522.png",
+      "public_path": "/generated-preview-composites/laptop-etfs.png",
+      "device_type": "laptop",
+      "screenshot_context": "etfs",
+      "screenshot_context_confidence": "explicit_tag",
+      "slot": {
+        "x": 130,
+        "y": 38,
+        "width": 740,
+        "height": 394,
+        "border_radius": 4
+      },
+      "slot_source": "heuristic",
+      "fit": "cover",
+      "output_dimensions": {
+        "width": 1000,
+        "height": 635
+      },
+      "created_at": "2026-05-08T06:01:00.560Z"
+    }
+  ],
+  "warnings": [
+    "No screenshot tagged or named for context \"green_data\" — composite skipped or fallback used.",
+    "Composite tablet-stocks used cross-context screenshot Order dialog (Light).png (slot AR 1.43 vs context's best 0.97 mismatch).",
+    "Composite tablet-general_platform used cross-context screenshot Order dialog (Light).png (slot AR 1.43 vs context's best 0.97 mismatch).",
+    "Composite tablet-etfs used cross-context screenshot Order dialog (Light).png (slot AR 1.43 vs context's best 0.98 mismatch).",
+    "Mockup iphone-1.png (phone) used HEURISTIC screen slot. Add an entry in brand-input/mockup devices/mockup-manifest.json (or use the Mockup Calibrator at /mockup-calibrator) for accurate placement.",
+    "Composite phone-charts used cross-context screenshot IMG_3975.PNG (slot AR 0.70 vs context's best 1.08 mismatch).",
+    "Mockup iwatch-2.png (smartwatch) used HEURISTIC screen slot. Add an entry in brand-input/mockup devices/mockup-manifest.json (or use the Mockup Calibrator at /mockup-calibrator) for accurate placement.",
+    "Composite smartwatch-charts used cross-context screenshot IMG_3975.PNG (slot AR 0.56 vs context's best 1.22 mismatch).",
+    "Mockup mockup-macbook.png (laptop) used HEURISTIC screen slot. Add an entry in brand-input/mockup devices/mockup-manifest.json (or use the Mockup Calibrator at /mockup-calibrator) for accurate placement.",
+    "Composite laptop-stocks used cross-context screenshot Screenshot 2025-02-17 112522.png (slot AR 1.88 vs context's best 1.42 mismatch).",
+    "Composite laptop-general_platform used cross-context screenshot Screenshot 2025-02-17 112522.png (slot AR 1.88 vs context's best 1.42 mismatch).",
+    "Composite laptop-etfs used cross-context screenshot Screenshot 2025-02-17 112522.png (slot AR 1.88 vs context's best 1.43 mismatch)."
+  ]
+}

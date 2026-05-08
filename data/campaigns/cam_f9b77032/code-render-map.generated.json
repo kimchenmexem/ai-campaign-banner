@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-05-05T09:17:04.545Z",
+  "campaign_id": "cam_f9b77032",
+  "base_url": "http://localhost:3001",
+  "total": 3,
+  "completed": 3,
+  "failed": 0,
+  "items": [
+    {
+      "ad_id": "ad_concept_1_1080x1080",
+      "campaign_id": "cam_f9b77032",
+      "concept_id": "concept_1",
+      "format": "1080x1080",
+      "canvas_width": 1080,
+      "canvas_height": 1080,
+      "output_local_path": "public/rendered-ads/campaigns/cam_f9b77032/concept_1_1080x1080.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_f9b77032/concept_1_1080x1080.png",
+      "status": "completed",
+      "rendered_at": "2026-05-05T09:17:00.908Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "7588f3ba5afaee0a",
+      "bytes": 379681,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1080",
+      "campaign_id": "cam_f9b77032",
+      "concept_id": "concept_2",
+      "format": "1080x1080",
+      "canvas_width": 1080,
+      "canvas_height": 1080,
+      "output_local_path": "public/rendered-ads/campaigns/cam_f9b77032/concept_2_1080x1080.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_f9b77032/concept_2_1080x1080.png",
+      "status": "completed",
+      "rendered_at": "2026-05-05T09:17:02.104Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "bdfba098de72658c",
+      "bytes": 412821,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_3_1080x1080",
+      "campaign_id": "cam_f9b77032",
+      "concept_id": "concept_3",
+      "format": "1080x1080",
+      "canvas_width": 1080,
+      "canvas_height": 1080,
+      "output_local_path": "public/rendered-ads/campaigns/cam_f9b77032/concept_3_1080x1080.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_f9b77032/concept_3_1080x1080.png",
+      "status": "completed",
+      "rendered_at": "2026-05-05T09:17:03.164Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "962333a7b79e62fd",
+      "bytes": 526782,
+      "warnings": []
+    }
+  ]
+}

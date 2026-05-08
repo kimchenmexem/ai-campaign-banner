@@ -1,0 +1,183 @@
+{
+  "generated_at": "2026-05-05T09:28:26.530Z",
+  "campaign_id": "cam_27afa654",
+  "total": 9,
+  "scored": 9,
+  "failed": 0,
+  "avg_score": 9,
+  "items": [
+    {
+      "ad_id": "ad_concept_1_1200x628",
+      "concept_id": "concept_1",
+      "format": "1200x628",
+      "png_public_path": "/rendered-ads/campaigns/cam_27afa654/concept_1_1200x628.png",
+      "score": {
+        "score": 9,
+        "copy_strength": 9,
+        "composition": 9,
+        "brand_fidelity": 9,
+        "text_legibility": 9,
+        "verdict": "The ad is well-designed, clear, and on-brand for a premium financial-services company.",
+        "issues": [],
+        "suggested_revision": "Consider slightly increasing the size of the caution text for better legibility."
+      },
+      "scored_at": "2026-05-05T09:28:00.713Z",
+      "model": "gpt-4o"
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1080",
+      "concept_id": "concept_1",
+      "format": "1080x1080",
+      "png_public_path": "/rendered-ads/campaigns/cam_27afa654/concept_1_1080x1080.png",
+      "score": {
+        "score": 9,
+        "copy_strength": 9,
+        "composition": 9,
+        "brand_fidelity": 9,
+        "text_legibility": 10,
+        "verdict": "The ad is strong and nearly ready for a premium financial brand with minor refinements.",
+        "issues": [
+          "Slightly more visual emphasis on the CTA could enhance engagement."
+        ],
+        "suggested_revision": "Increase the size or contrast of the 'Start Trading' button for greater emphasis."
+      },
+      "scored_at": "2026-05-05T09:28:03.625Z",
+      "model": "gpt-4o"
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1920",
+      "concept_id": "concept_1",
+      "format": "1080x1920",
+      "png_public_path": "/rendered-ads/campaigns/cam_27afa654/concept_1_1080x1920.png",
+      "score": {
+        "score": 9,
+        "copy_strength": 9,
+        "composition": 9,
+        "brand_fidelity": 9,
+        "text_legibility": 10,
+        "verdict": "Strong ad with clear messaging and professional design, suitable for a premium financial brand.",
+        "issues": [],
+        "suggested_revision": "Consider slightly increasing the size of the subhead for better emphasis."
+      },
+      "scored_at": "2026-05-05T09:28:07.833Z",
+      "model": "gpt-4o"
+    },
+    {
+      "ad_id": "ad_concept_2_1200x628",
+      "concept_id": "concept_2",
+      "format": "1200x628",
+      "png_public_path": "/rendered-ads/campaigns/cam_27afa654/concept_2_1200x628.png",
+      "score": {
+        "score": 9,
+        "copy_strength": 9,
+        "composition": 9,
+        "brand_fidelity": 9,
+        "text_legibility": 9,
+        "verdict": "The ad is well-designed, clear, and on-brand for a premium financial services company.",
+        "issues": [],
+        "suggested_revision": "Consider slightly increasing the size of the caution text for better legibility."
+      },
+      "scored_at": "2026-05-05T09:28:10.599Z",
+      "model": "gpt-4o"
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1080",
+      "concept_id": "concept_2",
+      "format": "1080x1080",
+      "png_public_path": "/rendered-ads/campaigns/cam_27afa654/concept_2_1080x1080.png",
+      "score": {
+        "score": 9,
+        "copy_strength": 9,
+        "composition": 9,
+        "brand_fidelity": 9,
+        "text_legibility": 9,
+        "verdict": "The ad is strong, clear, and on-brand, with only minor refinements needed.",
+        "issues": [
+          "Slightly improve contrast for small text at the bottom."
+        ],
+        "suggested_revision": "Increase contrast of the caution text for better legibility."
+      },
+      "scored_at": "2026-05-05T09:28:13.815Z",
+      "model": "gpt-4o"
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1920",
+      "concept_id": "concept_2",
+      "format": "1080x1920",
+      "png_public_path": "/rendered-ads/campaigns/cam_27afa654/concept_2_1080x1920.png",
+      "score": {
+        "score": 9,
+        "copy_strength": 9,
+        "composition": 9,
+        "brand_fidelity": 9,
+        "text_legibility": 9,
+        "verdict": "The ad is strong and nearly ready for a premium financial brand with minor refinements.",
+        "issues": [
+          "CTA button could be slightly larger for emphasis",
+          "Consider increasing contrast for the disclaimer text"
+        ],
+        "suggested_revision": "Increase the size of the CTA button for better visibility."
+      },
+      "scored_at": "2026-05-05T09:28:17.605Z",
+      "model": "gpt-4o"
+    },
+    {
+      "ad_id": "ad_concept_3_1200x628",
+      "concept_id": "concept_3",
+      "format": "1200x628",
+      "png_public_path": "/rendered-ads/campaigns/cam_27afa654/concept_3_1200x628.png",
+      "score": {
+        "score": 9,
+        "copy_strength": 9,
+        "composition": 9,
+        "brand_fidelity": 9,
+        "text_legibility": 9,
+        "verdict": "The ad is well-designed, clear, and on-brand for a premium financial-services company.",
+        "issues": [],
+        "suggested_revision": "Consider slightly increasing the size of the caution text for better legibility."
+      },
+      "scored_at": "2026-05-05T09:28:20.808Z",
+      "model": "gpt-4o"
+    },
+    {
+      "ad_id": "ad_concept_3_1080x1080",
+      "concept_id": "concept_3",
+      "format": "1080x1080",
+      "png_public_path": "/rendered-ads/campaigns/cam_27afa654/concept_3_1080x1080.png",
+      "score": {
+        "score": 9,
+        "copy_strength": 9,
+        "composition": 9,
+        "brand_fidelity": 9,
+        "text_legibility": 9,
+        "verdict": "The ad is nearly ready for a premium financial brand with strong copy and clear composition.",
+        "issues": [
+          "Minor contrast issue with the disclaimer text"
+        ],
+        "suggested_revision": "Increase the contrast of the disclaimer text for better legibility."
+      },
+      "scored_at": "2026-05-05T09:28:23.226Z",
+      "model": "gpt-4o"
+    },
+    {
+      "ad_id": "ad_concept_3_1080x1920",
+      "concept_id": "concept_3",
+      "format": "1080x1920",
+      "png_public_path": "/rendered-ads/campaigns/cam_27afa654/concept_3_1080x1920.png",
+      "score": {
+        "score": 9,
+        "copy_strength": 9,
+        "composition": 9,
+        "brand_fidelity": 9,
+        "text_legibility": 10,
+        "verdict": "The ad is strong and nearly ready for a premium financial brand with minor refinements needed.",
+        "issues": [
+          "Logo could be slightly larger for better brand presence."
+        ],
+        "suggested_revision": "Increase the size of the logo for enhanced brand visibility."
+      },
+      "scored_at": "2026-05-05T09:28:26.530Z",
+      "model": "gpt-4o"
+    }
+  ]
+}

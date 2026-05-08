@@ -1,0 +1,60 @@
+[
+  {
+    "filename": "ipad-3.png",
+    "device_type": "tablet",
+    "screen_slot": {
+      "x": 200,
+      "y": 137,
+      "width": 1565,
+      "height": 1095,
+      "border_radius": 26,
+      "corners": [
+        {
+          "x": 206,
+          "y": 137
+        },
+        {
+          "x": 1765,
+          "y": 137
+        },
+        {
+          "x": 1761,
+          "y": 1229
+        },
+        {
+          "x": 200,
+          "y": 1232
+        }
+      ]
+    }
+  },
+  {
+    "filename": "ipad-4.png",
+    "device_type": "tablet",
+    "screen_slot": {
+      "x": 46,
+      "y": 128,
+      "width": 1529,
+      "height": 1088,
+      "border_radius": 37,
+      "corners": [
+        {
+          "x": 298,
+          "y": 196
+        },
+        {
+          "x": 1575,
+          "y": 128
+        },
+        {
+          "x": 1336,
+          "y": 1212
+        },
+        {
+          "x": 46,
+          "y": 1216
+        }
+      ]
+    }
+  }
+]

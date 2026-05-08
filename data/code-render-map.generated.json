@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-05-07T08:01:05.844Z",
+  "brand_id": "brand_001",
+  "base_url": "http://localhost:3001",
+  "total": 3,
+  "completed": 3,
+  "failed": 0,
+  "items": [
+    {
+      "ad_id": "spec_demo_1200x628",
+      "format": "1200x628",
+      "canvas_width": 1200,
+      "canvas_height": 628,
+      "output_local_path": "public/rendered-ads/demo/1200x628.png",
+      "output_public_path": "/rendered-ads/demo/1200x628.png",
+      "status": "completed",
+      "rendered_at": "2026-05-07T08:01:01.626Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "e5134950f7de26b5",
+      "bytes": 607904,
+      "warnings": []
+    },
+    {
+      "ad_id": "spec_demo_1080x1080",
+      "format": "1080x1080",
+      "canvas_width": 1080,
+      "canvas_height": 1080,
+      "output_local_path": "public/rendered-ads/demo/1080x1080.png",
+      "output_public_path": "/rendered-ads/demo/1080x1080.png",
+      "status": "completed",
+      "rendered_at": "2026-05-07T08:01:03.655Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "75c9cd55e406df1d",
+      "bytes": 820024,
+      "warnings": []
+    },
+    {
+      "ad_id": "spec_demo_1080x1920",
+      "format": "1080x1920",
+      "canvas_width": 1080,
+      "canvas_height": 1920,
+      "output_local_path": "public/rendered-ads/demo/1080x1920.png",
+      "output_public_path": "/rendered-ads/demo/1080x1920.png",
+      "status": "completed",
+      "rendered_at": "2026-05-07T08:01:04.705Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "ff67f1e0b9f41d76",
+      "bytes": 1117016,
+      "warnings": []
+    }
+  ]
+}

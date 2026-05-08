@@ -1,0 +1,3375 @@
+{
+  "generated_at": "2026-05-07T12:04:32.303Z",
+  "assets": [
+    {
+      "id": "asset_background_19ffcdc58bf6",
+      "type": "background",
+      "variant": "linear_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_19ffcdc58bf6.svg",
+      "url": "/generated-assets/backgrounds/asset_background_19ffcdc58bf6.svg",
+      "params": {
+        "variant": "linear_gradient",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "angle_deg": 135
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#002B4B",
+        "color:#004267",
+        "color:#004F7B",
+        "color:#005786",
+        "color:#005D8D",
+        "color:#006291",
+        "color:#006A97"
+      ],
+      "generator": "background@1.0.0",
+      "seed": 75789997,
+      "created_at": "2026-05-06T11:32:25.664Z",
+      "tags": [
+        "background",
+        "linear_gradient"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [],
+        "recommended_z_index": 0,
+        "safe_area_required": true,
+        "bleed_allowed": false
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_a7d377435061",
+      "type": "background",
+      "variant": "linear_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_a7d377435061.svg",
+      "url": "/generated-assets/backgrounds/asset_background_a7d377435061.svg",
+      "params": {
+        "variant": "linear_gradient",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "angle_deg": 135
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#002B4B",
+        "color:#004267",
+        "color:#004F7B",
+        "color:#005786",
+        "color:#005D8D",
+        "color:#006291",
+        "color:#006A97"
+      ],
+      "generator": "background@1.0.0",
+      "seed": 75789997,
+      "created_at": "2026-05-06T11:32:31.889Z",
+      "tags": [
+        "background",
+        "linear_gradient"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [],
+        "recommended_z_index": 0,
+        "safe_area_required": true,
+        "bleed_allowed": false
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_a2d9971cb054",
+      "type": "trading_ui",
+      "variant": "price_card",
+      "format": "svg",
+      "size": {
+        "width": 720,
+        "height": 480
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_a2d9971cb054.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_a2d9971cb054.svg",
+      "params": {
+        "variant": "price_card",
+        "size": {
+          "width": 720,
+          "height": 480
+        },
+        "ticker": "AAPL"
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@1.0.0",
+      "seed": 1735370173,
+      "created_at": "2026-05-06T11:33:30.572Z",
+      "tags": [
+        "trading_ui",
+        "price_card",
+        "down"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [],
+        "recommended_z_index": 0,
+        "safe_area_required": true,
+        "bleed_allowed": false
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_fx_overlay_5989cc50f37f",
+      "type": "fx_overlay",
+      "variant": "glow",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_5989cc50f37f.svg",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_5989cc50f37f.svg",
+      "params": {
+        "variant": "glow",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "intensity": 0.5
+      },
+      "brand_token_refs": [
+        "color:#FFFFFF"
+      ],
+      "generator": "fx_overlay@1.0.0",
+      "seed": 1336803183,
+      "created_at": "2026-05-06T11:33:38.757Z",
+      "tags": [
+        "fx_overlay",
+        "glow"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [],
+        "recommended_z_index": 0,
+        "safe_area_required": true,
+        "bleed_allowed": false
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_3ffc303339b0",
+      "type": "background",
+      "variant": "linear_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_3ffc303339b0.svg",
+      "url": "/generated-assets/backgrounds/asset_background_3ffc303339b0.svg",
+      "params": {
+        "variant": "linear_gradient",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "source_mode": "generated_only",
+        "angle_deg": 135,
+        "seed": 42
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#002B4B",
+        "color:#004267",
+        "color:#004F7B",
+        "color:#005786",
+        "color:#005D8D",
+        "color:#006291",
+        "color:#006A97"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 42,
+      "created_at": "2026-05-06T12:18:54.546Z",
+      "tags": [
+        "background",
+        "linear_gradient",
+        "generated_only"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_cta_cc3015f2d2ab",
+      "type": "cta",
+      "variant": "accent_block",
+      "format": "svg",
+      "size": {
+        "width": 480,
+        "height": 96
+      },
+      "file_path": "generated-assets/ctas/asset_cta_cc3015f2d2ab.svg",
+      "url": "/generated-assets/ctas/asset_cta_cc3015f2d2ab.svg",
+      "params": {
+        "variant": "accent_block",
+        "text": "Start trading",
+        "size": {
+          "width": 480,
+          "height": 96
+        },
+        "output_mode": "element",
+        "arrow": "ltr"
+      },
+      "brand_token_refs": [
+        "color.cta-bg",
+        "color.cta-fg",
+        "font.cta"
+      ],
+      "generator": "cta@2.0.0",
+      "seed": 362140451,
+      "created_at": "2026-05-06T12:18:54.548Z",
+      "tags": [
+        "cta",
+        "accent_block",
+        "element"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "element",
+      "placement_rules": {
+        "compatible_roles": [
+          "cta"
+        ],
+        "recommended_z_index": 50,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "min_width": 180,
+        "min_height": 56,
+        "max_width_ratio": 0.8,
+        "padding_hint": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "preferred_compositions": [
+          "text_leading",
+          "split_text_visual"
+        ]
+      },
+      "source_assets": [],
+      "element_manifest_preview": {
+        "id": "el_cta_preview",
+        "type": "cta-button",
+        "role": "cta",
+        "source": "inline-text",
+        "x": 0,
+        "y": 0,
+        "width": 480,
+        "height": 96,
+        "z_index": 50,
+        "opacity": 1,
+        "rotation": 0,
+        "visible": true,
+        "version": 1,
+        "text": "Start trading ›",
+        "font_family": "Poppins",
+        "font_weight": 600,
+        "font_size": 40,
+        "line_height": 1.1,
+        "letter_spacing": 0,
+        "text_align": "center",
+        "color": "#000000",
+        "background_color": "#F5C518",
+        "border_radius": 0,
+        "padding": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "brand_token_refs": [
+          "color.cta-bg",
+          "color.cta-fg",
+          "font.cta"
+        ],
+        "uses_approved_color": true,
+        "uses_approved_font": true
+      }
+    },
+    {
+      "id": "asset_fx_overlay_b8ee2eee95eb",
+      "type": "fx_overlay",
+      "variant": "vignette",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_b8ee2eee95eb.svg",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_b8ee2eee95eb.svg",
+      "params": {
+        "variant": "vignette",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "intensity": 0.4,
+        "source_mode": "generated_only",
+        "brand_input_element_paths": [],
+        "seed": 7
+      },
+      "brand_token_refs": [
+        "color:#FFFFFF"
+      ],
+      "generator": "fx_overlay@2.0.0",
+      "seed": 7,
+      "created_at": "2026-05-06T12:18:54.550Z",
+      "tags": [
+        "fx_overlay",
+        "vignette"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative"
+        ],
+        "recommended_z_index": 60,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_38de74916d07",
+      "type": "trading_ui",
+      "variant": "candle_chart",
+      "format": "svg",
+      "size": {
+        "width": 720,
+        "height": 480
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_38de74916d07.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_38de74916d07.svg",
+      "params": {
+        "variant": "candle_chart",
+        "size": {
+          "width": 720,
+          "height": 480
+        },
+        "ticker": "AAPL",
+        "seed": 99
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@2.0.0",
+      "seed": 99,
+      "created_at": "2026-05-06T12:18:54.551Z",
+      "tags": [
+        "trading_ui",
+        "candle_chart",
+        "down"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative",
+          "supporting-image"
+        ],
+        "recommended_z_index": 35,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.55,
+        "max_height_ratio": 0.6,
+        "preferred_compositions": [
+          "split_text_visual"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_dcc14200a935",
+      "type": "background",
+      "variant": "linear_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_dcc14200a935.svg",
+      "url": "/generated-assets/backgrounds/asset_background_dcc14200a935.svg",
+      "params": {
+        "variant": "linear_gradient",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "source_mode": "generated_only",
+        "angle_deg": 135,
+        "seed": 42
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#002B4B",
+        "color:#004267",
+        "color:#004F7B",
+        "color:#005786",
+        "color:#005D8D",
+        "color:#006291",
+        "color:#006A97"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 42,
+      "created_at": "2026-05-06T12:31:26.961Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_dcc14200a935.thumb.png",
+      "tags": [
+        "background",
+        "linear_gradient",
+        "generated_only"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_cta_f392170488ae",
+      "type": "cta",
+      "variant": "accent_block",
+      "format": "svg",
+      "size": {
+        "width": 480,
+        "height": 96
+      },
+      "file_path": "generated-assets/ctas/asset_cta_f392170488ae.svg",
+      "url": "/generated-assets/ctas/asset_cta_f392170488ae.svg",
+      "params": {
+        "variant": "accent_block",
+        "text": "Start trading",
+        "size": {
+          "width": 480,
+          "height": 96
+        },
+        "output_mode": "element",
+        "arrow": "ltr"
+      },
+      "brand_token_refs": [
+        "color.cta-bg",
+        "color.cta-fg",
+        "font.cta"
+      ],
+      "generator": "cta@2.0.0",
+      "seed": 362140451,
+      "created_at": "2026-05-06T12:31:27.109Z",
+      "preview_thumbnail_path": "/generated-assets/ctas/asset_cta_f392170488ae.thumb.png",
+      "tags": [
+        "cta",
+        "accent_block",
+        "element"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "element",
+      "placement_rules": {
+        "compatible_roles": [
+          "cta"
+        ],
+        "recommended_z_index": 50,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "min_width": 180,
+        "min_height": 56,
+        "max_width_ratio": 0.8,
+        "padding_hint": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "preferred_compositions": [
+          "text_leading",
+          "split_text_visual"
+        ]
+      },
+      "source_assets": [],
+      "element_manifest_preview": {
+        "id": "el_cta_preview",
+        "type": "cta-button",
+        "role": "cta",
+        "source": "inline-text",
+        "x": 0,
+        "y": 0,
+        "width": 480,
+        "height": 96,
+        "z_index": 50,
+        "opacity": 1,
+        "rotation": 0,
+        "visible": true,
+        "version": 1,
+        "text": "Start trading ›",
+        "font_family": "Poppins",
+        "font_weight": 600,
+        "font_size": 40,
+        "line_height": 1.1,
+        "letter_spacing": 0,
+        "text_align": "center",
+        "color": "#000000",
+        "background_color": "#F5C518",
+        "border_radius": 0,
+        "padding": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "brand_token_refs": [
+          "color.cta-bg",
+          "color.cta-fg",
+          "font.cta"
+        ],
+        "uses_approved_color": true,
+        "uses_approved_font": true
+      }
+    },
+    {
+      "id": "asset_fx_overlay_acf239a32de6",
+      "type": "fx_overlay",
+      "variant": "vignette",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_acf239a32de6.svg",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_acf239a32de6.svg",
+      "params": {
+        "variant": "vignette",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "intensity": 0.4,
+        "source_mode": "generated_only",
+        "brand_input_element_paths": [],
+        "seed": 7
+      },
+      "brand_token_refs": [
+        "color:#FFFFFF"
+      ],
+      "generator": "fx_overlay@2.0.0",
+      "seed": 7,
+      "created_at": "2026-05-06T12:31:27.115Z",
+      "preview_thumbnail_path": "/generated-assets/fx-overlays/asset_fx_overlay_acf239a32de6.thumb.png",
+      "tags": [
+        "fx_overlay",
+        "vignette"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative"
+        ],
+        "recommended_z_index": 60,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_cb9bba6b82be",
+      "type": "trading_ui",
+      "variant": "candle_chart",
+      "format": "svg",
+      "size": {
+        "width": 720,
+        "height": 480
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_cb9bba6b82be.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_cb9bba6b82be.svg",
+      "params": {
+        "variant": "candle_chart",
+        "size": {
+          "width": 720,
+          "height": 480
+        },
+        "ticker": "AAPL",
+        "seed": 99
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@2.0.0",
+      "seed": 99,
+      "created_at": "2026-05-06T12:31:27.118Z",
+      "preview_thumbnail_path": "/generated-assets/trading-ui/asset_trading_ui_cb9bba6b82be.thumb.png",
+      "tags": [
+        "trading_ui",
+        "candle_chart",
+        "down"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative",
+          "supporting-image"
+        ],
+        "recommended_z_index": 35,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.55,
+        "max_height_ratio": 0.6,
+        "preferred_compositions": [
+          "split_text_visual"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_eeb4bc9be4d4",
+      "type": "background",
+      "variant": "linear_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1600,
+        "height": 900
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_eeb4bc9be4d4.svg",
+      "url": "/generated-assets/backgrounds/asset_background_eeb4bc9be4d4.svg",
+      "params": {
+        "variant": "linear_gradient",
+        "size": {
+          "width": 1600,
+          "height": 900
+        },
+        "angle_deg": 135,
+        "colors": [
+          "#00122C",
+          "#004267",
+          "#005D8D"
+        ],
+        "seed": 1001,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#004267",
+        "color:#005D8D"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 1001,
+      "created_at": "2026-05-06T12:59:36.487Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_eeb4bc9be4d4.thumb.png",
+      "tags": [
+        "background",
+        "linear_gradient",
+        "generated_only",
+        "palette:institutional",
+        "tone:trustworthy",
+        "pack:mexem-v1",
+        "recipe:institutional-blue-1"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_7bbe59a0bda1",
+      "type": "background",
+      "variant": "linear_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1600,
+        "height": 900
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_7bbe59a0bda1.svg",
+      "url": "/generated-assets/backgrounds/asset_background_7bbe59a0bda1.svg",
+      "params": {
+        "variant": "linear_gradient",
+        "size": {
+          "width": 1600,
+          "height": 900
+        },
+        "angle_deg": 90,
+        "colors": [
+          "#00122C",
+          "#002B4B",
+          "#006291"
+        ],
+        "seed": 1002,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#002B4B",
+        "color:#006291"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 1002,
+      "created_at": "2026-05-06T12:59:36.493Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_7bbe59a0bda1.thumb.png",
+      "tags": [
+        "background",
+        "linear_gradient",
+        "generated_only",
+        "palette:institutional",
+        "tone:premium",
+        "pack:mexem-v1",
+        "recipe:institutional-blue-2"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_d8c54a39e54a",
+      "type": "background",
+      "variant": "radial_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_d8c54a39e54a.svg",
+      "url": "/generated-assets/backgrounds/asset_background_d8c54a39e54a.svg",
+      "params": {
+        "variant": "radial_gradient",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "colors": [
+          "#005D8D",
+          "#002B4B",
+          "#00122C"
+        ],
+        "seed": 1003,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#005D8D",
+        "color:#002B4B",
+        "color:#00122C"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 1003,
+      "created_at": "2026-05-06T12:59:36.499Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_d8c54a39e54a.thumb.png",
+      "tags": [
+        "background",
+        "radial_gradient",
+        "generated_only",
+        "palette:institutional",
+        "tone:premium",
+        "pack:mexem-v1",
+        "recipe:institutional-blue-3-radial"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_3305d0af5342",
+      "type": "background",
+      "variant": "mesh_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_3305d0af5342.svg",
+      "url": "/generated-assets/backgrounds/asset_background_3305d0af5342.svg",
+      "params": {
+        "variant": "mesh_gradient",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "colors": [
+          "#00122C",
+          "#004267",
+          "#005786",
+          "#006A97"
+        ],
+        "seed": 1004,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#004267",
+        "color:#005786",
+        "color:#006A97"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 1004,
+      "created_at": "2026-05-06T12:59:36.514Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_3305d0af5342.thumb.png",
+      "tags": [
+        "background",
+        "mesh_gradient",
+        "generated_only",
+        "palette:institutional",
+        "tone:friendly",
+        "pack:mexem-v1",
+        "recipe:institutional-blue-4-mesh"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_762a6c4a0c8a",
+      "type": "background",
+      "variant": "vignette",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_762a6c4a0c8a.svg",
+      "url": "/generated-assets/backgrounds/asset_background_762a6c4a0c8a.svg",
+      "params": {
+        "variant": "vignette",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "colors": [
+          "#00122C"
+        ],
+        "seed": 2001,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#00122C"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 2001,
+      "created_at": "2026-05-06T12:59:36.518Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_762a6c4a0c8a.thumb.png",
+      "tags": [
+        "background",
+        "vignette",
+        "generated_only",
+        "palette:dark-trading",
+        "tone:serious",
+        "pack:mexem-v1",
+        "recipe:dark-trading-1-vignette"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_6da09b74f962",
+      "type": "background",
+      "variant": "mesh_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_6da09b74f962.svg",
+      "url": "/generated-assets/backgrounds/asset_background_6da09b74f962.svg",
+      "params": {
+        "variant": "mesh_gradient",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "colors": [
+          "#000000",
+          "#00122C",
+          "#002B4B"
+        ],
+        "seed": 2002,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#000000",
+        "color:#00122C",
+        "color:#002B4B"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 2002,
+      "created_at": "2026-05-06T12:59:36.525Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_6da09b74f962.thumb.png",
+      "tags": [
+        "background",
+        "mesh_gradient",
+        "generated_only",
+        "palette:dark-trading",
+        "tone:serious",
+        "pack:mexem-v1",
+        "recipe:dark-trading-2-mesh"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_a189e7357496",
+      "type": "background",
+      "variant": "radial_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1920
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_a189e7357496.svg",
+      "url": "/generated-assets/backgrounds/asset_background_a189e7357496.svg",
+      "params": {
+        "variant": "radial_gradient",
+        "size": {
+          "width": 1080,
+          "height": 1920
+        },
+        "colors": [
+          "#002B4B",
+          "#00122C",
+          "#000000"
+        ],
+        "seed": 2003,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#002B4B",
+        "color:#00122C",
+        "color:#000000"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 2003,
+      "created_at": "2026-05-06T12:59:36.529Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_a189e7357496.thumb.png",
+      "tags": [
+        "background",
+        "radial_gradient",
+        "generated_only",
+        "palette:dark-trading",
+        "tone:serious",
+        "pack:mexem-v1",
+        "recipe:dark-trading-3-radial"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_dcf505616ed4",
+      "type": "background",
+      "variant": "mesh_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_dcf505616ed4.svg",
+      "url": "/generated-assets/backgrounds/asset_background_dcf505616ed4.svg",
+      "params": {
+        "variant": "mesh_gradient",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "colors": [
+          "#00122C",
+          "#005786",
+          "#006A97",
+          "#F5C518"
+        ],
+        "seed": 3002,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#005786",
+        "color:#006A97",
+        "color:#F5C518"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 3002,
+      "created_at": "2026-05-06T12:59:36.542Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_dcf505616ed4.thumb.png",
+      "tags": [
+        "background",
+        "mesh_gradient",
+        "generated_only",
+        "palette:global",
+        "tone:bold",
+        "pack:mexem-v1",
+        "recipe:global-investing-2-mesh"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_c26b1aba232c",
+      "type": "background",
+      "variant": "linear_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_c26b1aba232c.svg",
+      "url": "/generated-assets/backgrounds/asset_background_c26b1aba232c.svg",
+      "params": {
+        "variant": "linear_gradient",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "angle_deg": 45,
+        "colors": [
+          "#002B4B",
+          "#005D8D",
+          "#F5C518"
+        ],
+        "seed": 3003,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#002B4B",
+        "color:#005D8D",
+        "color:#F5C518"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 3003,
+      "created_at": "2026-05-06T12:59:36.546Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_c26b1aba232c.thumb.png",
+      "tags": [
+        "background",
+        "linear_gradient",
+        "generated_only",
+        "palette:global",
+        "tone:bold",
+        "pack:mexem-v1",
+        "recipe:global-investing-3-linear"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_91af1a59c9ee",
+      "type": "background",
+      "variant": "radial_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1080,
+        "height": 1080
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_91af1a59c9ee.svg",
+      "url": "/generated-assets/backgrounds/asset_background_91af1a59c9ee.svg",
+      "params": {
+        "variant": "radial_gradient",
+        "size": {
+          "width": 1080,
+          "height": 1080
+        },
+        "colors": [
+          "#006291",
+          "#004267",
+          "#00122C"
+        ],
+        "seed": 4001,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#006291",
+        "color:#004267",
+        "color:#00122C"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 4001,
+      "created_at": "2026-05-06T12:59:36.554Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_91af1a59c9ee.thumb.png",
+      "tags": [
+        "background",
+        "radial_gradient",
+        "generated_only",
+        "palette:clean-etf",
+        "tone:calm",
+        "pack:mexem-v1",
+        "recipe:clean-etf-1-radial-light"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_background_02fd9eea7bd4",
+      "type": "background",
+      "variant": "linear_gradient",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/backgrounds/asset_background_02fd9eea7bd4.svg",
+      "url": "/generated-assets/backgrounds/asset_background_02fd9eea7bd4.svg",
+      "params": {
+        "variant": "linear_gradient",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "angle_deg": 180,
+        "colors": [
+          "#006291",
+          "#005D8D",
+          "#004267"
+        ],
+        "seed": 4002,
+        "source_mode": "generated_only",
+        "overlay_mode": "scrim"
+      },
+      "brand_token_refs": [
+        "color:#006291",
+        "color:#005D8D",
+        "color:#004267"
+      ],
+      "generator": "background@2.0.0",
+      "seed": 4002,
+      "created_at": "2026-05-06T12:59:36.557Z",
+      "preview_thumbnail_path": "/generated-assets/backgrounds/asset_background_02fd9eea7bd4.thumb.png",
+      "tags": [
+        "background",
+        "linear_gradient",
+        "generated_only",
+        "palette:clean-etf",
+        "tone:calm",
+        "pack:mexem-v1",
+        "recipe:clean-etf-2-linear"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "background"
+        ],
+        "recommended_z_index": 0,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_cta_4d1ef5a50fd5",
+      "type": "cta",
+      "variant": "primary_pill",
+      "format": "svg",
+      "size": {
+        "width": 480,
+        "height": 96
+      },
+      "file_path": "generated-assets/ctas/asset_cta_4d1ef5a50fd5.svg",
+      "url": "/generated-assets/ctas/asset_cta_4d1ef5a50fd5.svg",
+      "params": {
+        "variant": "primary_pill",
+        "text": "Start now",
+        "size": {
+          "width": 480,
+          "height": 96
+        },
+        "output_mode": "element",
+        "arrow": "ltr"
+      },
+      "brand_token_refs": [
+        "color.cta-bg",
+        "color.cta-fg",
+        "font.cta"
+      ],
+      "generator": "cta@2.0.0",
+      "seed": 1695358348,
+      "created_at": "2026-05-06T12:59:36.690Z",
+      "preview_thumbnail_path": "/generated-assets/ctas/asset_cta_4d1ef5a50fd5.thumb.png",
+      "tags": [
+        "cta",
+        "primary_pill",
+        "element",
+        "lang:en",
+        "length:short",
+        "weight:standard",
+        "pack:mexem-v1",
+        "recipe:cta-en-short-pill"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "element",
+      "placement_rules": {
+        "compatible_roles": [
+          "cta"
+        ],
+        "recommended_z_index": 50,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "min_width": 180,
+        "min_height": 56,
+        "max_width_ratio": 0.8,
+        "padding_hint": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "preferred_compositions": [
+          "text_leading",
+          "split_text_visual"
+        ]
+      },
+      "source_assets": [],
+      "element_manifest_preview": {
+        "id": "el_cta_preview",
+        "type": "cta-button",
+        "role": "cta",
+        "source": "inline-text",
+        "x": 0,
+        "y": 0,
+        "width": 480,
+        "height": 96,
+        "z_index": 50,
+        "opacity": 1,
+        "rotation": 0,
+        "visible": true,
+        "version": 1,
+        "text": "Start now ›",
+        "font_family": "Poppins",
+        "font_weight": 600,
+        "font_size": 40,
+        "line_height": 1.1,
+        "letter_spacing": 0,
+        "text_align": "center",
+        "color": "#FFFFFF",
+        "background_color": "#204489",
+        "border_radius": 48,
+        "padding": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "brand_token_refs": [
+          "color.cta-bg",
+          "color.cta-fg",
+          "font.cta"
+        ],
+        "uses_approved_color": true,
+        "uses_approved_font": true
+      }
+    },
+    {
+      "id": "asset_cta_1e270347f1d3",
+      "type": "cta",
+      "variant": "primary_block",
+      "format": "svg",
+      "size": {
+        "width": 560,
+        "height": 96
+      },
+      "file_path": "generated-assets/ctas/asset_cta_1e270347f1d3.svg",
+      "url": "/generated-assets/ctas/asset_cta_1e270347f1d3.svg",
+      "params": {
+        "variant": "primary_block",
+        "text": "Open an account",
+        "size": {
+          "width": 560,
+          "height": 96
+        },
+        "output_mode": "element",
+        "arrow": "ltr"
+      },
+      "brand_token_refs": [
+        "color.cta-bg",
+        "color.cta-fg",
+        "font.cta"
+      ],
+      "generator": "cta@2.0.0",
+      "seed": 932187285,
+      "created_at": "2026-05-06T12:59:36.784Z",
+      "preview_thumbnail_path": "/generated-assets/ctas/asset_cta_1e270347f1d3.thumb.png",
+      "tags": [
+        "cta",
+        "primary_block",
+        "element",
+        "lang:en",
+        "length:medium",
+        "weight:standard",
+        "pack:mexem-v1",
+        "recipe:cta-en-medium-block"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "element",
+      "placement_rules": {
+        "compatible_roles": [
+          "cta"
+        ],
+        "recommended_z_index": 50,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "min_width": 180,
+        "min_height": 56,
+        "max_width_ratio": 0.8,
+        "padding_hint": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "preferred_compositions": [
+          "text_leading",
+          "split_text_visual"
+        ]
+      },
+      "source_assets": [],
+      "element_manifest_preview": {
+        "id": "el_cta_preview",
+        "type": "cta-button",
+        "role": "cta",
+        "source": "inline-text",
+        "x": 0,
+        "y": 0,
+        "width": 560,
+        "height": 96,
+        "z_index": 50,
+        "opacity": 1,
+        "rotation": 0,
+        "visible": true,
+        "version": 1,
+        "text": "Open an account ›",
+        "font_family": "Poppins",
+        "font_weight": 600,
+        "font_size": 40,
+        "line_height": 1.1,
+        "letter_spacing": 0,
+        "text_align": "center",
+        "color": "#FFFFFF",
+        "background_color": "#204489",
+        "border_radius": 0,
+        "padding": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "brand_token_refs": [
+          "color.cta-bg",
+          "color.cta-fg",
+          "font.cta"
+        ],
+        "uses_approved_color": true,
+        "uses_approved_font": true
+      }
+    },
+    {
+      "id": "asset_cta_8354b5f47f01",
+      "type": "cta",
+      "variant": "bottom_band",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 110
+      },
+      "file_path": "generated-assets/ctas/asset_cta_8354b5f47f01.svg",
+      "url": "/generated-assets/ctas/asset_cta_8354b5f47f01.svg",
+      "params": {
+        "variant": "bottom_band",
+        "text": "Start trading global markets",
+        "size": {
+          "width": 1200,
+          "height": 110
+        },
+        "output_mode": "element",
+        "arrow": "none"
+      },
+      "brand_token_refs": [
+        "color.cta-bg",
+        "color.cta-fg",
+        "font.cta",
+        "color.accent-yellow"
+      ],
+      "generator": "cta@2.0.0",
+      "seed": 234792848,
+      "created_at": "2026-05-06T12:59:36.788Z",
+      "preview_thumbnail_path": "/generated-assets/ctas/asset_cta_8354b5f47f01.thumb.png",
+      "tags": [
+        "cta",
+        "bottom_band",
+        "element",
+        "lang:en",
+        "length:long",
+        "weight:loud",
+        "placement:bottom_band",
+        "pack:mexem-v1",
+        "recipe:cta-en-long-bottom-band"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "element",
+      "placement_rules": {
+        "compatible_roles": [
+          "cta"
+        ],
+        "recommended_z_index": 50,
+        "safe_area_required": true,
+        "bleed_allowed": true,
+        "object_fit": "contain",
+        "object_position": "center",
+        "min_width": 180,
+        "min_height": 56,
+        "max_width_ratio": 1,
+        "padding_hint": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "preferred_compositions": [
+          "bottom_band"
+        ]
+      },
+      "source_assets": [],
+      "element_manifest_preview": {
+        "id": "el_cta_preview",
+        "type": "cta-button",
+        "role": "cta",
+        "source": "inline-text",
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 110,
+        "z_index": 50,
+        "opacity": 1,
+        "rotation": 0,
+        "visible": true,
+        "version": 1,
+        "text": "Start trading global markets",
+        "font_family": "Poppins",
+        "font_weight": 700,
+        "font_size": 46,
+        "line_height": 1.1,
+        "letter_spacing": 0,
+        "text_align": "center",
+        "color": "#000000",
+        "background_color": "#F5C518",
+        "border_radius": 0,
+        "padding": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "brand_token_refs": [
+          "color.cta-bg",
+          "color.cta-fg",
+          "font.cta",
+          "color.accent-yellow"
+        ],
+        "uses_approved_color": true,
+        "uses_approved_font": true
+      }
+    },
+    {
+      "id": "asset_cta_aad5210adca9",
+      "type": "cta",
+      "variant": "outline",
+      "format": "svg",
+      "size": {
+        "width": 480,
+        "height": 96
+      },
+      "file_path": "generated-assets/ctas/asset_cta_aad5210adca9.svg",
+      "url": "/generated-assets/ctas/asset_cta_aad5210adca9.svg",
+      "params": {
+        "variant": "outline",
+        "text": "Learn more",
+        "size": {
+          "width": 480,
+          "height": 96
+        },
+        "output_mode": "element",
+        "arrow": "ltr"
+      },
+      "brand_token_refs": [
+        "color.cta-bg",
+        "color.cta-fg",
+        "font.cta",
+        "color.cta-border"
+      ],
+      "generator": "cta@2.0.0",
+      "seed": 771790747,
+      "created_at": "2026-05-06T12:59:36.790Z",
+      "preview_thumbnail_path": "/generated-assets/ctas/asset_cta_aad5210adca9.thumb.png",
+      "tags": [
+        "cta",
+        "outline",
+        "element",
+        "lang:en",
+        "length:short",
+        "weight:ghost",
+        "pack:mexem-v1",
+        "recipe:cta-en-ghost-outline"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "element",
+      "placement_rules": {
+        "compatible_roles": [
+          "cta"
+        ],
+        "recommended_z_index": 50,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "min_width": 180,
+        "min_height": 56,
+        "max_width_ratio": 0.8,
+        "padding_hint": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "preferred_compositions": [
+          "text_leading",
+          "split_text_visual"
+        ]
+      },
+      "source_assets": [],
+      "element_manifest_preview": {
+        "id": "el_cta_preview",
+        "type": "cta-button",
+        "role": "cta",
+        "source": "inline-text",
+        "x": 0,
+        "y": 0,
+        "width": 480,
+        "height": 96,
+        "z_index": 50,
+        "opacity": 1,
+        "rotation": 0,
+        "visible": true,
+        "version": 1,
+        "text": "Learn more ›",
+        "font_family": "Poppins",
+        "font_weight": 600,
+        "font_size": 40,
+        "line_height": 1.1,
+        "letter_spacing": 0,
+        "text_align": "center",
+        "color": "#204489",
+        "background_color": "transparent",
+        "border_color": "#204489",
+        "border_width": 4,
+        "border_radius": 0,
+        "padding": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "brand_token_refs": [
+          "color.cta-bg",
+          "color.cta-fg",
+          "font.cta",
+          "color.cta-border"
+        ],
+        "uses_approved_color": true,
+        "uses_approved_font": true
+      }
+    },
+    {
+      "id": "asset_cta_376f92513bf6",
+      "type": "cta",
+      "variant": "primary_pill",
+      "format": "svg",
+      "size": {
+        "width": 480,
+        "height": 96
+      },
+      "file_path": "generated-assets/ctas/asset_cta_376f92513bf6.svg",
+      "url": "/generated-assets/ctas/asset_cta_376f92513bf6.svg",
+      "params": {
+        "variant": "primary_pill",
+        "text": "התחל לסחור",
+        "size": {
+          "width": 480,
+          "height": 96
+        },
+        "output_mode": "element",
+        "arrow": "rtl"
+      },
+      "brand_token_refs": [
+        "color.cta-bg",
+        "color.cta-fg",
+        "font.cta"
+      ],
+      "generator": "cta@2.0.0",
+      "seed": 1591239632,
+      "created_at": "2026-05-06T12:59:36.881Z",
+      "preview_thumbnail_path": "/generated-assets/ctas/asset_cta_376f92513bf6.thumb.png",
+      "tags": [
+        "cta",
+        "primary_pill",
+        "element",
+        "lang:he",
+        "length:short",
+        "weight:standard",
+        "pack:mexem-v1",
+        "recipe:cta-he-short-pill"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "element",
+      "placement_rules": {
+        "compatible_roles": [
+          "cta"
+        ],
+        "recommended_z_index": 50,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "min_width": 180,
+        "min_height": 56,
+        "max_width_ratio": 0.8,
+        "padding_hint": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "preferred_compositions": [
+          "text_leading",
+          "split_text_visual"
+        ]
+      },
+      "source_assets": [],
+      "element_manifest_preview": {
+        "id": "el_cta_preview",
+        "type": "cta-button",
+        "role": "cta",
+        "source": "inline-text",
+        "x": 0,
+        "y": 0,
+        "width": 480,
+        "height": 96,
+        "z_index": 50,
+        "opacity": 1,
+        "rotation": 0,
+        "visible": true,
+        "version": 1,
+        "text": "› התחל לסחור",
+        "font_family": "Poppins",
+        "font_weight": 600,
+        "font_size": 40,
+        "line_height": 1.1,
+        "letter_spacing": 0,
+        "text_align": "center",
+        "color": "#FFFFFF",
+        "background_color": "#204489",
+        "border_radius": 48,
+        "padding": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "brand_token_refs": [
+          "color.cta-bg",
+          "color.cta-fg",
+          "font.cta"
+        ],
+        "uses_approved_color": true,
+        "uses_approved_font": true
+      }
+    },
+    {
+      "id": "asset_cta_9ef1f1cca960",
+      "type": "cta",
+      "variant": "primary_block",
+      "format": "svg",
+      "size": {
+        "width": 560,
+        "height": 96
+      },
+      "file_path": "generated-assets/ctas/asset_cta_9ef1f1cca960.svg",
+      "url": "/generated-assets/ctas/asset_cta_9ef1f1cca960.svg",
+      "params": {
+        "variant": "primary_block",
+        "text": "פתח חשבון מסחר",
+        "size": {
+          "width": 560,
+          "height": 96
+        },
+        "output_mode": "element",
+        "arrow": "rtl"
+      },
+      "brand_token_refs": [
+        "color.cta-bg",
+        "color.cta-fg",
+        "font.cta"
+      ],
+      "generator": "cta@2.0.0",
+      "seed": 1547136555,
+      "created_at": "2026-05-06T12:59:36.965Z",
+      "preview_thumbnail_path": "/generated-assets/ctas/asset_cta_9ef1f1cca960.thumb.png",
+      "tags": [
+        "cta",
+        "primary_block",
+        "element",
+        "lang:he",
+        "length:medium",
+        "weight:standard",
+        "pack:mexem-v1",
+        "recipe:cta-he-medium-block"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "element",
+      "placement_rules": {
+        "compatible_roles": [
+          "cta"
+        ],
+        "recommended_z_index": 50,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "min_width": 180,
+        "min_height": 56,
+        "max_width_ratio": 0.8,
+        "padding_hint": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "preferred_compositions": [
+          "text_leading",
+          "split_text_visual"
+        ]
+      },
+      "source_assets": [],
+      "element_manifest_preview": {
+        "id": "el_cta_preview",
+        "type": "cta-button",
+        "role": "cta",
+        "source": "inline-text",
+        "x": 0,
+        "y": 0,
+        "width": 560,
+        "height": 96,
+        "z_index": 50,
+        "opacity": 1,
+        "rotation": 0,
+        "visible": true,
+        "version": 1,
+        "text": "› פתח חשבון מסחר",
+        "font_family": "Poppins",
+        "font_weight": 600,
+        "font_size": 40,
+        "line_height": 1.1,
+        "letter_spacing": 0,
+        "text_align": "center",
+        "color": "#FFFFFF",
+        "background_color": "#204489",
+        "border_radius": 0,
+        "padding": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "brand_token_refs": [
+          "color.cta-bg",
+          "color.cta-fg",
+          "font.cta"
+        ],
+        "uses_approved_color": true,
+        "uses_approved_font": true
+      }
+    },
+    {
+      "id": "asset_cta_9ab7894acc4f",
+      "type": "cta",
+      "variant": "accent_pill",
+      "format": "svg",
+      "size": {
+        "width": 360,
+        "height": 96
+      },
+      "file_path": "generated-assets/ctas/asset_cta_9ab7894acc4f.svg",
+      "url": "/generated-assets/ctas/asset_cta_9ab7894acc4f.svg",
+      "params": {
+        "variant": "accent_pill",
+        "text": "גלה עוד",
+        "size": {
+          "width": 360,
+          "height": 96
+        },
+        "output_mode": "element",
+        "arrow": "rtl"
+      },
+      "brand_token_refs": [
+        "color.cta-bg",
+        "color.cta-fg",
+        "font.cta"
+      ],
+      "generator": "cta@2.0.0",
+      "seed": 1832592421,
+      "created_at": "2026-05-06T12:59:36.972Z",
+      "preview_thumbnail_path": "/generated-assets/ctas/asset_cta_9ab7894acc4f.thumb.png",
+      "tags": [
+        "cta",
+        "accent_pill",
+        "element",
+        "lang:he",
+        "length:short",
+        "weight:accent",
+        "pack:mexem-v1",
+        "recipe:cta-he-accent-pill"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "element",
+      "placement_rules": {
+        "compatible_roles": [
+          "cta"
+        ],
+        "recommended_z_index": 50,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "min_width": 180,
+        "min_height": 56,
+        "max_width_ratio": 0.8,
+        "padding_hint": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "preferred_compositions": [
+          "text_leading",
+          "split_text_visual"
+        ]
+      },
+      "source_assets": [],
+      "element_manifest_preview": {
+        "id": "el_cta_preview",
+        "type": "cta-button",
+        "role": "cta",
+        "source": "inline-text",
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 96,
+        "z_index": 50,
+        "opacity": 1,
+        "rotation": 0,
+        "visible": true,
+        "version": 1,
+        "text": "› גלה עוד",
+        "font_family": "Poppins",
+        "font_weight": 600,
+        "font_size": 40,
+        "line_height": 1.1,
+        "letter_spacing": 0,
+        "text_align": "center",
+        "color": "#000000",
+        "background_color": "#F5C518",
+        "border_radius": 48,
+        "padding": {
+          "top": 14,
+          "right": 36,
+          "bottom": 14,
+          "left": 36
+        },
+        "brand_token_refs": [
+          "color.cta-bg",
+          "color.cta-fg",
+          "font.cta"
+        ],
+        "uses_approved_color": true,
+        "uses_approved_font": true
+      }
+    },
+    {
+      "id": "asset_fx_overlay_b1c7cb51358c",
+      "type": "fx_overlay",
+      "variant": "glow",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_b1c7cb51358c.svg",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_b1c7cb51358c.svg",
+      "params": {
+        "variant": "glow",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "intensity": 0.5,
+        "color": "#FFFFFF",
+        "seed": 5001,
+        "source_mode": "generated_only",
+        "brand_input_element_paths": []
+      },
+      "brand_token_refs": [
+        "color:#FFFFFF"
+      ],
+      "generator": "fx_overlay@2.0.0",
+      "seed": 5001,
+      "created_at": "2026-05-06T12:59:36.980Z",
+      "preview_thumbnail_path": "/generated-assets/fx-overlays/asset_fx_overlay_b1c7cb51358c.thumb.png",
+      "tags": [
+        "fx_overlay",
+        "glow",
+        "effect:glow",
+        "intent:focus",
+        "pack:mexem-v1",
+        "recipe:fx-glow-center"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative"
+        ],
+        "recommended_z_index": 60,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_fx_overlay_f37b1f2513a3",
+      "type": "fx_overlay",
+      "variant": "glow",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_f37b1f2513a3.svg",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_f37b1f2513a3.svg",
+      "params": {
+        "variant": "glow",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "intensity": 0.55,
+        "color": "#F5C518",
+        "seed": 5002,
+        "source_mode": "generated_only",
+        "brand_input_element_paths": []
+      },
+      "brand_token_refs": [
+        "color:#F5C518"
+      ],
+      "generator": "fx_overlay@2.0.0",
+      "seed": 5002,
+      "created_at": "2026-05-06T12:59:36.986Z",
+      "preview_thumbnail_path": "/generated-assets/fx-overlays/asset_fx_overlay_f37b1f2513a3.thumb.png",
+      "tags": [
+        "fx_overlay",
+        "glow",
+        "effect:glow",
+        "intent:cta-emphasis",
+        "pack:mexem-v1",
+        "recipe:fx-glow-accent"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative"
+        ],
+        "recommended_z_index": 60,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_fx_overlay_1e4acae358bf",
+      "type": "fx_overlay",
+      "variant": "vignette",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_1e4acae358bf.svg",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_1e4acae358bf.svg",
+      "params": {
+        "variant": "vignette",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "intensity": 0.5,
+        "seed": 5003,
+        "source_mode": "generated_only",
+        "brand_input_element_paths": []
+      },
+      "brand_token_refs": [
+        "color:#FFFFFF"
+      ],
+      "generator": "fx_overlay@2.0.0",
+      "seed": 5003,
+      "created_at": "2026-05-06T12:59:36.989Z",
+      "preview_thumbnail_path": "/generated-assets/fx-overlays/asset_fx_overlay_1e4acae358bf.thumb.png",
+      "tags": [
+        "fx_overlay",
+        "vignette",
+        "effect:vignette",
+        "intent:focus",
+        "pack:mexem-v1",
+        "recipe:fx-vignette-soft"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative"
+        ],
+        "recommended_z_index": 60,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_fx_overlay_cb427bf8fa0f",
+      "type": "fx_overlay",
+      "variant": "vignette",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_cb427bf8fa0f.svg",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_cb427bf8fa0f.svg",
+      "params": {
+        "variant": "vignette",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "intensity": 0.7,
+        "seed": 5004,
+        "source_mode": "generated_only",
+        "brand_input_element_paths": []
+      },
+      "brand_token_refs": [
+        "color:#FFFFFF"
+      ],
+      "generator": "fx_overlay@2.0.0",
+      "seed": 5004,
+      "created_at": "2026-05-06T12:59:36.995Z",
+      "preview_thumbnail_path": "/generated-assets/fx-overlays/asset_fx_overlay_cb427bf8fa0f.thumb.png",
+      "tags": [
+        "fx_overlay",
+        "vignette",
+        "effect:vignette",
+        "intent:cinematic",
+        "pack:mexem-v1",
+        "recipe:fx-vignette-strong"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative"
+        ],
+        "recommended_z_index": 60,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_fx_overlay_ee436f421f3f",
+      "type": "fx_overlay",
+      "variant": "corner_swoosh",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_ee436f421f3f.svg",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_ee436f421f3f.svg",
+      "params": {
+        "variant": "corner_swoosh",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "intensity": 0.45,
+        "color": "#F5C518",
+        "seed": 0,
+        "source_mode": "generated_only",
+        "brand_input_element_paths": []
+      },
+      "brand_token_refs": [
+        "color:#F5C518"
+      ],
+      "generator": "fx_overlay@2.0.0",
+      "seed": 0,
+      "created_at": "2026-05-06T12:59:36.998Z",
+      "preview_thumbnail_path": "/generated-assets/fx-overlays/asset_fx_overlay_ee436f421f3f.thumb.png",
+      "tags": [
+        "fx_overlay",
+        "corner_swoosh",
+        "effect:market-lines",
+        "intent:directional",
+        "pack:mexem-v1",
+        "recipe:fx-market-lines-tl"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative"
+        ],
+        "recommended_z_index": 60,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_fx_overlay_03e14e8803d3",
+      "type": "fx_overlay",
+      "variant": "corner_swoosh",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_03e14e8803d3.svg",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_03e14e8803d3.svg",
+      "params": {
+        "variant": "corner_swoosh",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "intensity": 0.45,
+        "color": "#F5C518",
+        "seed": 2,
+        "source_mode": "generated_only",
+        "brand_input_element_paths": []
+      },
+      "brand_token_refs": [
+        "color:#F5C518"
+      ],
+      "generator": "fx_overlay@2.0.0",
+      "seed": 2,
+      "created_at": "2026-05-06T12:59:37.001Z",
+      "preview_thumbnail_path": "/generated-assets/fx-overlays/asset_fx_overlay_03e14e8803d3.thumb.png",
+      "tags": [
+        "fx_overlay",
+        "corner_swoosh",
+        "effect:market-lines",
+        "intent:directional",
+        "pack:mexem-v1",
+        "recipe:fx-market-lines-br"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative"
+        ],
+        "recommended_z_index": 60,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_fx_overlay_506c3dada255",
+      "type": "fx_overlay",
+      "variant": "noise_grain",
+      "format": "png",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_506c3dada255.png",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_506c3dada255.png",
+      "params": {
+        "variant": "noise_grain",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "intensity": 0.18,
+        "seed": 5005,
+        "source_mode": "generated_only",
+        "brand_input_element_paths": []
+      },
+      "brand_token_refs": [
+        "color:#FFFFFF"
+      ],
+      "generator": "fx_overlay@2.0.0",
+      "seed": 5005,
+      "created_at": "2026-05-06T12:59:37.076Z",
+      "preview_thumbnail_path": "/generated-assets/fx-overlays/asset_fx_overlay_506c3dada255.thumb.png",
+      "tags": [
+        "fx_overlay",
+        "noise_grain",
+        "effect:particles",
+        "intent:texture",
+        "pack:mexem-v1",
+        "recipe:fx-particles-grain"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative"
+        ],
+        "recommended_z_index": 60,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_fx_overlay_3d580da1f2c8",
+      "type": "fx_overlay",
+      "variant": "light_ray",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 628
+      },
+      "file_path": "generated-assets/fx-overlays/asset_fx_overlay_3d580da1f2c8.svg",
+      "url": "/generated-assets/fx-overlays/asset_fx_overlay_3d580da1f2c8.svg",
+      "params": {
+        "variant": "light_ray",
+        "size": {
+          "width": 1200,
+          "height": 628
+        },
+        "intensity": 0.4,
+        "color": "#FFFFFF",
+        "seed": 5006,
+        "source_mode": "generated_only",
+        "brand_input_element_paths": []
+      },
+      "brand_token_refs": [
+        "color:#FFFFFF"
+      ],
+      "generator": "fx_overlay@2.0.0",
+      "seed": 5006,
+      "created_at": "2026-05-06T12:59:37.080Z",
+      "preview_thumbnail_path": "/generated-assets/fx-overlays/asset_fx_overlay_3d580da1f2c8.thumb.png",
+      "tags": [
+        "fx_overlay",
+        "light_ray",
+        "effect:glass-reflection",
+        "intent:premium",
+        "pack:mexem-v1",
+        "recipe:fx-glass-light-ray"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative"
+        ],
+        "recommended_z_index": 60,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "cover",
+        "object_position": "center",
+        "max_width_ratio": 1,
+        "max_height_ratio": 1,
+        "preferred_compositions": [
+          "any"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_76662d45f065",
+      "type": "trading_ui",
+      "variant": "candle_chart",
+      "format": "svg",
+      "size": {
+        "width": 720,
+        "height": 480
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_76662d45f065.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_76662d45f065.svg",
+      "params": {
+        "variant": "candle_chart",
+        "size": {
+          "width": 720,
+          "height": 480
+        },
+        "ticker": "AAPL",
+        "seed": 7001,
+        "trend": "up"
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@2.0.0",
+      "seed": 7001,
+      "created_at": "2026-05-06T12:59:37.083Z",
+      "preview_thumbnail_path": "/generated-assets/trading-ui/asset_trading_ui_76662d45f065.thumb.png",
+      "tags": [
+        "trading_ui",
+        "candle_chart",
+        "up",
+        "widget:candle-chart",
+        "trend:up",
+        "pack:mexem-v1",
+        "recipe:tui-candle-up"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative",
+          "supporting-image"
+        ],
+        "recommended_z_index": 35,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.55,
+        "max_height_ratio": 0.6,
+        "preferred_compositions": [
+          "split_text_visual"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_68c9dbe2a0ae",
+      "type": "trading_ui",
+      "variant": "ticker_strip",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 96
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_68c9dbe2a0ae.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_68c9dbe2a0ae.svg",
+      "params": {
+        "variant": "ticker_strip",
+        "size": {
+          "width": 1200,
+          "height": 96
+        },
+        "seed": 7002
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@2.0.0",
+      "seed": 7002,
+      "created_at": "2026-05-06T12:59:37.166Z",
+      "preview_thumbnail_path": "/generated-assets/trading-ui/asset_trading_ui_68c9dbe2a0ae.thumb.png",
+      "tags": [
+        "trading_ui",
+        "ticker_strip",
+        "up",
+        "widget:watchlist",
+        "shape:strip",
+        "pack:mexem-v1",
+        "recipe:tui-watchlist"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative",
+          "supporting-image"
+        ],
+        "recommended_z_index": 35,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.55,
+        "max_height_ratio": 0.6,
+        "preferred_compositions": [
+          "split_text_visual"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_54a2389f2f93",
+      "type": "trading_ui",
+      "variant": "price_card",
+      "format": "svg",
+      "size": {
+        "width": 480,
+        "height": 320
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_54a2389f2f93.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_54a2389f2f93.svg",
+      "params": {
+        "variant": "price_card",
+        "size": {
+          "width": 480,
+          "height": 320
+        },
+        "ticker": "VTI",
+        "seed": 7003,
+        "trend": "up"
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@2.0.0",
+      "seed": 7003,
+      "created_at": "2026-05-06T12:59:37.209Z",
+      "preview_thumbnail_path": "/generated-assets/trading-ui/asset_trading_ui_54a2389f2f93.thumb.png",
+      "tags": [
+        "trading_ui",
+        "price_card",
+        "up",
+        "widget:etf-card",
+        "shape:card",
+        "pack:mexem-v1",
+        "recipe:tui-etf-card"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative",
+          "supporting-image"
+        ],
+        "recommended_z_index": 35,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.55,
+        "max_height_ratio": 0.6,
+        "preferred_compositions": [
+          "split_text_visual"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_a73f9161a380",
+      "type": "trading_ui",
+      "variant": "portfolio_donut",
+      "format": "svg",
+      "size": {
+        "width": 480,
+        "height": 480
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_a73f9161a380.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_a73f9161a380.svg",
+      "params": {
+        "variant": "portfolio_donut",
+        "size": {
+          "width": 480,
+          "height": 480
+        },
+        "seed": 7004
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@2.0.0",
+      "seed": 7004,
+      "created_at": "2026-05-06T12:59:37.289Z",
+      "preview_thumbnail_path": "/generated-assets/trading-ui/asset_trading_ui_a73f9161a380.thumb.png",
+      "tags": [
+        "trading_ui",
+        "portfolio_donut",
+        "up",
+        "widget:portfolio-card",
+        "shape:square",
+        "pack:mexem-v1",
+        "recipe:tui-portfolio-donut"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative",
+          "supporting-image"
+        ],
+        "recommended_z_index": 35,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.55,
+        "max_height_ratio": 0.6,
+        "preferred_compositions": [
+          "split_text_visual"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_96dfa7816916",
+      "type": "trading_ui",
+      "variant": "ticker_strip",
+      "format": "svg",
+      "size": {
+        "width": 1200,
+        "height": 80
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_96dfa7816916.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_96dfa7816916.svg",
+      "params": {
+        "variant": "ticker_strip",
+        "size": {
+          "width": 1200,
+          "height": 80
+        },
+        "seed": 7005
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@2.0.0",
+      "seed": 7005,
+      "created_at": "2026-05-06T12:59:37.294Z",
+      "preview_thumbnail_path": "/generated-assets/trading-ui/asset_trading_ui_96dfa7816916.thumb.png",
+      "tags": [
+        "trading_ui",
+        "ticker_strip",
+        "down",
+        "widget:market-ticker",
+        "shape:strip",
+        "pack:mexem-v1",
+        "recipe:tui-market-ticker"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative",
+          "supporting-image"
+        ],
+        "recommended_z_index": 35,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.55,
+        "max_height_ratio": 0.6,
+        "preferred_compositions": [
+          "split_text_visual"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_e6bedcbf96a9",
+      "type": "trading_ui",
+      "variant": "price_card",
+      "format": "svg",
+      "size": {
+        "width": 520,
+        "height": 320
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_e6bedcbf96a9.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_e6bedcbf96a9.svg",
+      "params": {
+        "variant": "price_card",
+        "size": {
+          "width": 520,
+          "height": 320
+        },
+        "ticker": "TSLA",
+        "seed": 7006,
+        "trend": "down"
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@2.0.0",
+      "seed": 7006,
+      "created_at": "2026-05-06T12:59:37.382Z",
+      "preview_thumbnail_path": "/generated-assets/trading-ui/asset_trading_ui_e6bedcbf96a9.thumb.png",
+      "tags": [
+        "trading_ui",
+        "price_card",
+        "down",
+        "widget:order-ticket",
+        "shape:card",
+        "pack:mexem-v1",
+        "recipe:tui-order-ticket"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative",
+          "supporting-image"
+        ],
+        "recommended_z_index": 35,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.55,
+        "max_height_ratio": 0.6,
+        "preferred_compositions": [
+          "split_text_visual"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_ffc7e5cdd89d",
+      "type": "trading_ui",
+      "variant": "candle_chart",
+      "format": "svg",
+      "size": {
+        "width": 720,
+        "height": 480
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_ffc7e5cdd89d.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_ffc7e5cdd89d.svg",
+      "params": {
+        "variant": "candle_chart",
+        "size": {
+          "width": 720,
+          "height": 480
+        },
+        "ticker": "ES",
+        "seed": 7007,
+        "trend": "down"
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@2.0.0",
+      "seed": 7007,
+      "created_at": "2026-05-06T12:59:37.386Z",
+      "preview_thumbnail_path": "/generated-assets/trading-ui/asset_trading_ui_ffc7e5cdd89d.thumb.png",
+      "tags": [
+        "trading_ui",
+        "candle_chart",
+        "down",
+        "widget:futures-panel",
+        "trend:down",
+        "pack:mexem-v1",
+        "recipe:tui-futures-panel"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative",
+          "supporting-image"
+        ],
+        "recommended_z_index": 35,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.55,
+        "max_height_ratio": 0.6,
+        "preferred_compositions": [
+          "split_text_visual"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_trading_ui_f94f8be1ab39",
+      "type": "trading_ui",
+      "variant": "price_card",
+      "format": "svg",
+      "size": {
+        "width": 480,
+        "height": 320
+      },
+      "file_path": "generated-assets/trading-ui/asset_trading_ui_f94f8be1ab39.svg",
+      "url": "/generated-assets/trading-ui/asset_trading_ui_f94f8be1ab39.svg",
+      "params": {
+        "variant": "price_card",
+        "size": {
+          "width": 480,
+          "height": 320
+        },
+        "ticker": "EURUSD",
+        "seed": 7008,
+        "trend": "up"
+      },
+      "brand_token_refs": [
+        "color:#00122C",
+        "color:#204489",
+        "color:#F5C518"
+      ],
+      "generator": "trading_ui@2.0.0",
+      "seed": 7008,
+      "created_at": "2026-05-06T12:59:37.399Z",
+      "preview_thumbnail_path": "/generated-assets/trading-ui/asset_trading_ui_f94f8be1ab39.thumb.png",
+      "tags": [
+        "trading_ui",
+        "price_card",
+        "up",
+        "widget:forex-pair",
+        "shape:card",
+        "pack:mexem-v1",
+        "recipe:tui-forex-pair"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "image",
+      "placement_rules": {
+        "compatible_roles": [
+          "decorative",
+          "supporting-image"
+        ],
+        "recommended_z_index": 35,
+        "safe_area_required": true,
+        "bleed_allowed": false,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.55,
+        "max_height_ratio": 0.6,
+        "preferred_compositions": [
+          "split_text_visual"
+        ]
+      },
+      "source_assets": []
+    },
+    {
+      "id": "asset_mockup_e66ffc185c8c",
+      "type": "mockup",
+      "variant": "phone",
+      "format": "png",
+      "size": {
+        "width": 1499,
+        "height": 2014
+      },
+      "file_path": "generated-assets/mockups/asset_mockup_e66ffc185c8c.png",
+      "url": "/generated-assets/mockups/asset_mockup_e66ffc185c8c.png",
+      "params": {
+        "device": "phone",
+        "mockup_path": "/brand-input-preview/mockups/iphone-1.png",
+        "screenshot_path": "/brand-input-preview/platform_screenshots/apple_stock_mobileapp.png",
+        "source_mode": "brand_input_only"
+      },
+      "brand_token_refs": [],
+      "generator": "mockup@2.0.0",
+      "seed": 453520676,
+      "created_at": "2026-05-06T12:59:37.473Z",
+      "preview_thumbnail_path": "/generated-assets/mockups/asset_mockup_e66ffc185c8c.thumb.png",
+      "tags": [
+        "mockup",
+        "phone",
+        "heuristic",
+        "device:phone",
+        "context:stocks",
+        "pack:mexem-v1",
+        "recipe:mock-phone-1-stocks"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "composite",
+      "placement_rules": {
+        "compatible_roles": [
+          "product_visual",
+          "hero-image",
+          "supporting-image"
+        ],
+        "recommended_z_index": 30,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.65,
+        "max_height_ratio": 0.85,
+        "preferred_compositions": [
+          "split_text_visual",
+          "hero_left_mockup_right",
+          "centered_mockup_with_headline"
+        ]
+      },
+      "source_assets": [
+        {
+          "source_type": "brand_input",
+          "path": "public/brand-input-preview/mockups/iphone-1.png",
+          "role": "mockup_device"
+        },
+        {
+          "source_type": "brand_input",
+          "id": "/brand-input-preview/platform_screenshots/apple_stock_mobileapp.png",
+          "public_path": "/brand-input-preview/platform_screenshots/apple_stock_mobileapp.png",
+          "role": "screenshot"
+        }
+      ]
+    },
+    {
+      "id": "asset_mockup_a53f75ba88c8",
+      "type": "mockup",
+      "variant": "phone",
+      "format": "png",
+      "size": {
+        "width": 1499,
+        "height": 2014
+      },
+      "file_path": "generated-assets/mockups/asset_mockup_a53f75ba88c8.png",
+      "url": "/generated-assets/mockups/asset_mockup_a53f75ba88c8.png",
+      "params": {
+        "device": "phone",
+        "mockup_path": "/brand-input-preview/mockups/iphone-2.png",
+        "screenshot_path": "/brand-input-preview/platform_screenshots/order-dialog-light.png",
+        "source_mode": "brand_input_only"
+      },
+      "brand_token_refs": [],
+      "generator": "mockup@2.0.0",
+      "seed": 1448924315,
+      "created_at": "2026-05-06T12:59:37.592Z",
+      "preview_thumbnail_path": "/generated-assets/mockups/asset_mockup_a53f75ba88c8.thumb.png",
+      "tags": [
+        "mockup",
+        "phone",
+        "heuristic",
+        "device:phone",
+        "context:order-flow",
+        "pack:mexem-v1",
+        "recipe:mock-phone-2-order-dialog"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "composite",
+      "placement_rules": {
+        "compatible_roles": [
+          "product_visual",
+          "hero-image",
+          "supporting-image"
+        ],
+        "recommended_z_index": 30,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.65,
+        "max_height_ratio": 0.85,
+        "preferred_compositions": [
+          "split_text_visual",
+          "hero_left_mockup_right",
+          "centered_mockup_with_headline"
+        ]
+      },
+      "source_assets": [
+        {
+          "source_type": "brand_input",
+          "path": "public/brand-input-preview/mockups/iphone-2.png",
+          "role": "mockup_device"
+        },
+        {
+          "source_type": "brand_input",
+          "id": "/brand-input-preview/platform_screenshots/order-dialog-light.png",
+          "public_path": "/brand-input-preview/platform_screenshots/order-dialog-light.png",
+          "role": "screenshot"
+        }
+      ]
+    },
+    {
+      "id": "asset_mockup_db6a1deca96a",
+      "type": "mockup",
+      "variant": "phone",
+      "format": "png",
+      "size": {
+        "width": 1499,
+        "height": 2014
+      },
+      "file_path": "generated-assets/mockups/asset_mockup_db6a1deca96a.png",
+      "url": "/generated-assets/mockups/asset_mockup_db6a1deca96a.png",
+      "params": {
+        "device": "phone",
+        "mockup_path": "/brand-input-preview/mockups/iphone-3.png",
+        "screenshot_path": "/brand-input-preview/platform_screenshots/asml_holding.png",
+        "source_mode": "brand_input_only"
+      },
+      "brand_token_refs": [],
+      "generator": "mockup@2.0.0",
+      "seed": 128813314,
+      "created_at": "2026-05-06T12:59:37.657Z",
+      "preview_thumbnail_path": "/generated-assets/mockups/asset_mockup_db6a1deca96a.thumb.png",
+      "tags": [
+        "mockup",
+        "phone",
+        "heuristic",
+        "device:phone",
+        "context:single-stock",
+        "pack:mexem-v1",
+        "recipe:mock-phone-3-asml"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "composite",
+      "placement_rules": {
+        "compatible_roles": [
+          "product_visual",
+          "hero-image",
+          "supporting-image"
+        ],
+        "recommended_z_index": 30,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.65,
+        "max_height_ratio": 0.85,
+        "preferred_compositions": [
+          "split_text_visual",
+          "hero_left_mockup_right",
+          "centered_mockup_with_headline"
+        ]
+      },
+      "source_assets": [
+        {
+          "source_type": "brand_input",
+          "path": "public/brand-input-preview/mockups/iphone-3.png",
+          "role": "mockup_device"
+        },
+        {
+          "source_type": "brand_input",
+          "id": "/brand-input-preview/platform_screenshots/asml_holding.png",
+          "public_path": "/brand-input-preview/platform_screenshots/asml_holding.png",
+          "role": "screenshot"
+        }
+      ]
+    },
+    {
+      "id": "asset_mockup_913547632cf6",
+      "type": "mockup",
+      "variant": "tablet",
+      "format": "png",
+      "size": {
+        "width": 1965,
+        "height": 1359
+      },
+      "file_path": "generated-assets/mockups/asset_mockup_913547632cf6.png",
+      "url": "/generated-assets/mockups/asset_mockup_913547632cf6.png",
+      "params": {
+        "device": "tablet",
+        "mockup_path": "/brand-input-preview/mockups/ipad-3.png",
+        "screenshot_path": "/brand-input-preview/platform_screenshots/order-dialog-light.png",
+        "source_mode": "brand_input_only"
+      },
+      "brand_token_refs": [],
+      "generator": "mockup@2.0.0",
+      "seed": 1249222685,
+      "created_at": "2026-05-06T12:59:38.827Z",
+      "preview_thumbnail_path": "/generated-assets/mockups/asset_mockup_913547632cf6.thumb.png",
+      "tags": [
+        "mockup",
+        "tablet",
+        "explicit_manifest",
+        "device:tablet",
+        "context:charts",
+        "pack:mexem-v1",
+        "recipe:mock-tablet-1-charts"
+      ],
+      "license": "internal",
+      "approved": true,
+      "render_mode": "composite",
+      "placement_rules": {
+        "compatible_roles": [
+          "product_visual",
+          "hero-image",
+          "supporting-image"
+        ],
+        "recommended_z_index": 30,
+        "safe_area_required": false,
+        "bleed_allowed": true,
+        "object_fit": "contain",
+        "object_position": "center",
+        "max_width_ratio": 0.65,
+        "max_height_ratio": 0.85,
+        "preferred_compositions": [
+          "split_text_visual",
+          "hero_left_mockup_right",
+          "centered_mockup_with_headline"
+        ]
+      },
+      "source_assets": [
+        {
+          "source_type": "brand_input",
+          "path": "public/brand-input-preview/mockups/ipad-3.png",
+          "role": "mockup_device"
+        },
+        {
+          "source_type": "brand_input",
+          "id": "/brand-input-preview/platform_screenshots/order-dialog-light.png",
+          "public_path": "/brand-input-preview/platform_screenshots/order-dialog-light.png",
+          "role": "screenshot"
+        }
+      ]
+    }
+  ]
+}

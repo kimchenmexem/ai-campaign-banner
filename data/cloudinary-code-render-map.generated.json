@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-05-01T10:55:39.179Z",
+  "brand_id": "brand_001",
+  "cloud_name": "dz2rolfkz",
+  "folder": "brands/brand_001/final-renders",
+  "items": [
+    {
+      "ad_id": "spec_demo_1200x628",
+      "format": "1200x628",
+      "local_output_path": "public/rendered-ads/demo/1200x628.png",
+      "cloudinary_public_id": "brands/brand_001/final-renders/1200x628",
+      "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777632936/brands/brand_001/final-renders/1200x628.png",
+      "width": 1200,
+      "height": 628,
+      "format_extension": "png",
+      "bytes": 328003,
+      "uploaded_at": "2026-05-01T10:55:37.373Z",
+      "upload_status": "success"
+    },
+    {
+      "ad_id": "spec_demo_1080x1080",
+      "format": "1080x1080",
+      "local_output_path": "public/rendered-ads/demo/1080x1080.png",
+      "cloudinary_public_id": "brands/brand_001/final-renders/1080x1080",
+      "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777632937/brands/brand_001/final-renders/1080x1080.png",
+      "width": 1080,
+      "height": 1080,
+      "format_extension": "png",
+      "bytes": 682183,
+      "uploaded_at": "2026-05-01T10:55:38.369Z",
+      "upload_status": "success"
+    },
+    {
+      "ad_id": "spec_demo_1080x1920",
+      "format": "1080x1920",
+      "local_output_path": "public/rendered-ads/demo/1080x1920.png",
+      "cloudinary_public_id": "brands/brand_001/final-renders/1080x1920",
+      "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777632938/brands/brand_001/final-renders/1080x1920.png",
+      "width": 1080,
+      "height": 1920,
+      "format_extension": "png",
+      "bytes": 763526,
+      "uploaded_at": "2026-05-01T10:55:39.178Z",
+      "upload_status": "success"
+    }
+  ]
+}

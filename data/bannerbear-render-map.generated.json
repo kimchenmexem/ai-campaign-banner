@@ -1,0 +1,234 @@
+{
+  "generated_at": "2026-05-01T10:17:08.528Z",
+  "brand_id": "brand_001",
+  "total": 3,
+  "completed": 0,
+  "failed": 3,
+  "items": [
+    {
+      "ad_id": "spec_demo_1200x628",
+      "format": "1200x628",
+      "template_uid": "qY4mReZpzyrLD97lP8",
+      "template_uid_source": "env",
+      "modifications_sent": [
+        {
+          "name": "background_image",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629612/brands/brand_001/backgrounds/background-image.png"
+        },
+        {
+          "name": "product_mockup",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629621/brands/brand_001/generated-composites/laptop-stocks.png"
+        },
+        {
+          "name": "brand_logo",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629608/brands/brand_001/logos/logo-blue-p.png"
+        },
+        {
+          "name": "powered_by_ib",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629607/brands/brand_001/powered-by-ib/ibkr-white-logo.png"
+        },
+        {
+          "name": "headline",
+          "text": "Trade global markets with confidence",
+          "color": "#204489"
+        },
+        {
+          "name": "subheadline",
+          "text": "Access stocks, ETFs and advanced platform tools from one powerful trading environment.",
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "disclaimer",
+          "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "cta_button",
+          "background_color": "#204489"
+        },
+        {
+          "name": "cta_text",
+          "text": "Start now",
+          "color": "#FFFFFF"
+        }
+      ],
+      "conversion_diagnostics": {
+        "mapped_layers": [
+          "background_image",
+          "product_mockup",
+          "brand_logo",
+          "powered_by_ib",
+          "headline",
+          "subheadline",
+          "disclaimer",
+          "cta_button",
+          "cta_text"
+        ],
+        "missing_layers": [],
+        "local_url_errors": [],
+        "unsupported_properties": [
+          "headline: font_family,font_size,line_height,letter_spacing,text_align",
+          "subheadline: font_family,font_size,line_height,text_align",
+          "disclaimer: font_family,font_size,line_height,text_align"
+        ],
+        "warnings": []
+      },
+      "bannerbear_image_uid": null,
+      "bannerbear_render_response": null,
+      "final_render_url": null,
+      "status": "failed",
+      "rendered_at": "2026-05-01T10:17:07.223Z",
+      "error": "Bannerbear 400 Bad Request on POST /images: {\"message\":\"This template has no layers yet\"}"
+    },
+    {
+      "ad_id": "spec_demo_1080x1080",
+      "format": "1080x1080",
+      "template_uid": "k4qoBVDyLVnd5zN0gj",
+      "template_uid_source": "env",
+      "modifications_sent": [
+        {
+          "name": "background_image",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629612/brands/brand_001/backgrounds/background-image.png"
+        },
+        {
+          "name": "product_mockup",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629619/brands/brand_001/generated-composites/tablet-etfs.png"
+        },
+        {
+          "name": "brand_logo",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629608/brands/brand_001/logos/logo-blue-p.png"
+        },
+        {
+          "name": "powered_by_ib",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629607/brands/brand_001/powered-by-ib/ibkr-white-logo.png"
+        },
+        {
+          "name": "headline",
+          "text": "Trade global markets with confidence",
+          "color": "#204489"
+        },
+        {
+          "name": "subheadline",
+          "text": "Access stocks, ETFs and advanced platform tools from one powerful trading environment.",
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "disclaimer",
+          "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "cta_button",
+          "background_color": "#204489"
+        },
+        {
+          "name": "cta_text",
+          "text": "Start now",
+          "color": "#FFFFFF"
+        }
+      ],
+      "conversion_diagnostics": {
+        "mapped_layers": [
+          "background_image",
+          "product_mockup",
+          "brand_logo",
+          "powered_by_ib",
+          "headline",
+          "subheadline",
+          "disclaimer",
+          "cta_button",
+          "cta_text"
+        ],
+        "missing_layers": [],
+        "local_url_errors": [],
+        "unsupported_properties": [
+          "headline: font_family,font_size,line_height,letter_spacing,text_align",
+          "subheadline: font_family,font_size,line_height,text_align",
+          "disclaimer: font_family,font_size,line_height,text_align"
+        ],
+        "warnings": []
+      },
+      "bannerbear_image_uid": null,
+      "bannerbear_render_response": null,
+      "final_render_url": null,
+      "status": "failed",
+      "rendered_at": "2026-05-01T10:17:08.014Z",
+      "error": "Bannerbear 400 Bad Request on POST /images: {\"message\":\"This template has no layers yet\"}"
+    },
+    {
+      "ad_id": "spec_demo_1080x1920",
+      "format": "1080x1920",
+      "template_uid": "7wpnPQZz02GrDdOgxo",
+      "template_uid_source": "env",
+      "modifications_sent": [
+        {
+          "name": "background_image",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629612/brands/brand_001/backgrounds/background-image.png"
+        },
+        {
+          "name": "product_mockup",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629620/brands/brand_001/generated-composites/phone-charts.png"
+        },
+        {
+          "name": "brand_logo",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629608/brands/brand_001/logos/logo-blue-p.png"
+        },
+        {
+          "name": "powered_by_ib",
+          "image_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629607/brands/brand_001/powered-by-ib/ibkr-white-logo.png"
+        },
+        {
+          "name": "headline",
+          "text": "Trade global markets with confidence",
+          "color": "#204489"
+        },
+        {
+          "name": "subheadline",
+          "text": "Access stocks, ETFs and advanced platform tools from one powerful trading environment.",
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "disclaimer",
+          "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "cta_button",
+          "background_color": "#204489"
+        },
+        {
+          "name": "cta_text",
+          "text": "Start now",
+          "color": "#FFFFFF"
+        }
+      ],
+      "conversion_diagnostics": {
+        "mapped_layers": [
+          "background_image",
+          "product_mockup",
+          "brand_logo",
+          "powered_by_ib",
+          "headline",
+          "subheadline",
+          "disclaimer",
+          "cta_button",
+          "cta_text"
+        ],
+        "missing_layers": [],
+        "local_url_errors": [],
+        "unsupported_properties": [
+          "headline: font_family,font_size,line_height,letter_spacing,text_align",
+          "subheadline: font_family,font_size,line_height,text_align",
+          "disclaimer: font_family,font_size,line_height,text_align"
+        ],
+        "warnings": []
+      },
+      "bannerbear_image_uid": null,
+      "bannerbear_render_response": null,
+      "final_render_url": null,
+      "status": "failed",
+      "rendered_at": "2026-05-01T10:17:08.251Z",
+      "error": "Bannerbear 400 Bad Request on POST /images: {\"message\":\"This template has no layers yet\"}"
+    }
+  ]
+}

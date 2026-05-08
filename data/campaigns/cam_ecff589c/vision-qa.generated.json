@@ -1,0 +1,216 @@
+{
+  "campaign_id": "cam_ecff589c",
+  "generated_at": "2026-05-08T06:35:01.879Z",
+  "total": 1,
+  "with_violations": 1,
+  "banners": [
+    {
+      "ad_id": "ad_concept_1_1200x628",
+      "format": "1200x628",
+      "png_path": "public/rendered-ads/campaigns/cam_ecff589c/concept_1_1200x628.png",
+      "violations": [
+        {
+          "rule_id": "logo-sub-lockup-on-leaderboard",
+          "severity": "block",
+          "description": "The \"Powered by InteractiveBrokers\" sub-lockup is present on the leaderboard banner, but brand rules state it should not be.",
+          "bbox_norm": {
+            "x": 0.0508,
+            "y": 0.097,
+            "width": 0.186,
+            "height": 0.089
+          }
+        },
+        {
+          "rule_id": "background-pattern-present",
+          "severity": "warn",
+          "description": "The banner includes a diagonal line pattern in the background, but brand rules state no patterns should be used."
+        },
+        {
+          "rule_id": "disclaimer-full-opacity",
+          "severity": "info",
+          "description": "The disclaimer text is at full white opacity, but brand rules specify 0.85 opacity for disclaimers.",
+          "bbox_norm": {
+            "x": 0.0508,
+            "y": 0.789,
+            "width": 0.898,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "headline-not-all-caps",
+          "severity": "block",
+          "description": "The headline text \"Conduct your trades like a maestro in a global symphony.\" is not in ALL CAPS, which is a mandatory brand rule.",
+          "bbox_norm": {
+            "x": 0.2308,
+            "y": 0.2118,
+            "width": 0.539,
+            "height": 0.2866
+          }
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline font size is 55px, which is significantly smaller than the required 85-95px for a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.2308,
+            "y": 0.2118,
+            "width": 0.539,
+            "height": 0.2866
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "block",
+          "description": "The disclaimer font size is 14px, which is smaller than the required 22-26px for a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.0508,
+            "y": 0.789,
+            "width": 0.898,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "disclaimer-below-cta",
+          "severity": "block",
+          "description": "The disclaimer is placed below the CTA, but brand rules require it to be between the headline and the CTA (i.e., above the CTA).",
+          "bbox_norm": {
+            "x": 0.0508,
+            "y": 0.789,
+            "width": 0.898,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-left-aligned",
+          "severity": "warn",
+          "description": "The disclaimer text is center-aligned, but brand rules require it to be left-aligned on leaderboard banners, matching the headline's alignment.",
+          "bbox_norm": {
+            "x": 0.0508,
+            "y": 0.789,
+            "width": 0.898,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "cta-not-full-width-band",
+          "severity": "block",
+          "description": "The CTA is a pill-shaped button, but brand rules for leaderboard banners require a full-width yellow band anchored to the bottom edge of the canvas.",
+          "bbox_norm": {
+            "x": 0.3317,
+            "y": 0.6624,
+            "width": 0.3375,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-height-too-small",
+          "severity": "warn",
+          "description": "The CTA height is 56px, which is smaller than the required 80-90px for a leaderboard CTA band.",
+          "bbox_norm": {
+            "x": 0.3317,
+            "y": 0.6624,
+            "width": 0.3375,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-background-color-incorrect",
+          "severity": "block",
+          "description": "The CTA background color is dark blue (#204489), but brand rules for leaderboard banners require it to be yellow (#F5C518).",
+          "bbox_norm": {
+            "x": 0.3317,
+            "y": 0.6624,
+            "width": 0.3375,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-text-not-all-caps",
+          "severity": "warn",
+          "description": "The CTA text \"Join the Ensemble →\" is not in ALL CAPS, which is required for leaderboard CTA bands.",
+          "bbox_norm": {
+            "x": 0.3317,
+            "y": 0.6624,
+            "width": 0.3375,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-text-color-incorrect",
+          "severity": "block",
+          "description": "The CTA text color is white (#FFFFFF), but brand rules for leaderboard CTA bands require dark navy/black (#0A0F1F).",
+          "bbox_norm": {
+            "x": 0.3317,
+            "y": 0.6624,
+            "width": 0.3375,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-has-border-radius",
+          "severity": "warn",
+          "description": "The CTA has a border-radius, but brand rules for leaderboard CTA bands require sharp corners (border-radius: 0).",
+          "bbox_norm": {
+            "x": 0.3317,
+            "y": 0.6624,
+            "width": 0.3375,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "visual-region-missing",
+          "severity": "block",
+          "description": "The leaderboard banner is missing the required visual region containing a device mockup (e.g., phone, laptop, watch)."
+        },
+        {
+          "rule_id": "headline-position-incorrect",
+          "severity": "warn",
+          "description": "The headline block is positioned at x=277, y=133, but the reference layout suggests x=50, y=200 for a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.2308,
+            "y": 0.2118,
+            "width": 0.539,
+            "height": 0.2866
+          }
+        },
+        {
+          "rule_id": "disclaimer-position-incorrect",
+          "severity": "warn",
+          "description": "The disclaimer is positioned at x=61, y=496, but the reference layout suggests x=50, y=470 for a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.0508,
+            "y": 0.789,
+            "width": 0.898,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "cta-position-incorrect",
+          "severity": "block",
+          "description": "The CTA is positioned at x=398, y=416, but the reference layout suggests x=0, y=540 for a leaderboard CTA band.",
+          "bbox_norm": {
+            "x": 0.3317,
+            "y": 0.6624,
+            "width": 0.3375,
+            "height": 0.0892
+          }
+        }
+      ],
+      "qa_at": "2026-05-08T06:11:34.391Z",
+      "model": "gemini-2.5-flash"
+    }
+  ],
+  "concept_summary": [
+    {
+      "concept_id": "concept_1",
+      "total_banners": 1,
+      "banners_with_violations": 1,
+      "violation_count": 18,
+      "severities": {
+        "info": 1,
+        "warn": 8,
+        "block": 9
+      }
+    }
+  ]
+}

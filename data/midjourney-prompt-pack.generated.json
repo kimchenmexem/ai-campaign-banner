@@ -1,0 +1,452 @@
+{
+  "pack_id": "pack_8312279c",
+  "campaign_id": "campaign_demo_001",
+  "brand_id": "brand_001",
+  "prompts": [
+    {
+      "prompt_id": "bg-premium-16x9",
+      "campaign_id": "campaign_demo_001",
+      "title": "Premium fintech background — 16:9",
+      "intended_use": "background",
+      "context": "premium_fintech",
+      "aspect_ratio": "16:9",
+      "prompt_text": "abstract premium fintech background, deep navy gradient interior, soft luminous depth, minimal composition, restrained geometric data visualization in the far background, sense of calm and authority, brand palette: #204489, #FFFFFF, #D81222, #000000, #00122C, premium fintech editorial style, clean, elegant, trustworthy, modern, sophisticated, leave clean negative space for marketing copy, no text, no logo, no watermark, no CTA, no disclaimer, no readable UI text, no fake app screenshots, no brand logos, no IBKR logos, no people unless explicitly noted, --ar 16:9, --style raw",
+      "negative_instructions": [
+        "no text",
+        "no logo",
+        "no watermark",
+        "no CTA",
+        "no disclaimer",
+        "no readable UI text",
+        "no fake app screenshots",
+        "no brand logos",
+        "no IBKR logos"
+      ],
+      "style_reference_note": "[OPTIONAL_STYLE_REFERENCE_URL]",
+      "image_reference_note": "[OPTIONAL_IMAGE_REFERENCE_URL]",
+      "notes": "This is a background. Marketing copy will overlay the left third for 16:9, the top third for 1:1, the upper half for 9:16. Keep that area visually quiet.",
+      "recommended_references": [
+        {
+          "local_path": "brand-input/background/background image.png",
+          "public_path": "/brand-input-preview/backgrounds/background-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629612/brands/brand_001/backgrounds/background-image.png",
+          "filename": "background image.png",
+          "asset_type": "background",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand background — match atmosphere/colors."
+        },
+        {
+          "local_path": "brand-input/Elements/CTA.png",
+          "public_path": "/brand-input-preview/elements/cta.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629602/brands/brand_001/elements/cta.png",
+          "filename": "CTA.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand decorative element — useful for accent atmosphere."
+        },
+        {
+          "local_path": "brand-input/Elements/HERO IMAGE.png",
+          "public_path": "/brand-input-preview/elements/hero-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/hero-image.png",
+          "filename": "HERO IMAGE.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand decorative element — useful for accent atmosphere."
+        },
+        {
+          "local_path": "brand-input/Elements/devices copy.png",
+          "public_path": "/brand-input-preview/elements/devices-copy.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/devices-copy.png",
+          "filename": "devices copy.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand decorative element — useful for accent atmosphere."
+        }
+      ],
+      "forbidden_outputs": [
+        "Do not generate text of any kind",
+        "Do not generate the brand logo",
+        "Do not generate the IBKR / Powered by IB logo",
+        "Do not generate readable app UI text",
+        "Do not generate disclaimers or risk warnings",
+        "Do not generate fake app screenshots",
+        "Do not generate watermarks"
+      ],
+      "created_at": "2026-05-01T11:03:25.741Z"
+    },
+    {
+      "prompt_id": "bg-premium-1x1",
+      "campaign_id": "campaign_demo_001",
+      "title": "Premium fintech background — 1:1",
+      "intended_use": "background",
+      "context": "premium_fintech",
+      "aspect_ratio": "1:1",
+      "prompt_text": "abstract premium fintech background, deep navy gradient interior, soft luminous depth, minimal composition, restrained geometric data visualization in the far background, sense of calm and authority, brand palette: #204489, #FFFFFF, #D81222, #000000, #00122C, premium fintech editorial style, clean, elegant, trustworthy, modern, sophisticated, leave clean negative space for marketing copy, no text, no logo, no watermark, no CTA, no disclaimer, no readable UI text, no fake app screenshots, no brand logos, no IBKR logos, no people unless explicitly noted, --ar 1:1, --style raw",
+      "negative_instructions": [
+        "no text",
+        "no logo",
+        "no watermark",
+        "no CTA",
+        "no disclaimer",
+        "no readable UI text",
+        "no fake app screenshots",
+        "no brand logos",
+        "no IBKR logos"
+      ],
+      "style_reference_note": "[OPTIONAL_STYLE_REFERENCE_URL]",
+      "image_reference_note": "[OPTIONAL_IMAGE_REFERENCE_URL]",
+      "notes": "This is a background. Marketing copy will overlay the left third for 16:9, the top third for 1:1, the upper half for 9:16. Keep that area visually quiet.",
+      "recommended_references": [
+        {
+          "local_path": "brand-input/background/background image.png",
+          "public_path": "/brand-input-preview/backgrounds/background-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629612/brands/brand_001/backgrounds/background-image.png",
+          "filename": "background image.png",
+          "asset_type": "background",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand background — match atmosphere/colors."
+        },
+        {
+          "local_path": "brand-input/Elements/CTA.png",
+          "public_path": "/brand-input-preview/elements/cta.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629602/brands/brand_001/elements/cta.png",
+          "filename": "CTA.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand decorative element — useful for accent atmosphere."
+        },
+        {
+          "local_path": "brand-input/Elements/HERO IMAGE.png",
+          "public_path": "/brand-input-preview/elements/hero-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/hero-image.png",
+          "filename": "HERO IMAGE.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand decorative element — useful for accent atmosphere."
+        },
+        {
+          "local_path": "brand-input/Elements/devices copy.png",
+          "public_path": "/brand-input-preview/elements/devices-copy.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/devices-copy.png",
+          "filename": "devices copy.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand decorative element — useful for accent atmosphere."
+        }
+      ],
+      "forbidden_outputs": [
+        "Do not generate text of any kind",
+        "Do not generate the brand logo",
+        "Do not generate the IBKR / Powered by IB logo",
+        "Do not generate readable app UI text",
+        "Do not generate disclaimers or risk warnings",
+        "Do not generate fake app screenshots",
+        "Do not generate watermarks"
+      ],
+      "created_at": "2026-05-01T11:03:25.741Z"
+    },
+    {
+      "prompt_id": "bg-premium-9x16",
+      "campaign_id": "campaign_demo_001",
+      "title": "Premium fintech background — 9:16",
+      "intended_use": "background",
+      "context": "premium_fintech",
+      "aspect_ratio": "9:16",
+      "prompt_text": "abstract premium fintech background, deep navy gradient interior, soft luminous depth, minimal composition, restrained geometric data visualization in the far background, sense of calm and authority, brand palette: #204489, #FFFFFF, #D81222, #000000, #00122C, premium fintech editorial style, clean, elegant, trustworthy, modern, sophisticated, leave clean negative space for marketing copy, no text, no logo, no watermark, no CTA, no disclaimer, no readable UI text, no fake app screenshots, no brand logos, no IBKR logos, no people unless explicitly noted, --ar 9:16, --style raw",
+      "negative_instructions": [
+        "no text",
+        "no logo",
+        "no watermark",
+        "no CTA",
+        "no disclaimer",
+        "no readable UI text",
+        "no fake app screenshots",
+        "no brand logos",
+        "no IBKR logos"
+      ],
+      "style_reference_note": "[OPTIONAL_STYLE_REFERENCE_URL]",
+      "image_reference_note": "[OPTIONAL_IMAGE_REFERENCE_URL]",
+      "notes": "This is a background. Marketing copy will overlay the left third for 16:9, the top third for 1:1, the upper half for 9:16. Keep that area visually quiet.",
+      "recommended_references": [
+        {
+          "local_path": "brand-input/background/background image.png",
+          "public_path": "/brand-input-preview/backgrounds/background-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629612/brands/brand_001/backgrounds/background-image.png",
+          "filename": "background image.png",
+          "asset_type": "background",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand background — match atmosphere/colors."
+        },
+        {
+          "local_path": "brand-input/Elements/CTA.png",
+          "public_path": "/brand-input-preview/elements/cta.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629602/brands/brand_001/elements/cta.png",
+          "filename": "CTA.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand decorative element — useful for accent atmosphere."
+        },
+        {
+          "local_path": "brand-input/Elements/HERO IMAGE.png",
+          "public_path": "/brand-input-preview/elements/hero-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/hero-image.png",
+          "filename": "HERO IMAGE.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand decorative element — useful for accent atmosphere."
+        },
+        {
+          "local_path": "brand-input/Elements/devices copy.png",
+          "public_path": "/brand-input-preview/elements/devices-copy.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/devices-copy.png",
+          "filename": "devices copy.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand decorative element — useful for accent atmosphere."
+        }
+      ],
+      "forbidden_outputs": [
+        "Do not generate text of any kind",
+        "Do not generate the brand logo",
+        "Do not generate the IBKR / Powered by IB logo",
+        "Do not generate readable app UI text",
+        "Do not generate disclaimers or risk warnings",
+        "Do not generate fake app screenshots",
+        "Do not generate watermarks"
+      ],
+      "created_at": "2026-05-01T11:03:25.741Z"
+    },
+    {
+      "prompt_id": "hero-stocks-16x9",
+      "campaign_id": "campaign_demo_001",
+      "title": "Hero visual — stocks — 16:9",
+      "intended_use": "hero_visual",
+      "context": "stocks",
+      "aspect_ratio": "16:9",
+      "prompt_text": "abstract premium stocks trading visualization — vertical column of restrained price indicators, ascending equity curve, glass and navy depth, no actual readable numbers, brand palette: #204489, #FFFFFF, #D81222, #000000, #00122C, premium fintech editorial style, clean, elegant, trustworthy, modern, sophisticated, leave clean negative space for marketing copy, no text, no logo, no watermark, no CTA, no disclaimer, no readable UI text, no fake app screenshots, no brand logos, no IBKR logos, no people unless explicitly noted, --ar 16:9, --style raw",
+      "negative_instructions": [
+        "no text",
+        "no logo",
+        "no watermark",
+        "no CTA",
+        "no disclaimer",
+        "no readable UI text",
+        "no fake app screenshots",
+        "no brand logos",
+        "no IBKR logos"
+      ],
+      "style_reference_note": "[OPTIONAL_STYLE_REFERENCE_URL]",
+      "image_reference_note": "[OPTIONAL_IMAGE_REFERENCE_URL]",
+      "notes": "Hero visual sits behind or alongside copy. Keep the focal area off-center so the copy block has a quiet zone.",
+      "recommended_references": [
+        {
+          "local_path": "brand-input/background/background image.png",
+          "public_path": "/brand-input-preview/backgrounds/background-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629612/brands/brand_001/backgrounds/background-image.png",
+          "filename": "background image.png",
+          "asset_type": "background",
+          "midjourney_role": "style_reference",
+          "why_selected": "Atmosphere only — Midjourney should not copy content, only color + mood."
+        }
+      ],
+      "forbidden_outputs": [
+        "Do not generate text of any kind",
+        "Do not generate the brand logo",
+        "Do not generate the IBKR / Powered by IB logo",
+        "Do not generate readable app UI text",
+        "Do not generate disclaimers or risk warnings",
+        "Do not generate fake app screenshots",
+        "Do not generate watermarks"
+      ],
+      "created_at": "2026-05-01T11:03:25.741Z"
+    },
+    {
+      "prompt_id": "hero-etfs-1x1",
+      "campaign_id": "campaign_demo_001",
+      "title": "Hero visual — etfs — 1:1",
+      "intended_use": "hero_visual",
+      "context": "etfs",
+      "aspect_ratio": "1:1",
+      "prompt_text": "abstract diversified-portfolio motif — segmented circular pie-style accent, soft layering, no actual readable text or logos, brand palette: #204489, #FFFFFF, #D81222, #000000, #00122C, premium fintech editorial style, clean, elegant, trustworthy, modern, sophisticated, leave clean negative space for marketing copy, no text, no logo, no watermark, no CTA, no disclaimer, no readable UI text, no fake app screenshots, no brand logos, no IBKR logos, no people unless explicitly noted, --ar 1:1, --style raw",
+      "negative_instructions": [
+        "no text",
+        "no logo",
+        "no watermark",
+        "no CTA",
+        "no disclaimer",
+        "no readable UI text",
+        "no fake app screenshots",
+        "no brand logos",
+        "no IBKR logos"
+      ],
+      "style_reference_note": "[OPTIONAL_STYLE_REFERENCE_URL]",
+      "image_reference_note": "[OPTIONAL_IMAGE_REFERENCE_URL]",
+      "notes": "Hero visual sits behind or alongside copy. Keep the focal area off-center so the copy block has a quiet zone.",
+      "recommended_references": [
+        {
+          "local_path": "brand-input/background/background image.png",
+          "public_path": "/brand-input-preview/backgrounds/background-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629612/brands/brand_001/backgrounds/background-image.png",
+          "filename": "background image.png",
+          "asset_type": "background",
+          "midjourney_role": "style_reference",
+          "why_selected": "Atmosphere only — Midjourney should not copy content, only color + mood."
+        }
+      ],
+      "forbidden_outputs": [
+        "Do not generate text of any kind",
+        "Do not generate the brand logo",
+        "Do not generate the IBKR / Powered by IB logo",
+        "Do not generate readable app UI text",
+        "Do not generate disclaimers or risk warnings",
+        "Do not generate fake app screenshots",
+        "Do not generate watermarks"
+      ],
+      "created_at": "2026-05-01T11:03:25.741Z"
+    },
+    {
+      "prompt_id": "decorative-abstract-1x1",
+      "campaign_id": "campaign_demo_001",
+      "title": "Decorative abstract — 1:1",
+      "intended_use": "decorative",
+      "context": "premium_fintech",
+      "aspect_ratio": "1:1",
+      "prompt_text": "small isolated abstract fintech accent shape — a single elegant geometric/data motif on a transparent-feeling background, subtle gradient, quiet composition, used as a decorative corner accent, brand palette: #204489, #FFFFFF, #D81222, #000000, #00122C, premium fintech editorial style, clean, elegant, trustworthy, modern, sophisticated, leave clean negative space for marketing copy, no text, no logo, no watermark, no CTA, no disclaimer, no readable UI text, no fake app screenshots, no brand logos, no IBKR logos, no people unless explicitly noted, --ar 1:1, --style raw",
+      "negative_instructions": [
+        "no text",
+        "no logo",
+        "no watermark",
+        "no CTA",
+        "no disclaimer",
+        "no readable UI text",
+        "no fake app screenshots",
+        "no brand logos",
+        "no IBKR logos"
+      ],
+      "style_reference_note": "[OPTIONAL_STYLE_REFERENCE_URL]",
+      "image_reference_note": "[OPTIONAL_IMAGE_REFERENCE_URL]",
+      "notes": "Will be placed at low opacity in a corner. Should read fine at 200×200px. Avoid strong directional gradients that would clash with the ad's main background.",
+      "recommended_references": [
+        {
+          "local_path": "brand-input/Elements/CTA.png",
+          "public_path": "/brand-input-preview/elements/cta.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629602/brands/brand_001/elements/cta.png",
+          "filename": "CTA.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Decorative element — guides accent style."
+        },
+        {
+          "local_path": "brand-input/Elements/HERO IMAGE.png",
+          "public_path": "/brand-input-preview/elements/hero-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/hero-image.png",
+          "filename": "HERO IMAGE.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Decorative element — guides accent style."
+        },
+        {
+          "local_path": "brand-input/Elements/devices copy.png",
+          "public_path": "/brand-input-preview/elements/devices-copy.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/devices-copy.png",
+          "filename": "devices copy.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Decorative element — guides accent style."
+        },
+        {
+          "local_path": "brand-input/Elements/devices.png",
+          "public_path": "/brand-input-preview/elements/devices.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/devices.png",
+          "filename": "devices.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Decorative element — guides accent style."
+        }
+      ],
+      "forbidden_outputs": [
+        "Do not generate text of any kind",
+        "Do not generate the brand logo",
+        "Do not generate the IBKR / Powered by IB logo",
+        "Do not generate readable app UI text",
+        "Do not generate disclaimers or risk warnings",
+        "Do not generate fake app screenshots",
+        "Do not generate watermarks"
+      ],
+      "created_at": "2026-05-01T11:03:25.741Z"
+    },
+    {
+      "prompt_id": "moodboard-fintech-16x9",
+      "campaign_id": "campaign_demo_001",
+      "title": "Brand moodboard — 16:9",
+      "intended_use": "moodboard",
+      "context": "premium_fintech",
+      "aspect_ratio": "16:9",
+      "prompt_text": "editorial collage moodboard for a premium financial trading brand: macro charts, abstract data, soft navy/teal gradients, glass surfaces, restrained typography placeholders (no actual letters), depth of field, editorial photography mood, brand palette: #204489, #FFFFFF, #D81222, #000000, #00122C, premium fintech editorial style, clean, elegant, trustworthy, modern, sophisticated, leave clean negative space for marketing copy, no text, no logo, no watermark, no CTA, no disclaimer, no readable UI text, no fake app screenshots, no brand logos, no IBKR logos, no people unless explicitly noted, --ar 16:9, --style raw",
+      "negative_instructions": [
+        "no text",
+        "no logo",
+        "no watermark",
+        "no CTA",
+        "no disclaimer",
+        "no readable UI text",
+        "no fake app screenshots",
+        "no brand logos",
+        "no IBKR logos"
+      ],
+      "style_reference_note": "[OPTIONAL_STYLE_REFERENCE_URL]",
+      "image_reference_note": "[OPTIONAL_IMAGE_REFERENCE_URL]",
+      "notes": "Moodboard only — used for human reference, not as a render input. Helps the team agree on tone before approving hero visuals.",
+      "recommended_references": [
+        {
+          "local_path": "brand-input/background/background image.png",
+          "public_path": "/brand-input-preview/backgrounds/background-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629612/brands/brand_001/backgrounds/background-image.png",
+          "filename": "background image.png",
+          "asset_type": "background",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand reference for the moodboard."
+        },
+        {
+          "local_path": "brand-input/Elements/CTA.png",
+          "public_path": "/brand-input-preview/elements/cta.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629602/brands/brand_001/elements/cta.png",
+          "filename": "CTA.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand reference for the moodboard."
+        },
+        {
+          "local_path": "brand-input/Elements/HERO IMAGE.png",
+          "public_path": "/brand-input-preview/elements/hero-image.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/hero-image.png",
+          "filename": "HERO IMAGE.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand reference for the moodboard."
+        },
+        {
+          "local_path": "brand-input/Elements/devices copy.png",
+          "public_path": "/brand-input-preview/elements/devices-copy.png",
+          "cloudinary_secure_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629603/brands/brand_001/elements/devices-copy.png",
+          "filename": "devices copy.png",
+          "asset_type": "decorative_element",
+          "midjourney_role": "style_reference",
+          "why_selected": "Brand reference for the moodboard."
+        }
+      ],
+      "forbidden_outputs": [
+        "Do not generate text of any kind",
+        "Do not generate the brand logo",
+        "Do not generate the IBKR / Powered by IB logo",
+        "Do not generate readable app UI text",
+        "Do not generate disclaimers or risk warnings",
+        "Do not generate fake app screenshots",
+        "Do not generate watermarks"
+      ],
+      "created_at": "2026-05-01T11:03:25.741Z"
+    }
+  ],
+  "source": "system_generated",
+  "created_at": "2026-05-01T11:03:25.741Z"
+}

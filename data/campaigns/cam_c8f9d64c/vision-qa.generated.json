@@ -1,0 +1,145 @@
+{
+  "campaign_id": "cam_c8f9d64c",
+  "generated_at": "2026-05-07T14:35:30.800Z",
+  "total": 1,
+  "with_violations": 1,
+  "banners": [
+    {
+      "ad_id": "ad_concept_1_1200x628",
+      "format": "1200x628",
+      "png_path": "public/rendered-ads/campaigns/cam_c8f9d64c/concept_1_1200x628.png",
+      "violations": [
+        {
+          "rule_id": "cta-text-color-mismatch",
+          "severity": "warn",
+          "description": "The CTA text color is white (#FFFFFF) but should be dark navy/black (#0A0F1F) for a non-yellow CTA.",
+          "bbox_norm": {
+            "x": 0.31833333333333336,
+            "y": 0.6624190923566879,
+            "width": 0.365,
+            "height": 0.08917197452229299
+          }
+        },
+        {
+          "rule_id": "background-pattern-not-allowed",
+          "severity": "warn",
+          "description": "The background contains a diagonal line pattern (el_brand_pattern) which is explicitly disallowed for this banner style.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "logo-sublockup-on-leaderboard",
+          "severity": "block",
+          "description": "The logo (el_logo) includes the \"Powered by InteractiveBrokers\" sub-lockup, which is not allowed on leaderboard banners.",
+          "bbox_norm": {
+            "x": 0.05083333333333333,
+            "y": 0.09713375796178345,
+            "width": 0.18666666666666668,
+            "height": 0.08917197452229299
+          }
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline font size (57px) is too small for a leaderboard banner, which should be ~85-95px.",
+          "bbox_norm": {
+            "x": 0.23083333333333333,
+            "y": 0.21178343949044587,
+            "width": 0.5391666666666667,
+            "height": 0.28662420382165604
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer font size (14px) is too small for a leaderboard banner, which should be ~22-26px.",
+          "bbox_norm": {
+            "x": 0.05083333333333333,
+            "y": 0.7898089171974522,
+            "width": 0.8983333333333333,
+            "height": 0.03503184713375796
+          }
+        },
+        {
+          "rule_id": "disclaimer-placement-incorrect",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) is placed below the CTA, but it should be between the headline and the CTA for leaderboard banners.",
+          "bbox_norm": {
+            "x": 0.05083333333333333,
+            "y": 0.7898089171974522,
+            "width": 0.8983333333333333,
+            "height": 0.03503184713375796
+          }
+        },
+        {
+          "rule_id": "disclaimer-alignment-incorrect",
+          "severity": "warn",
+          "description": "The disclaimer (el_disclaimer) is center-aligned, but it should be left-aligned to match the headline on a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.05083333333333333,
+            "y": 0.7898089171974522,
+            "width": 0.8983333333333333,
+            "height": 0.03503184713375796
+          }
+        },
+        {
+          "rule_id": "cta-type-mismatch",
+          "severity": "block",
+          "description": "The CTA (el_cta) is a pill-shaped button, but for leaderboard banners, it should be a full-width yellow band anchored to the bottom of the canvas.",
+          "bbox_norm": {
+            "x": 0.31833333333333336,
+            "y": 0.6624190923566879,
+            "width": 0.365,
+            "height": 0.08917197452229299
+          }
+        },
+        {
+          "rule_id": "cta-background-color-mismatch",
+          "severity": "block",
+          "description": "The CTA background color is dark blue (#204489), but it should be yellow (#F5C518) for a leaderboard CTA band.",
+          "bbox_norm": {
+            "x": 0.31833333333333336,
+            "y": 0.6624190923566879,
+            "width": 0.365,
+            "height": 0.08917197452229299
+          }
+        },
+        {
+          "rule_id": "missing-visual-mockup",
+          "severity": "warn",
+          "description": "The banner is missing a device mockup or visual region on the right side of the canvas, which is a key element for leaderboard banners."
+        },
+        {
+          "rule_id": "headline-position-incorrect",
+          "severity": "warn",
+          "description": "The headline (el_headline) is positioned too far right (x=277) and too high (y=133) compared to the reference layout (x=50, y=200).",
+          "bbox_norm": {
+            "x": 0.23083333333333333,
+            "y": 0.21178343949044587,
+            "width": 0.5391666666666667,
+            "height": 0.28662420382165604
+          }
+        }
+      ],
+      "qa_at": "2026-05-07T12:57:08.275Z",
+      "model": "gemini-2.5-flash"
+    }
+  ],
+  "concept_summary": [
+    {
+      "concept_id": "concept_1",
+      "total_banners": 1,
+      "banners_with_violations": 1,
+      "violation_count": 11,
+      "severities": {
+        "info": 0,
+        "warn": 7,
+        "block": 4
+      }
+    }
+  ]
+}

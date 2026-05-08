@@ -1,0 +1,3539 @@
+{
+  "plan": {
+    "campaign_id": "cam_ecff589c",
+    "brand_id": "brand_001",
+    "source_brief": {
+      "brief_id": "brief_4b1be2d8a878",
+      "brand_id": "brand_001",
+      "marketing_message": "Trade global markets with confidence",
+      "campaign_goal": "consideration",
+      "tone": [
+        "confident",
+        "trustworthy",
+        "premium"
+      ],
+      "required_formats": [
+        "1200x628",
+        "1080x1080",
+        "1080x1920"
+      ],
+      "preferred_contexts": [
+        "general_platform"
+      ],
+      "risk_warning_required": true,
+      "language": "en",
+      "creative_mode": "exploratory",
+      "diversity_seed": 425920,
+      "max_diversity": true,
+      "created_at": "2026-05-08T06:04:07.733Z"
+    },
+    "campaign_name": "Crafting Your Financial Symphony",
+    "campaign_summary": "Engage traders through a symphony of global connectivity, strategic clarity, and serene precision, each concept offering a unique lens on the Company Brand's trading platform.",
+    "ai_provider": "openai",
+    "concepts": [
+      {
+        "concept_id": "concept_1",
+        "name": "The Global Symphony",
+        "strategic_idea": "Showcase Company Brand as the conductor of a global financial symphony, where every trade is a note in a harmonious ensemble.",
+        "target_emotion": "awe and inspiration",
+        "tone": "lyrical and grand",
+        "visual_direction": {
+          "description": "A vast orchestra silhouetted against a backdrop of deep navy and shimmering gold, each instrument representing an element of global trading.",
+          "primary_palette": [
+            "#204489",
+            "#F5C518"
+          ],
+          "composition": "hero_centered_orchestra",
+          "mood_keywords": [
+            "harmonious",
+            "majestic",
+            "orchestrated"
+          ]
+        },
+        "copy_package": {
+          "headline": "Conduct your trades like a maestro in a global symphony.",
+          "headline_emphasis": "Conduct your trades",
+          "subheadline": "Every market a note, every trade harmonized.",
+          "cta": "Join the Ensemble",
+          "disclaimer": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+          "alternative_headlines": [
+            "Lead your portfolio like a symphony."
+          ],
+          "alternative_ctas": [
+            "Orchestrate Your Trades"
+          ],
+          "platform_copy_variations": []
+        },
+        "desired_visual_context": "general_platform",
+        "midjourney_prompt_pack": [
+          {
+            "prompt_id": "concept-1-bg",
+            "intended_use": "background",
+            "context": "general_platform",
+            "aspect_ratio": "16:9",
+            "prompt_text": "Abstract depiction of an orchestra performing, deep navy backdrop with golden highlights, instruments as symbols of trading, no logo, no UI, no text, no watermark."
+          },
+          {
+            "prompt_id": "concept-1-deco",
+            "intended_use": "decorative",
+            "context": "general_platform",
+            "aspect_ratio": "1:1",
+            "prompt_text": "A golden musical note elegantly intertwined with geometric rings, polished finish, no text, no logos, no watermark."
+          },
+          {
+            "prompt_id": "concept-1-hero",
+            "intended_use": "hero_visual",
+            "context": "general_platform",
+            "aspect_ratio": "1:1",
+            "prompt_text": "A conductor's baton elegantly poised against a dark navy and gold background, minimalist, no text, no logos."
+          }
+        ],
+        "design_elements": {
+          "eyebrow": "GLOBAL ACCESS",
+          "stat": {
+            "number": "24/7",
+            "label": "TRADE CONNECTIVITY"
+          }
+        },
+        "campaign_id": "cam_ecff589c",
+        "ad_specs": [
+          {
+            "ad_id": "ad_concept_1_1200x628",
+            "campaign_id": "cam_ecff589c",
+            "concept_id": "concept_1",
+            "format": "1200x628",
+            "canvas_width": 1200,
+            "canvas_height": 628,
+            "channel": "leaderboard",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1200x628",
+              "specId": "spec_demo_1200x628",
+              "conceptId": "concept_1",
+              "campaignId": "cam_ecff589c",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1200,
+                "height": 628
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#006A97",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(90deg, #006A97 0%, #00122C 100%)"
+                },
+                {
+                  "id": "el_brand_pattern",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 5,
+                  "opacity": 0.6,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYyOCIgdmlld0JveD0iMCAwIDEyMDAgNjI4Ij48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBwYXR0ZXJuVHJhbnNmb3JtPSJyb3RhdGUoMTgpIj48bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iNjQiIHN0cm9rZT0iI0Y1QzUxOCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC4xOCIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjI4IiBmaWxsPSJ1cmwoI3ApIi8+PC9zdmc+",
+                  "object_fit": "fill",
+                  "alt_text": "brand-color geometric pattern",
+                  "bannerbear": {
+                    "layer_name": "brand_pattern",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "brand-pattern",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 61,
+                  "y": 61,
+                  "width": 224,
+                  "height": 56,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Header"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 277,
+                  "y": 133,
+                  "width": 647,
+                  "height": 180,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Conduct your trades like a maestro in a global symphony.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 55,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "emphasis_text": "Conduct your trades",
+                  "emphasis_color": "#F5C518",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 398,
+                  "y": 416,
+                  "width": 405,
+                  "height": 56,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Join the Ensemble →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 28,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 28,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1200x628 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 496,
+                  "width": 1078,
+                  "height": 22,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 14,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-08T06:10:43.016Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "general_platform",
+              "selected_context": "general_platform",
+              "intended_device_type": "laptop",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "laptop-general_platform",
+              "composite_public_path": "/generated-preview-composites/laptop-general_platform.png",
+              "mockup_filename": "mockup-macbook.png",
+              "screenshot_filename": "Screenshot 2025-02-17 112522.png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_1_1080x1080",
+            "campaign_id": "cam_ecff589c",
+            "concept_id": "concept_1",
+            "format": "1080x1080",
+            "canvas_width": 1080,
+            "canvas_height": 1080,
+            "channel": "instagram-feed",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1080",
+              "specId": "spec_demo_1080x1080",
+              "conceptId": "concept_1",
+              "campaignId": "cam_ecff589c",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1080
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#006A97",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(90deg, #006A97 0%, #00122C 100%)"
+                },
+                {
+                  "id": "el_brand_pattern",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 5,
+                  "opacity": 0.6,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxMDgwIDEwODAiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSgxOCkiPjxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSI2NCIgc3Ryb2tlPSIjRjVDNTE4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1vcGFjaXR5PSIwLjE4Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSJ1cmwoI3ApIi8+PC9zdmc+",
+                  "object_fit": "fill",
+                  "alt_text": "brand-color geometric pattern",
+                  "bannerbear": {
+                    "layer_name": "brand_pattern",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "brand-pattern",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 61,
+                  "y": 61,
+                  "width": 320,
+                  "height": 80,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Header"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 418,
+                  "width": 958,
+                  "height": 239,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Conduct your trades like a maestro in a global symphony.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 74,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "emphasis_text": "Conduct your trades",
+                  "emphasis_color": "#F5C518",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 299,
+                  "y": 840,
+                  "width": 482,
+                  "height": 77,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Join the Ensemble →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 39,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1080 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 941,
+                  "width": 958,
+                  "height": 29,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 18,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-08T06:10:43.017Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "general_platform",
+              "selected_context": "general_platform",
+              "intended_device_type": "tablet",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "tablet-general_platform",
+              "composite_public_path": "/generated-preview-composites/tablet-general_platform.png",
+              "mockup_filename": "ipad-3.png",
+              "screenshot_filename": "Order dialog (Light).png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "explicit_manifest"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_1_1080x1920",
+            "campaign_id": "cam_ecff589c",
+            "concept_id": "concept_1",
+            "format": "1080x1920",
+            "canvas_width": 1080,
+            "canvas_height": 1920,
+            "channel": "instagram-story",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1920",
+              "specId": "spec_demo_1080x1920",
+              "conceptId": "concept_1",
+              "campaignId": "cam_ecff589c",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1920
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#006A97",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(90deg, #006A97 0%, #00122C 100%)"
+                },
+                {
+                  "id": "el_brand_pattern",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 5,
+                  "opacity": 0.6,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjE5MjAiIHZpZXdCb3g9IjAgMCAxMDgwIDE5MjAiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSgxOCkiPjxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSI2NCIgc3Ryb2tlPSIjRjVDNTE4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1vcGFjaXR5PSIwLjMiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjE5MjAiIGZpbGw9InVybCgjcCkiLz48L3N2Zz4=",
+                  "object_fit": "fill",
+                  "alt_text": "brand-color geometric pattern",
+                  "bannerbear": {
+                    "layer_name": "brand_pattern",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "brand-pattern",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 61,
+                  "y": 61,
+                  "width": 141,
+                  "height": 88,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629608/brands/brand_001/logos/logo-white-p.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-p",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-p.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Header"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 610,
+                  "width": 958,
+                  "height": 409,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Conduct your trades like a maestro in a global symphony.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 96,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "emphasis_text": "Conduct your trades",
+                  "emphasis_color": "#F5C518",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 299,
+                  "y": 1667,
+                  "width": 482,
+                  "height": 84,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Join the Ensemble →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 42,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1920 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 61,
+                  "y": 1775,
+                  "width": 958,
+                  "height": 35,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 18,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-08T06:10:43.020Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "general_platform",
+              "selected_context": "general_platform",
+              "intended_device_type": "phone",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "phone-general_platform",
+              "composite_public_path": "/generated-preview-composites/phone-general_platform.png",
+              "mockup_filename": "iphone-1.png",
+              "screenshot_filename": "application_signin_page.PNG",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          }
+        ],
+        "visual_layout_spec": {
+          "spec_version": "1.0.0",
+          "layout_type": "pattern_immersive",
+          "composition": "hero_overlay",
+          "hierarchy": {
+            "primary_focus": "visual",
+            "secondary_focus": "headline",
+            "emphasis_level": "quiet"
+          },
+          "text_strategy": {
+            "headline_position": "center",
+            "headline_scale": "hero",
+            "text_alignment": "center",
+            "max_text_density": "low"
+          },
+          "visual_strategy": {
+            "primary_visual": "abstract_gradient",
+            "visual_position": "background",
+            "visual_weight": "dominant",
+            "use_mockup": false,
+            "use_screenshot": false,
+            "use_motif": false,
+            "use_pattern": true,
+            "motif_hint": "wave_curve"
+          },
+          "brand_strategy": {
+            "background_style": "gradient",
+            "palette_intensity": "calm",
+            "accent_usage": "subtle",
+            "logo_prominence": "standard"
+          },
+          "cta_strategy": {
+            "placement": "bottom_center",
+            "weight": "standard",
+            "width": "fit_text"
+          },
+          "spacing": {
+            "density": "balanced",
+            "padding": "airy",
+            "safe_area_priority": "normal"
+          },
+          "format_adaptation": {},
+          "rationale": "The lyrical and grand concept of a global symphony is visually represented with a wave curve pattern, creating an immersive atmosphere reflecting awe and inspiration."
+        }
+      },
+      {
+        "concept_id": "concept_2",
+        "name": "The Whisper of Strategy",
+        "strategic_idea": "Illustrate trading as an art of listening to subtle market whispers, transforming instinct into informed strategy.",
+        "target_emotion": "empowered focus",
+        "tone": "intimate and introspective",
+        "visual_direction": {
+          "description": "Soft shadow play on a serene setting, depicting the quiet intensity of strategic contemplation on a muted navy background.",
+          "primary_palette": [
+            "#002B4B",
+            "#FFFFFF"
+          ],
+          "composition": "hero_right_focus",
+          "mood_keywords": [
+            "introspective",
+            "quiet",
+            "strategic"
+          ]
+        },
+        "copy_package": {
+          "headline": "Listen to the market's quiet whisper and turn it into strategic music.",
+          "subheadline": "Precision tools for every subtle market nuance.",
+          "cta": "Refine Your Strategy",
+          "disclaimer": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+          "alternative_headlines": [
+            "Transform whispers into trading opportunities."
+          ],
+          "alternative_ctas": [
+            "Hear the Market"
+          ],
+          "platform_copy_variations": []
+        },
+        "desired_visual_context": "premium_fintech",
+        "midjourney_prompt_pack": [
+          {
+            "prompt_id": "concept-2-bg",
+            "intended_use": "background",
+            "context": "premium_fintech",
+            "aspect_ratio": "16:9",
+            "prompt_text": "Soft plays of shadow and light on a quiet landscape, deep navy and white, evoking a whisper of strategy, no logo, no text, no watermark."
+          },
+          {
+            "prompt_id": "concept-2-deco",
+            "intended_use": "decorative",
+            "context": "premium_fintech",
+            "aspect_ratio": "1:1",
+            "prompt_text": "A delicate spiral of light casting a soft shadow on a navy backdrop, capturing quiet contemplation, no text, no watermark."
+          },
+          {
+            "prompt_id": "concept-2-hero",
+            "intended_use": "hero_visual",
+            "context": "premium_fintech",
+            "aspect_ratio": "1:1",
+            "prompt_text": "An elegant compass on a serene navy background, embodying guidance and precision, no text, no logos."
+          }
+        ],
+        "design_elements": {
+          "eyebrow": "STRATEGIC INSIGHT",
+          "stat": {
+            "number": "0.01%",
+            "label": "LOWEST-PER-CENT COST"
+          }
+        },
+        "campaign_id": "cam_ecff589c",
+        "ad_specs": [
+          {
+            "ad_id": "ad_concept_2_1200x628",
+            "campaign_id": "cam_ecff589c",
+            "concept_id": "concept_2",
+            "format": "1200x628",
+            "canvas_width": 1200,
+            "canvas_height": 628,
+            "channel": "leaderboard",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1200x628",
+              "specId": "spec_demo_1200x628",
+              "conceptId": "concept_2",
+              "campaignId": "cam_ecff589c",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1200,
+                "height": 628
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#005786",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(0deg, #005786 0%, #005786 100%)"
+                },
+                {
+                  "id": "el_motif_axis_grid",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 8,
+                  "opacity": 0.51,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYyOCIgdmlld0JveD0iMCAwIDEyMDAgNjI4Ij48bGluZSB4MT0iNDUiIHkxPSIwIiB4Mj0iNDUiIHkyPSI2MjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSI5MCIgeTE9IjAiIHgyPSI5MCIgeTI9IjYyOCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjEzNSIgeTE9IjAiIHgyPSIxMzUiIHkyPSI2MjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIxODAiIHkxPSIwIiB4Mj0iMTgwIiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMjI1IiB5MT0iMCIgeDI9IjIyNSIgeTI9IjYyOCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjE2Ii8+PGxpbmUgeDE9IjI3MCIgeTE9IjAiIHgyPSIyNzAiIHkyPSI2MjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIzMTUiIHkxPSIwIiB4Mj0iMzE1IiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMzYwIiB5MT0iMCIgeDI9IjM2MCIgeTI9IjYyOCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjQwNSIgeTE9IjAiIHgyPSI0MDUiIHkyPSI2MjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSI0NTAiIHkxPSIwIiB4Mj0iNDUwIiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTYiLz48bGluZSB4MT0iNDk1IiB5MT0iMCIgeDI9IjQ5NSIgeTI9IjYyOCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjU0MCIgeTE9IjAiIHgyPSI1NDAiIHkyPSI2MjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSI1ODUiIHkxPSIwIiB4Mj0iNTg1IiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iNjMwIiB5MT0iMCIgeDI9IjYzMCIgeTI9IjYyOCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjY3NSIgeTE9IjAiIHgyPSI2NzUiIHkyPSI2MjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4xNiIvPjxsaW5lIHgxPSI3MjAiIHkxPSIwIiB4Mj0iNzIwIiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iNzY1IiB5MT0iMCIgeDI9Ijc2NSIgeTI9IjYyOCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjgxMCIgeTE9IjAiIHgyPSI4MTAiIHkyPSI2MjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSI4NTUiIHkxPSIwIiB4Mj0iODU1IiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iOTAwIiB5MT0iMCIgeDI9IjkwMCIgeTI9IjYyOCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjE2Ii8+PGxpbmUgeDE9Ijk0NSIgeTE9IjAiIHgyPSI5NDUiIHkyPSI2MjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSI5OTAiIHkxPSIwIiB4Mj0iOTkwIiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMTAzNSIgeTE9IjAiIHgyPSIxMDM1IiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMTA4MCIgeTE9IjAiIHgyPSIxMDgwIiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMTEyNSIgeTE9IjAiIHgyPSIxMTI1IiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTYiLz48bGluZSB4MT0iMTE3MCIgeTE9IjAiIHgyPSIxMTcwIiB5Mj0iNjI4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjQ1IiB4Mj0iMTIwMCIgeTI9IjQ1IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjkwIiB4Mj0iMTIwMCIgeTI9IjkwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjEzNSIgeDI9IjEyMDAiIHkyPSIxMzUiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iMTgwIiB4Mj0iMTIwMCIgeTI9IjE4MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSIyMjUiIHgyPSIxMjAwIiB5Mj0iMjI1IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTYiLz48bGluZSB4MT0iMCIgeTE9IjI3MCIgeDI9IjEyMDAiIHkyPSIyNzAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iMzE1IiB4Mj0iMTIwMCIgeTI9IjMxNSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSIzNjAiIHgyPSIxMjAwIiB5Mj0iMzYwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjQwNSIgeDI9IjEyMDAiIHkyPSI0MDUiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iNDUwIiB4Mj0iMTIwMCIgeTI9IjQ1MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjE2Ii8+PGxpbmUgeDE9IjAiIHkxPSI0OTUiIHgyPSIxMjAwIiB5Mj0iNDk1IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjU0MCIgeDI9IjEyMDAiIHkyPSI1NDAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iNTg1IiB4Mj0iMTIwMCIgeTI9IjU4NSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PC9zdmc+",
+                  "object_fit": "fill",
+                  "alt_text": "generated brand-color motif: axis_grid",
+                  "bannerbear": {
+                    "layer_name": "motif_axis_grid",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "motif-axis_grid",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 40,
+                  "y": 40,
+                  "width": 224,
+                  "height": 56,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Header"
+                  }
+                },
+                {
+                  "id": "el_accent",
+                  "type": "shape",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 962,
+                  "y": -238,
+                  "width": 528,
+                  "height": 528,
+                  "z_index": 15,
+                  "opacity": 0.92,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#F5C518",
+                  "border_radius": 264,
+                  "bannerbear": {
+                    "layer_name": "accent_shape",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "ELLIPSE",
+                    "component_role": "accent",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Decorative"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 264,
+                  "y": 179,
+                  "width": 672,
+                  "height": 151,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Listen to the market's quiet whisper and turn it into strategic music.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 45,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 264,
+                  "y": 354,
+                  "width": 672,
+                  "height": 78,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Precision tools for every subtle market nuance.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 28,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 454,
+                  "width": 454,
+                  "height": 56,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Refine Your Strategy →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 28,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 28,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1200x628 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 534,
+                  "width": 1120,
+                  "height": 22,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 14,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-08T06:10:43.022Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "general_platform",
+              "selected_context": "general_platform",
+              "intended_device_type": "laptop",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "laptop-general_platform",
+              "composite_public_path": "/generated-preview-composites/laptop-general_platform.png",
+              "mockup_filename": "mockup-macbook.png",
+              "screenshot_filename": "Screenshot 2025-02-17 112522.png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_2_1080x1080",
+            "campaign_id": "cam_ecff589c",
+            "concept_id": "concept_2",
+            "format": "1080x1080",
+            "canvas_width": 1080,
+            "canvas_height": 1080,
+            "channel": "instagram-feed",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1080",
+              "specId": "spec_demo_1080x1080",
+              "conceptId": "concept_2",
+              "campaignId": "cam_ecff589c",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1080
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#005786",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(0deg, #005786 0%, #005786 100%)"
+                },
+                {
+                  "id": "el_motif_axis_grid",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 8,
+                  "opacity": 0.51,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxMDgwIDEwODAiPjxsaW5lIHgxPSI3NyIgeTE9IjAiIHgyPSI3NyIgeTI9IjEwODAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIxNTQiIHkxPSIwIiB4Mj0iMTU0IiB5Mj0iMTA4MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjIzMSIgeTE9IjAiIHgyPSIyMzEiIHkyPSIxMDgwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMzA4IiB5MT0iMCIgeDI9IjMwOCIgeTI9IjEwODAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIzODUiIHkxPSIwIiB4Mj0iMzg1IiB5Mj0iMTA4MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjE2Ii8+PGxpbmUgeDE9IjQ2MiIgeTE9IjAiIHgyPSI0NjIiIHkyPSIxMDgwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iNTM5IiB5MT0iMCIgeDI9IjUzOSIgeTI9IjEwODAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSI2MTYiIHkxPSIwIiB4Mj0iNjE2IiB5Mj0iMTA4MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjY5MyIgeTE9IjAiIHgyPSI2OTMiIHkyPSIxMDgwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iNzcwIiB5MT0iMCIgeDI9Ijc3MCIgeTI9IjEwODAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4xNiIvPjxsaW5lIHgxPSI4NDciIHkxPSIwIiB4Mj0iODQ3IiB5Mj0iMTA4MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjkyNCIgeTE9IjAiIHgyPSI5MjQiIHkyPSIxMDgwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMTAwMSIgeTE9IjAiIHgyPSIxMDAxIiB5Mj0iMTA4MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjEwNzgiIHkxPSIwIiB4Mj0iMTA3OCIgeTI9IjEwODAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iNzciIHgyPSIxMDgwIiB5Mj0iNzciIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iMTU0IiB4Mj0iMTA4MCIgeTI9IjE1NCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSIyMzEiIHgyPSIxMDgwIiB5Mj0iMjMxIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjMwOCIgeDI9IjEwODAiIHkyPSIzMDgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iMzg1IiB4Mj0iMTA4MCIgeTI9IjM4NSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjE2Ii8+PGxpbmUgeDE9IjAiIHkxPSI0NjIiIHgyPSIxMDgwIiB5Mj0iNDYyIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjUzOSIgeDI9IjEwODAiIHkyPSI1MzkiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iNjE2IiB4Mj0iMTA4MCIgeTI9IjYxNiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSI2OTMiIHgyPSIxMDgwIiB5Mj0iNjkzIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9Ijc3MCIgeDI9IjEwODAiIHkyPSI3NzAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4xNiIvPjxsaW5lIHgxPSIwIiB5MT0iODQ3IiB4Mj0iMTA4MCIgeTI9Ijg0NyIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSI5MjQiIHgyPSIxMDgwIiB5Mj0iOTI0IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjEwMDEiIHgyPSIxMDgwIiB5Mj0iMTAwMSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSIxMDc4IiB4Mj0iMTA4MCIgeTI9IjEwNzgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjwvc3ZnPg==",
+                  "object_fit": "fill",
+                  "alt_text": "generated brand-color motif: axis_grid",
+                  "bannerbear": {
+                    "layer_name": "motif_axis_grid",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "motif-axis_grid",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 40,
+                  "y": 40,
+                  "width": 320,
+                  "height": 80,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Header"
+                  }
+                },
+                {
+                  "id": "el_stat_number",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 185,
+                  "width": 1000,
+                  "height": 250,
+                  "z_index": 15,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "0.01%",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 238,
+                  "line_height": 0.95,
+                  "letter_spacing": -2,
+                  "text_align": "center",
+                  "color": "#F5C518",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "stat_number",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "stat_number",
+                    "style_ref": "text/stat-number-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Stat"
+                  }
+                },
+                {
+                  "id": "el_stat_label",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 443,
+                  "width": 1000,
+                  "height": 34,
+                  "z_index": 15,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "LOWEST-PER-CENT COST",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 24,
+                  "line_height": 1.2,
+                  "letter_spacing": 2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "stat_label",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "stat_label",
+                    "style_ref": "text/stat-label-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Stat"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 533,
+                  "width": 1000,
+                  "height": 200,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Listen to the market's quiet whisper and turn it into strategic music.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 63,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 757,
+                  "width": 1000,
+                  "height": 98,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Precision tools for every subtle market nuance.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 35,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 878,
+                  "width": 543,
+                  "height": 77,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Refine Your Strategy →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 39,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1080 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 979,
+                  "width": 1000,
+                  "height": 29,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 18,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-08T06:10:43.022Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "general_platform",
+              "selected_context": "general_platform",
+              "intended_device_type": "tablet",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "tablet-general_platform",
+              "composite_public_path": "/generated-preview-composites/tablet-general_platform.png",
+              "mockup_filename": "ipad-3.png",
+              "screenshot_filename": "Order dialog (Light).png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "explicit_manifest"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_2_1080x1920",
+            "campaign_id": "cam_ecff589c",
+            "concept_id": "concept_2",
+            "format": "1080x1920",
+            "canvas_width": 1080,
+            "canvas_height": 1920,
+            "channel": "instagram-story",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1920",
+              "specId": "spec_demo_1080x1920",
+              "conceptId": "concept_2",
+              "campaignId": "cam_ecff589c",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1920
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#005786",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(0deg, #005786 0%, #005786 100%)"
+                },
+                {
+                  "id": "el_motif_axis_grid",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 8,
+                  "opacity": 0.51,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjE5MjAiIHZpZXdCb3g9IjAgMCAxMDgwIDE5MjAiPjxsaW5lIHgxPSI3NyIgeTE9IjAiIHgyPSI3NyIgeTI9IjE5MjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIxNTQiIHkxPSIwIiB4Mj0iMTU0IiB5Mj0iMTkyMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjIzMSIgeTE9IjAiIHgyPSIyMzEiIHkyPSIxOTIwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMzA4IiB5MT0iMCIgeDI9IjMwOCIgeTI9IjE5MjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIzODUiIHkxPSIwIiB4Mj0iMzg1IiB5Mj0iMTkyMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjE2Ii8+PGxpbmUgeDE9IjQ2MiIgeTE9IjAiIHgyPSI0NjIiIHkyPSIxOTIwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iNTM5IiB5MT0iMCIgeDI9IjUzOSIgeTI9IjE5MjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSI2MTYiIHkxPSIwIiB4Mj0iNjE2IiB5Mj0iMTkyMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjY5MyIgeTE9IjAiIHgyPSI2OTMiIHkyPSIxOTIwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iNzcwIiB5MT0iMCIgeDI9Ijc3MCIgeTI9IjE5MjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4xNiIvPjxsaW5lIHgxPSI4NDciIHkxPSIwIiB4Mj0iODQ3IiB5Mj0iMTkyMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjkyNCIgeTE9IjAiIHgyPSI5MjQiIHkyPSIxOTIwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMTAwMSIgeTE9IjAiIHgyPSIxMDAxIiB5Mj0iMTkyMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjEwNzgiIHkxPSIwIiB4Mj0iMTA3OCIgeTI9IjE5MjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iNzciIHgyPSIxMDgwIiB5Mj0iNzciIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iMTU0IiB4Mj0iMTA4MCIgeTI9IjE1NCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSIyMzEiIHgyPSIxMDgwIiB5Mj0iMjMxIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjMwOCIgeDI9IjEwODAiIHkyPSIzMDgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iMzg1IiB4Mj0iMTA4MCIgeTI9IjM4NSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjE2Ii8+PGxpbmUgeDE9IjAiIHkxPSI0NjIiIHgyPSIxMDgwIiB5Mj0iNDYyIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjUzOSIgeDI9IjEwODAiIHkyPSI1MzkiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iNjE2IiB4Mj0iMTA4MCIgeTI9IjYxNiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSI2OTMiIHgyPSIxMDgwIiB5Mj0iNjkzIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9Ijc3MCIgeDI9IjEwODAiIHkyPSI3NzAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4xNiIvPjxsaW5lIHgxPSIwIiB5MT0iODQ3IiB4Mj0iMTA4MCIgeTI9Ijg0NyIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSI5MjQiIHgyPSIxMDgwIiB5Mj0iOTI0IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjEwMDEiIHgyPSIxMDgwIiB5Mj0iMTAwMSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSIxMDc4IiB4Mj0iMTA4MCIgeTI9IjEwNzgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iMTE1NSIgeDI9IjEwODAiIHkyPSIxMTU1IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTYiLz48bGluZSB4MT0iMCIgeTE9IjEyMzIiIHgyPSIxMDgwIiB5Mj0iMTIzMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSIxMzA5IiB4Mj0iMTA4MCIgeTI9IjEzMDkiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iMTM4NiIgeDI9IjEwODAiIHkyPSIxMzg2IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjE0NjMiIHgyPSIxMDgwIiB5Mj0iMTQ2MyIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSIxNTQwIiB4Mj0iMTA4MCIgeTI9IjE1NDAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4xNiIvPjxsaW5lIHgxPSIwIiB5MT0iMTYxNyIgeDI9IjEwODAiIHkyPSIxNjE3IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48bGluZSB4MT0iMCIgeTE9IjE2OTQiIHgyPSIxMDgwIiB5Mj0iMTY5NCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA3Ii8+PGxpbmUgeDE9IjAiIHkxPSIxNzcxIiB4Mj0iMTA4MCIgeTI9IjE3NzEiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIvPjxsaW5lIHgxPSIwIiB5MT0iMTg0OCIgeDI9IjEwODAiIHkyPSIxODQ4IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDciLz48L3N2Zz4=",
+                  "object_fit": "fill",
+                  "alt_text": "generated brand-color motif: axis_grid",
+                  "bannerbear": {
+                    "layer_name": "motif_axis_grid",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "motif-axis_grid",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 40,
+                  "y": 40,
+                  "width": 141,
+                  "height": 88,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629608/brands/brand_001/logos/logo-white-p.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-p",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-p.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Header"
+                  }
+                },
+                {
+                  "id": "el_stat_number",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 257,
+                  "width": 1000,
+                  "height": 250,
+                  "z_index": 15,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "0.01%",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 238,
+                  "line_height": 0.95,
+                  "letter_spacing": -2,
+                  "text_align": "center",
+                  "color": "#F5C518",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "stat_number",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "stat_number",
+                    "style_ref": "text/stat-number-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Stat"
+                  }
+                },
+                {
+                  "id": "el_stat_label",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 515,
+                  "width": 1000,
+                  "height": 34,
+                  "z_index": 15,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "LOWEST-PER-CENT COST",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 24,
+                  "line_height": 1.2,
+                  "letter_spacing": 2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "stat_label",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "stat_label",
+                    "style_ref": "text/stat-label-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Stat"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 670,
+                  "width": 1000,
+                  "height": 343,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Listen to the market's quiet whisper and turn it into strategic music.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 78,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 1037,
+                  "width": 1000,
+                  "height": 147,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Precision tools for every subtle market nuance.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 35,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 365,
+                  "y": 1208,
+                  "width": 543,
+                  "height": 84,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Refine Your Strategy →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 42,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1920 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 40,
+                  "y": 1813,
+                  "width": 1000,
+                  "height": 35,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 20,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-08T06:10:43.023Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "general_platform",
+              "selected_context": "general_platform",
+              "intended_device_type": "phone",
+              "fallback_used": false,
+              "fallback_kind": "composite",
+              "composite_id": "phone-general_platform",
+              "composite_public_path": "/generated-preview-composites/phone-general_platform.png",
+              "mockup_filename": "iphone-1.png",
+              "screenshot_filename": "application_signin_page.PNG",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          }
+        ],
+        "visual_layout_spec": {
+          "spec_version": "1.0.0",
+          "layout_type": "editorial_type",
+          "composition": "hero_overlay",
+          "hierarchy": {
+            "primary_focus": "headline",
+            "secondary_focus": "subheadline",
+            "emphasis_level": "quiet"
+          },
+          "text_strategy": {
+            "headline_position": "right",
+            "headline_scale": "large",
+            "text_alignment": "left",
+            "max_text_density": "medium"
+          },
+          "visual_strategy": {
+            "primary_visual": "motif",
+            "visual_position": "background",
+            "visual_weight": "balanced",
+            "use_mockup": false,
+            "use_screenshot": false,
+            "use_motif": true,
+            "use_pattern": false,
+            "motif_hint": "axis_grid"
+          },
+          "brand_strategy": {
+            "background_style": "solid",
+            "palette_intensity": "standard",
+            "accent_usage": "subtle",
+            "logo_prominence": "standard"
+          },
+          "cta_strategy": {
+            "placement": "below_subheadline",
+            "weight": "standard",
+            "width": "fit_text"
+          },
+          "spacing": {
+            "density": "minimal",
+            "padding": "tight",
+            "safe_area_priority": "high"
+          },
+          "format_adaptation": {},
+          "rationale": "The quiet and introspective nature of strategic insights is reinforced by an editorial layout with calm motif hints and an intimate textual focus."
+        }
+      },
+      {
+        "concept_id": "concept_3",
+        "name": "Playful Calculations",
+        "strategic_idea": "Reimagine trading as a playful exploration of strategic possibilities, where complex calculations are an enjoyable puzzle.",
+        "target_emotion": "joyful curiosity",
+        "tone": "playful and inventive",
+        "visual_direction": {
+          "description": "Vibrant puzzle pieces fitting together on a deep navy backdrop, suggesting the playful nature of strategic calculations.",
+          "primary_palette": [
+            "#00122C",
+            "#F5C518"
+          ],
+          "composition": "hero_scattered_puzzle",
+          "mood_keywords": [
+            "playful",
+            "inventive",
+            "curious"
+          ]
+        },
+        "copy_package": {
+          "headline": "Your trades are a puzzle, let the pieces fall into place.",
+          "subheadline": "Discover joy in the strategic assembly of your portfolio.",
+          "cta": "Piece Together Success",
+          "disclaimer": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+          "alternative_headlines": [
+            "Strategic fun awaits: assemble your portfolio puzzle."
+          ],
+          "alternative_ctas": [
+            "Start the Game"
+          ],
+          "platform_copy_variations": []
+        },
+        "desired_visual_context": "green_data",
+        "midjourney_prompt_pack": [
+          {
+            "prompt_id": "concept-3-bg",
+            "intended_use": "background",
+            "context": "green_data",
+            "aspect_ratio": "16:9",
+            "prompt_text": "Colorful abstract puzzle pieces fitting on a dark navy background, evoking strategic playfulness, no logo, no text, no watermark."
+          },
+          {
+            "prompt_id": "concept-3-deco",
+            "intended_use": "decorative",
+            "context": "green_data",
+            "aspect_ratio": "1:1",
+            "prompt_text": "A vibrant, geometric puzzle piece with reflective edges, hinting at playful strategy, no text, no watermark."
+          },
+          {
+            "prompt_id": "concept-3-hero",
+            "intended_use": "hero_visual",
+            "context": "green_data",
+            "aspect_ratio": "1:1",
+            "prompt_text": "A single chess queen piece on a colorful backdrop, symbolizing strategic play, no text, no logos."
+          }
+        ],
+        "design_elements": {
+          "eyebrow": "JOYFUL STRATEGY",
+          "stat": {
+            "number": "100%",
+            "label": "EXPLORATORY POTENTIAL"
+          }
+        },
+        "campaign_id": "cam_ecff589c",
+        "ad_specs": [
+          {
+            "ad_id": "ad_concept_3_1200x628",
+            "campaign_id": "cam_ecff589c",
+            "concept_id": "concept_3",
+            "format": "1200x628",
+            "canvas_width": 1200,
+            "canvas_height": 628,
+            "channel": "leaderboard",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1200x628",
+              "specId": "spec_demo_1200x628",
+              "conceptId": "concept_3",
+              "campaignId": "cam_ecff589c",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1200,
+                "height": 628
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#00122C",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(0deg, #00122C 0%, #00122C 100%)"
+                },
+                {
+                  "id": "el_motif_node_network",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1200,
+                  "height": 628,
+                  "z_index": 8,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYyOCIgdmlld0JveD0iMCAwIDEyMDAgNjI4Ij48bGluZSB4MT0iMjE2LjAiIHkxPSIyMDEuMCIgeDI9IjUwNC4wIiB5Mj0iMTEzLjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjE4Ii8+PGxpbmUgeDE9IjUwNC4wIiB5MT0iMTEzLjAiIHgyPSI3NDQuMCIgeTI9IjI1MS4yIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4xOCIvPjxsaW5lIHgxPSI3NDQuMCIgeTE9IjI1MS4yIiB4Mj0iOTM2LjAiIHkyPSIxNTcuMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiLz48bGluZSB4MT0iMzg0LjAiIHkxPSIzNjQuMiIgeDI9Ijc0NC4wIiB5Mj0iMjUxLjIiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjE4Ii8+PGxpbmUgeDE9Ijc0NC4wIiB5MT0iMjUxLjIiIHgyPSIxMDIwLjAiIHkyPSI0MDguMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiLz48bGluZSB4MT0iMTAyMC4wIiB5MT0iNDA4LjIiIHgyPSI2MDAuMCIgeTI9IjQ1Mi4yIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4xOCIvPjxsaW5lIHgxPSI2MDAuMCIgeTE9IjQ1Mi4yIiB4Mj0iMzg0LjAiIHkyPSIzNjQuMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiLz48bGluZSB4MT0iOTM2LjAiIHkxPSIxNTcuMCIgeDI9IjEwMjAuMCIgeTI9IjQwOC4yIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4xOCIvPjxjaXJjbGUgY3g9IjIxNi4wIiBjeT0iMjAxLjAiIHI9IjYiIGZpbGw9IiNGNUM1MTgiIGZpbGwtb3BhY2l0eT0iMC4zNiIvPjxjaXJjbGUgY3g9IjUwNC4wIiBjeT0iMTEzLjAiIHI9IjYiIGZpbGw9IiNGNUM1MTgiIGZpbGwtb3BhY2l0eT0iMC4zNiIvPjxjaXJjbGUgY3g9Ijc0NC4wIiBjeT0iMjUxLjIiIHI9IjYiIGZpbGw9IiNGNUM1MTgiIGZpbGwtb3BhY2l0eT0iMC4zNiIvPjxjaXJjbGUgY3g9IjM4NC4wIiBjeT0iMzY0LjIiIHI9IjYiIGZpbGw9IiNGNUM1MTgiIGZpbGwtb3BhY2l0eT0iMC4zNiIvPjxjaXJjbGUgY3g9IjkzNi4wIiBjeT0iMTU3LjAiIHI9IjYiIGZpbGw9IiNGNUM1MTgiIGZpbGwtb3BhY2l0eT0iMC4zNiIvPjxjaXJjbGUgY3g9IjEwMjAuMCIgY3k9IjQwOC4yIiByPSI2IiBmaWxsPSIjRjVDNTE4IiBmaWxsLW9wYWNpdHk9IjAuMzYiLz48Y2lyY2xlIGN4PSI2MDAuMCIgY3k9IjQ1Mi4yIiByPSI2IiBmaWxsPSIjRjVDNTE4IiBmaWxsLW9wYWNpdHk9IjAuMzYiLz48L3N2Zz4=",
+                  "object_fit": "fill",
+                  "alt_text": "generated brand-color motif: node_network",
+                  "bannerbear": {
+                    "layer_name": "motif_node_network",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "motif-node_network",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 50,
+                  "y": 50,
+                  "width": 224,
+                  "height": 56,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Header"
+                  }
+                },
+                {
+                  "id": "el_visual",
+                  "type": "image",
+                  "role": "product_visual",
+                  "source": "local_mockup_composite",
+                  "x": 468,
+                  "y": 79,
+                  "width": 682,
+                  "height": 369,
+                  "z_index": 20,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777896426/brands/brand_001/generated-composites/laptop-charts.png",
+                  "cloudinary_public_id": "brands/brand_001/generated-composites/laptop-charts",
+                  "local_public_path": "/generated-preview-composites/laptop-charts.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Product mockup with platform screenshot",
+                  "shadow": {
+                    "x": 0,
+                    "y": 24,
+                    "blur": 60,
+                    "spread": 0,
+                    "color": "rgba(0, 0, 0, 0.45)"
+                  },
+                  "bannerbear": {
+                    "layer_name": "product_mockup",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "hero-mockup-composite",
+                    "exportable": true,
+                    "parent_frame_hint": "Ad / 1200x628 / Visual"
+                  },
+                  "composite_refs": {
+                    "composite_public_path": "/generated-preview-composites/laptop-charts.png",
+                    "composite_id": "laptop-charts",
+                    "original_mockup_asset_path": "brand-input/mockup devices/mockup-macbook.png",
+                    "original_mockup_filename": "mockup-macbook.png",
+                    "original_screenshot_asset_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 112522.png",
+                    "original_screenshot_filename": "Screenshot 2025-02-17 112522.png",
+                    "screenshot_context": "charts",
+                    "screenshot_context_confidence": "explicit_tag",
+                    "mockup_slot_source": "heuristic"
+                  },
+                  "notes": "composite · charts"
+                },
+                {
+                  "id": "el_eyebrow",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 146,
+                  "width": 394,
+                  "height": 21,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "JOYFUL STRATEGY",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 15,
+                  "line_height": 1.2,
+                  "letter_spacing": 2,
+                  "text_align": "left",
+                  "color": "#F5C518",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "eyebrow",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "eyebrow",
+                    "style_ref": "text/eyebrow-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 175,
+                  "width": 394,
+                  "height": 166,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Your trades are a puzzle, let the pieces fall into place.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 39,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 355,
+                  "width": 394,
+                  "height": 65,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Discover joy in the strategic assembly of your portfolio.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 24,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "left",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 436,
+                  "width": 486,
+                  "height": 56,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Piece Together Success →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 28,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 28,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1200x628 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 516,
+                  "width": 1100,
+                  "height": 22,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 14,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1200x628",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1200x628 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-08T06:10:43.025Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "green_data",
+              "selected_context": "charts",
+              "intended_device_type": "laptop",
+              "fallback_used": true,
+              "fallback_kind": "composite",
+              "composite_id": "laptop-charts",
+              "composite_public_path": "/generated-preview-composites/laptop-charts.png",
+              "mockup_filename": "mockup-macbook.png",
+              "screenshot_filename": "Screenshot 2025-02-17 112522.png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_3_1080x1080",
+            "campaign_id": "cam_ecff589c",
+            "concept_id": "concept_3",
+            "format": "1080x1080",
+            "canvas_width": 1080,
+            "canvas_height": 1080,
+            "channel": "instagram-feed",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1080",
+              "specId": "spec_demo_1080x1080",
+              "conceptId": "concept_3",
+              "campaignId": "cam_ecff589c",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1080
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#00122C",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(0deg, #00122C 0%, #00122C 100%)"
+                },
+                {
+                  "id": "el_motif_node_network",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1080,
+                  "z_index": 8,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxMDgwIDEwODAiPjxsaW5lIHgxPSIxOTQuNCIgeTE9IjM0NS42IiB4Mj0iNDUzLjYiIHkyPSIxOTQuNCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiLz48bGluZSB4MT0iNDUzLjYiIHkxPSIxOTQuNCIgeDI9IjY2OS42IiB5Mj0iNDMyLjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjE4Ii8+PGxpbmUgeDE9IjY2OS42IiB5MT0iNDMyLjAiIHgyPSI4NDIuNCIgeTI9IjI3MC4wIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4xOCIvPjxsaW5lIHgxPSIzNDUuNiIgeTE9IjYyNi40IiB4Mj0iNjY5LjYiIHkyPSI0MzIuMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiLz48bGluZSB4MT0iNjY5LjYiIHkxPSI0MzIuMCIgeDI9IjkxOC4wIiB5Mj0iNzAyLjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjE4Ii8+PGxpbmUgeDE9IjkxOC4wIiB5MT0iNzAyLjAiIHgyPSI1NDAuMCIgeTI9Ijc3Ny42IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4xOCIvPjxsaW5lIHgxPSI1NDAuMCIgeTE9Ijc3Ny42IiB4Mj0iMzQ1LjYiIHkyPSI2MjYuNCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiLz48bGluZSB4MT0iODQyLjQiIHkxPSIyNzAuMCIgeDI9IjkxOC4wIiB5Mj0iNzAyLjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjE4Ii8+PGNpcmNsZSBjeD0iMTk0LjQiIGN5PSIzNDUuNiIgcj0iNiIgZmlsbD0iI0Y1QzUxOCIgZmlsbC1vcGFjaXR5PSIwLjM2Ii8+PGNpcmNsZSBjeD0iNDUzLjYiIGN5PSIxOTQuNCIgcj0iNiIgZmlsbD0iI0Y1QzUxOCIgZmlsbC1vcGFjaXR5PSIwLjM2Ii8+PGNpcmNsZSBjeD0iNjY5LjYiIGN5PSI0MzIuMCIgcj0iNiIgZmlsbD0iI0Y1QzUxOCIgZmlsbC1vcGFjaXR5PSIwLjM2Ii8+PGNpcmNsZSBjeD0iMzQ1LjYiIGN5PSI2MjYuNCIgcj0iNiIgZmlsbD0iI0Y1QzUxOCIgZmlsbC1vcGFjaXR5PSIwLjM2Ii8+PGNpcmNsZSBjeD0iODQyLjQiIGN5PSIyNzAuMCIgcj0iNiIgZmlsbD0iI0Y1QzUxOCIgZmlsbC1vcGFjaXR5PSIwLjM2Ii8+PGNpcmNsZSBjeD0iOTE4LjAiIGN5PSI3MDIuMCIgcj0iNiIgZmlsbD0iI0Y1QzUxOCIgZmlsbC1vcGFjaXR5PSIwLjM2Ii8+PGNpcmNsZSBjeD0iNTQwLjAiIGN5PSI3NzcuNiIgcj0iNiIgZmlsbD0iI0Y1QzUxOCIgZmlsbC1vcGFjaXR5PSIwLjM2Ii8+PC9zdmc+",
+                  "object_fit": "fill",
+                  "alt_text": "generated brand-color motif: node_network",
+                  "bannerbear": {
+                    "layer_name": "motif_node_network",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "motif-node_network",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 50,
+                  "y": 50,
+                  "width": 320,
+                  "height": 80,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629609/brands/brand_001/logos/logo-white-v.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-v",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-v.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Header"
+                  }
+                },
+                {
+                  "id": "el_visual",
+                  "type": "image",
+                  "role": "product_visual",
+                  "source": "local_mockup_composite",
+                  "x": 50,
+                  "y": 554,
+                  "width": 980,
+                  "height": 280,
+                  "z_index": 20,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777896423/brands/brand_001/generated-composites/tablet-charts.png",
+                  "cloudinary_public_id": "brands/brand_001/generated-composites/tablet-charts",
+                  "local_public_path": "/generated-preview-composites/tablet-charts.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Product mockup with platform screenshot",
+                  "shadow": {
+                    "x": 0,
+                    "y": 24,
+                    "blur": 60,
+                    "spread": 0,
+                    "color": "rgba(0, 0, 0, 0.45)"
+                  },
+                  "bannerbear": {
+                    "layer_name": "product_mockup",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "hero-mockup-composite",
+                    "exportable": true,
+                    "parent_frame_hint": "Ad / 1080x1080 / Visual"
+                  },
+                  "composite_refs": {
+                    "composite_public_path": "/generated-preview-composites/tablet-charts.png",
+                    "composite_id": "tablet-charts",
+                    "original_mockup_asset_path": "brand-input/mockup devices/ipad-3.png",
+                    "original_mockup_filename": "ipad-3.png",
+                    "original_screenshot_asset_path": "brand-input/Platform screenshot/Order dialog (Light).png",
+                    "original_screenshot_filename": "Order dialog (Light).png",
+                    "screenshot_context": "charts",
+                    "screenshot_context_confidence": "explicit_tag",
+                    "mockup_slot_source": "explicit_manifest"
+                  },
+                  "notes": "composite · charts"
+                },
+                {
+                  "id": "el_eyebrow",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 172,
+                  "width": 980,
+                  "height": 27,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "JOYFUL STRATEGY",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 19,
+                  "line_height": 1.2,
+                  "letter_spacing": 2,
+                  "text_align": "center",
+                  "color": "#F5C518",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "eyebrow",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "eyebrow",
+                    "style_ref": "text/eyebrow-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 207,
+                  "width": 980,
+                  "height": 209,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Your trades are a puzzle, let the pieces fall into place.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 65,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 525,
+                  "width": 980,
+                  "height": 98,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Discover joy in the strategic assembly of your portfolio.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 35,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 432,
+                  "width": 980,
+                  "height": 77,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Piece Together Success →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 39,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1080 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 961,
+                  "width": 980,
+                  "height": 29,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 18,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1080",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1080 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-08T06:10:43.026Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "green_data",
+              "selected_context": "charts",
+              "intended_device_type": "tablet",
+              "fallback_used": true,
+              "fallback_kind": "composite",
+              "composite_id": "tablet-charts",
+              "composite_public_path": "/generated-preview-composites/tablet-charts.png",
+              "mockup_filename": "ipad-3.png",
+              "screenshot_filename": "Order dialog (Light).png",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "explicit_manifest"
+            },
+            "status": "draft"
+          },
+          {
+            "ad_id": "ad_concept_3_1080x1920",
+            "campaign_id": "cam_ecff589c",
+            "concept_id": "concept_3",
+            "format": "1080x1920",
+            "canvas_width": 1080,
+            "canvas_height": 1920,
+            "channel": "instagram-story",
+            "internal_template_id": "qY4mReZpzyrLD97lP8",
+            "manifest": {
+              "manifestId": "manifest_demo_1080x1920",
+              "specId": "spec_demo_1080x1920",
+              "conceptId": "concept_3",
+              "campaignId": "cam_ecff589c",
+              "bannerbearTemplateUid": "qY4mReZpzyrLD97lP8",
+              "size": {
+                "width": 1080,
+                "height": 1920
+              },
+              "elements": [
+                {
+                  "id": "el_background",
+                  "type": "shape",
+                  "role": "background",
+                  "source": "inline-text",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 0,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "background_color": "#00122C",
+                  "bannerbear": {
+                    "layer_name": "background_color",
+                    "modification_type": "background_color"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "background-gradient",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  },
+                  "notes": "Preview-only CSS gradient: linear-gradient(0deg, #00122C 0%, #00122C 100%)"
+                },
+                {
+                  "id": "el_motif_node_network",
+                  "type": "image",
+                  "role": "decorative",
+                  "source": "ai-generated",
+                  "x": 0,
+                  "y": 0,
+                  "width": 1080,
+                  "height": 1920,
+                  "z_index": 8,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjE5MjAiIHZpZXdCb3g9IjAgMCAxMDgwIDE5MjAiPjxsaW5lIHgxPSIxOTQuNCIgeTE9IjYxNC40IiB4Mj0iNDUzLjYiIHkyPSIzNDUuNiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiLz48bGluZSB4MT0iNDUzLjYiIHkxPSIzNDUuNiIgeDI9IjY2OS42IiB5Mj0iNzY4LjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjE4Ii8+PGxpbmUgeDE9IjY2OS42IiB5MT0iNzY4LjAiIHgyPSI4NDIuNCIgeTI9IjQ4MC4wIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4xOCIvPjxsaW5lIHgxPSIzNDUuNiIgeTE9IjExMTMuNiIgeDI9IjY2OS42IiB5Mj0iNzY4LjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjE4Ii8+PGxpbmUgeDE9IjY2OS42IiB5MT0iNzY4LjAiIHgyPSI5MTguMCIgeTI9IjEyNDguMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiLz48bGluZSB4MT0iOTE4LjAiIHkxPSIxMjQ4LjAiIHgyPSI1NDAuMCIgeTI9IjEzODIuNCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiLz48bGluZSB4MT0iNTQwLjAiIHkxPSIxMzgyLjQiIHgyPSIzNDUuNiIgeTI9IjExMTMuNiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiLz48bGluZSB4MT0iODQyLjQiIHkxPSI0ODAuMCIgeDI9IjkxOC4wIiB5Mj0iMTI0OC4wIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4xOCIvPjxjaXJjbGUgY3g9IjE5NC40IiBjeT0iNjE0LjQiIHI9IjYiIGZpbGw9IiNGNUM1MTgiIGZpbGwtb3BhY2l0eT0iMC4zNiIvPjxjaXJjbGUgY3g9IjQ1My42IiBjeT0iMzQ1LjYiIHI9IjYiIGZpbGw9IiNGNUM1MTgiIGZpbGwtb3BhY2l0eT0iMC4zNiIvPjxjaXJjbGUgY3g9IjY2OS42IiBjeT0iNzY4LjAiIHI9IjYiIGZpbGw9IiNGNUM1MTgiIGZpbGwtb3BhY2l0eT0iMC4zNiIvPjxjaXJjbGUgY3g9IjM0NS42IiBjeT0iMTExMy42IiByPSI2IiBmaWxsPSIjRjVDNTE4IiBmaWxsLW9wYWNpdHk9IjAuMzYiLz48Y2lyY2xlIGN4PSI4NDIuNCIgY3k9IjQ4MC4wIiByPSI2IiBmaWxsPSIjRjVDNTE4IiBmaWxsLW9wYWNpdHk9IjAuMzYiLz48Y2lyY2xlIGN4PSI5MTguMCIgY3k9IjEyNDguMCIgcj0iNiIgZmlsbD0iI0Y1QzUxOCIgZmlsbC1vcGFjaXR5PSIwLjM2Ii8+PGNpcmNsZSBjeD0iNTQwLjAiIGN5PSIxMzgyLjQiIHI9IjYiIGZpbGw9IiNGNUM1MTgiIGZpbGwtb3BhY2l0eT0iMC4zNiIvPjwvc3ZnPg==",
+                  "object_fit": "fill",
+                  "alt_text": "generated brand-color motif: node_network",
+                  "bannerbear": {
+                    "layer_name": "motif_node_network",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "RECTANGLE",
+                    "component_role": "motif-node_network",
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "STRETCH"
+                    },
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920"
+                  }
+                },
+                {
+                  "id": "el_logo",
+                  "type": "logo",
+                  "role": "logo",
+                  "source": "user-upload",
+                  "x": 50,
+                  "y": 50,
+                  "width": 141,
+                  "height": 88,
+                  "z_index": 30,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777629608/brands/brand_001/logos/logo-white-p.png",
+                  "cloudinary_public_id": "brands/brand_001/logos/logo-white-p",
+                  "local_public_path": "/brand-input-preview/brand_logo/logo-white-p.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Company Brand logo",
+                  "brand_token_refs": [
+                    "logo.primary"
+                  ],
+                  "uses_approved_color": true,
+                  "source_approved": true,
+                  "bannerbear": {
+                    "layer_name": "brand_logo",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "INSTANCE",
+                    "component_role": "logo",
+                    "style_ref": "component/brand-logo",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Header"
+                  }
+                },
+                {
+                  "id": "el_visual",
+                  "type": "image",
+                  "role": "product_visual",
+                  "source": "local_mockup_composite",
+                  "x": 50,
+                  "y": 798,
+                  "width": 980,
+                  "height": 802,
+                  "z_index": 20,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "file_url": "https://res.cloudinary.com/dz2rolfkz/image/upload/v1777896424/brands/brand_001/generated-composites/phone-charts.png",
+                  "cloudinary_public_id": "brands/brand_001/generated-composites/phone-charts",
+                  "local_public_path": "/generated-preview-composites/phone-charts.png",
+                  "delivery_source": "cloudinary",
+                  "object_fit": "contain",
+                  "alt_text": "Product mockup with platform screenshot",
+                  "shadow": {
+                    "x": 0,
+                    "y": 24,
+                    "blur": 60,
+                    "spread": 0,
+                    "color": "rgba(0, 0, 0, 0.45)"
+                  },
+                  "bannerbear": {
+                    "layer_name": "product_mockup",
+                    "modification_type": "image_url"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "hero-mockup-composite",
+                    "exportable": true,
+                    "parent_frame_hint": "Ad / 1080x1920 / Visual"
+                  },
+                  "composite_refs": {
+                    "composite_public_path": "/generated-preview-composites/phone-charts.png",
+                    "composite_id": "phone-charts",
+                    "original_mockup_asset_path": "brand-input/mockup devices/iphone-1.png",
+                    "original_mockup_filename": "iphone-1.png",
+                    "original_screenshot_asset_path": "brand-input/Platform screenshot/IMG_3975.PNG",
+                    "original_screenshot_filename": "IMG_3975.PNG",
+                    "screenshot_context": "charts",
+                    "screenshot_context_confidence": "explicit_tag",
+                    "mockup_slot_source": "heuristic"
+                  },
+                  "notes": "composite · charts"
+                },
+                {
+                  "id": "el_eyebrow",
+                  "type": "text",
+                  "role": "decorative",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 188,
+                  "width": 980,
+                  "height": 27,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "JOYFUL STRATEGY",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 19,
+                  "line_height": 1.2,
+                  "letter_spacing": 2,
+                  "text_align": "center",
+                  "color": "#F5C518",
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "eyebrow",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "eyebrow",
+                    "style_ref": "text/eyebrow-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_headline",
+                  "type": "text",
+                  "role": "headline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 223,
+                  "width": 980,
+                  "height": 356,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Your trades are a puzzle, let the pieces fall into place.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 800,
+                  "font_size": 84,
+                  "line_height": 1.05,
+                  "letter_spacing": -1.5,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.headline"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "headline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "headline",
+                    "style_ref": "text/heading-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_subheadline",
+                  "type": "text",
+                  "role": "subheadline",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 695,
+                  "width": 980,
+                  "height": 147,
+                  "z_index": 40,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Discover joy in the strategic assembly of your portfolio.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 35,
+                  "line_height": 1.2,
+                  "letter_spacing": 0,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "brand_token_refs": [
+                    "color.text",
+                    "font.body"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "subheadline",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "body",
+                    "style_ref": "text/body-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Copy"
+                  }
+                },
+                {
+                  "id": "el_cta",
+                  "type": "cta-button",
+                  "role": "cta",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 595,
+                  "width": 980,
+                  "height": 84,
+                  "z_index": 50,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Piece Together Success →",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 600,
+                  "font_size": 35,
+                  "line_height": 1.1,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "background_color": "#204489",
+                  "border_radius": 42,
+                  "brand_token_refs": [
+                    "color.cta-bg",
+                    "color.cta-fg",
+                    "font.cta"
+                  ],
+                  "uses_approved_color": true,
+                  "uses_approved_font": true,
+                  "bannerbear": {
+                    "layer_name": "cta",
+                    "text_layer_name": "cta_text",
+                    "button_layer_name": "cta_button",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "FRAME",
+                    "component_role": "cta-button",
+                    "style_ref": "component/cta-primary",
+                    "exportable": true,
+                    "auto_layout_hint": "horizontal",
+                    "parent_frame_hint": "Ad / 1080x1920 / CTA"
+                  }
+                },
+                {
+                  "id": "el_disclaimer",
+                  "type": "legal",
+                  "role": "legal-disclaimer",
+                  "source": "inline-text",
+                  "x": 50,
+                  "y": 1795,
+                  "width": 980,
+                  "height": 35,
+                  "z_index": 45,
+                  "opacity": 1,
+                  "rotation": 0,
+                  "visible": true,
+                  "version": 1,
+                  "text": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+                  "font_family": "\"Poppins\", \"Poppins\", \"Inter\", system-ui, sans-serif",
+                  "font_weight": 400,
+                  "font_size": 20,
+                  "line_height": 1.2,
+                  "text_align": "center",
+                  "color": "#FFFFFF",
+                  "required": true,
+                  "compliance_status": "approved",
+                  "legal_review_required": true,
+                  "bannerbear": {
+                    "layer_name": "disclaimer",
+                    "modification_type": "text"
+                  },
+                  "figma": {
+                    "node_type": "TEXT",
+                    "component_role": "legal",
+                    "style_ref": "text/legal-1080x1920",
+                    "exportable": false,
+                    "parent_frame_hint": "Ad / 1080x1920 / Legal"
+                  }
+                }
+              ],
+              "generatedAt": "2026-05-08T06:10:43.026Z",
+              "schemaVersion": "1.0.0"
+            },
+            "visual_selection_metadata": {
+              "desired_context": "green_data",
+              "selected_context": "charts",
+              "intended_device_type": "phone",
+              "fallback_used": true,
+              "fallback_kind": "composite",
+              "composite_id": "phone-charts",
+              "composite_public_path": "/generated-preview-composites/phone-charts.png",
+              "mockup_filename": "iphone-1.png",
+              "screenshot_filename": "IMG_3975.PNG",
+              "screenshot_context_confidence": "explicit_tag",
+              "mockup_slot_source": "heuristic"
+            },
+            "status": "draft"
+          }
+        ],
+        "visual_layout_spec": {
+          "spec_version": "1.0.0",
+          "layout_type": "mockup_hero",
+          "composition": "text_leading",
+          "hierarchy": {
+            "primary_focus": "headline",
+            "secondary_focus": "visual",
+            "emphasis_level": "bold"
+          },
+          "text_strategy": {
+            "headline_position": "left",
+            "headline_scale": "standard",
+            "text_alignment": "center",
+            "max_text_density": "medium"
+          },
+          "visual_strategy": {
+            "primary_visual": "motif",
+            "visual_position": "right",
+            "visual_weight": "dominant",
+            "use_mockup": true,
+            "use_screenshot": false,
+            "use_motif": true,
+            "use_pattern": false,
+            "motif_hint": "node_network"
+          },
+          "brand_strategy": {
+            "background_style": "solid",
+            "palette_intensity": "high_contrast",
+            "accent_usage": "strong",
+            "logo_prominence": "standard"
+          },
+          "cta_strategy": {
+            "placement": "below_headline",
+            "weight": "standard",
+            "width": "full_text_block"
+          },
+          "spacing": {
+            "density": "rich",
+            "padding": "standard",
+            "safe_area_priority": "normal"
+          },
+          "format_adaptation": {},
+          "rationale": "Playful calculations are captured with a bold, energetic design using a dominant motif and contrast to reflect joy and curiosity, emphasizing strategic exploration."
+        }
+      }
+    ],
+    "warnings": [
+      "No composite for (laptop, green_data) — using laptop/charts fallback.",
+      "No composite for (tablet, green_data) — using tablet/charts fallback.",
+      "No composite for (phone, green_data) — using phone/charts fallback."
+    ],
+    "generated_assets_used": [],
+    "generated_assets_warnings": [],
+    "created_at": "2026-05-08T06:10:43.026Z"
+  },
+  "renders": [
+    {
+      "ad_id": "ad_concept_1_1200x628",
+      "campaign_id": "cam_ecff589c",
+      "concept_id": "concept_1",
+      "format": "1200x628",
+      "canvas_width": 1200,
+      "canvas_height": 628,
+      "output_local_path": "public/rendered-ads/campaigns/cam_ecff589c/concept_1_1200x628.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_ecff589c/concept_1_1200x628.png",
+      "status": "completed",
+      "rendered_at": "2026-05-08T06:10:43.404Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "312bff2b85ca19e6",
+      "bytes": 327296,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1080",
+      "campaign_id": "cam_ecff589c",
+      "concept_id": "concept_1",
+      "format": "1080x1080",
+      "canvas_width": 1080,
+      "canvas_height": 1080,
+      "output_local_path": "public/rendered-ads/campaigns/cam_ecff589c/concept_1_1080x1080.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_ecff589c/concept_1_1080x1080.png",
+      "status": "completed",
+      "rendered_at": "2026-05-08T06:10:44.880Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "798d3157154a4b36",
+      "bytes": 485233,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1920",
+      "campaign_id": "cam_ecff589c",
+      "concept_id": "concept_1",
+      "format": "1080x1920",
+      "canvas_width": 1080,
+      "canvas_height": 1920,
+      "output_local_path": "public/rendered-ads/campaigns/cam_ecff589c/concept_1_1080x1920.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_ecff589c/concept_1_1080x1920.png",
+      "status": "completed",
+      "rendered_at": "2026-05-08T06:10:45.863Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "9d7dd0c16d24e5fc",
+      "bytes": 791246,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_2_1200x628",
+      "campaign_id": "cam_ecff589c",
+      "concept_id": "concept_2",
+      "format": "1200x628",
+      "canvas_width": 1200,
+      "canvas_height": 628,
+      "output_local_path": "public/rendered-ads/campaigns/cam_ecff589c/concept_2_1200x628.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_ecff589c/concept_2_1200x628.png",
+      "status": "completed",
+      "rendered_at": "2026-05-08T06:10:47.063Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "3ec1b92f4d877fe7",
+      "bytes": 272987,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1080",
+      "campaign_id": "cam_ecff589c",
+      "concept_id": "concept_2",
+      "format": "1080x1080",
+      "canvas_width": 1080,
+      "canvas_height": 1080,
+      "output_local_path": "public/rendered-ads/campaigns/cam_ecff589c/concept_2_1080x1080.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_ecff589c/concept_2_1080x1080.png",
+      "status": "completed",
+      "rendered_at": "2026-05-08T06:10:48.052Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "795c91cec2f31e01",
+      "bytes": 418357,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1920",
+      "campaign_id": "cam_ecff589c",
+      "concept_id": "concept_2",
+      "format": "1080x1920",
+      "canvas_width": 1080,
+      "canvas_height": 1920,
+      "output_local_path": "public/rendered-ads/campaigns/cam_ecff589c/concept_2_1080x1920.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_ecff589c/concept_2_1080x1920.png",
+      "status": "completed",
+      "rendered_at": "2026-05-08T06:10:49.013Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "59d01bbcde9bc5ee",
+      "bytes": 611967,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_3_1200x628",
+      "campaign_id": "cam_ecff589c",
+      "concept_id": "concept_3",
+      "format": "1200x628",
+      "canvas_width": 1200,
+      "canvas_height": 628,
+      "output_local_path": "public/rendered-ads/campaigns/cam_ecff589c/concept_3_1200x628.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_ecff589c/concept_3_1200x628.png",
+      "status": "completed",
+      "rendered_at": "2026-05-08T06:10:50.109Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "cad43260ea7ee7fd",
+      "bytes": 327028,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_3_1080x1080",
+      "campaign_id": "cam_ecff589c",
+      "concept_id": "concept_3",
+      "format": "1080x1080",
+      "canvas_width": 1080,
+      "canvas_height": 1080,
+      "output_local_path": "public/rendered-ads/campaigns/cam_ecff589c/concept_3_1080x1080.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_ecff589c/concept_3_1080x1080.png",
+      "status": "completed",
+      "rendered_at": "2026-05-08T06:10:51.233Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "a533964cff918030",
+      "bytes": 461731,
+      "warnings": []
+    },
+    {
+      "ad_id": "ad_concept_3_1080x1920",
+      "campaign_id": "cam_ecff589c",
+      "concept_id": "concept_3",
+      "format": "1080x1920",
+      "canvas_width": 1080,
+      "canvas_height": 1920,
+      "output_local_path": "public/rendered-ads/campaigns/cam_ecff589c/concept_3_1080x1920.png",
+      "output_public_path": "/rendered-ads/campaigns/cam_ecff589c/concept_3_1080x1920.png",
+      "status": "completed",
+      "rendered_at": "2026-05-08T06:10:52.450Z",
+      "source": "code_renderer",
+      "element_manifest_hash": "5e808b7d96c7b289",
+      "bytes": 710099,
+      "warnings": []
+    }
+  ]
+}

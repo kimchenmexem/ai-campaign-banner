@@ -1,0 +1,146 @@
+{
+  "brand_id": "brand_001",
+  "brand_name": "Company Brand",
+  "source": "manual_brand_spec_table",
+  "materials": {
+    "logo": {
+      "what_we_need": "all colours",
+      "colors": ["#204489", "#FFFFFF"],
+      "notes": "Provide all logo colour variants."
+    },
+    "favicon": {
+      "what_we_need": "all colours",
+      "colors": ["#204489", "#FFFFFF"]
+    },
+    "powered_by_ib": {
+      "what_we_need": "all colours",
+      "colors": ["#D81222", "#000000"]
+    },
+    "fonts": {
+      "font_family": "Poppins",
+      "notes": "Use Poppins as the main brand font."
+    },
+    "font_sizes": {
+      "headline_px": 100,
+      "cta_px": 35,
+      "running_text_px": 35,
+      "risk_warning_text_px": 35
+    },
+    "cta_buttons": {
+      "what_we_need": "colours, boundaries, text size",
+      "background_colors": ["#204489", "#FFFFFF"],
+      "text_size_px": 35,
+      "notes": "CTA should use approved brand colours only."
+    },
+    "background_gradient": {
+      "what_we_need": "brand gradient palette",
+      "sensitivity": "sensitive",
+      "palette": [
+        {
+          "name": "Very dark navy, top-left",
+          "hex": "#00122C",
+          "rgb": [0, 18, 44]
+        },
+        {
+          "name": "Dark blue",
+          "hex": "#002B4B",
+          "rgb": [0, 43, 75]
+        },
+        {
+          "name": "Deep teal-blue",
+          "hex": "#004267",
+          "rgb": [0, 66, 103]
+        },
+        {
+          "name": "Mid blue",
+          "hex": "#004F7B",
+          "rgb": [0, 79, 123]
+        },
+        {
+          "name": "Main blue",
+          "hex": "#005786",
+          "rgb": [0, 87, 134]
+        },
+        {
+          "name": "Center blue",
+          "hex": "#005D8D",
+          "rgb": [0, 93, 141]
+        },
+        {
+          "name": "Bright blue",
+          "hex": "#006291",
+          "rgb": [0, 98, 145]
+        },
+        {
+          "name": "Lightest teal-blue",
+          "hex": "#006A97",
+          "rgb": [0, 106, 151]
+        }
+      ]
+    },
+    "mockups": {
+      "required_types": ["mobile", "desktop", "tablet", "smartwatch"]
+    },
+    "app_and_platform_screenshots": {
+      "required_topics": [
+        "stocks",
+        "ETFs",
+        "upwarding charts",
+        "green data"
+      ]
+    },
+    "disclaimer_or_risk_warnings": {
+      "required_texts": [
+        "Caution. Investing involves risk of loss.",
+        "Third party fees and Terms & conditions apply."
+      ]
+    },
+    "spacing": {
+      "frame": {
+        "top_px": 71,
+        "left_px": 50,
+        "bottom_px": 180
+      }
+    },
+    "brand_colours": {
+      "colors": ["#204489", "#FFFFFF"]
+    }
+  },
+
+  "design_defaults": {
+    "cta": {
+      "border_radius_px": 0,
+      "padding_x_px": 36,
+      "padding_y_px": 14,
+      "min_width_px": 180,
+      "min_height_px": 56
+    },
+    "typography": {
+      "headline_line_height_ratio": 1.05,
+      "running_text_line_height_ratio": 1.2,
+      "cta_line_height_ratio": 1.1,
+      "risk_warning_line_height_ratio": 1.2
+    },
+    "layout": {
+      "allowed_compositions": [
+        "hero_left_mockup_right",
+        "headline_top_mockup_bottom",
+        "centered_mockup_with_headline",
+        "split_text_visual",
+        "risk_warning_bottom_bar"
+      ]
+    }
+  },
+  
+  "rules": {
+    "do_not_generate_logo_with_ai": true,
+    "do_not_put_required_text_inside_generated_images": true,
+    "risk_warning_must_be_real_text_layer": true,
+    "cta_must_be_real_layer": true,
+    "bannerbear_is_renderer_only": true,
+    "element_manifest_is_source_of_truth": true,
+    "future_figma_import_from_element_manifest": true
+  }
+
+  
+}

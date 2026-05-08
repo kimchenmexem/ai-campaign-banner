@@ -1,0 +1,167 @@
+{
+  "run_id": "eval_mock_2026-05-05T12-53-16",
+  "generated_at": "2026-05-05T12:53:17.047Z",
+  "provider": "mock",
+  "total_campaigns": 5,
+  "campaigns_with_specs": 5,
+  "total_concepts": 15,
+  "concepts_with_specs": 15,
+  "distributions": {
+    "layout_type": {
+      "mockup_hero": 5,
+      "pattern_immersive": 5,
+      "editorial_type": 5
+    },
+    "composition": {
+      "text_leading": 5,
+      "hero_overlay": 5,
+      "centered": 5
+    },
+    "primary_visual": {
+      "mockup": 5,
+      "pattern": 5,
+      "motif": 5
+    },
+    "background_style": {
+      "split_color": 5,
+      "deep_gradient": 5,
+      "solid": 5
+    },
+    "palette_intensity": {
+      "standard": 5,
+      "high_contrast": 5,
+      "calm": 5
+    },
+    "accent_usage": {
+      "cta_only": 5,
+      "strong": 5,
+      "none": 5
+    },
+    "logo_prominence": {
+      "standard": 10,
+      "small": 5
+    },
+    "emphasis_level": {
+      "balanced": 5,
+      "bold": 5,
+      "quiet": 5
+    },
+    "headline_position": {
+      "left": 5,
+      "bottom": 5,
+      "center": 5
+    },
+    "text_alignment": {
+      "left": 10,
+      "center": 5
+    },
+    "headline_scale": {
+      "standard": 10,
+      "hero": 5
+    },
+    "visual_position": {
+      "right": 5,
+      "background": 10
+    },
+    "visual_weight": {
+      "balanced": 5,
+      "dominant": 5,
+      "subtle": 5
+    },
+    "cta_weight": {
+      "standard": 5,
+      "loud": 5,
+      "ghost": 5
+    },
+    "cta_placement": {
+      "below_subheadline": 5,
+      "bottom_left": 5,
+      "bottom_center": 5
+    },
+    "cta_width": {
+      "fit_text": 15
+    },
+    "density": {
+      "balanced": 5,
+      "minimal": 10
+    },
+    "padding": {
+      "standard": 5,
+      "airy": 10
+    },
+    "max_text_density": {
+      "high": 5,
+      "low": 10
+    },
+    "safe_area_priority": {
+      "normal": 10,
+      "high": 5
+    }
+  },
+  "downgrades": {
+    "total": 35,
+    "by_type": {
+      "headline_position=bottom → auto": 15,
+      "composition=bottom_anchor → hero_overlay": 5,
+      "composition=centered → hero_overlay": 15
+    }
+  },
+  "contradictions": {
+    "total": 0,
+    "by_type": {},
+    "examples": []
+  },
+  "brand_discipline": {
+    "campaigns_with_excess_strong_accent": 0,
+    "examples": []
+  },
+  "mode_collapse": {
+    "mean_collapse_score": 0,
+    "severe_count": 0,
+    "partial_count": 0,
+    "examples": []
+  },
+  "cross_campaign_repetition": {
+    "distinct_signatures": 3,
+    "top_signatures": [
+      {
+        "signature": "mockup_hero/text_leading/mockup/split_color",
+        "count": 5,
+        "percent": 33
+      },
+      {
+        "signature": "pattern_immersive/hero_overlay/pattern/deep_gradient",
+        "count": 5,
+        "percent": 33
+      },
+      {
+        "signature": "editorial_type/centered/motif/solid",
+        "count": 5,
+        "percent": 33
+      }
+    ]
+  },
+  "format_adaptation": {
+    "campaigns_with_any_override": 15,
+    "overrides_by_format": {
+      "leaderboard": 5,
+      "square": 0,
+      "portrait": 10
+    },
+    "overrides_by_field": {
+      "headline_position": 5,
+      "text_alignment": 5,
+      "cta_placement": 5,
+      "composition": 5,
+      "headline_scale": 5,
+      "max_text_density": 5
+    },
+    "avg_overridden_fields_per_concept": 2
+  },
+  "rationale": {
+    "avg_chars": 177,
+    "min_chars": 156,
+    "max_chars": 189,
+    "n_with_rationale": 15
+  }
+}

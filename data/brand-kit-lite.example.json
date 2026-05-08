@@ -1,0 +1,227 @@
+{
+  "brand_id": "example-brand",
+  "brand_name": "Example Co",
+  "brand_description": "A plainspoken financial services brand for self-directed investors. Confident, clear, never hype.",
+  "schema_version": "1.0.0",
+
+  "logo": {
+    "variants": [
+      {
+        "name": "primary",
+        "url": "https://example.com/logo.svg",
+        "format": "svg",
+        "background": "light"
+      },
+      {
+        "name": "mono-light",
+        "url": "https://example.com/logo-mono-light.svg",
+        "format": "svg",
+        "background": "dark"
+      },
+      {
+        "name": "mono-dark",
+        "url": "https://example.com/logo-mono-dark.svg",
+        "format": "svg",
+        "background": "light"
+      }
+    ],
+    "favicon": {
+      "url": "https://example.com/favicon.png",
+      "sizes": ["32x32", "180x180"]
+    },
+    "allowed_positions": ["top-left", "top-right", "bottom-left", "bottom-right"],
+    "minimum_size": {
+      "width_px": 96,
+      "percent_of_canvas_width": 0.08
+    },
+    "safe_area": {
+      "padding_px": 24,
+      "padding_percent_of_logo_height": 0.5
+    }
+  },
+
+  "colors": {
+    "primary": ["#0F172A", "#1E293B"],
+    "secondary": ["#3B82F6"],
+    "accent": ["#F59E0B"],
+    "background": ["#FFFFFF", "#F8FAFC"],
+    "text": ["#0F172A", "#475569"],
+    "disclaimer": ["#475569"],
+    "allowed_gradients": [
+      {
+        "name": "navy-fade",
+        "angle_deg": 135,
+        "stops": [
+          { "color": "#0F172A", "position": 0 },
+          { "color": "#1E293B", "position": 1 }
+        ]
+      }
+    ],
+    "forbidden": ["#FF0000", "#00FF00"]
+  },
+
+  "typography": {
+    "families": {
+      "headline": "Geist",
+      "body": "Geist",
+      "cta": "Geist",
+      "disclaimer": "Geist"
+    },
+    "weights": [400, 500, 600, 700],
+    "sizes_per_format": {
+      "1200x628": {
+        "headline": 64,
+        "subheadline": 32,
+        "body": 22,
+        "cta": 28,
+        "disclaimer": 14
+      },
+      "1080x1080": {
+        "headline": 96,
+        "subheadline": 40,
+        "body": 28,
+        "cta": 32,
+        "disclaimer": 18
+      },
+      "1080x1920": {
+        "headline": 120,
+        "subheadline": 48,
+        "body": 32,
+        "cta": 36,
+        "disclaimer": 22
+      }
+    },
+    "line_heights": { "headline": 1.1, "body": 1.4, "cta": 1.0, "disclaimer": 1.3 },
+    "letter_spacing": { "headline": -0.5, "body": 0, "cta": 0.5, "disclaimer": 0 },
+    "headline_rules": {
+      "max_chars": 80,
+      "max_lines": 2,
+      "allow_uppercase": true,
+      "allow_emoji": false,
+      "forbidden_phrases": ["revolutionary", "synergy", "guaranteed"]
+    },
+    "body_rules": {
+      "max_chars": 180,
+      "max_lines": 3,
+      "allow_emoji": false
+    },
+    "cta_text_rules": {
+      "max_chars": 24,
+      "max_lines": 1,
+      "allow_uppercase": true
+    },
+    "disclaimer_text_rules": {
+      "max_chars": 240,
+      "max_lines": 3,
+      "allow_emoji": false
+    }
+  },
+
+  "cta": {
+    "allowed_texts": [
+      "Open an account",
+      "Get started",
+      "Learn more",
+      "Compare plans",
+      "See how it works"
+    ],
+    "button_background_color": "#3B82F6",
+    "button_text_color": "#FFFFFF",
+    "border_radius": 12,
+    "padding": { "top": 24, "right": 32, "bottom": 24, "left": 32 },
+    "minimum_size": { "width": 240, "height": 64 }
+  },
+
+  "layout": {
+    "spacing": { "unit_px": 4, "scale": [0, 4, 8, 16, 24, 32, 48, 64, 96] },
+    "outer_margins": {
+      "1200x628": { "top": 48, "right": 64, "bottom": 48, "left": 64 },
+      "1080x1080": { "top": 64, "right": 64, "bottom": 64, "left": 64 },
+      "1080x1920": { "top": 96, "right": 64, "bottom": 96, "left": 64 }
+    },
+    "allowed_templates": [
+      "REPLACE_WITH_BANNERBEAR_UID_1200x628",
+      "REPLACE_WITH_BANNERBEAR_UID_1080x1080",
+      "REPLACE_WITH_BANNERBEAR_UID_1080x1920"
+    ],
+    "allowed_compositions": ["hero-left", "hero-center", "split", "minimal"],
+    "safe_areas": {
+      "1200x628": { "top": 24, "right": 24, "bottom": 24, "left": 24 },
+      "1080x1080": { "top": 32, "right": 32, "bottom": 32, "left": 32 },
+      "1080x1920": { "top": 64, "right": 32, "bottom": 96, "left": 32 }
+    },
+    "disclaimer_placement_rules": {
+      "allowed_positions": ["bottom-center", "bottom-left"],
+      "min_distance_from_edge_px": 24
+    }
+  },
+
+  "visual_language": {
+    "tone": ["confident", "plainspoken", "trustworthy"],
+    "allowed_styles": ["photographic", "editorial", "minimalist"],
+    "forbidden_styles": ["3d-render", "collage"],
+    "background_rules": {
+      "allow_solid_color": true,
+      "allow_gradient": true,
+      "allow_image": true,
+      "allow_pattern": false,
+      "forbidden": ["stock-photo cliché", "low-contrast over text"]
+    },
+    "decorative_element_rules": {
+      "allowed": true,
+      "notes": "Use sparingly. Decorative shapes must not overlap legal copy.",
+      "forbidden": ["confetti", "sparkles"]
+    },
+    "mockup_rules": {
+      "allowed": true,
+      "notes": "Phone and laptop mockups only. Always show real product UI.",
+      "forbidden": ["competitor UI", "fictional UI"]
+    },
+    "screenshot_rules": {
+      "allowed": true,
+      "notes": "Must be from current production build. Crop to focus on one feature.",
+      "forbidden": ["staging data", "personally identifiable information"]
+    }
+  },
+
+  "legal": {
+    "risk_warning_required": true,
+    "default_disclaimer": "Investing involves risk. Past performance is not indicative of future results. Terms apply.",
+    "min_disclaimer_font_size": 14,
+    "disclaimer_must_appear_in_all_formats": true,
+    "legal_claim_rules": [
+      "Do not state or imply guaranteed returns.",
+      "Do not compare to specific named competitors without legal sign-off.",
+      "Any performance claim must include the time period it covers."
+    ]
+  },
+
+  "approved_asset_types": {
+    "logo": { "allowed": true, "requires_legal_review": false, "forbidden": [] },
+    "favicon": { "allowed": true, "requires_legal_review": false, "forbidden": [] },
+    "screenshot": {
+      "allowed": true,
+      "requires_legal_review": true,
+      "notes": "Real product UI only.",
+      "forbidden": ["PII", "internal-only screens"]
+    },
+    "mockup": {
+      "allowed": true,
+      "requires_legal_review": false,
+      "forbidden": ["competitor devices"]
+    },
+    "background": { "allowed": true, "requires_legal_review": false, "forbidden": [] },
+    "midjourney_background": {
+      "allowed": true,
+      "requires_legal_review": true,
+      "notes": "Manual workflow. Human reviews every output before upload.",
+      "forbidden": ["realistic faces", "logos of any kind"]
+    },
+    "decorative": { "allowed": true, "requires_legal_review": false, "forbidden": [] },
+    "generated_visual": {
+      "allowed": false,
+      "requires_legal_review": true,
+      "notes": "Disabled until provenance + IP policy is finalized."
+    }
+  }
+}

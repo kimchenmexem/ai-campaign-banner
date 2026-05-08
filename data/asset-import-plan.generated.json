@@ -1,0 +1,1221 @@
+{
+  "brand_id": "brand_001",
+  "generated_at": "2026-05-04T06:10:27.245Z",
+  "items": [
+    {
+      "local_path": "brand-input/Elements/3-iphone.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "3-iphone.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": [
+        "Filename suggests this may be a mockup but it is located in Elements/. (matched keyword: \"iphone\")"
+      ]
+    },
+    {
+      "local_path": "brand-input/Elements/3iphone.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "3iphone.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": [
+        "Filename suggests this may be a mockup but it is located in Elements/. (matched keyword: \"iphone\")"
+      ]
+    },
+    {
+      "local_path": "brand-input/Elements/CTA.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "CTA.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/HERO IMAGE.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "HERO IMAGE.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/devices copy.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "devices copy.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/devices.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "devices.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/ipad-2.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "ipad-2.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": [
+        "Filename suggests this may be a mockup but it is located in Elements/. (matched keyword: \"ipad\")"
+      ]
+    },
+    {
+      "local_path": "brand-input/Elements/ipad.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "ipad.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": [
+        "Filename suggests this may be a mockup but it is located in Elements/. (matched keyword: \"ipad\")"
+      ]
+    },
+    {
+      "local_path": "brand-input/Elements/iwatch.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "iwatch.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": [
+        "Filename suggests this may be a mockup but it is located in Elements/. (matched keyword: \"watch\")"
+      ]
+    },
+    {
+      "local_path": "brand-input/Elements/left_.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "left_.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/macbook 2.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "macbook 2.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": [
+        "Filename suggests this may be a mockup but it is located in Elements/. (matched keyword: \"macbook\")"
+      ]
+    },
+    {
+      "local_path": "brand-input/Elements/macbook.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "macbook.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": [
+        "Filename suggests this may be a mockup but it is located in Elements/. (matched keyword: \"macbook\")"
+      ]
+    },
+    {
+      "local_path": "brand-input/Elements/materials 1.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "materials 1.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/materials.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "materials.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/middle.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "middle.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/mobile-mockup4.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "mobile-mockup4.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/shutterstock_2219869187.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "shutterstock_2219869187.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/shutterstock_2309926753.psd",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "shutterstock_2309926753.psd",
+      "extension": "psd",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Elements/width_1500.png",
+      "original_folder_name": "Elements",
+      "canonical_folder_type": "elements",
+      "asset_type": "decorative_element",
+      "filename": "width_1500.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/elements/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:elements",
+        "source:brand_input_folder",
+        "type:decorative_element"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/IBKR logo/IBKR colour logo.png",
+      "original_folder_name": "IBKR logo",
+      "canonical_folder_type": "powered_by_ib",
+      "asset_type": "powered_by_ib",
+      "filename": "IBKR colour logo.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/powered-by-ib/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:powered_by_ib",
+        "source:brand_input_folder",
+        "type:powered_by_ib",
+        "variant:color"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/IBKR logo/IBKR fav icon colour.png",
+      "original_folder_name": "IBKR logo",
+      "canonical_folder_type": "powered_by_ib",
+      "asset_type": "powered_by_ib",
+      "filename": "IBKR fav icon colour.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/powered-by-ib/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:powered_by_ib",
+        "source:brand_input_folder",
+        "type:powered_by_ib",
+        "variant:color",
+        "variant:favicon"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/IBKR logo/IBKR white logo.png",
+      "original_folder_name": "IBKR logo",
+      "canonical_folder_type": "powered_by_ib",
+      "asset_type": "powered_by_ib",
+      "filename": "IBKR white logo.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/powered-by-ib/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:powered_by_ib",
+        "source:brand_input_folder",
+        "type:powered_by_ib",
+        "variant:white"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/IBKR logo/IBKR white text.png",
+      "original_folder_name": "IBKR logo",
+      "canonical_folder_type": "powered_by_ib",
+      "asset_type": "powered_by_ib",
+      "filename": "IBKR white text.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/powered-by-ib/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:powered_by_ib",
+        "source:brand_input_folder",
+        "type:powered_by_ib",
+        "variant:white"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/IBKR logo/fav icon IBKR white.png",
+      "original_folder_name": "IBKR logo",
+      "canonical_folder_type": "powered_by_ib",
+      "asset_type": "powered_by_ib",
+      "filename": "fav icon IBKR white.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/powered-by-ib/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:powered_by_ib",
+        "source:brand_input_folder",
+        "type:powered_by_ib",
+        "variant:favicon",
+        "variant:white"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/MEXEM logo/fav icon blue.png",
+      "original_folder_name": "MEXEM logo",
+      "canonical_folder_type": "brand_logo",
+      "asset_type": "brand_logo",
+      "filename": "fav icon blue.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/logos/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:brand_logo",
+        "source:brand_input_folder",
+        "type:brand_logo",
+        "variant:color",
+        "variant:favicon"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/MEXEM logo/fav icon white.png",
+      "original_folder_name": "MEXEM logo",
+      "canonical_folder_type": "brand_logo",
+      "asset_type": "brand_logo",
+      "filename": "fav icon white.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/logos/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:brand_logo",
+        "source:brand_input_folder",
+        "type:brand_logo",
+        "variant:favicon",
+        "variant:white"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/MEXEM logo/logo blue P.png",
+      "original_folder_name": "MEXEM logo",
+      "canonical_folder_type": "brand_logo",
+      "asset_type": "brand_logo",
+      "filename": "logo blue P.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/logos/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:brand_logo",
+        "source:brand_input_folder",
+        "type:brand_logo",
+        "variant:color"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/MEXEM logo/logo blue V.png",
+      "original_folder_name": "MEXEM logo",
+      "canonical_folder_type": "brand_logo",
+      "asset_type": "brand_logo",
+      "filename": "logo blue V.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/logos/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:brand_logo",
+        "source:brand_input_folder",
+        "type:brand_logo",
+        "variant:color"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/MEXEM logo/logo white P.png",
+      "original_folder_name": "MEXEM logo",
+      "canonical_folder_type": "brand_logo",
+      "asset_type": "brand_logo",
+      "filename": "logo white P.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/logos/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:brand_logo",
+        "source:brand_input_folder",
+        "type:brand_logo",
+        "variant:white"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/MEXEM logo/logo white V.png",
+      "original_folder_name": "MEXEM logo",
+      "canonical_folder_type": "brand_logo",
+      "asset_type": "brand_logo",
+      "filename": "logo white V.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/logos/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:brand_logo",
+        "source:brand_input_folder",
+        "type:brand_logo",
+        "variant:white"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": false,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/63f758cdfe89332a868c11a7_61f942e24b39e075b79b0f5f_Rectangle 1 (Screen).webp",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "63f758cdfe89332a868c11a7_61f942e24b39e075b79b0f5f_Rectangle 1 (Screen).webp",
+      "extension": "webp",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/IMG_3975.PNG",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "IMG_3975.PNG",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/Order dialog (Light).png",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "Order dialog (Light).png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 112522.png",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "Screenshot 2025-02-17 112522.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 112904.png",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "Screenshot 2025-02-17 112904.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 113202.png",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "Screenshot 2025-02-17 113202.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 113233.png",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "Screenshot 2025-02-17 113233.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/Screenshot 2025-02-17 113245.png",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "Screenshot 2025-02-17 113245.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/apple_stock_mobileApp.png",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "apple_stock_mobileApp.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/application_signin_page.PNG",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "application_signin_page.PNG",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/asml_holding.PNG",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "asml_holding.PNG",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/desktop2.png",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "desktop2.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/marketnews_mobile_screenshot.PNG",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "marketnews_mobile_screenshot.PNG",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/screenshot-tags.json",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "screenshot-tags.json",
+      "extension": "json",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/tesla_stock_mobileApp.png",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "tesla_stock_mobileApp.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/Platform screenshot/trade_section_mobileApp.PNG",
+      "original_folder_name": "Platform screenshot",
+      "canonical_folder_type": "platform_screenshots",
+      "asset_type": "platform_screenshot",
+      "filename": "trade_section_mobileApp.PNG",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/screenshots/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:platform_screenshots",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:platform_screenshot"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/background/background image.png",
+      "original_folder_name": "background",
+      "canonical_folder_type": "backgrounds",
+      "asset_type": "background",
+      "filename": "background image.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/backgrounds/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/ipad-3.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "ipad-3.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/ipad-4.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "ipad-4.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/ipad-6.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "ipad-6.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/ipad-7.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "ipad-7.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/ipad1.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "ipad1.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/iphone-1.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "iphone-1.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/iphone-2.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "iphone-2.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/iphone-3.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "iphone-3.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/iphone-4.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "iphone-4.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/iphone-5.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "iphone-5.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/iwatch-2.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "iwatch-2.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/mockup-macbook.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "mockup-macbook.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "device:detected-from-filename",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/mockup-manifest.json",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "mockup-manifest.json",
+      "extension": "json",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/screen-1.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "screen-1.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/screen-2.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "screen-2.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    },
+    {
+      "local_path": "brand-input/mockup devices/screen-3-.png",
+      "original_folder_name": "mockup devices",
+      "canonical_folder_type": "mockups",
+      "asset_type": "mockup",
+      "filename": "screen-3-.png",
+      "extension": "png",
+      "suggested_cloudinary_folder": "brands/brand_001/mockups/",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:mockups",
+        "source:brand_input_folder",
+        "type:mockup"
+      ],
+      "source": "brand_input_folder",
+      "requires_approval": true,
+      "warnings": []
+    }
+  ],
+  "skipped": [
+    {
+      "file_path": "brand-input/brand-spec/brand-spec.backup-20260501-123539.json",
+      "reason": "brand-spec files are not uploaded to Cloudinary"
+    },
+    {
+      "file_path": "brand-input/brand-spec/brand-spec.json",
+      "reason": "brand-spec files are not uploaded to Cloudinary"
+    },
+    {
+      "file_path": "brand-input/brand-spec/risk-warning.txt",
+      "reason": "brand-spec files are not uploaded to Cloudinary"
+    }
+  ],
+  "warnings_summary": {
+    "total": 7,
+    "misclassification_count": 7,
+    "misclassified_paths": [
+      "brand-input/Elements/3-iphone.png",
+      "brand-input/Elements/3iphone.png",
+      "brand-input/Elements/ipad-2.png",
+      "brand-input/Elements/ipad.png",
+      "brand-input/Elements/iwatch.png",
+      "brand-input/Elements/macbook 2.png",
+      "brand-input/Elements/macbook.png"
+    ]
+  }
+}

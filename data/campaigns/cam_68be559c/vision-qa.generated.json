@@ -1,0 +1,1337 @@
+{
+  "campaign_id": "cam_68be559c",
+  "generated_at": "2026-05-08T07:44:53.311Z",
+  "total": 9,
+  "with_violations": 9,
+  "banners": [
+    {
+      "ad_id": "ad_concept_1_1200x628",
+      "format": "1200x628",
+      "png_path": "public/rendered-ads/campaigns/cam_68be559c/concept_1_1200x628.png",
+      "violations": [
+        {
+          "rule_id": "logo-sublockup-on-leaderboard",
+          "severity": "block",
+          "description": "The MEXEM logo includes the \"Powered by InteractiveBrokers\" sub-lockup, which is explicitly forbidden on leaderboard banners.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.0796,
+            "width": 0.1867,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "headline-font-size-mismatch",
+          "severity": "warn",
+          "description": "The headline font size is 54px, which is significantly smaller than the recommended 85-95px for leaderboard banners.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.2611,
+            "width": 0.55,
+            "height": 0.207
+          }
+        },
+        {
+          "rule_id": "headline-block-position-mismatch",
+          "severity": "warn",
+          "description": "The headline block (including eyebrow) starts at y=135, but the layout grid suggests it should start around y=200-220.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.215,
+            "width": 0.55,
+            "height": 0.0334
+          }
+        },
+        {
+          "rule_id": "cta-type-mismatch",
+          "severity": "block",
+          "description": "The CTA is rendered as a white pill button, but for leaderboard banners, it must be a full-width yellow band anchored to the bottom.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.3242,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-position-mismatch",
+          "severity": "block",
+          "description": "The CTA is positioned at x=50, y=396, not as a full-width band anchored to the bottom edge of the canvas.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.3242,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-height-mismatch",
+          "severity": "block",
+          "description": "The CTA height is 56px, but should be approximately 80-90px for a leaderboard band.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.3242,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-background-color-mismatch",
+          "severity": "block",
+          "description": "The CTA background is white, but should be yellow (#F5C518) for a leaderboard band.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.3242,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-text-color-mismatch",
+          "severity": "warn",
+          "description": "The CTA text color #0A1A2E does not precisely match the specified #0A0F1F.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.3242,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-text-case-mismatch",
+          "severity": "warn",
+          "description": "The CTA text \"Compare ETF fees →\" is not in ALL CAPS as required.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.3242,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-border-radius-mismatch",
+          "severity": "warn",
+          "description": "The CTA has rounded corners (pill shape), but a leaderboard CTA band should have sharp corners (border-radius: 0).",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.3242,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "disclaimer-placement-incorrect",
+          "severity": "block",
+          "description": "The disclaimer is placed below the CTA, but the rule states it must be between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-mismatch",
+          "severity": "block",
+          "description": "The disclaimer font size is 14px, which is too small for legibility and does not meet the recommended 22-26px for leaderboard banners.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "disclaimer-alignment-mismatch",
+          "severity": "warn",
+          "description": "The disclaimer is center-aligned, but should be left-aligned on a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "disclaimer-opacity-mismatch",
+          "severity": "warn",
+          "description": "The disclaimer text is at full opacity, but should be at 0.85 opacity.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "motif-on-leaderboard",
+          "severity": "warn",
+          "description": "The subtle ghost candlestick pattern (el_motif_abstract_bars) is present, but this motif is only permitted on portrait banners, not leaderboards.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "missing-device-mockup",
+          "severity": "block",
+          "description": "The banner lacks a device mockup in the visual region on the right side, which is a key element for visual variety.",
+          "bbox_norm": {
+            "x": 0.5,
+            "y": 0,
+            "width": 0.5,
+            "height": 1
+          }
+        }
+      ],
+      "qa_at": "2026-05-08T07:40:30.608Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1080",
+      "format": "1080x1080",
+      "png_path": "public/rendered-ads/campaigns/cam_68be559c/concept_1_1080x1080.png",
+      "violations": [
+        {
+          "rule_id": "background-not-gradient",
+          "severity": "warn",
+          "description": "The background is a solid color (#006A97) instead of a linear gradient from #00122C to #006A97."
+        },
+        {
+          "rule_id": "motif-present",
+          "severity": "block",
+          "description": "The banner includes a decorative motif (abstract bars) which is explicitly forbidden for this style.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "logo-ibkr-color-mismatch",
+          "severity": "block",
+          "description": "The 'Powered by InteractiveBrokers' text in the logo is white, but the brand rules reserve red (#D81222) for the IBKR lockup.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.046,
+            "width": 0.296,
+            "height": 0.074
+          }
+        },
+        {
+          "rule_id": "logo-not-top-center",
+          "severity": "warn",
+          "description": "For a square format, the logo should be horizontally centered at the top. It is placed top-left.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.046,
+            "width": 0.296,
+            "height": 0.074
+          }
+        },
+        {
+          "rule_id": "logo-size-mismatch",
+          "severity": "warn",
+          "description": "For a square format, the logo width should be approximately 50% of the canvas width. It is approximately 29.6%.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.046,
+            "width": 0.296,
+            "height": 0.074
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer font size (18px) is too small for a square format, which should be approximately 22-26px.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.89,
+            "width": 0.907,
+            "height": 0.027
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-above-cta",
+          "severity": "block",
+          "description": "The disclaimer is placed below the CTA, but it must always be positioned above the CTA.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.89,
+            "width": 0.907,
+            "height": 0.027
+          }
+        },
+        {
+          "rule_id": "cta-background-color-mismatch",
+          "severity": "block",
+          "description": "The CTA background color (#204489) is not white as required for a pill button in this format.",
+          "bbox_norm": {
+            "x": 0.291,
+            "y": 0.762,
+            "width": 0.419,
+            "height": 0.071
+          }
+        },
+        {
+          "rule_id": "cta-text-color-mismatch",
+          "severity": "block",
+          "description": "The CTA text color (#FFFFFF) is not dark navy/black (#0A0F1F) as required for a white pill button.",
+          "bbox_norm": {
+            "x": 0.291,
+            "y": 0.762,
+            "width": 0.419,
+            "height": 0.071
+          }
+        },
+        {
+          "rule_id": "cta-text-not-all-caps",
+          "severity": "warn",
+          "description": "The CTA text 'Compare ETF fees' is not in ALL CAPS as required.",
+          "bbox_norm": {
+            "x": 0.291,
+            "y": 0.762,
+            "width": 0.419,
+            "height": 0.071
+          }
+        },
+        {
+          "rule_id": "cta-width-mismatch",
+          "severity": "warn",
+          "description": "The CTA width (~41.9% of canvas) is significantly less than the recommended ~60% for a pill button in this format.",
+          "bbox_norm": {
+            "x": 0.291,
+            "y": 0.762,
+            "width": 0.419,
+            "height": 0.071
+          }
+        },
+        {
+          "rule_id": "layout-mismatch-no-visual-region",
+          "severity": "warn",
+          "description": "The square format is expected to have a 'visual-right' region (e.g., a device mockup), which is missing. Instead, a forbidden motif is present at the bottom."
+        }
+      ],
+      "qa_at": "2026-05-08T07:41:03.776Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1920",
+      "format": "1080x1920",
+      "png_path": "public/rendered-ads/campaigns/cam_68be559c/concept_1_1080x1920.png",
+      "violations": [
+        {
+          "rule_id": "background-not-gradient",
+          "severity": "block",
+          "description": "The background is a solid color instead of a linear gradient from #00122C to #006A97 as required for all formats."
+        },
+        {
+          "rule_id": "logo-not-centered-top",
+          "severity": "warn",
+          "description": "The logo is placed top-left instead of centered horizontally near the top for portrait banners.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.026,
+            "width": 0.131,
+            "height": 0.046
+          }
+        },
+        {
+          "rule_id": "logo-too-small",
+          "severity": "warn",
+          "description": "The logo is too small for a portrait banner, at ~13% of canvas width instead of the recommended ~65%.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.026,
+            "width": 0.131,
+            "height": 0.046
+          }
+        },
+        {
+          "rule_id": "ibkr-sub-lockup-missing",
+          "severity": "warn",
+          "description": "The 'Powered by InteractiveBrokers' sub-lockup is not a separate, larger element directly below the main MEXEM wordmark as required for portrait banners."
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline font size is 90px, which is smaller than the recommended 120-160px for portrait banners.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.354,
+            "width": 0.907,
+            "height": 0.155
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "block",
+          "description": "The disclaimer font size is 20px, which is smaller than the recommended 28-32px for portrait banners.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.935,
+            "width": 0.907,
+            "height": 0.018
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-above-cta",
+          "severity": "block",
+          "description": "The disclaimer is placed at the very bottom of the banner, below the CTA, instead of between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.935,
+            "width": 0.907,
+            "height": 0.018
+          }
+        },
+        {
+          "rule_id": "cta-text-mismatch",
+          "severity": "warn",
+          "description": "The CTA text 'Compare ETF fees →' does not match the required 'START INVESTING' (ALL CAPS) for portrait banners.",
+          "bbox_norm": {
+            "x": 0.286,
+            "y": 0.615,
+            "width": 0.428,
+            "height": 0.044
+          }
+        },
+        {
+          "rule_id": "cta-width-too-small",
+          "severity": "warn",
+          "description": "The CTA width is ~42.8% of canvas width, which is smaller than the recommended ~60% for portrait banners.",
+          "bbox_norm": {
+            "x": 0.286,
+            "y": 0.615,
+            "width": 0.428,
+            "height": 0.044
+          }
+        },
+        {
+          "rule_id": "cta-has-chevron",
+          "severity": "warn",
+          "description": "The portrait CTA includes a chevron (arrow), which is not allowed.",
+          "bbox_norm": {
+            "x": 0.286,
+            "y": 0.615,
+            "width": 0.428,
+            "height": 0.044
+          }
+        },
+        {
+          "rule_id": "visual-region-content-mismatch",
+          "severity": "warn",
+          "description": "The visual region at the bottom contains a bar chart instead of a single phone mockup as required for portrait banners.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.65,
+            "width": 1,
+            "height": 0.35
+          }
+        },
+        {
+          "rule_id": "headline-block-position-mismatch",
+          "severity": "warn",
+          "description": "The headline block (including stat number, stat label, headline, and subheadline) is positioned too low and is more vertically spread out compared to the reference layout for portrait banners.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.139,
+            "width": 0.907,
+            "height": 0.45
+          }
+        }
+      ],
+      "qa_at": "2026-05-08T07:41:38.744Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_2_1200x628",
+      "format": "1200x628",
+      "png_path": "public/rendered-ads/campaigns/cam_68be559c/concept_2_1200x628.png",
+      "violations": [
+        {
+          "rule_id": "logo-ibkr-color-mismatch",
+          "severity": "block",
+          "description": "The \"Powered by InteractiveBrokers\" sub-lockup in the logo is white, but should be IBKR red (#D81222).",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.0796,
+            "width": 0.1867,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-text-color-mismatch",
+          "severity": "block",
+          "description": "The CTA text is white, but should be dark navy/black (#0A0F1F) as per the brand's CTA text color rule.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6943,
+            "width": 0.2833,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "background-motif-present",
+          "severity": "warn",
+          "description": "A large arc meter motif (el_motif_arc_meter) is present in the background, but the brand rules explicitly forbid decorative motifs for this banner style.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "logo-sublockup-present",
+          "severity": "block",
+          "description": "The \"Powered by InteractiveBrokers\" sub-lockup is present on a leaderboard banner, but it should not be included for this format.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.0796,
+            "width": 0.1867,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline font size is 50px, but should be approximately 85-95px for a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.2787,
+            "width": 0.4842,
+            "height": 0.2452
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer font size is 14px, but should be approximately 22-26px for a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "disclaimer-placement-incorrect",
+          "severity": "block",
+          "description": "The disclaimer is placed below the CTA, but should be positioned between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "disclaimer-alignment-incorrect",
+          "severity": "warn",
+          "description": "The disclaimer is center-aligned, but should be left-aligned for a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "cta-type-mismatch",
+          "severity": "block",
+          "description": "The CTA is a pill-shaped button, but for a leaderboard banner, it should be a full-width yellow band anchored to the bottom of the canvas.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6943,
+            "width": 0.2833,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-background-color-mismatch",
+          "severity": "block",
+          "description": "The CTA background is dark blue (#204489), but should be yellow (#F5C518) for a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6943,
+            "width": 0.2833,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-text-format-mismatch",
+          "severity": "warn",
+          "description": "The CTA text \"Start trading\" is not in ALL CAPS and lacks the required chevron (>) for a leaderboard CTA.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6943,
+            "width": 0.2833,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-border-radius-mismatch",
+          "severity": "block",
+          "description": "The CTA has rounded corners (pill-shaped), but should have sharp corners (border-radius 0) for a leaderboard band.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6943,
+            "width": 0.2833,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "disclaimer-width-mismatch",
+          "severity": "warn",
+          "description": "The disclaimer width is 1100px, but the layout grid suggests approximately 600px for a leaderboard.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "visual-position-mismatch",
+          "severity": "warn",
+          "description": "The visual element's x-position is 655px, but the layout grid suggests 700px for a leaderboard.",
+          "bbox_norm": {
+            "x": 0.5458,
+            "y": 0.1258,
+            "width": 0.4125,
+            "height": 0.5876
+          }
+        },
+        {
+          "rule_id": "visual-height-mismatch",
+          "severity": "warn",
+          "description": "The visual element's height is 369px, but the layout grid suggests approximately 440px for a leaderboard.",
+          "bbox_norm": {
+            "x": 0.5458,
+            "y": 0.1258,
+            "width": 0.4125,
+            "height": 0.5876
+          }
+        }
+      ],
+      "qa_at": "2026-05-08T07:42:14.445Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1080",
+      "format": "1080x1080",
+      "png_path": "public/rendered-ads/campaigns/cam_68be559c/concept_2_1080x1080.png",
+      "violations": [
+        {
+          "rule_id": "ibkr-lockup-color-incorrect",
+          "severity": "block",
+          "description": "The 'Powered by InteractiveBrokers' lockup text is white, but should be IBKR red (#D81222).",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.046,
+            "width": 0.296,
+            "height": 0.074
+          }
+        },
+        {
+          "rule_id": "disclaimer-opacity-incorrect",
+          "severity": "info",
+          "description": "The disclaimer text is full white (#FFFFFF) but should be 85% opacity white.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.89,
+            "width": 0.907,
+            "height": 0.026
+          }
+        },
+        {
+          "rule_id": "decorative-motif-present",
+          "severity": "warn",
+          "description": "A decorative arc meter motif is present, but reference designs are intentionally clean and use no motifs.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "logo-not-top-center",
+          "severity": "warn",
+          "description": "The MEXEM logo is placed top-left, but for square format, it should be centered horizontally near the top.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.046,
+            "width": 0.296,
+            "height": 0.074
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer font size (18px) is smaller than the recommended range for other formats (22-32px), potentially impacting legibility.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.89,
+            "width": 0.907,
+            "height": 0.026
+          }
+        },
+        {
+          "rule_id": "disclaimer-below-cta",
+          "severity": "block",
+          "description": "The disclaimer is placed below the Call to Action (CTA), but it must always be positioned between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.89,
+            "width": 0.907,
+            "height": 0.026
+          }
+        },
+        {
+          "rule_id": "disclaimer-alignment-incorrect",
+          "severity": "warn",
+          "description": "The disclaimer is centered, but for a square format, it should likely be left-aligned to match the main text block (headline, subheadline).",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.89,
+            "width": 0.907,
+            "height": 0.026
+          }
+        },
+        {
+          "rule_id": "cta-text-not-all-caps",
+          "severity": "warn",
+          "description": "The CTA text 'Start trading →' is not in ALL CAPS, which is required for portrait-style CTAs.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.762,
+            "width": 0.371,
+            "height": 0.071
+          }
+        },
+        {
+          "rule_id": "cta-width-and-position-incorrect",
+          "severity": "warn",
+          "description": "The CTA button is not horizontally centered and its width (37.1% of canvas) is significantly less than the recommended ~60% for portrait-style CTAs.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.762,
+            "width": 0.371,
+            "height": 0.071
+          }
+        },
+        {
+          "rule_id": "cta-includes-chevron",
+          "severity": "warn",
+          "description": "The CTA text includes a chevron, but portrait-style CTAs should not have one.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.762,
+            "width": 0.371,
+            "height": 0.071
+          }
+        },
+        {
+          "rule_id": "visual-placement-and-size-incorrect",
+          "severity": "warn",
+          "description": "The product visual is placed near the top and spans almost the full width, which does not align with the 'visual-right' layout implied for square formats.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.154,
+            "width": 0.907,
+            "height": 0.286
+          }
+        }
+      ],
+      "qa_at": "2026-05-08T07:42:49.760Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1920",
+      "format": "1080x1920",
+      "png_path": "public/rendered-ads/campaigns/cam_68be559c/concept_2_1080x1920.png",
+      "violations": [
+        {
+          "rule_id": "background-not-gradient",
+          "severity": "block",
+          "description": "The background is a solid color (#006A97) instead of a linear gradient from #00122C to #006A97."
+        },
+        {
+          "rule_id": "disclaimer-opacity-incorrect",
+          "severity": "warn",
+          "description": "The disclaimer text (el_disclaimer) is pure white (#FFFFFF) at full opacity instead of 85% opacity.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.934895,
+            "width": 0.907407,
+            "height": 0.018229
+          }
+        },
+        {
+          "rule_id": "cta-text-color-incorrect",
+          "severity": "block",
+          "description": "The CTA button (el_cta) text is white (#FFFFFF) instead of dark navy/black (#0A0F1F).",
+          "bbox_norm": {
+            "x": 0.318518,
+            "y": 0.754166,
+            "width": 0.362962,
+            "height": 0.04375
+          }
+        },
+        {
+          "rule_id": "background-motif-incorrect",
+          "severity": "warn",
+          "description": "The background uses an arc/meter motif (el_motif_arc_meter) instead of the subtle ghost candlestick pattern specified for portrait format."
+        },
+        {
+          "rule_id": "decorative-motif-present",
+          "severity": "warn",
+          "description": "A decorative arc/meter motif (el_motif_arc_meter) is present, but the rule specifies no motifs for this style."
+        },
+        {
+          "rule_id": "logo-not-centered-top",
+          "severity": "block",
+          "description": "The logo (el_logo) is placed top-left instead of centered horizontally near the top for the portrait format.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.026041,
+            "width": 0.130555,
+            "height": 0.045833
+          }
+        },
+        {
+          "rule_id": "logo-size-incorrect",
+          "severity": "block",
+          "description": "The logo (el_logo) width is 141px (13% of canvas width) instead of approximately 700px (65% of canvas width) for the portrait format.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.026041,
+            "width": 0.130555,
+            "height": 0.045833
+          }
+        },
+        {
+          "rule_id": "logo-missing-ibkr-lockup",
+          "severity": "block",
+          "description": "The \"Powered by InteractiveBrokers\" sub-lockup is missing below the logo (el_logo) for the portrait format.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.026041,
+            "width": 0.130555,
+            "height": 0.045833
+          }
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline (el_headline) font size is 100px, which is smaller than the recommended 120-160px for portrait format.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.480729,
+            "width": 0.907407,
+            "height": 0.171875
+          }
+        },
+        {
+          "rule_id": "headline-mega-stat-missing",
+          "severity": "warn",
+          "description": "The numeric figure \"0%\" in the headline (el_headline) is not rendered at 2x the surrounding headline size as a \"mega-stat\" as specified for portrait format.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.480729,
+            "width": 0.907407,
+            "height": 0.171875
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) font size is 20px, which is smaller than the recommended 28-32px for portrait format.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.934895,
+            "width": 0.907407,
+            "height": 0.018229
+          }
+        },
+        {
+          "rule_id": "disclaimer-below-cta",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) is placed below the CTA (el_cta), but it should always be between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.934895,
+            "width": 0.907407,
+            "height": 0.018229
+          }
+        },
+        {
+          "rule_id": "cta-background-color-incorrect",
+          "severity": "block",
+          "description": "The CTA button (el_cta) background color is dark blue (#204489) instead of white (#FFFFFF) for the portrait format.",
+          "bbox_norm": {
+            "x": 0.318518,
+            "y": 0.754166,
+            "width": 0.362962,
+            "height": 0.04375
+          }
+        },
+        {
+          "rule_id": "cta-text-not-all-caps",
+          "severity": "warn",
+          "description": "The CTA button (el_cta) text \"Start trading\" is not in ALL CAPS.",
+          "bbox_norm": {
+            "x": 0.318518,
+            "y": 0.754166,
+            "width": 0.362962,
+            "height": 0.04375
+          }
+        },
+        {
+          "rule_id": "cta-width-incorrect",
+          "severity": "warn",
+          "description": "The CTA button (el_cta) width is 392px (36.3% of canvas width) instead of approximately 60% of canvas width for the portrait format.",
+          "bbox_norm": {
+            "x": 0.318518,
+            "y": 0.754166,
+            "width": 0.362962,
+            "height": 0.04375
+          }
+        },
+        {
+          "rule_id": "visual-not-bottom-centered",
+          "severity": "block",
+          "description": "The product visual (el_visual) is placed near the top-left instead of bottom-centered for the portrait format.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.095312,
+            "width": 0.907407,
+            "height": 0.364583
+          }
+        },
+        {
+          "rule_id": "visual-width-incorrect",
+          "severity": "warn",
+          "description": "The product visual (el_visual) width is 980px (90.7% of canvas width) instead of approximately 60-70% for the portrait format.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.095312,
+            "width": 0.907407,
+            "height": 0.364583
+          }
+        },
+        {
+          "rule_id": "visual-content-incorrect",
+          "severity": "warn",
+          "description": "The product visual (el_visual) shows two phones instead of a single phone as specified for the portrait format.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.095312,
+            "width": 0.907407,
+            "height": 0.364583
+          }
+        }
+      ],
+      "qa_at": "2026-05-08T07:43:28.230Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_3_1200x628",
+      "format": "1200x628",
+      "png_path": "public/rendered-ads/campaigns/cam_68be559c/concept_3_1200x628.png",
+      "violations": [
+        {
+          "rule_id": "background-not-gradient",
+          "severity": "block",
+          "description": "The background is a solid color (#005786) instead of the required linear gradient from #00122C to #006A97."
+        },
+        {
+          "rule_id": "decorative-motif-present",
+          "severity": "warn",
+          "description": "Decorative motifs (vertical lines and wave curve) are present, but the brand rules explicitly state 'No motif' for this banner style."
+        },
+        {
+          "rule_id": "logo-includes-sublockup",
+          "severity": "block",
+          "description": "The logo (el_logo) includes the 'Powered by InteractiveBrokers' sub-lockup, which is not allowed on the leaderboard format. Only the MEXEM wordmark should be present.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.0796,
+            "width": 0.1867,
+            "height": 0.0891
+          }
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline (el_headline) font size (54px) is significantly smaller than the required ~85-95px for a leaderboard banner.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.2611,
+            "width": 0.55,
+            "height": 0.207
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) font size (14px) is significantly smaller than the required ~22-26px for a leaderboard banner, impacting legibility.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "disclaimer-placement-incorrect",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) is placed below the CTA, but it must be positioned between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "disclaimer-alignment-incorrect",
+          "severity": "warn",
+          "description": "The disclaimer (el_disclaimer) is center-aligned, but it should be left-aligned for the leaderboard format.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.8217,
+            "width": 0.9167,
+            "height": 0.035
+          }
+        },
+        {
+          "rule_id": "cta-not-bottom-band",
+          "severity": "block",
+          "description": "The CTA (el_cta) is a pill-shaped button, not the required full-width yellow band anchored to the bottom edge of the canvas for leaderboard format.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.4183,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-height-incorrect",
+          "severity": "warn",
+          "description": "The CTA (el_cta) height (56px) is smaller than the required ~80-90px for the full-width bottom band.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.4183,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-background-color-incorrect",
+          "severity": "block",
+          "description": "The CTA (el_cta) background is white, but it should be yellow (#F5C518) for the leaderboard format.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.4183,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-text-not-all-caps",
+          "severity": "warn",
+          "description": "The CTA (el_cta) text 'Confidential investment' is not in ALL CAPS as required.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.4183,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "cta-border-radius-present",
+          "severity": "block",
+          "description": "The CTA (el_cta) has a border-radius (pill shape), but the required bottom band CTA should have sharp corners (0 border-radius).",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.6306,
+            "width": 0.4183,
+            "height": 0.0892
+          }
+        },
+        {
+          "rule_id": "visual-region-missing",
+          "severity": "block",
+          "description": "The required device mockup visual region, typically on the right side of the canvas for leaderboards, is entirely missing from the banner."
+        }
+      ],
+      "qa_at": "2026-05-08T07:43:57.382Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_3_1080x1080",
+      "format": "1080x1080",
+      "png_path": "public/rendered-ads/campaigns/cam_68be559c/concept_3_1080x1080.png",
+      "violations": [
+        {
+          "rule_id": "logo-ibkr-color-mismatch",
+          "severity": "block",
+          "description": "The \"Powered by InteractiveBrokers\" sub-lockup in the logo is white, but it should be red (#D81222) according to brand rules.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.046,
+            "width": 0.296,
+            "height": 0.074
+          }
+        },
+        {
+          "rule_id": "cta-text-color-mismatch",
+          "severity": "warn",
+          "description": "The CTA text is white, but for a pill-shaped CTA, the text should be dark navy/black (#0A0F1F).",
+          "bbox_norm": {
+            "x": 0.225,
+            "y": 0.762,
+            "width": 0.551,
+            "height": 0.071
+          }
+        },
+        {
+          "rule_id": "background-gradient-mismatch",
+          "severity": "block",
+          "description": "The background is a solid color with decorative patterns, not the required linear gradient from #00122C to #006A97."
+        },
+        {
+          "rule_id": "decorative-motifs-present",
+          "severity": "warn",
+          "description": "Decorative motifs (vertical lines and wave curve) are present, but the brand rules require a minimal design with no such motifs."
+        },
+        {
+          "rule_id": "logo-not-top-center",
+          "severity": "warn",
+          "description": "The logo is placed top-left, but for a square banner, the best estimate from brand rules suggests it should be centered horizontally at the top.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.046,
+            "width": 0.296,
+            "height": 0.074
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer font size (18px) is too small for a square banner, which should be closer to 28-32px.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.89,
+            "width": 0.907,
+            "height": 0.027
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-above-cta",
+          "severity": "block",
+          "description": "The disclaimer is placed below the CTA, but it must be positioned above the CTA, between the headline and the CTA.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.89,
+            "width": 0.907,
+            "height": 0.027
+          }
+        },
+        {
+          "rule_id": "cta-background-color-mismatch",
+          "severity": "block",
+          "description": "The CTA background is dark blue, but for a pill-shaped CTA (similar to portrait style for square banners), it should be white (#FFFFFF).",
+          "bbox_norm": {
+            "x": 0.225,
+            "y": 0.762,
+            "width": 0.551,
+            "height": 0.071
+          }
+        },
+        {
+          "rule_id": "missing-device-mockup",
+          "severity": "block",
+          "description": "The banner is missing a device mockup, which is a required core visual element for MEXEM banners."
+        }
+      ],
+      "qa_at": "2026-05-08T07:44:18.730Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_3_1080x1920",
+      "format": "1080x1920",
+      "png_path": "public/rendered-ads/campaigns/cam_68be559c/concept_3_1080x1920.png",
+      "violations": [
+        {
+          "rule_id": "background-gradient-color-mismatch",
+          "severity": "block",
+          "description": "The background gradient colors do not match the brand specification of #00122C to #006A97. The banner uses a different blue gradient."
+        },
+        {
+          "rule_id": "unapproved-decorative-motifs",
+          "severity": "warn",
+          "description": "The banner includes unapproved decorative motifs such as vertical lines and a wave curve, which should be absent in this reference style."
+        },
+        {
+          "rule_id": "logo-not-centered",
+          "severity": "block",
+          "description": "The logo is positioned top-left instead of horizontally centered as required for portrait banners.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.026041,
+            "width": 0.130555,
+            "height": 0.045833
+          }
+        },
+        {
+          "rule_id": "logo-size-mismatch",
+          "severity": "block",
+          "description": "The logo is significantly smaller than the required ~700px width for portrait banners.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.026041,
+            "width": 0.130555,
+            "height": 0.045833
+          }
+        },
+        {
+          "rule_id": "logo-position-too-high",
+          "severity": "warn",
+          "description": "The logo is positioned too high, at y=50px, instead of within the top 10-15% of the canvas.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.026041,
+            "width": 0.130555,
+            "height": 0.045833
+          }
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline font size (90px) is smaller than the specified range of 120-160px for portrait banners.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.354166,
+            "width": 0.907407,
+            "height": 0.154687
+          }
+        },
+        {
+          "rule_id": "headline-position-too-low",
+          "severity": "warn",
+          "description": "The headline is positioned too low, starting at y=680, instead of around y=400.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.354166,
+            "width": 0.907407,
+            "height": 0.154687
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer font size (20px) is smaller than the specified range of 28-32px for portrait banners.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.934895,
+            "width": 0.907407,
+            "height": 0.018229
+          }
+        },
+        {
+          "rule_id": "disclaimer-below-cta",
+          "severity": "block",
+          "description": "The disclaimer is placed below the CTA, but it should be positioned between the headline and the CTA.",
+          "bbox_norm": {
+            "x": 0.046296,
+            "y": 0.934895,
+            "width": 0.907407,
+            "height": 0.018229
+          }
+        },
+        {
+          "rule_id": "cta-text-mismatch",
+          "severity": "warn",
+          "description": "The CTA text \"Confidential investment\" does not match the expected \"START INVESTING\" or similar action-oriented phrasing.",
+          "bbox_norm": {
+            "x": 0.22037,
+            "y": 0.614583,
+            "width": 0.559259,
+            "height": 0.04375
+          }
+        },
+        {
+          "rule_id": "cta-text-not-all-caps",
+          "severity": "warn",
+          "description": "The CTA text is not in ALL CAPS as required.",
+          "bbox_norm": {
+            "x": 0.22037,
+            "y": 0.614583,
+            "width": 0.559259,
+            "height": 0.04375
+          }
+        },
+        {
+          "rule_id": "cta-includes-chevron",
+          "severity": "warn",
+          "description": "The CTA includes a chevron, which is not permitted in portrait banners.",
+          "bbox_norm": {
+            "x": 0.22037,
+            "y": 0.614583,
+            "width": 0.559259,
+            "height": 0.04375
+          }
+        },
+        {
+          "rule_id": "missing-device-mockup",
+          "severity": "block",
+          "description": "The banner is missing the required device mockup (single phone) and subtle ghost candlestick pattern in the visual region."
+        }
+      ],
+      "qa_at": "2026-05-08T07:44:53.309Z",
+      "model": "gemini-2.5-flash"
+    }
+  ],
+  "concept_summary": [
+    {
+      "concept_id": "concept_1",
+      "total_banners": 3,
+      "banners_with_violations": 3,
+      "violation_count": 40,
+      "severities": {
+        "info": 0,
+        "warn": 24,
+        "block": 16
+      }
+    },
+    {
+      "concept_id": "concept_2",
+      "total_banners": 3,
+      "banners_with_violations": 3,
+      "violation_count": 44,
+      "severities": {
+        "info": 1,
+        "warn": 25,
+        "block": 18
+      }
+    },
+    {
+      "concept_id": "concept_3",
+      "total_banners": 3,
+      "banners_with_violations": 3,
+      "violation_count": 35,
+      "severities": {
+        "info": 0,
+        "warn": 17,
+        "block": 18
+      }
+    }
+  ]
+}

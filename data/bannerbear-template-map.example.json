@@ -1,0 +1,44 @@
+{
+  "version": "1",
+  "notes": "Each entry maps an ad size to a Bannerbear template UID. In production the brand intake reads the matching BANNERBEAR_TEMPLATE_<W>x<H> env var first, then falls back to the templateUid here. Strings starting with 'REPLACE_WITH' are treated as placeholders and skipped — never paste real UIDs into a tracked .example.json.",
+  "entries": [
+    {
+      "channel": "leaderboard",
+      "size": { "width": 1200, "height": 628 },
+      "templateUid": "REPLACE_WITH_BANNERBEAR_UID_1200x628",
+      "envVar": "BANNERBEAR_TEMPLATE_1200x628",
+      "layers": [
+        { "layerName": "headline", "role": "headline" },
+        { "layerName": "subheadline", "role": "subheadline" },
+        { "layerName": "cta", "role": "cta" },
+        { "layerName": "logo", "role": "logo" },
+        { "layerName": "background_image", "role": "background" }
+      ]
+    },
+    {
+      "channel": "instagram-feed",
+      "size": { "width": 1080, "height": 1080 },
+      "templateUid": "REPLACE_WITH_BANNERBEAR_UID_1080x1080",
+      "envVar": "BANNERBEAR_TEMPLATE_1080x1080",
+      "layers": [
+        { "layerName": "headline", "role": "headline" },
+        { "layerName": "subheadline", "role": "subheadline" },
+        { "layerName": "cta", "role": "cta" },
+        { "layerName": "logo", "role": "logo" },
+        { "layerName": "background_image", "role": "background" }
+      ]
+    },
+    {
+      "channel": "instagram-story",
+      "size": { "width": 1080, "height": 1920 },
+      "templateUid": "REPLACE_WITH_BANNERBEAR_UID_1080x1920",
+      "envVar": "BANNERBEAR_TEMPLATE_1080x1920",
+      "layers": [
+        { "layerName": "headline", "role": "headline" },
+        { "layerName": "cta", "role": "cta" },
+        { "layerName": "logo", "role": "logo" },
+        { "layerName": "background_image", "role": "background" }
+      ]
+    }
+  ]
+}
