@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.1.0",
+  "formats": {
+    "1200x628": {
+      "compositions": {
+        "hero_overlay": {
+          "description": "Leaderboard with text overlay on full-bleed visual. Text-stack left-aligned with column cohesion.",
+          "text_stack_cluster": {
+            "alignment": "left-of-headline",
+            "head_subhead_gap_em": 0.4,
+            "cta_gap_above_em": 0.6
+          },
+          "visual_cluster": { "coverage": "full" }
+        },
+        "text_leading": {
+          "description": "Z-pattern: text-stack left half, visual right half. Standard leaderboard hierarchy.",
+          "text_stack_cluster": {
+            "alignment": "left-of-headline",
+            "head_subhead_gap_em": 0.4,
+            "cta_gap_above_em": 0.6
+          },
+          "visual_cluster": { "coverage": "right-half", "min_width_pct": 40 }
+        },
+        "bottom_anchor": {
+          "description": "CTA on the Z-terminal — anchored to the bottom-left of the safe area. Headline + subhead in upper third.",
+          "text_stack_cluster": {
+            "alignment": "left-of-headline",
+            "head_subhead_gap_em": 0.4,
+            "cta_anchor": "bottom-left"
+          }
+        }
+      }
+    },
+    "1080x1080": {
+      "compositions": {
+        "centered_mockup_with_headline": {
+          "description": "Square hero — mockup centered, headline + subhead + CTA stacked centrally.",
+          "text_stack_cluster": {
+            "alignment": "centered-on-headline",
+            "head_subhead_gap_em": 0.3,
+            "cta_gap_above_em": 0.8
+          },
+          "visual_cluster": { "coverage": "centered" }
+        },
+        "hero_overlay": {
+          "description": "Square with full-bleed visual. Text-stack left-aligned.",
+          "text_stack_cluster": {
+            "alignment": "left-of-headline",
+            "head_subhead_gap_em": 0.3,
+            "cta_gap_above_em": 0.5
+          },
+          "visual_cluster": { "coverage": "full" }
+        },
+        "inline_with_headline": {
+          "description": "Square with inline-with-headline composition. Standard column-aligned stack.",
+          "text_stack_cluster": {
+            "alignment": "left-of-headline",
+            "head_subhead_gap_em": 0.3,
+            "cta_gap_above_em": 0.5
+          }
+        }
+      }
+    },
+    "1080x1920": {
+      "safe_area_extra": { "top": 220, "bottom": 220 },
+      "compositions": {
+        "bottom_anchor": {
+          "description": "Story format. 220px platform safe zones top/bottom (Instagram, TikTok, Snap UI). CTA anchored at the bottom of the safe area, well above the bottom platform UI.",
+          "text_stack_cluster": {
+            "alignment": "left-of-headline",
+            "head_subhead_gap_em": 0.4,
+            "cta_anchor": "bottom-left"
+          }
+        },
+        "centered": {
+          "description": "Story format, centered hero. Same 220px platform safe zones. Text horizontally centered.",
+          "text_stack_cluster": {
+            "alignment": "centered-on-headline",
+            "head_subhead_gap_em": 0.4,
+            "cta_gap_above_em": 0.8
+          }
+        },
+        "visual_leading": {
+          "description": "Story with visual-leading composition. Text-stack still column-aligned; CTA anchored at bottom-left of safe area.",
+          "text_stack_cluster": {
+            "alignment": "left-of-headline",
+            "head_subhead_gap_em": 0.4,
+            "cta_anchor": "bottom-left"
+          }
+        },
+        "text_leading": {
+          "description": "Story with text-leading composition. Same rules — column alignment + bottom-anchored CTA above the platform UI band.",
+          "text_stack_cluster": {
+            "alignment": "left-of-headline",
+            "head_subhead_gap_em": 0.4,
+            "cta_anchor": "bottom-left"
+          }
+        },
+        "hero_overlay": {
+          "description": "Story with full-bleed visual. Text overlay, column-aligned, CTA bottom-anchored.",
+          "text_stack_cluster": {
+            "alignment": "left-of-headline",
+            "head_subhead_gap_em": 0.4,
+            "cta_anchor": "bottom-left"
+          }
+        }
+      }
+    }
+  }
+}

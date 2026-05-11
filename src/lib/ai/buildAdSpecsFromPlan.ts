@@ -55,6 +55,13 @@ import {
   loadGeneratedAssetResolver,
   type GeneratedAssetResolver,
 } from "@/lib/generators/generatedAssetResolver";
+import {
+  loadCompositionRules,
+  findRule as findCompositionRule,
+  findFormat as findCompositionFormat,
+  applyCompositionRules,
+  clampToSafeZones,
+} from "@/lib/ai/applyCompositionRules";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Build CampaignAdSpecs from AI concept stubs.
@@ -158,6 +165,10 @@ export interface AdBuildContext {
   // here exposes those assets to the per-spec builder. Null when the brief
   // didn't ask for any — preserving today's behavior end-to-end.
   generatedAssetResolver?: GeneratedAssetResolver | null;
+  // Optional composition-rules table. When present and a matching
+  // (format, composition) rule exists, applyCompositionRules() re-aligns
+  // the text-stack cluster on the manifest. Loaded lazily by loadAdBuildContext.
+  compositionRules?: import("@/lib/schemas/compositionRules.schema").CompositionRulesFile | null;
 }
 
 export interface LoadAdBuildContextOptions {
@@ -233,6 +244,8 @@ export async function loadAdBuildContext(
         })
       : null;
 
+  const compositionRules = await loadCompositionRules(cwd);
+
   return {
     brandKit,
     assets,
@@ -242,6 +255,7 @@ export async function loadAdBuildContext(
     activeAssignments,
     tagSidecar,
     generatedAssetResolver,
+    compositionRules,
   };
 }
 
@@ -298,6 +312,12 @@ export function buildAdSpecsForConcept(
   args: BuildAdsFromConceptOptions,
 ): CampaignAdSpec[] {
   const { context, brief, campaign_id, concept, warnings } = args;
+  // POC: post-pass that re-aligns the text-stack cluster according to
+  // data/composition-rules.generated.json. Currently rules exist only for
+  // (1200x628, hero_overlay); other (format, composition) pairs are no-ops.
+  // Loaded lazily on first call; the file is small and cached after first read.
+  const compositionRules = context.compositionRules ?? null;
+  const visualComposition = args.visualSpec?.composition;
   const conceptIdx = args.conceptIndexInPlan ?? 0;
   const ctaText = concept.copy_package.cta;
   const disclaimerText = concept.copy_package.disclaimer;
@@ -467,6 +487,39 @@ export function buildAdSpecsForConcept(
         demoAdSpec.composite_metadata.screenshot_context_confidence,
       mockup_slot_source: demoAdSpec.composite_metadata.mockup_slot_source,
     };
+
+    // Composition-rules post-pass. Two passes:
+    //   1. Format-level safe-zone clamp — ALWAYS runs when the format
+    //      declares safe_area_extra (e.g. story 220px platform UI bands).
+    //      This is a safety requirement: the text-stack must stay inside
+    //      the safe area regardless of which composition the AI picked.
+    //   2. Composition-specific cluster rule — runs only when a rule
+    //      exists for the (format, composition) pair.
+    const formatRules = findCompositionFormat(compositionRules, format);
+    if (formatRules?.safe_area_extra) {
+      const clampNotes = clampToSafeZones(
+        demoAdSpec.manifest,
+        { width: size.width, height: size.height },
+        formatRules.safe_area_extra,
+      );
+      for (const n of clampNotes) {
+        warnings.push(`composition_rules ${format}: ${n}`);
+      }
+    }
+    const rule = findCompositionRule(compositionRules, format, visualComposition);
+    if (rule) {
+      const result = applyCompositionRules(
+        demoAdSpec.manifest,
+        rule,
+        { width: size.width, height: size.height },
+        formatRules?.safe_area_extra,
+      );
+      if (result.applied) {
+        for (const n of result.notes) {
+          warnings.push(`composition_rules ${format}/${visualComposition}: ${n}`);
+        }
+      }
+    }
 
     specs.push({
       ad_id: `ad_${concept.concept_id}_${format}`,
