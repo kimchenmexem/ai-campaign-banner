@@ -181,44 +181,51 @@ export async function planCampaign(
   // overwritten before manifest construction.
   const targetLocale = mapLanguageToLocale(brief.language);
   const timeoutMs = readTranslatorTimeoutMs();
-  const copyByConceptId = new Map<string, LocalizedCopyPackage>();
-  for (const concept of refined.concepts) {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), timeoutMs);
-    try {
-      const copy = await fetchCampaignCopy(
-        {
-          brief: {
-            marketingMessage: brief.marketing_message,
-            campaignGoal: brief.campaign_goal,
-            targetAudience: brief.target_audience,
-            notes: brief.notes,
+  // Fetch every concept's copy in parallel. Concepts are independent: there
+  // is no cross-concept dependency in the translator contract, so a single
+  // Promise.all collapses the latency from N×perCallTime to one round-trip.
+  // Promise.all rejects fast on the first failure; outstanding requests are
+  // aborted by their own timers and the timeout/finally cleanup still runs.
+  const copyEntries = await Promise.all(
+    refined.concepts.map(async (concept) => {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const copy = await fetchCampaignCopy(
+          {
+            brief: {
+              marketingMessage: brief.marketing_message,
+              campaignGoal: brief.campaign_goal,
+              targetAudience: brief.target_audience,
+              notes: brief.notes,
+            },
+            targetLocale,
+            tone: brief.tone,
+            riskWarningRequired: brief.risk_warning_required,
+            conceptHint: {
+              conceptId: concept.concept_id,
+              name: concept.name,
+              strategicIdea: concept.strategic_idea,
+            },
           },
-          targetLocale,
-          tone: brief.tone,
-          riskWarningRequired: brief.risk_warning_required,
-          conceptHint: {
-            conceptId: concept.concept_id,
-            name: concept.name,
-            strategicIdea: concept.strategic_idea,
-          },
-        },
-        { signal: controller.signal },
-      );
-      copyByConceptId.set(concept.concept_id, copy);
-    } catch (err) {
-      if (controller.signal.aborted) {
-        throw new Error(
-          `marketing-translator timed out for concept ${concept.concept_id}`,
+          { signal: controller.signal },
         );
+        return [concept.concept_id, copy] as const;
+      } catch (err) {
+        if (controller.signal.aborted) {
+          throw new Error(
+            `marketing-translator timed out for concept ${concept.concept_id}`,
+          );
+        }
+        throw new Error(
+          `marketing-translator failed for concept ${concept.concept_id}: ${redactSecret((err as Error).message)}`,
+        );
+      } finally {
+        clearTimeout(timer);
       }
-      throw new Error(
-        `marketing-translator failed for concept ${concept.concept_id}: ${redactSecret((err as Error).message)}`,
-      );
-    } finally {
-      clearTimeout(timer);
-    }
-  }
+    }),
+  );
+  const copyByConceptId = new Map<string, LocalizedCopyPackage>(copyEntries);
   refined = {
     ...refined,
     concepts: refined.concepts.map((c) => {
