@@ -180,29 +180,44 @@ export async function planCampaign(
   // direction / midjourney prompts are kept; only the copy fields are
   // overwritten before manifest construction.
   const targetLocale = mapLanguageToLocale(brief.language);
+  const timeoutMs = readTranslatorTimeoutMs();
   const copyByConceptId = new Map<string, LocalizedCopyPackage>();
   for (const concept of refined.concepts) {
-    const copy = await fetchCampaignCopy({
-      brief: {
-        marketingMessage: brief.marketing_message,
-        campaignGoal: brief.campaign_goal,
-        targetAudience: brief.target_audience,
-        notes: brief.notes,
-      },
-      targetLocale,
-      tone: brief.tone,
-      riskWarningRequired: brief.risk_warning_required,
-      conceptHint: {
-        conceptId: concept.concept_id,
-        name: concept.name,
-        strategicIdea: concept.strategic_idea,
-      },
-    }).catch((err) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const copy = await fetchCampaignCopy(
+        {
+          brief: {
+            marketingMessage: brief.marketing_message,
+            campaignGoal: brief.campaign_goal,
+            targetAudience: brief.target_audience,
+            notes: brief.notes,
+          },
+          targetLocale,
+          tone: brief.tone,
+          riskWarningRequired: brief.risk_warning_required,
+          conceptHint: {
+            conceptId: concept.concept_id,
+            name: concept.name,
+            strategicIdea: concept.strategic_idea,
+          },
+        },
+        { signal: controller.signal },
+      );
+      copyByConceptId.set(concept.concept_id, copy);
+    } catch (err) {
+      if (controller.signal.aborted) {
+        throw new Error(
+          `marketing-translator timed out for concept ${concept.concept_id}`,
+        );
+      }
       throw new Error(
         `marketing-translator failed for concept ${concept.concept_id}: ${redactSecret((err as Error).message)}`,
       );
-    });
-    copyByConceptId.set(concept.concept_id, copy);
+    } finally {
+      clearTimeout(timer);
+    }
   }
   refined = {
     ...refined,
@@ -464,6 +479,16 @@ function redactSecret(s: string): string {
   return s
     .replace(/Bearer\s+[A-Za-z0-9._-]+/gi, "Bearer [redacted]")
     .replace(/sk-[A-Za-z0-9._-]{8,}/g, "sk-[redacted]");
+}
+
+// Per-call timeout for outbound /api/campaign-copy requests. Defaults to
+// 15 seconds; override with MARKETING_TRANSLATOR_TIMEOUT_MS. A non-positive
+// or non-numeric value falls back to the default rather than disabling.
+function readTranslatorTimeoutMs(): number {
+  const raw = process.env.MARKETING_TRANSLATOR_TIMEOUT_MS;
+  if (!raw) return 15_000;
+  const n = Number(raw);
+  return Number.isFinite(n) && n > 0 ? n : 15_000;
 }
 
 // Map the brief's 2-letter language code to the BCP-47 locale that
