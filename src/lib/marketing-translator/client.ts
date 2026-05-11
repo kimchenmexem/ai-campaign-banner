@@ -47,6 +47,16 @@ export async function fetchCampaignCopy(
   const apiKey = opts.apiKey ?? process.env.MARKETING_TRANSLATOR_API_KEY;
 
   if (!baseUrl) {
+    // Production guard: the deterministic mock is a dev convenience. If the
+    // translator URL is unset in production it means the integration was
+    // misconfigured at deploy time; we must fail loudly rather than silently
+    // emit "[mock <locale>] …" copy into live campaigns.
+    if (process.env.NODE_ENV === "production") {
+      throw new MarketingTranslatorError(
+        500,
+        "MARKETING_TRANSLATOR_API_URL is required in production. Refusing to use the deterministic mock client.",
+      );
+    }
     return mockCampaignCopy(validated);
   }
 
