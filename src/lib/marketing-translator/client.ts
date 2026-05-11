@@ -16,11 +16,18 @@
 
 import {
   CampaignCopyRequestSchema,
+  CampaignCopyBatchRequestSchema,
+  CampaignCopyBatchResponseSchema,
   LocalizedCopyPackageSchema,
   type CampaignCopyRequest,
+  type CampaignCopyBatchRequest,
+  type CampaignCopyBatchResponse,
   type LocalizedCopyPackage,
 } from "@/lib/marketing-translator/schema";
-import { mockCampaignCopy } from "@/lib/marketing-translator/mock";
+import {
+  mockCampaignCopy,
+  mockCampaignCopyBatch,
+} from "@/lib/marketing-translator/mock";
 
 export interface FetchCampaignCopyOptions {
   signal?: AbortSignal;
@@ -88,6 +95,59 @@ export async function fetchCampaignCopy(
     throw new MarketingTranslatorError(
       502,
       `marketing-translator response failed schema: ${parsed.error.issues
+        .map((i) => `${i.path.join(".")}: ${i.message}`)
+        .join("; ")}`,
+    );
+  }
+  return parsed.data;
+}
+
+export async function fetchCampaignCopyBatch(
+  request: CampaignCopyBatchRequest,
+  opts: FetchCampaignCopyOptions = {},
+): Promise<CampaignCopyBatchResponse> {
+  const validated = CampaignCopyBatchRequestSchema.parse(request);
+  const baseUrl = opts.baseUrl ?? process.env.MARKETING_TRANSLATOR_API_URL;
+  const apiKey = opts.apiKey ?? process.env.MARKETING_TRANSLATOR_API_KEY;
+
+  if (!baseUrl) {
+    if (process.env.NODE_ENV === "production") {
+      throw new MarketingTranslatorError(
+        500,
+        "MARKETING_TRANSLATOR_API_URL is required in production. Refusing to use the deterministic mock client.",
+      );
+    }
+    return mockCampaignCopyBatch(validated);
+  }
+
+  const url = new URL("/api/campaign-copy/batch", baseUrl).toString();
+  const headers: Record<string, string> = {
+    "content-type": "application/json",
+    accept: "application/json",
+  };
+  if (apiKey) headers.authorization = `Bearer ${apiKey}`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(validated),
+    signal: opts.signal,
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new MarketingTranslatorError(
+      res.status,
+      `marketing-translator ${res.status}: ${redact(text).slice(0, 500)}`,
+    );
+  }
+
+  const json = (await res.json()) as unknown;
+  const parsed = CampaignCopyBatchResponseSchema.safeParse(json);
+  if (!parsed.success) {
+    throw new MarketingTranslatorError(
+      502,
+      `marketing-translator batch response failed schema: ${parsed.error.issues
         .map((i) => `${i.path.join(".")}: ${i.message}`)
         .join("; ")}`,
     );

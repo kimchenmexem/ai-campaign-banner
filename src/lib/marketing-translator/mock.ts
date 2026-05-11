@@ -9,6 +9,8 @@
 
 import type {
   CampaignCopyRequest,
+  CampaignCopyBatchRequest,
+  CampaignCopyBatchResponse,
   LocalizedCopyPackage,
 } from "@/lib/marketing-translator/schema";
 
@@ -35,5 +37,29 @@ export function mockCampaignCopy(req: CampaignCopyRequest): LocalizedCopyPackage
       ? `[mock disclaimer]`
       : `[mock disclaimer] Capital at risk.`,
     complianceNotes: [],
+  };
+}
+
+// Batch mock: gives each concept a distinct CTA verb so dev-mode mock copy
+// looks plausibly like a real campaign (vs three identical "Learn more"s).
+const MOCK_CTA_VERBS = ["Learn more", "Get started", "Explore", "Compare", "Discover", "See plans"];
+
+export function mockCampaignCopyBatch(req: CampaignCopyBatchRequest): CampaignCopyBatchResponse {
+  const tone = Array.isArray(req.tone) ? req.tone.join("/") : req.tone;
+  const message = req.brief.marketingMessage.slice(0, 80);
+  return {
+    locale: req.targetLocale,
+    direction: inferDirection(req.targetLocale),
+    concepts: req.concepts.map((c, i) => ({
+      conceptId: c.conceptId,
+      headline: `[mock ${req.targetLocale}] ${c.name ?? "concept " + (i + 1)}: ${message}`,
+      subheadline: `[mock ${req.targetLocale}] ${tone} • ${c.strategicIdea?.slice(0, 60) ?? c.name ?? "concept " + (i + 1)}`,
+      body: `[mock ${req.targetLocale}] ${req.brief.campaignGoal} narrative for ${c.name ?? "concept " + (i + 1)}.`,
+      cta: `[mock] ${MOCK_CTA_VERBS[i % MOCK_CTA_VERBS.length]}`,
+      disclaimer: req.riskWarningRequired === false
+        ? `[mock disclaimer]`
+        : `[mock disclaimer] Capital at risk.`,
+      complianceNotes: [],
+    })),
   };
 }

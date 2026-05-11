@@ -33,8 +33,8 @@ import {
   loadMidjourneyUploads,
   writeMidjourneyUploads,
 } from "@/lib/midjourney/loadUploads";
-import { fetchCampaignCopy } from "@/lib/marketing-translator/client";
-import type { LocalizedCopyPackage } from "@/lib/marketing-translator/schema";
+import { fetchCampaignCopyBatch } from "@/lib/marketing-translator/client";
+import type { CampaignCopyBatchConceptResult } from "@/lib/marketing-translator/schema";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Campaign Planner — the orchestrator.
@@ -181,51 +181,60 @@ export async function planCampaign(
   // overwritten before manifest construction.
   const targetLocale = mapLanguageToLocale(brief.language);
   const timeoutMs = readTranslatorTimeoutMs();
-  // Fetch every concept's copy in parallel. Concepts are independent: there
-  // is no cross-concept dependency in the translator contract, so a single
-  // Promise.all collapses the latency from N×perCallTime to one round-trip.
-  // Promise.all rejects fast on the first failure; outstanding requests are
-  // aborted by their own timers and the timeout/finally cleanup still runs.
-  const copyEntries = await Promise.all(
-    refined.concepts.map(async (concept) => {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), timeoutMs);
-      try {
-        const copy = await fetchCampaignCopy(
-          {
-            brief: {
-              marketingMessage: brief.marketing_message,
-              campaignGoal: brief.campaign_goal,
-              targetAudience: brief.target_audience,
-              notes: brief.notes,
-            },
-            targetLocale,
-            tone: brief.tone,
-            riskWarningRequired: brief.risk_warning_required,
-            conceptHint: {
-              conceptId: concept.concept_id,
-              name: concept.name,
-              strategicIdea: concept.strategic_idea,
-            },
-          },
-          { signal: controller.signal },
-        );
-        return [concept.concept_id, copy] as const;
-      } catch (err) {
-        if (controller.signal.aborted) {
-          throw new Error(
-            `marketing-translator timed out for concept ${concept.concept_id}`,
-          );
-        }
-        throw new Error(
-          `marketing-translator failed for concept ${concept.concept_id}: ${redactSecret((err as Error).message)}`,
-        );
-      } finally {
-        clearTimeout(timer);
-      }
-    }),
+  // One batch round-trip for all concepts. The translator's /batch endpoint
+  // gives the model all concepts at once so it can produce distinct
+  // headlines / CTAs per concept (avoids the "Explore Your Options × 3"
+  // failure mode of independent per-concept calls). The richer per-concept
+  // context (target_emotion, mood, composition) lets the model write copy
+  // that matches the visual strategy, not just the marketing message.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  let batchResult;
+  try {
+    batchResult = await fetchCampaignCopyBatch(
+      {
+        brief: {
+          marketingMessage: brief.marketing_message,
+          campaignGoal: brief.campaign_goal,
+          targetAudience: brief.target_audience,
+          notes: brief.notes,
+        },
+        targetLocale,
+        tone: brief.tone,
+        riskWarningRequired: brief.risk_warning_required,
+        concepts: refined.concepts.map((c) => ({
+          conceptId: c.concept_id,
+          name: c.name,
+          strategicIdea: c.strategic_idea,
+          targetEmotion: c.target_emotion,
+          tone: c.tone,
+          composition: c.visual_direction?.composition,
+          moodKeywords: c.visual_direction?.mood_keywords,
+        })),
+      },
+      { signal: controller.signal },
+    );
+  } catch (err) {
+    if (controller.signal.aborted) {
+      throw new Error(`marketing-translator batch timed out`);
+    }
+    throw new Error(
+      `marketing-translator batch failed: ${redactSecret((err as Error).message)}`,
+    );
+  } finally {
+    clearTimeout(timer);
+  }
+  const copyByConceptId = new Map<string, CampaignCopyBatchConceptResult>(
+    batchResult.concepts.map((c) => [c.conceptId, c]),
   );
-  const copyByConceptId = new Map<string, LocalizedCopyPackage>(copyEntries);
+  // Hard guard: the translator must have returned a copy for every concept.
+  for (const c of refined.concepts) {
+    if (!copyByConceptId.has(c.concept_id)) {
+      throw new Error(
+        `marketing-translator batch did not return copy for concept ${c.concept_id}`,
+      );
+    }
+  }
   refined = {
     ...refined,
     concepts: refined.concepts.map((c) => {
