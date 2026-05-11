@@ -56,8 +56,16 @@ export function findRule(
   format: string,
   composition: string | undefined,
 ): CompositionRule | null {
-  if (!rules || !composition) return null;
-  return rules.formats?.[format]?.compositions?.[composition] ?? null;
+  if (!rules) return null;
+  const fmt = rules.formats?.[format];
+  if (!fmt) return null;
+  // Explicit composition rule wins; otherwise fall back to the per-format
+  // default. This guarantees basic cluster cohesion for any composition the
+  // AI might return — including ones we haven't enumerated yet.
+  if (composition && fmt.compositions?.[composition]) {
+    return fmt.compositions[composition];
+  }
+  return fmt.default ?? null;
 }
 
 export interface Canvas {
@@ -89,11 +97,10 @@ export function applyCompositionRules(
 
   // Compute the bottom y the CTA must respect (canvas bottom edge minus
   // any platform safe zone the format declares — e.g. 220px for stories).
+  // Top/left clamps live in clampToSafeZones and are not needed here.
   const bottomReserved = (safeAreaExtra?.bottom ?? 0) + DEFAULT_EDGE_PAD;
-  const ctaMaxY = canvas.height - bottomReserved - cta.height;
-  const topReserved = (safeAreaExtra?.top ?? 0) + DEFAULT_EDGE_PAD;
-  const leftReserved = (safeAreaExtra?.left ?? 0) + DEFAULT_EDGE_PAD;
   const rightReserved = (safeAreaExtra?.right ?? 0) + DEFAULT_EDGE_PAD;
+  const ctaMaxY = canvas.height - bottomReserved - cta.height;
 
   // ── 1. Head → subhead vertical gap ────────────────────────────────────
   if (subheadline && stack.head_subhead_gap_em != null) {

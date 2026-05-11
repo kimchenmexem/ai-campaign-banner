@@ -2,6 +2,14 @@
   "schema_version": "1.1.0",
   "formats": {
     "1200x628": {
+      "default": {
+        "description": "Fallback for any leaderboard composition not explicitly listed. Basic column-aligned text-stack with industry-standard em-based gaps.",
+        "text_stack_cluster": {
+          "alignment": "left-of-headline",
+          "head_subhead_gap_em": 0.4,
+          "cta_gap_above_em": 0.6
+        }
+      },
       "compositions": {
         "hero_overlay": {
           "description": "Leaderboard with text overlay on full-bleed visual. Text-stack left-aligned with column cohesion.",
@@ -32,6 +40,14 @@
       }
     },
     "1080x1080": {
+      "default": {
+        "description": "Fallback for any square composition not explicitly listed. Column-aligned text-stack with tight 0.3em head→sub gap and 0.5em sub→cta gap.",
+        "text_stack_cluster": {
+          "alignment": "left-of-headline",
+          "head_subhead_gap_em": 0.3,
+          "cta_gap_above_em": 0.5
+        }
+      },
       "compositions": {
         "centered_mockup_with_headline": {
           "description": "Square hero — mockup centered, headline + subhead + CTA stacked centrally.",
@@ -63,6 +79,14 @@
     },
     "1080x1920": {
       "safe_area_extra": { "top": 220, "bottom": 220 },
+      "default": {
+        "description": "Fallback for any story composition not explicitly listed. Column-aligned with bottom-anchored CTA above the platform UI band (always respects the 220px safe zones).",
+        "text_stack_cluster": {
+          "alignment": "left-of-headline",
+          "head_subhead_gap_em": 0.4,
+          "cta_anchor": "bottom-left"
+        }
+      },
       "compositions": {
         "bottom_anchor": {
           "description": "Story format. 220px platform safe zones top/bottom (Instagram, TikTok, Snap UI). CTA anchored at the bottom of the safe area, well above the bottom platform UI.",

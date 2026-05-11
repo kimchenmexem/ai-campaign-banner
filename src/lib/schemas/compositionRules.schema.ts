@@ -81,6 +81,10 @@ export type SafeAreaExtra = z.infer<typeof SafeAreaExtraSchema>;
 
 export const FormatRulesSchema = z.object({
   safe_area_extra: SafeAreaExtraSchema.optional(),
+  // Fallback rule applied for any composition that doesn't have its own
+  // entry under `compositions`. Use this to guarantee at least basic
+  // cluster cohesion (column-align + sane gaps) for every (format, *) pair.
+  default: CompositionRuleSchema.optional(),
   compositions: z.record(z.string(), CompositionRuleSchema),
 });
 export type FormatRules = z.infer<typeof FormatRulesSchema>;
