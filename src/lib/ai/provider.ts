@@ -29,7 +29,7 @@ import {
 // before being thrown.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export type AIProviderName = "openai" | "anthropic" | "mock";
+export type AIProviderName = "openai" | "anthropic" | "gemini" | "mock";
 
 export interface AIProviderInput {
   brief: CampaignBrief;
@@ -77,6 +77,7 @@ export function readProviderName(): AIProviderName {
   const v = process.env.AI_PROVIDER?.toLowerCase().trim();
   if (v === "openai") return "openai";
   if (v === "anthropic") return "anthropic";
+  if (v === "gemini") return "gemini";
   return "mock";
 }
 
@@ -1374,12 +1375,102 @@ export class AnthropicProvider implements AIProvider {
   }
 }
 
+// ── Gemini provider ─────────────────────────────────────────────────────────
+// Same AIProvider contract as OpenAI/Anthropic, against Google's Gen AI SDK
+// (`@google/genai`, already used by the visionQa module). Gemini brings a
+// distinctly different creative voice — adding it as a third strategy
+// provider widens the variety of concepts the planner can produce.
+//
+// Implements the required `generateStructuredCampaignPlan`. The optional
+// `refineCampaignPlan` / `planVisualLayoutsForCampaign` are deliberately
+// skipped for the MVP: the planner falls back to the original plan + PRNG
+// visual choices when those are absent, which is fine and keeps the
+// rollout small. Both can be added later for parity with OpenAI.
+export class GeminiProvider implements AIProvider {
+  readonly name = "gemini" as const;
+
+  async generateStructuredCampaignPlan(
+    input: AIProviderInput,
+    opts?: AIProviderCallOpts,
+  ): Promise<AICampaignPlanRaw> {
+    requireEnv("GEMINI_API_KEY");
+    const model = process.env.GEMINI_MODEL ?? "gemini-2.5-flash";
+    let GoogleGenAI: typeof import("@google/genai").GoogleGenAI;
+    try {
+      ({ GoogleGenAI } = await import("@google/genai"));
+    } catch (err) {
+      throw new Error(
+        `Gemini SDK not installed. ${redact((err as Error).message)}`,
+      );
+    }
+    const client = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+    const isExploratory = opts?.creativeMode === "exploratory";
+    // Gemini's temperature range is 0..2. 0.85 standard / 1.2 exploratory
+    // mirrors OpenAI's calibration; higher than ~1.3 starts producing
+    // malformed JSON on Gemini-Flash.
+    const temperature = isExploratory ? 1.2 : 0.85;
+    const systemPrompt = isExploratory
+      ? SYSTEM_PROMPT + EXPLORATORY_CONCEPT_SUFFIX
+      : SYSTEM_PROMPT;
+    // Retry on 503 UNAVAILABLE — gemini-2.5-flash is throttled and
+    // returns "high demand" responses regularly. Exponential backoff,
+    // max 4 attempts (matches the visionQa module's retry policy).
+    const callOnce = async () =>
+      client.models.generateContent({
+        model,
+        contents: [
+          { role: "user", parts: [{ text: buildUserPrompt(input) }] },
+        ],
+        config: {
+          systemInstruction: { parts: [{ text: systemPrompt }] },
+          temperature,
+          responseMimeType: "application/json",
+          // Bumped from 4096 because Gemini-Flash's JSON for a 3-concept
+          // plan with midjourney_prompt_pack regularly lands at 5-6k tokens.
+          maxOutputTokens: 8192,
+        },
+      });
+    let raw: unknown;
+    try {
+      let resp: Awaited<ReturnType<typeof callOnce>> | null = null;
+      let lastErr: unknown = null;
+      for (let attempt = 0; attempt < 4; attempt++) {
+        try {
+          resp = await callOnce();
+          lastErr = null;
+          break;
+        } catch (err) {
+          lastErr = err;
+          const msg = (err as Error)?.message ?? "";
+          const isRetryable =
+            msg.includes("503") || msg.includes("UNAVAILABLE") || msg.includes("429");
+          if (!isRetryable || attempt === 3) throw err;
+          // Exponential backoff: 1s, 3s, 7s
+          const delayMs = 1000 * Math.pow(2, attempt + 1) - 1000;
+          await new Promise((r) => setTimeout(r, delayMs));
+        }
+      }
+      if (!resp) throw lastErr ?? new Error("Gemini call failed without a response");
+      const text = (resp.text ?? "").trim();
+      if (!text) {
+        throw new Error("Gemini returned an empty response");
+      }
+      raw = unwrapIfEnveloped(JSON.parse(text));
+    } catch (err) {
+      throw new Error(`Gemini call failed: ${redact((err as Error).message)}`);
+    }
+    return AICampaignPlanRawSchema.parse(raw);
+  }
+}
+
 export function getAIProvider(name: AIProviderName = readProviderName()): AIProvider {
   switch (name) {
     case "openai":
       return new OpenAIProvider();
     case "anthropic":
       return new AnthropicProvider();
+    case "gemini":
+      return new GeminiProvider();
     case "mock":
     default:
       return new MockProvider();

@@ -32,7 +32,7 @@ import { readProviderName } from "@/lib/ai/provider";
 
 const RequestSchema = z.object({
   brief: CampaignBriefInputSchema,
-  ai_provider: z.enum(["mock", "openai", "anthropic"]).optional(),
+  ai_provider: z.enum(["mock", "openai", "anthropic", "gemini"]).optional(),
   count: z.number().int().min(1).max(5).optional(),
   set_first_active: z.boolean().optional(),
 });

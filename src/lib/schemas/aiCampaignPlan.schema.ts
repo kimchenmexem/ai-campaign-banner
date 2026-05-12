@@ -180,7 +180,7 @@ export const CampaignPlanSchema = z.object({
   source_brief: CampaignBriefSchema,
   campaign_name: z.string().min(1),
   campaign_summary: z.string().min(1),
-  ai_provider: z.enum(["openai", "anthropic", "mock"]),
+  ai_provider: z.enum(["openai", "anthropic", "gemini", "mock"]),
   concepts: z.array(CampaignConceptSchema).min(1),
   warnings: z.array(z.string()).default([]),
   // Phase 4 — generated-asset QA report. Optional for backward compat with
@@ -203,7 +203,7 @@ export const CampaignIndexEntrySchema = z.object({
   campaign_id: z.string().min(1),
   brand_id: z.string().min(1),
   campaign_name: z.string().min(1),
-  ai_provider: z.enum(["openai", "anthropic", "mock"]),
+  ai_provider: z.enum(["openai", "anthropic", "gemini", "mock"]),
   concept_count: z.number().int().nonnegative(),
   ad_count: z.number().int().nonnegative(),
   created_at: z.string(),

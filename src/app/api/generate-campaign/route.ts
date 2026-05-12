@@ -20,7 +20,7 @@ import { readProviderName } from "@/lib/ai/provider";
 
 const RequestSchema = z.object({
   brief: CampaignBriefInputSchema,
-  ai_provider: z.enum(["mock", "openai", "anthropic"]).optional(),
+  ai_provider: z.enum(["mock", "openai", "anthropic", "gemini"]).optional(),
   set_as_active: z.boolean().optional(),
   // Auto-generate one background image per concept via OpenAI Images.
   // Costs roughly $0.04-0.06 per image (3-9 cents per campaign at 3 concepts).
