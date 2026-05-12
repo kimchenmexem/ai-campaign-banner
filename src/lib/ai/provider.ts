@@ -485,6 +485,27 @@ function buildUserPrompt(input: AIProviderInput): string {
 }
 
 // Some models occasionally wrap the payload under a single envelope key
+// Recursively replace every `null` value with `undefined` (and drop the
+// key). Gemini consistently emits explicit nulls for optional fields,
+// but Zod's `.optional()` accepts only `undefined`. Rather than relaxing
+// every schema (and forcing all callers to handle null), we normalise
+// the boundary: at Gemini's JSON-parse step, nulls disappear.
+function stripNulls(value: unknown): unknown {
+  if (value === null) return undefined;
+  if (Array.isArray(value)) {
+    return value.map((v) => stripNulls(v));
+  }
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      const cleaned = stripNulls(v);
+      if (cleaned !== undefined) out[k] = cleaned;
+    }
+    return out;
+  }
+  return value;
+}
+
 // ({ plan: {...} } / { data: {...} } / etc.). If the top-level object is missing
 // the schema's required keys but contains exactly one object-valued key whose
 // child has them, unwrap it. This is a *defensive* fallback — the prompt asks
@@ -1455,7 +1476,10 @@ export class GeminiProvider implements AIProvider {
       if (!text) {
         throw new Error("Gemini returned an empty response");
       }
-      raw = unwrapIfEnveloped(JSON.parse(text));
+      // Gemini emits explicit `null` for absent optional fields; the
+      // Zod schemas use `.optional()` which only accepts `undefined`.
+      // stripNulls normalises the boundary so the schema stays strict.
+      raw = unwrapIfEnveloped(stripNulls(JSON.parse(text)));
     } catch (err) {
       throw new Error(`Gemini call failed: ${redact((err as Error).message)}`);
     }
