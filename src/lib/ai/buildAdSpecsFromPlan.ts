@@ -61,6 +61,8 @@ import {
   findFormat as findCompositionFormat,
   applyCompositionRules,
   clampToSafeZones,
+  preventCtaVisualOverlap,
+  preventDisclaimerOverlap,
 } from "@/lib/ai/applyCompositionRules";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -519,6 +521,24 @@ export function buildAdSpecsForConcept(
           warnings.push(`composition_rules ${format}/${visualComposition}: ${n}`);
         }
       }
+    }
+    // Universal CTA-visual guard — runs BEFORE the disclaimer guard so the
+    // disclaimer follows the CTA's final post-resolution position.
+    const ctaVisNotes = preventCtaVisualOverlap(
+      demoAdSpec.manifest,
+      { width: size.width, height: size.height },
+    );
+    for (const n of ctaVisNotes) {
+      warnings.push(`composition_rules ${format}: ${n}`);
+    }
+    // Universal disclaimer guard — always runs. Prevents the legal text
+    // from rendering inside the CTA (bottom-band style) or behind it.
+    const discNotes = preventDisclaimerOverlap(
+      demoAdSpec.manifest,
+      { width: size.width, height: size.height },
+    );
+    for (const n of discNotes) {
+      warnings.push(`composition_rules ${format}: ${n}`);
     }
 
     specs.push({

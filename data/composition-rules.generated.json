@@ -1,9 +1,18 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
+  "_doc": [
+    "Composition rules — JSON-driven post-pass for the Element Manifest.",
+    "Per format we declare safe-zone reservations and per-composition cluster rules.",
+    "Each rule can set BOTH cta_anchor and cta_gap_above_em — the applier prefers",
+    "the anchor when it leaves a sane visual gap (≤250px to subhead) and no overlap;",
+    "otherwise it falls back to gap_above. This lets a single rule work for both",
+    "short and long headlines without producing a 'floating CTA' look."
+  ],
   "formats": {
     "1200x628": {
+      "_doc": "Leaderboard 1.91:1 — LinkedIn link share, generic banner.",
       "default": {
-        "description": "Fallback for any leaderboard composition not explicitly listed. Basic column-aligned text-stack with industry-standard em-based gaps.",
+        "description": "Column-aligned text-stack with snug em-based gaps. CTA hugs the subhead.",
         "text_stack_cluster": {
           "alignment": "left-of-headline",
           "head_subhead_gap_em": 0.4,
@@ -12,7 +21,7 @@
       },
       "compositions": {
         "hero_overlay": {
-          "description": "Leaderboard with text overlay on full-bleed visual. Text-stack left-aligned with column cohesion.",
+          "description": "Full-bleed visual with text overlay. Column-aligned stack.",
           "text_stack_cluster": {
             "alignment": "left-of-headline",
             "head_subhead_gap_em": 0.4,
@@ -21,7 +30,7 @@
           "visual_cluster": { "coverage": "full" }
         },
         "text_leading": {
-          "description": "Z-pattern: text-stack left half, visual right half. Standard leaderboard hierarchy.",
+          "description": "Classic Z-pattern: left text, right visual.",
           "text_stack_cluster": {
             "alignment": "left-of-headline",
             "head_subhead_gap_em": 0.4,
@@ -30,27 +39,29 @@
           "visual_cluster": { "coverage": "right-half", "min_width_pct": 40 }
         },
         "bottom_anchor": {
-          "description": "CTA on the Z-terminal — anchored to the bottom-left of the safe area. Headline + subhead in upper third.",
+          "description": "CTA on the Z-terminal. Anchor preferred; falls back to gap when stack tall.",
           "text_stack_cluster": {
             "alignment": "left-of-headline",
             "head_subhead_gap_em": 0.4,
-            "cta_anchor": "bottom-left"
+            "cta_anchor": "bottom-left",
+            "cta_gap_above_em": 0.6
           }
         }
       }
     },
     "1080x1080": {
+      "_doc": "Instagram feed square. Center or left-stack. Anchor rarely useful here.",
       "default": {
-        "description": "Fallback for any square composition not explicitly listed. Column-aligned text-stack with tight 0.3em head→sub gap and 0.5em sub→cta gap.",
+        "description": "Column-aligned stack with tight rhythm.",
         "text_stack_cluster": {
           "alignment": "left-of-headline",
           "head_subhead_gap_em": 0.3,
-          "cta_gap_above_em": 0.5
+          "cta_gap_above_em": 0.6
         }
       },
       "compositions": {
         "centered_mockup_with_headline": {
-          "description": "Square hero — mockup centered, headline + subhead + CTA stacked centrally.",
+          "description": "Centered hero. Subhead + CTA centered on headline.",
           "text_stack_cluster": {
             "alignment": "centered-on-headline",
             "head_subhead_gap_em": 0.3,
@@ -59,73 +70,113 @@
           "visual_cluster": { "coverage": "centered" }
         },
         "hero_overlay": {
-          "description": "Square with full-bleed visual. Text-stack left-aligned.",
+          "description": "Full-bleed visual with text overlay.",
           "text_stack_cluster": {
             "alignment": "left-of-headline",
             "head_subhead_gap_em": 0.3,
-            "cta_gap_above_em": 0.5
+            "cta_gap_above_em": 0.6
           },
           "visual_cluster": { "coverage": "full" }
         },
         "inline_with_headline": {
-          "description": "Square with inline-with-headline composition. Standard column-aligned stack.",
+          "description": "Inline composition — column-aligned.",
           "text_stack_cluster": {
             "alignment": "left-of-headline",
             "head_subhead_gap_em": 0.3,
-            "cta_gap_above_em": 0.5
+            "cta_gap_above_em": 0.6
           }
         }
       }
     },
-    "1080x1920": {
-      "safe_area_extra": { "top": 220, "bottom": 220 },
+    "1080x1350": {
+      "_doc": "Instagram feed portrait 4:5. Disclaimer position is managed by preventDisclaimerOverlap, so we don't reserve a fixed bottom band here (a fixed band caused clamp to drag the CTA up into the subhead).",
       "default": {
-        "description": "Fallback for any story composition not explicitly listed. Column-aligned with bottom-anchored CTA above the platform UI band (always respects the 220px safe zones).",
+        "description": "Column-aligned, gap-positioned CTA. Stack flows naturally; disclaimer-guard handles the legal text placement.",
+        "text_stack_cluster": {
+          "alignment": "left-of-headline",
+          "head_subhead_gap_em": 0.35,
+          "cta_gap_above_em": 0.7
+        }
+      },
+      "compositions": {}
+    },
+    "1200x675": {
+      "_doc": "X (Twitter) feed 16:9 — same family as 1200x628.",
+      "default": {
+        "description": "Column-aligned stack, same gaps as 1200x628.",
         "text_stack_cluster": {
           "alignment": "left-of-headline",
           "head_subhead_gap_em": 0.4,
-          "cta_anchor": "bottom-left"
+          "cta_gap_above_em": 0.6
+        }
+      },
+      "compositions": {}
+    },
+    "1200x1200": {
+      "_doc": "LinkedIn large square — same family as 1080x1080.",
+      "default": {
+        "description": "Column-aligned stack.",
+        "text_stack_cluster": {
+          "alignment": "left-of-headline",
+          "head_subhead_gap_em": 0.3,
+          "cta_gap_above_em": 0.6
+        }
+      },
+      "compositions": {}
+    },
+    "1500x500": {
+      "_doc": "Ultra-wide 3:1 cover. Only 500px tall — vertical stack can't fit headline+subhead+cta+disclaimer. Switches to a HORIZONTAL split: text-stack on the left, CTA anchored right-center.",
+      "default": {
+        "description": "Horizontal split — text-stack left, CTA centered on right edge.",
+        "text_stack_cluster": {
+          "alignment": "left-of-headline",
+          "head_subhead_gap_em": 0.3,
+          "cta_anchor": "right-center",
+          "cta_gap_above_em": 0.4
+        }
+      },
+      "compositions": {}
+    },
+    "1920x1080": {
+      "_doc": "HD landscape — YouTube card, big leaderboard. Extra breathing room.",
+      "default": {
+        "description": "Column-aligned stack with slightly more generous em gaps.",
+        "text_stack_cluster": {
+          "alignment": "left-of-headline",
+          "head_subhead_gap_em": 0.5,
+          "cta_gap_above_em": 0.8
+        }
+      },
+      "compositions": {}
+    },
+    "1080x1920": {
+      "_doc": "Instagram / TikTok / Snap story 9:16. Top 220px and bottom 220px reserved for platform UI overlays — anything in those bands is invisible or clipped.",
+      "safe_area_extra": { "top": 220, "bottom": 220 },
+      "default": {
+        "description": "Anchor preferred (CTA above platform bottom UI), with gap fallback for tall headlines.",
+        "text_stack_cluster": {
+          "alignment": "left-of-headline",
+          "head_subhead_gap_em": 0.4,
+          "cta_anchor": "bottom-left",
+          "cta_gap_above_em": 0.8
         }
       },
       "compositions": {
         "bottom_anchor": {
-          "description": "Story format. 220px platform safe zones top/bottom (Instagram, TikTok, Snap UI). CTA anchored at the bottom of the safe area, well above the bottom platform UI.",
+          "description": "Explicit Z-terminal CTA.",
           "text_stack_cluster": {
             "alignment": "left-of-headline",
             "head_subhead_gap_em": 0.4,
-            "cta_anchor": "bottom-left"
-          }
-        },
-        "centered": {
-          "description": "Story format, centered hero. Same 220px platform safe zones. Text horizontally centered.",
-          "text_stack_cluster": {
-            "alignment": "centered-on-headline",
-            "head_subhead_gap_em": 0.4,
+            "cta_anchor": "bottom-left",
             "cta_gap_above_em": 0.8
           }
         },
-        "visual_leading": {
-          "description": "Story with visual-leading composition. Text-stack still column-aligned; CTA anchored at bottom-left of safe area.",
+        "centered": {
+          "description": "Centered story. No CTA anchoring — gap-based so stack stays cohesive.",
           "text_stack_cluster": {
-            "alignment": "left-of-headline",
+            "alignment": "centered-on-headline",
             "head_subhead_gap_em": 0.4,
-            "cta_anchor": "bottom-left"
-          }
-        },
-        "text_leading": {
-          "description": "Story with text-leading composition. Same rules — column alignment + bottom-anchored CTA above the platform UI band.",
-          "text_stack_cluster": {
-            "alignment": "left-of-headline",
-            "head_subhead_gap_em": 0.4,
-            "cta_anchor": "bottom-left"
-          }
-        },
-        "hero_overlay": {
-          "description": "Story with full-bleed visual. Text overlay, column-aligned, CTA bottom-anchored.",
-          "text_stack_cluster": {
-            "alignment": "left-of-headline",
-            "head_subhead_gap_em": 0.4,
-            "cta_anchor": "bottom-left"
+            "cta_gap_above_em": 1.0
           }
         }
       }
