@@ -240,6 +240,20 @@ export async function planCampaign(
     concepts: refined.concepts.map((c) => {
       const localized = copyByConceptId.get(c.concept_id);
       if (!localized) return c;
+      // Overwrite design_elements with translator-sourced eyebrow/kicker.
+      // `stat` (specific numbers) is intentionally not produced by the
+      // translator — those are regulatory claims that must come from a
+      // verified source, never from an LLM. We drop any LLM-invented stat
+      // so banners only render claims that passed through compliance.
+      const designElements:
+        | { eyebrow?: string; kicker?: string }
+        | undefined =
+        localized.eyebrow || localized.kicker
+          ? {
+              ...(localized.eyebrow ? { eyebrow: localized.eyebrow } : {}),
+              ...(localized.kicker ? { kicker: localized.kicker } : {}),
+            }
+          : undefined;
       return {
         ...c,
         copy_package: {
@@ -258,6 +272,7 @@ export async function planCampaign(
           alternative_ctas: [],
           platform_copy_variations: [],
         },
+        design_elements: designElements,
       };
     }),
   };

@@ -75,6 +75,12 @@ export const CampaignCopyBatchConceptResultSchema = z.object({
   cta: z.string().min(1),
   disclaimer: z.string().min(1),
   complianceNotes: z.array(z.string()).default([]),
+  // Optional typographic accents produced by the translator (compliance-
+  // validated alongside the rest of the copy). The planner pipes these
+  // into concept.design_elements, replacing anything the strategy LLM
+  // might have produced.
+  eyebrow: z.string().min(1).optional(),
+  kicker: z.string().min(1).optional(),
 });
 export type CampaignCopyBatchConceptResult = z.infer<typeof CampaignCopyBatchConceptResultSchema>;
 
