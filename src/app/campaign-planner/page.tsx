@@ -28,9 +28,9 @@ async function readBrandId(cwd: string = process.cwd()): Promise<string | null> 
   }
 }
 
-function readDefaultProvider(): "mock" | "openai" | "anthropic" {
+function readDefaultProvider(): "mock" | "openai" | "anthropic" | "gemini" {
   const v = (process.env.AI_PROVIDER ?? "").toLowerCase();
-  return v === "openai" || v === "anthropic" ? v : "mock";
+  return v === "openai" || v === "anthropic" || v === "gemini" ? v : "mock";
 }
 
 export default async function CampaignPlannerPage() {

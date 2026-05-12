@@ -19,7 +19,7 @@ const ALL_CONTEXTS = SCREENSHOT_CONTEXTS;
 // user sees field-level errors before we even hit the network. The API route
 // re-validates as a defensive line.
 
-type Provider = "mock" | "openai" | "anthropic";
+type Provider = "mock" | "openai" | "anthropic" | "gemini";
 
 const ALL_FORMATS: CampaignFormat[] = [
   "1200x628",
@@ -427,6 +427,7 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
             <option value="mock">mock (deterministic, no network)</option>
             <option value="openai">openai (requires OPENAI_API_KEY)</option>
             <option value="anthropic">anthropic (requires ANTHROPIC_API_KEY)</option>
+            <option value="gemini">gemini (requires GEMINI_API_KEY)</option>
           </select>
         </Field>
 

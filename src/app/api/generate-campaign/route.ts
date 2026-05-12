@@ -10,7 +10,7 @@ import { planCampaign } from "@/lib/ai/campaignPlanner";
 import { readProviderName } from "@/lib/ai/provider";
 
 // POST /api/generate-campaign
-// Body: { brief: CampaignBriefInput, ai_provider?: "mock" | "openai" | "anthropic", set_as_active?: boolean }
+// Body: { brief: CampaignBriefInput, ai_provider?: "mock" | "openai" | "anthropic" | "gemini", set_as_active?: boolean }
 //
 // Validates the brief, calls the planner (which validates AI output and builds
 // ad_specs deterministically), saves to data/campaigns/{id}/, returns the plan.

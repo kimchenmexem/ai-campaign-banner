@@ -18,7 +18,7 @@ import { readProviderName } from "@/lib/ai/provider";
 // Body:
 //   {
 //     brief: CampaignBriefInput,
-//     ai_provider?: "mock" | "openai" | "anthropic",
+//     ai_provider?: "mock" | "openai" | "anthropic" | "gemini",
 //     count?: number          // default 3, capped at 5 (cost protection)
 //     set_first_active?: boolean   // default false
 //   }
