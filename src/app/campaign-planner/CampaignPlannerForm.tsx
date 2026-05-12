@@ -89,6 +89,12 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
   // templates/motifs/palettes across the 3 concepts.
   const [diversitySeedRaw, setDiversitySeedRaw] = useState<string>("");
   const [maxDiversity, setMaxDiversity] = useState<boolean>(false);
+  // SVG upload (new flow). When set, the campaign is generated via
+  // /api/generate-campaign-from-svg — the existing AI/translator pipeline
+  // runs as usual but the SVG is injected into every ad spec's manifest
+  // as a decorative full-bleed layer (does not replace existing elements).
+  const [svgContent, setSvgContent] = useState<string | null>(null);
+  const [svgFileName, setSvgFileName] = useState<string | null>(null);
 
   const [error, setError] = useState<string | null>(null);
   const [issues, setIssues] = useState<{ path: string; message: string }[] | null>(null);
@@ -140,15 +146,29 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
 
     startTransition(async () => {
       try {
-        const res = await fetch("/api/generate-campaign", {
+        // When the operator uploaded an SVG, route to the SVG-aware endpoint
+        // — same brief, but the SVG is injected as a decorative layer on
+        // every ad spec. Otherwise use the standard endpoint.
+        const endpoint = svgContent
+          ? "/api/generate-campaign-from-svg"
+          : "/api/generate-campaign";
+        const body = svgContent
+          ? {
+              brief: parsed.data,
+              ai_provider: provider,
+              set_as_active: setActive,
+              svg: svgContent,
+            }
+          : {
+              brief: parsed.data,
+              ai_provider: provider,
+              set_as_active: setActive,
+              auto_generate_images: autoGenerateImages,
+            };
+        const res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            brief: parsed.data,
-            ai_provider: provider,
-            set_as_active: setActive,
-            auto_generate_images: autoGenerateImages,
-          }),
+          body: JSON.stringify(body),
         });
         const json = (await res.json()) as
           | { ok: true; campaign_id: string }
@@ -442,6 +462,44 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
           </label>
         </Field>
       </div>
+
+      <Field
+        label="Upload SVG (optional)"
+        hint="When provided, the SVG is saved and injected into every ad spec as a full-bleed decorative layer above the background and below the mockup / text. The AI strategy + translator copy pipeline is unchanged — only the visual atmosphere is overridden. Routes the request to /api/generate-campaign-from-svg."
+      >
+        <div className="flex items-center gap-3">
+          <input
+            type="file"
+            accept=".svg,image/svg+xml"
+            onChange={async (e) => {
+              const file = e.target.files?.[0];
+              if (!file) {
+                setSvgContent(null);
+                setSvgFileName(null);
+                return;
+              }
+              const text = await file.text();
+              setSvgContent(text);
+              setSvgFileName(file.name);
+            }}
+            className="text-sm"
+          />
+          {svgFileName ? (
+            <span className="text-xs text-zinc-600 dark:text-zinc-400">
+              ✓ {svgFileName} ({(svgContent?.length ?? 0).toLocaleString()} chars)
+              <button
+                type="button"
+                onClick={() => { setSvgContent(null); setSvgFileName(null); }}
+                className="ml-2 underline"
+              >
+                clear
+              </button>
+            </span>
+          ) : (
+            <span className="text-xs text-zinc-500">no SVG selected</span>
+          )}
+        </div>
+      </Field>
 
       <Field
         label="Auto-generate AI imagery (OpenAI Images, optional)"
