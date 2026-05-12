@@ -40,6 +40,8 @@ yarn-error.log*
 /public/generated-preview-composites
 # Midjourney manual upload bin (binaries; index file at data/midjourney-uploads.generated.json is committed)
 /public/midjourney-uploads
+# User-uploaded SVGs from /api/generate-campaign-from-svg
+/public/uploads
 # Midjourney reference-pack copies (regenerable from brand-input/ + scripts)
 /public/midjourney-reference-pack
 # Code-rendered banners (regenerable from campaign plans via /api/render-campaign)
