@@ -26,6 +26,11 @@ export const CampaignFormatSchema = z.enum([
   "1200x1200",  // LinkedIn / generic large square
   "1500x500",   // X / LinkedIn cover (3:1)
   "1920x1080",  // YouTube card / landscape HD
+  // Added: MEXEM spec set (Playwright render path only — Bannerbear +
+  // Midjourney paths intentionally not extended yet).
+  "300x250",    // IAB Medium Rectangle (compact display)
+  "336x280",    // IAB Large Rectangle (compact display)
+  "960x1200",   // Vertical 4:5 (display / social portrait, taller than 1080x1350)
 ]);
 export type CampaignFormat = z.infer<typeof CampaignFormatSchema>;
 

@@ -96,6 +96,11 @@ const FORMAT_TO_DEVICE: Record<CampaignFormat, DeviceType> = {
   "1200x1200": "tablet",
   "1500x500": "laptop",
   "1920x1080": "laptop",
+  // MEXEM display + portrait. 300x250 / 336x280 are too small for a laptop
+  // mockup to read; phone-shaped product visual scales down better.
+  "300x250": "phone",
+  "336x280": "phone",
+  "960x1200": "tablet",
 };
 
 const FORMAT_TO_CHANNEL: Record<CampaignFormat, string> = {
@@ -107,6 +112,11 @@ const FORMAT_TO_CHANNEL: Record<CampaignFormat, string> = {
   "1200x1200": "linkedin-square",
   "1500x500": "social-cover",
   "1920x1080": "landscape-hd",
+  // IAB display + extra portrait. Channel strings follow the same kebab-
+  // case convention as the existing entries.
+  "300x250": "medium-rectangle",
+  "336x280": "large-rectangle",
+  "960x1200": "portrait-tall",
 };
 
 const FORMAT_TO_SIZE: Record<
@@ -121,6 +131,9 @@ const FORMAT_TO_SIZE: Record<
   "1200x1200": { width: 1200, height: 1200 },
   "1500x500": { width: 1500, height: 500 },
   "1920x1080": { width: 1920, height: 1080 },
+  "300x250": { width: 300, height: 250 },
+  "336x280": { width: 336, height: 280 },
+  "960x1200": { width: 960, height: 1200 },
 };
 
 // Fallback chain keyed by the AI's 6-value desired_visual_context. The

@@ -26,6 +26,9 @@ export const FormatKeySchema = z.enum([
   "1200x1200",
   "1500x500",
   "1920x1080",
+  "300x250",
+  "336x280",
+  "960x1200",
 ]);
 export type FormatKey = z.infer<typeof FormatKeySchema>;
 

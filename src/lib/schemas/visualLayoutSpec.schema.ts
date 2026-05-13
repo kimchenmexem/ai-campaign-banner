@@ -438,6 +438,13 @@ export const FORMAT_KEY_TO_NAME = {
   "1200x1200": "square",     // 1:1
   "1500x500": "leaderboard", // 3:1
   "1920x1080": "leaderboard",// 16:9
+  // MEXEM display + portrait. 300x250 & 336x280 are AR ~1.2 — between the
+  // square (0.95-1.05) and leaderboard (≥1.4) buckets above; folded into
+  // leaderboard because the AI's "leaderboard" persona handles compact
+  // horizontal-leaning content better than the square one.
+  "300x250": "leaderboard",  // AR 1.20 — compact rectangle
+  "336x280": "leaderboard",  // AR 1.20 — compact rectangle
+  "960x1200": "portrait",    // AR 0.80 — taller portrait
 } as const;
 
 export type FormatName = keyof typeof FORMAT_NAME_TO_KEY;
