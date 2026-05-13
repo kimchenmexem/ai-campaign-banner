@@ -106,6 +106,12 @@ export const CampaignBriefSchema = z.object({
   //                   same motif twice. With this flag it can't.
   diversity_seed: z.number().int().nonnegative().optional(),
   max_diversity: z.boolean().optional(),
+  // When true, copy generation routes to marketing-translator's /by-message
+  // endpoint instead of /batch — each banner field is generated separately
+  // with its platform-appropriate textType (landing_headline, cta_button,
+  // email_body, etc.) instead of one combined batched prompt. Stronger
+  // per-field length awareness, weaker cross-field coherence, ~5x cost.
+  use_text_type_copy: z.boolean().optional(),
   created_at: z.string(),
 });
 export type CampaignBrief = z.infer<typeof CampaignBriefSchema>;

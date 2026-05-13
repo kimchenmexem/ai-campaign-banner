@@ -95,6 +95,10 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
   // as a decorative full-bleed layer (does not replace existing elements).
   const [svgContent, setSvgContent] = useState<string | null>(null);
   const [svgFileName, setSvgFileName] = useState<string | null>(null);
+  // textType-driven copy. When ON, copy comes from translator's /by-message
+  // endpoint (per-field generation with platform-conventional textType +
+  // length); when OFF, the existing /batch path is used. Default ON.
+  const [useTextTypeCopy, setUseTextTypeCopy] = useState<boolean>(true);
 
   const [error, setError] = useState<string | null>(null);
   const [issues, setIssues] = useState<{ path: string; message: string }[] | null>(null);
@@ -131,6 +135,7 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
       diversity_seed:
         Number.isFinite(seedNum) && seedNum >= 0 ? Math.floor(seedNum) : undefined,
       max_diversity: maxDiversity ? true : undefined,
+      use_text_type_copy: useTextTypeCopy ? true : undefined,
     };
 
     const parsed = CampaignBriefInputSchema.safeParse(brief);
@@ -464,6 +469,20 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
       </div>
 
       <Field
+        label="Copy generation mode"
+        hint="textType-driven: each banner field (headline, sub, cta, disclaimer, eyebrow, kicker) is generated in its own focused OpenAI call with platform-conventional length / convention (landing_headline 60, cta_button 24, email_body 600, etc.). More effective per-field, ~5x the LLM cost compared to the batched mode."
+      >
+        <label className="inline-flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={useTextTypeCopy}
+            onChange={(e) => setUseTextTypeCopy(e.target.checked)}
+          />
+          Use textType-driven copy (recommended)
+        </label>
+      </Field>
+
+      <Field
         label="Upload SVG (optional)"
         hint="When provided, the SVG is saved and injected into every ad spec as a full-bleed decorative layer above the background and below the mockup / text. The AI strategy + translator copy pipeline is unchanged — only the visual atmosphere is overridden. Routes the request to /api/generate-campaign-from-svg."
       >
@@ -600,6 +619,7 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
       diversity_seed:
         Number.isFinite(seedNum) && seedNum >= 0 ? Math.floor(seedNum) : undefined,
       max_diversity: maxDiversity ? true : undefined,
+      use_text_type_copy: useTextTypeCopy ? true : undefined,
     };
     const parsed = CampaignBriefInputSchema.safeParse(brief);
     if (!parsed.success) {

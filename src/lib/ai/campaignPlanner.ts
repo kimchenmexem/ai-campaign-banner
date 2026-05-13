@@ -33,7 +33,10 @@ import {
   loadMidjourneyUploads,
   writeMidjourneyUploads,
 } from "@/lib/midjourney/loadUploads";
-import { fetchCampaignCopyBatch } from "@/lib/marketing-translator/client";
+import {
+  fetchCampaignCopyBatch,
+  fetchCampaignCopyByMessage,
+} from "@/lib/marketing-translator/client";
 import type { CampaignCopyBatchConceptResult } from "@/lib/marketing-translator/schema";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -190,30 +193,65 @@ export async function planCampaign(
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   let batchResult;
+  // When the brief opts into textType-driven copy, route to /by-message:
+  // each banner field is generated in its own focused OpenAI call with a
+  // platform-conventional textType prompt. Cross-field coherence is weaker
+  // but per-field length awareness is stronger. See the by-message service
+  // on the translator side for details.
+  const useTextTypeCopy = brief.use_text_type_copy === true;
   try {
-    batchResult = await fetchCampaignCopyBatch(
-      {
-        brief: {
-          marketingMessage: brief.marketing_message,
-          campaignGoal: brief.campaign_goal,
-          targetAudience: brief.target_audience,
-          notes: brief.notes,
+    if (useTextTypeCopy) {
+      const byMessageRaw = await fetchCampaignCopyByMessage(
+        {
+          brief: {
+            marketingMessage: brief.marketing_message,
+            campaignGoal: brief.campaign_goal,
+            targetAudience: brief.target_audience,
+            notes: brief.notes,
+          },
+          targetLocale,
+          persona: brief.target_audience ?? "self-directed traders",
+          tone: brief.tone,
+          riskWarningRequired: brief.risk_warning_required,
+          conceptCount: refined.concepts.length,
         },
-        targetLocale,
-        tone: brief.tone,
-        riskWarningRequired: brief.risk_warning_required,
-        concepts: refined.concepts.map((c) => ({
-          conceptId: c.concept_id,
-          name: c.name,
-          strategicIdea: c.strategic_idea,
-          targetEmotion: c.target_emotion,
-          tone: c.tone,
-          composition: c.visual_direction?.composition,
-          moodKeywords: c.visual_direction?.mood_keywords,
+        { signal: controller.signal },
+      );
+      // The /by-message response uses synthetic ids (concept_1..N). Re-map
+      // them to the actual concept ids from the strategy pass so the rest
+      // of the planner's plumbing (id-keyed lookups) keeps working.
+      batchResult = {
+        ...byMessageRaw,
+        concepts: byMessageRaw.concepts.map((bc, i) => ({
+          ...bc,
+          conceptId: refined.concepts[i]?.concept_id ?? bc.conceptId,
         })),
-      },
-      { signal: controller.signal },
-    );
+      };
+    } else {
+      batchResult = await fetchCampaignCopyBatch(
+        {
+          brief: {
+            marketingMessage: brief.marketing_message,
+            campaignGoal: brief.campaign_goal,
+            targetAudience: brief.target_audience,
+            notes: brief.notes,
+          },
+          targetLocale,
+          tone: brief.tone,
+          riskWarningRequired: brief.risk_warning_required,
+          concepts: refined.concepts.map((c) => ({
+            conceptId: c.concept_id,
+            name: c.name,
+            strategicIdea: c.strategic_idea,
+            targetEmotion: c.target_emotion,
+            tone: c.tone,
+            composition: c.visual_direction?.composition,
+            moodKeywords: c.visual_direction?.mood_keywords,
+          })),
+        },
+        { signal: controller.signal },
+      );
+    }
   } catch (err) {
     if (controller.signal.aborted) {
       throw new Error(`marketing-translator batch timed out`);

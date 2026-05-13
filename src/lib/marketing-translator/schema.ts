@@ -90,3 +90,21 @@ export const CampaignCopyBatchResponseSchema = z.object({
   concepts: z.array(CampaignCopyBatchConceptResultSchema).min(1),
 });
 export type CampaignCopyBatchResponse = z.infer<typeof CampaignCopyBatchResponseSchema>;
+
+// "By-message" variant — same response shape as /batch, different request:
+// one marketing message + persona/tone, the translator runs per-field
+// textType-driven generation and returns N concept variants.
+export const CampaignCopyByMessageRequestSchema = z.object({
+  brief: BriefSchema,
+  targetLocale: z.string().min(2),
+  persona: z.string().min(1),
+  tone: ToneSchema,
+  complianceNotes: z.string().optional(),
+  riskWarningRequired: z.boolean().optional(),
+  conceptCount: z.number().int().min(1).max(5).optional(),
+});
+export type CampaignCopyByMessageRequest = z.infer<typeof CampaignCopyByMessageRequestSchema>;
+
+// Response is identical to the batch shape.
+export const CampaignCopyByMessageResponseSchema = CampaignCopyBatchResponseSchema;
+export type CampaignCopyByMessageResponse = CampaignCopyBatchResponse;

@@ -18,10 +18,14 @@ import {
   CampaignCopyRequestSchema,
   CampaignCopyBatchRequestSchema,
   CampaignCopyBatchResponseSchema,
+  CampaignCopyByMessageRequestSchema,
+  CampaignCopyByMessageResponseSchema,
   LocalizedCopyPackageSchema,
   type CampaignCopyRequest,
   type CampaignCopyBatchRequest,
   type CampaignCopyBatchResponse,
+  type CampaignCopyByMessageRequest,
+  type CampaignCopyByMessageResponse,
   type LocalizedCopyPackage,
 } from "@/lib/marketing-translator/schema";
 import {
@@ -159,4 +163,67 @@ function redact(s: string): string {
   return s
     .replace(/Bearer\s+[A-Za-z0-9._-]+/gi, "Bearer [redacted]")
     .replace(/sk-[A-Za-z0-9._-]{8,}/g, "sk-[redacted]");
+}
+
+export async function fetchCampaignCopyByMessage(
+  request: CampaignCopyByMessageRequest,
+  opts: FetchCampaignCopyOptions = {},
+): Promise<CampaignCopyByMessageResponse> {
+  const validated = CampaignCopyByMessageRequestSchema.parse(request);
+  const baseUrl = opts.baseUrl ?? process.env.MARKETING_TRANSLATOR_API_URL;
+  const apiKey = opts.apiKey ?? process.env.MARKETING_TRANSLATOR_API_KEY;
+
+  if (!baseUrl) {
+    // No mock for by-message; if URL is unset in production, fail loudly.
+    if (process.env.NODE_ENV === "production") {
+      throw new MarketingTranslatorError(
+        500,
+        "MARKETING_TRANSLATOR_API_URL is required in production. Refusing to use the deterministic mock client.",
+      );
+    }
+    // Dev convenience: fall back to the batch mock (same shape, deterministic).
+    return mockCampaignCopyBatch({
+      brief: validated.brief,
+      targetLocale: validated.targetLocale,
+      tone: validated.tone,
+      riskWarningRequired: validated.riskWarningRequired,
+      concepts: Array.from({ length: validated.conceptCount ?? 3 }, (_, i) => ({
+        conceptId: `concept_${i + 1}`,
+      })),
+    });
+  }
+
+  const url = new URL("/api/campaign-copy/by-message", baseUrl).toString();
+  const headers: Record<string, string> = {
+    "content-type": "application/json",
+    accept: "application/json",
+  };
+  if (apiKey) headers.authorization = `Bearer ${apiKey}`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(validated),
+    signal: opts.signal,
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new MarketingTranslatorError(
+      res.status,
+      `marketing-translator ${res.status}: ${redact(text).slice(0, 500)}`,
+    );
+  }
+
+  const json = (await res.json()) as unknown;
+  const parsed = CampaignCopyByMessageResponseSchema.safeParse(json);
+  if (!parsed.success) {
+    throw new MarketingTranslatorError(
+      502,
+      `marketing-translator by-message response failed schema: ${parsed.error.issues
+        .map((i) => `${i.path.join(".")}: ${i.message}`)
+        .join("; ")}`,
+    );
+  }
+  return parsed.data;
 }
