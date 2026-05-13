@@ -30,6 +30,11 @@ const ALL_FORMATS: CampaignFormat[] = [
   "1200x1200",
   "1500x500",
   "1920x1080",
+  // MEXEM spec formats — rendered through the Playwright path (Bannerbear
+  // + Midjourney assignment paths intentionally not extended).
+  "300x250",
+  "336x280",
+  "960x1200",
 ];
 const DEFAULT_FORMATS: CampaignFormat[] = [
   "1200x628",
