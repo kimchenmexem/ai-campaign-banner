@@ -300,7 +300,73 @@ export const LayoutSchema = z.object({
               height: z.number().positive().optional(),
             })
             .optional(),
+          product_visual: z
+            .object({
+              width: z.number().positive().optional(),
+              height: z.number().positive().optional(),
+            })
+            .optional(),
         })
+        .optional(),
+    )
+    .optional(),
+  // Per-format alternative compositions sourced from the MEXEM banner spec.
+  // 1200x1200 has two designed variants (Variant A "phone right" — the
+  // default — and Variant B "phone lower"). This block stores the
+  // measurements for the non-default variants so a future variant-selector
+  // PR can pick them at render time. **Currently DATA-ONLY** — computeLayout
+  // does not yet consume this block. Adding the data here so it's tracked
+  // and ready when the selector is wired.
+  composition_variants_per_format: z
+    .record(
+      FormatKeySchema,
+      z
+        .record(
+          z.string().min(1),
+          z
+            .object({
+              logo_position: z
+                .enum(["top-left", "top-center", "top-right"])
+                .optional(),
+              logo: z
+                .object({
+                  width: z.number().positive(),
+                  height: z.number().positive(),
+                })
+                .optional(),
+              text: z
+                .object({
+                  width: z.number().positive().optional(),
+                  height: z.number().positive().optional(),
+                })
+                .optional(),
+              cta: z
+                .object({
+                  width: z.number().positive().optional(),
+                  height: z.number().positive().optional(),
+                })
+                .optional(),
+              risk_message: z
+                .object({
+                  width: z.number().positive().optional(),
+                  height: z.number().positive().optional(),
+                })
+                .optional(),
+              product_visual: z
+                .object({
+                  width: z.number().positive().optional(),
+                  height: z.number().positive().optional(),
+                })
+                .optional(),
+              section_gaps: z
+                .object({
+                  logo_to_text: z.number().nonnegative().optional(),
+                  text_to_cta: z.number().nonnegative().optional(),
+                })
+                .optional(),
+            })
+            .optional(),
+        )
         .optional(),
     )
     .optional(),

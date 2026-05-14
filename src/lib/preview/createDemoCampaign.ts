@@ -1583,6 +1583,19 @@ function computeLayout(
   const RISK_X = SPEC_RISK_WIDTH
     ? Math.round((size.width - SPEC_RISK_WIDTH) / 2)
     : undefined;
+  // MEXEM spec — product_visual dimensions per format. Wired into the
+  // "phone right" / visual-leading branches that already place the visual
+  // on the right edge of the canvas. Branches that put the visual at a
+  // bottom-full-width band (1080x1920 / 960x1200 in the spec) are NOT
+  // overridden here — they need composition-aware positioning which
+  // arrives with the variant selector (data captured under
+  // composition_variants_per_format awaiting that work).
+  const SPEC_VISUAL_WIDTH = specElements?.product_visual?.width
+    ? Math.round(specElements.product_visual.width)
+    : undefined;
+  const SPEC_VISUAL_HEIGHT = specElements?.product_visual?.height
+    ? Math.round(specElements.product_visual.height)
+    : undefined;
 
   // MEXEM spec — explicit logo box per format wins when present. Falls
   // back to the canvas-percent + variant-aspect derivation otherwise.
@@ -1684,10 +1697,10 @@ function computeLayout(
       // the visual in the AI's mental model"; the rendered layout just
       // honours the text-position invariant. RTL formats can flip back via
       // a separate guard later if needed.
-      const visualW = Math.round((size.width - m.left - m.right) * 0.45);
+      const visualW = SPEC_VISUAL_WIDTH ?? Math.round((size.width - m.left - m.right) * 0.45);
       const visualX = innerRight - visualW;
       const visualY = innerTop + 8;
-      const visualH = innerBottom - visualY;
+      const visualH = SPEC_VISUAL_HEIGHT ?? innerBottom - visualY;
       const textX = innerLeft;
       const textWidth = SPEC_TEXT_WIDTH ?? visualX - textX - 24;
       const headlineY = innerTop + logoH + GAP_LOGO_TO_TEXT;
@@ -1758,8 +1771,8 @@ function computeLayout(
     const ctaY = subY + subH + GAP_TEXT_TO_CTA;
     const visualX = innerLeft + textWidth + 24;
     const visualY = innerTop + 8;
-    const visualW = innerRight - visualX;
-    const visualH = innerBottom - visualY;
+    const visualW = SPEC_VISUAL_WIDTH ?? innerRight - visualX;
+    const visualH = SPEC_VISUAL_HEIGHT ?? innerBottom - visualY;
     return {
       margin: m,
       riskWarningHeight,
