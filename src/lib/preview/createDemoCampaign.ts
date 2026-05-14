@@ -1577,6 +1577,12 @@ function computeLayout(
   const SPEC_RISK_HEIGHT = specElements?.risk_message?.height
     ? Math.round(specElements.risk_message.height)
     : undefined;
+  // When the spec risk-message width is narrower than the canvas (e.g.
+  // 1080x1920 has a 938-wide risk band on a 1080 canvas), center the band
+  // horizontally. Otherwise stick to the existing left-anchor at innerLeft.
+  const RISK_X = SPEC_RISK_WIDTH
+    ? Math.round((size.width - SPEC_RISK_WIDTH) / 2)
+    : undefined;
 
   // MEXEM spec — explicit logo box per format wins when present. Falls
   // back to the canvas-percent + variant-aspect derivation otherwise.
@@ -1605,9 +1611,21 @@ function computeLayout(
   // m.top / m.left may differ; we use a single LOGO_CORNER_INSET so the
   // corner inset is symmetric. inset is taken from the smaller of the
   // two so the logo never crashes into the kit's safe area.
+  // MEXEM spec — per-format override for centered/right-anchored layouts
+  // (1080x1920 + 960x1200 want logo top-center per spec).
   const LOGO_CORNER_INSET = Math.max(24, Math.min(m.top, m.left));
+  const logoPos =
+    kit.layout.logo_position_per_format?.[
+      size.name as keyof NonNullable<typeof kit.layout.logo_position_per_format>
+    ] ?? "top-left";
+  const logoX =
+    logoPos === "top-center"
+      ? Math.round((size.width - logoW) / 2)
+      : logoPos === "top-right"
+        ? size.width - LOGO_CORNER_INSET - logoW
+        : LOGO_CORNER_INSET;
   const logo = {
-    x: LOGO_CORNER_INSET,
+    x: logoX,
     y: LOGO_CORNER_INSET,
     width: logoW,
     height: logoH,
@@ -1686,7 +1704,7 @@ function computeLayout(
         cta: { x: textX, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
         visual: { x: visualX, y: visualY, width: visualW, height: visualH },
         riskWarning: {
-          x: innerLeft,
+          x: RISK_X ?? innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
           width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
           height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
@@ -1723,7 +1741,7 @@ function computeLayout(
         cta: { x: innerLeft, y: ctaY2, width: ctaW, height: ctaH, fontSize: ctaSize },
         visual: { x: 0, y: 0, width: size.width, height: size.height },
         riskWarning: {
-          x: innerLeft,
+          x: RISK_X ?? innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
           width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
           height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
@@ -1753,7 +1771,7 @@ function computeLayout(
       cta: { x: headlineX, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
       visual: { x: visualX, y: visualY, width: visualW, height: visualH },
       riskWarning: {
-        x: innerLeft,
+        x: RISK_X ?? innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
         width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
         height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
@@ -1799,7 +1817,7 @@ function computeLayout(
         cta: { x: innerLeft, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
         visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
         riskWarning: {
-          x: innerLeft,
+          x: RISK_X ?? innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
           width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
           height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
@@ -1826,7 +1844,7 @@ function computeLayout(
         cta: { x: innerLeft, y: ctaY2, width: ctaW, height: ctaH, fontSize: ctaSize },
         visual: { x: 0, y: 0, width: size.width, height: size.height },
         riskWarning: {
-          x: innerLeft,
+          x: RISK_X ?? innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
           width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
           height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
@@ -1852,7 +1870,7 @@ function computeLayout(
       cta: { x: innerLeft, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
       visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
       riskWarning: {
-        x: innerLeft,
+        x: RISK_X ?? innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
         width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
         height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
@@ -1898,7 +1916,7 @@ function computeLayout(
       cta: { x: ctaX, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
       visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
       riskWarning: {
-        x: innerLeft,
+        x: RISK_X ?? innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
         width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
         height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
@@ -1939,7 +1957,7 @@ function computeLayout(
       cta: { x: ctaX, y: ctaY2, width: ctaW, height: ctaH, fontSize: ctaSize },
       visual: { x: 0, y: 0, width: size.width, height: size.height },
       riskWarning: {
-        x: innerLeft,
+        x: RISK_X ?? innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
         width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
         height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
@@ -1967,7 +1985,7 @@ function computeLayout(
     cta: { x: ctaX, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
     visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
     riskWarning: {
-      x: innerLeft,
+      x: RISK_X ?? innerLeft,
       y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
       width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
       height: SPEC_RISK_HEIGHT ?? riskWarningHeight,

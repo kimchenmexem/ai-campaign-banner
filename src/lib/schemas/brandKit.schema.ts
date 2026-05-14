@@ -265,6 +265,13 @@ export const LayoutSchema = z.object({
         .optional(),
     )
     .optional(),
+  // Per-format logo placement (top-anchor). When the MEXEM spec specifies
+  // symmetric logo side margins that center the logo (e.g. 1080x1920 with
+  // 144px on each side and a 787px-wide logo), set "top-center". Other
+  // formats keep the default "top-left" corner-anchor behaviour.
+  logo_position_per_format: z
+    .record(FormatKeySchema, z.enum(["top-left", "top-center", "top-right"]).optional())
+    .optional(),
   // Per-format explicit element box dimensions sourced from the MEXEM
   // banner spec. When present, computeLayout uses these for the text
   // column width, CTA box dimensions, and risk-message band width.
