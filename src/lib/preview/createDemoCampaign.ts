@@ -1492,7 +1492,14 @@ function computeLayout(
   // the AI asks for "tight" padding. The bottom floor is the strictest: the
   // disclaimer band sits inside this margin and the renderer assumes ≥70%
   // of the original bottom margin to fit it without clipping.
-  const SIDE_FLOOR = 24;
+  //
+  // Floor is canvas-aware so compact formats (300×250 / 336×280 want
+  // 10-px side margins) aren't forced into 24-px inflation that eats
+  // half their canvas. Capped at 24 so 1080+ formats see no change.
+  const SIDE_FLOOR = Math.max(
+    4,
+    Math.min(24, Math.round(Math.min(size.width, size.height) * 0.04)),
+  );
   const m = {
     top: Math.max(SIDE_FLOOR, Math.round(rawM.top * hints.marginMultiplier)),
     right: Math.max(SIDE_FLOOR, Math.round(rawM.right * hints.marginMultiplier)),
@@ -1538,7 +1545,10 @@ function computeLayout(
   // Floor at the per-format readable minimum so "compact" can't make the
   // headline disappear; ceiling at +50% over the per-format cap so "hero"
   // still has fitFontToBox shrink-to-fit room downstream.
-  const HEADLINE_FLOOR = 36;
+  // Canvas-aware. 1080+ formats see the historic 36 cap; compact
+  // formats (300×250 / 336×280) need a much lower floor so the spec's
+  // 22-24 px headline survives.
+  const HEADLINE_FLOOR = Math.max(10, Math.min(36, Math.round(size.height * 0.05)));
   headlineSize = Math.round(headlineSize * hints.headlineSizeMultiplier);
   headlineSize = Math.max(HEADLINE_FLOOR, headlineSize);
 
