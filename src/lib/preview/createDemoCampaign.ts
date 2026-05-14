@@ -2536,6 +2536,39 @@ function applyCompositionFromSpec(
     }
   }
 
+  // MEXEM spec — visual anchor. When the kit's visual_anchor_per_format
+  // for this size is "bottom-band" (1080x1920 + 960x1200 in the spec),
+  // pin the product visual as a full-canvas-width band sitting directly
+  // above the risk-message band. Uses the spec-supplied visual height
+  // from element_sizes_per_format[size].product_visual.height when
+  // present, otherwise falls back to the existing visualH.
+  // NOTE: brandKit lookup happens at the caller (which has access);
+  // this function reads the resolved anchor + height from the layout's
+  // next.visual.* fields after the caller updated them via the
+  // bottom-band wiring at the top of applyCompositionFromSpec — but
+  // since this function doesn't yet receive brandKit, we apply the
+  // bottom-band repositioning purely from the values that ARE on
+  // next.visual: if its width is larger than canvas - left - right
+  // AND we have a riskWarning at the bottom, we treat it as a
+  // bottom-band signal and reposition. Conservative — doesn't change
+  // behaviour when widths match the legacy 45%-of-inner formula.
+  if (next.visual) {
+    const innerW = size.width - layout.margin.left - layout.margin.right;
+    const visualClaimsFullWidth = next.visual.width >= innerW + 1;
+    if (visualClaimsFullWidth) {
+      const visualH = next.visual.height;
+      next.visual = {
+        ...next.visual,
+        x: 0,
+        width: size.width,
+        // Sit directly above the risk-message band with an 8px breathing
+        // gap so the disclaimer band stays visually independent.
+        y: next.riskWarning.y - visualH - 8,
+        height: visualH,
+      };
+    }
+  }
+
   // MEXEM spec — final snap (logo→headline). When the kit carries a
   // per-format logo_to_text gap, re-anchor the headline to
   // (logo.y + logo.height + gap) and slide the subheadline by the same

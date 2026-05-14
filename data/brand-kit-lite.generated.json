@@ -486,6 +486,10 @@
       "1080x1920": "top-center",
       "960x1200": "top-center"
     },
+    "visual_anchor_per_format": {
+      "1080x1920": "bottom-band",
+      "960x1200": "bottom-band"
+    },
     "section_gaps_per_format": {
       "300x250":   { "logo_to_text": 77,  "text_to_cta": 19 },
       "1080x1080": { "logo_to_text": 70,  "text_to_cta": 39 },

@@ -272,6 +272,13 @@ export const LayoutSchema = z.object({
   logo_position_per_format: z
     .record(FormatKeySchema, z.enum(["top-left", "top-center", "top-right"]).optional())
     .optional(),
+  // Per-format product-visual anchor. "right" (default) keeps the
+  // historic phone-on-right placement. "bottom-band" pins the visual
+  // as a full-canvas-width band hugging the risk-message band (1080x1920
+  // and 960x1200 per the MEXEM spec).
+  visual_anchor_per_format: z
+    .record(FormatKeySchema, z.enum(["right", "bottom-band"]).optional())
+    .optional(),
   // Per-format explicit element box dimensions sourced from the MEXEM
   // banner spec. When present, computeLayout uses these for the text
   // column width, CTA box dimensions, and risk-message band width.
