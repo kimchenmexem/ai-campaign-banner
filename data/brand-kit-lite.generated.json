@@ -482,6 +482,13 @@
         "left": 107
       }
     },
+    "section_gaps_per_format": {
+      "300x250":   { "logo_to_text": 77,  "text_to_cta": 19 },
+      "1080x1080": { "logo_to_text": 70,  "text_to_cta": 39 },
+      "1080x1920": { "logo_to_text": 107, "text_to_cta": 62 },
+      "1200x1200": { "logo_to_text": 88,  "text_to_cta": 88 },
+      "960x1200":  { "logo_to_text": 63,  "text_to_cta": 63 }
+    },
     "disclaimer_placement_rules": {
       "allowed_positions": [
         "bottom-center",

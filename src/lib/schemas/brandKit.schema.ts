@@ -248,6 +248,23 @@ export const LayoutSchema = z.object({
   // The QA layer cross-references these against the manifest's role layout.
   allowed_compositions: z.array(z.string().min(1)).default([]),
   safe_areas: z.record(FormatKeySchema, Inset).optional(),
+  // Per-format inter-section gaps sourced from the MEXEM banner spec. When
+  // present, computeLayout uses these instead of the historic hardcoded
+  // gaps (logo→headline 48, sub→CTA 20). Partial record — formats without
+  // an entry retain the existing literal gaps. Only the most-common text-
+  // stack code paths honor these; rarer composition branches retain their
+  // own gap math.
+  section_gaps_per_format: z
+    .record(
+      FormatKeySchema,
+      z
+        .object({
+          logo_to_text: z.number().nonnegative().optional(),
+          text_to_cta: z.number().nonnegative().optional(),
+        })
+        .optional(),
+    )
+    .optional(),
   disclaimer_placement_rules: z
     .object({
       allowed_positions: z.array(DisclaimerPlacementSchema).default(["bottom-center"]),

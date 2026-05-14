@@ -1545,6 +1545,16 @@ function computeLayout(
   const riskWarningHeight = Math.round(riskSize * 1.6);
   const riskWarningBottomGap = Math.round(m.bottom / 2);
 
+  // MEXEM spec — per-format section gaps win when present. Defaults match
+  // the prior hardcoded values (48 logo→headline, 20 sub→CTA) so formats
+  // without an entry keep the historic look.
+  const specGaps =
+    kit.layout.section_gaps_per_format?.[
+      size.name as keyof NonNullable<typeof kit.layout.section_gaps_per_format>
+    ];
+  const GAP_LOGO_TO_TEXT = specGaps?.logo_to_text ?? 48;
+  const GAP_TEXT_TO_CTA = specGaps?.text_to_cta ?? 20;
+
   // MEXEM spec — explicit logo box per format wins when present. Falls
   // back to the canvas-percent + variant-aspect derivation otherwise.
   const logoOverride =
@@ -1639,9 +1649,9 @@ function computeLayout(
       const visualH = innerBottom - visualY;
       const textX = innerLeft;
       const textWidth = visualX - textX - 24;
-      const headlineY = innerTop + logoH + 48;
+      const headlineY = innerTop + logoH + GAP_LOGO_TO_TEXT;
       const subY = headlineY + headlineH + 12;
-      const ctaY = subY + subH + 20;
+      const ctaY = subY + subH + GAP_TEXT_TO_CTA;
       return {
         margin: m,
         riskWarningHeight,
@@ -1702,9 +1712,9 @@ function computeLayout(
     // Default: text_leading — text on the left, visual on the right.
     const textWidth = Math.round((size.width - m.left - m.right) * 0.55);
     const headlineX = innerLeft;
-    const headlineY = innerTop + logoH + 48;
+    const headlineY = innerTop + logoH + GAP_LOGO_TO_TEXT;
     const subY = headlineY + headlineH + 12;
-    const ctaY = subY + subH + 20;
+    const ctaY = subY + subH + GAP_TEXT_TO_CTA;
     const visualX = innerLeft + textWidth + 24;
     const visualY = innerTop + 8;
     const visualW = innerRight - visualX;
