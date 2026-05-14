@@ -860,8 +860,14 @@ function pickCtaPalette(args: {
   headlineColor: string;
   accentColor: string;
   seedKey: string;
+  // Effective canvas background color. When provided, the palette is
+  // post-filtered to guarantee the CTA fill never falls below WCAG-AA
+  // 3:1 contrast against the background (the "no buttons in the
+  // background color" rule). Transparent fills are exempt (their
+  // visibility is governed by the border color).
+  canvasBg?: string;
 }): CtaPaletteResult {
-  const { ctaStyle, brandKit, headlineColor, accentColor, seedKey } = args;
+  const { ctaStyle, brandKit, headlineColor, accentColor, seedKey, canvasBg } = args;
   const variants = brandKit.cta.variants ?? [];
   const fallbackDefault: CtaPaletteResult = {
     bg: brandKit.cta.button_background_color,
@@ -879,30 +885,52 @@ function pickCtaPalette(args: {
     variantId: v.id,
   });
 
+  // Brand discipline: CTA fill must never match the canvas background.
+  // Returns the highest-contrast variant against the canvas if the
+  // seed-picked one is below 3:1, else returns the original palette.
+  const MIN_CTA_BG_CONTRAST = 3.0;
+  const enforceContrast = (palette: CtaPaletteResult): CtaPaletteResult => {
+    if (!canvasBg) return palette;
+    if (palette.bg === "transparent") return palette; // border governs visibility
+    if (contrastRatio(palette.bg, canvasBg) >= MIN_CTA_BG_CONTRAST) return palette;
+    // Find any variant with sufficient contrast — prefer the highest.
+    const ranked = variants
+      .filter((v) => v.background_color !== "transparent")
+      .map((v) => ({ v, ratio: contrastRatio(v.background_color, canvasBg) }))
+      .filter((x) => x.ratio >= MIN_CTA_BG_CONTRAST)
+      .sort((a, b) => b.ratio - a.ratio);
+    if (ranked.length > 0) return variantToPalette(ranked[0].v);
+    // No variant clears the bar — fall back to a derived high-contrast
+    // pair so the CTA is at least visible.
+    const fg = pickHighContrast(canvasBg, ["#FFFFFF", "#000000"], "#FFFFFF");
+    const bg = fg === "#FFFFFF" ? "#FFFFFF" : "#0A1A2E";
+    return { bg, fg: fg === "#FFFFFF" ? "#0A1A2E" : "#FFFFFF", borderRadius: palette.borderRadius };
+  };
+
   // Ghost intent → first variant whose id signals ghost/outline. Falls back
   // to the legacy "transparent + headline color" recipe.
   if (ctaStyle === "ghost") {
     const hit = variants.find((v) => /ghost|outline/i.test(v.id));
-    if (hit) return variantToPalette(hit);
-    return {
+    if (hit) return enforceContrast(variantToPalette(hit));
+    return enforceContrast({
       bg: "transparent",
       fg: headlineColor,
       borderWidth: 2,
       borderColor: headlineColor,
       variantId: "ghost-derived",
-    };
+    });
   }
 
   // Accent intent → first variant tagged accent/yellow. Falls back to the
   // brand's first accent color filled.
   if (ctaStyle === "accent") {
     const hit = variants.find((v) => /accent|yellow|loud/i.test(v.id));
-    if (hit) return variantToPalette(hit);
-    return {
+    if (hit) return enforceContrast(variantToPalette(hit));
+    return enforceContrast({
       bg: accentColor,
       fg: pickHighContrast(accentColor, ["#FFFFFF", "#000000"], "#FFFFFF"),
       variantId: "accent-derived",
-    };
+    });
   }
 
   // Standard intent → pick from the "regular" variants (anything that's
@@ -912,9 +940,9 @@ function pickCtaPalette(args: {
   const regulars = variants.filter((v) => !/ghost|outline|accent|yellow|loud/i.test(v.id));
   if (regulars.length > 0) {
     const pick = regulars[ctaSeedToInt(seedKey) % regulars.length];
-    return variantToPalette(pick);
+    return enforceContrast(variantToPalette(pick));
   }
-  return fallbackDefault;
+  return enforceContrast(fallbackDefault);
 }
 
 function deviceTypeFromAsset(asset: AssetPreviewRecord): DeviceType {
@@ -3518,6 +3546,10 @@ function buildElements(args: BuildElementsArgs): Element[] {
     headlineColor,
     accentColor,
     seedKey: `${args.campaignId}::${args.conceptId}::${size.name}::cta`,
+    // Brand rule: CTA fill must never match (or fall below 3:1 against)
+    // the canvas background. effectiveBackgroundColor folds gradient
+    // first-stop / image-assume-dark into a single hex for the check.
+    canvasBg: effectiveBackgroundColor(selection),
   });
   const ctaBg = ctaPalette.bg;
   const ctaFg = ctaPalette.fg;
