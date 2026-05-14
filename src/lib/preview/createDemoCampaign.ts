@@ -1303,7 +1303,21 @@ export function buildAdSpec(args: BuildAdSpecArgs): DemoAdSpec {
   const composition = args.composition ?? "text_leading";
   const template = args.template ?? "mockup_hero";
   const rendererHints = args.rendererHints ?? DEFAULT_RENDERER_HINTS;
-  const baseLayout = computeLayout(size, brandKit, composition, rendererHints);
+  const baseLayoutRaw = computeLayout(size, brandKit, composition, rendererHints);
+  // Carry the spec text→CTA gap into ComputedLayout so applyCtaPlacement
+  // can use it when re-anchoring the CTA below the subheadline. Without
+  // this, downstream uses a 20px default and the MEXEM spec gap is lost.
+  const specSectionGaps =
+    brandKit.layout.section_gaps_per_format?.[
+      size.name as keyof NonNullable<typeof brandKit.layout.section_gaps_per_format>
+    ];
+  const specTextToCtaGap = specSectionGaps?.text_to_cta;
+  const specLogoToTextGap = specSectionGaps?.logo_to_text;
+  const baseLayout: ComputedLayout = {
+    ...baseLayoutRaw,
+    ...(specTextToCtaGap != null ? { textToCtaGap: specTextToCtaGap } : {}),
+    ...(specLogoToTextGap != null ? { logoToTextGap: specLogoToTextGap } : {}),
+  };
   const densityLayout = applyDensityToLayout(baseLayout, rendererHints);
   // Pre-compute the rendered CTA width and bake it into the layout BEFORE
   // composition placement runs. buildElements grows the CTA box to fit the
@@ -1397,6 +1411,18 @@ interface ComputedLayout {
   cta: { x: number; y: number; width: number; height: number; fontSize: number };
   visual: { x: number; y: number; width: number; height: number } | null;
   riskWarning: { x: number; y: number; width: number; height: number; fontSize: number };
+  // MEXEM spec — propagate per-format text→CTA gap so that the
+  // downstream applyCtaPlacement / final snap-pass honors the spec gap
+  // when repositioning the CTA relative to the subheadline (otherwise
+  // bottom-anchor logic uses a 20px default and ignores spec values).
+  textToCtaGap?: number;
+  // MEXEM spec — same idea for logo→headline. The historic formula uses
+  // `innerTop + logoH + gap` but the logo can sit higher than innerTop
+  // (LOGO_CORNER_INSET = min(m.top, m.left)), so the rendered gap drifts
+  // from the spec by `(innerTop - logo.y)`. The final snap-pass corrects
+  // it by re-anchoring headline to `logo.y + logo.height + gap` and
+  // sliding the dependent subheadline+CTA by the same delta.
+  logoToTextGap?: number;
 }
 
 // ── Format classifier ───────────────────────────────────────────────────────
@@ -1846,7 +1872,7 @@ function computeLayout(
       );
       const headlineY = visualY + visualH + 24;
       const subY = headlineY + headlineH + 16;
-      const ctaY = subY + subH + 16;
+      const ctaY = subY + subH + (specGaps?.text_to_cta ?? 16);
       return {
         margin: m,
         riskWarningHeight,
@@ -1895,7 +1921,7 @@ function computeLayout(
     }
 
     // Default: text_leading — text on top, visual below, CTA at the bottom.
-    const headlineY = innerTop + logoH + 56;
+    const headlineY = innerTop + logoH + (specGaps?.logo_to_text ?? 56);
     const subY = headlineY + headlineH + 16;
     const visualY = subY + subH + 24;
     const visualH = Math.max(280, innerBottom - visualY - 120);
@@ -1944,7 +1970,7 @@ function computeLayout(
     );
     const headlineY = visualY + visualH + 40;
     const subY = headlineY + headlineH + 20;
-    const ctaY = subY + subH + 28;
+    const ctaY = subY + subH + (specGaps?.text_to_cta ?? 28);
     const ctaX = innerLeft + Math.round((textWidth - ctaW) / 2);
     return {
       margin: m,
@@ -1986,7 +2012,7 @@ function computeLayout(
     const blockTop = innerTop + Math.round((innerH - blockHeight) / 2 + innerH * 0.04);
     const headlineY2 = blockTop;
     const subY2 = headlineY2 + heroHeadlineH + 24;
-    const ctaY2 = subY2 + subH + 32;
+    const ctaY2 = subY2 + subH + (specGaps?.text_to_cta ?? 32);
     return {
       margin: m,
       riskWarningHeight,
@@ -2008,7 +2034,7 @@ function computeLayout(
   }
 
   // Default: text_leading — text on top, visual middle, CTA bottom.
-  const headlineY = innerTop + logoH + 64;
+  const headlineY = innerTop + logoH + (specGaps?.logo_to_text ?? 64);
   const subY = headlineY + headlineH + 24;
   const visualY = subY + subH + 48;
   const visualH = Math.max(480, Math.min(900, size.height - visualY - 320));
@@ -2509,6 +2535,40 @@ function applyCompositionFromSpec(
       };
     }
   }
+
+  // MEXEM spec — final snap (logo→headline). When the kit carries a
+  // per-format logo_to_text gap, re-anchor the headline to
+  // (logo.y + logo.height + gap) and slide the subheadline by the same
+  // delta. The historic formula uses `innerTop + logoH + 48` which is
+  // measured from the safe-area top — that drifts from the literal
+  // logo bottom by (innerTop - logo.y) for formats where m.top differs
+  // from LOGO_CORNER_INSET. The snap closes that drift so the rendered
+  // gap matches the spec.
+  if (next.logoToTextGap != null) {
+    const logoBottom = next.logo.y + next.logo.height;
+    const targetHeadlineY = logoBottom + next.logoToTextGap;
+    const delta = targetHeadlineY - next.headline.y;
+    if (delta !== 0) {
+      next.headline = { ...next.headline, y: targetHeadlineY };
+      next.subheadline = { ...next.subheadline, y: next.subheadline.y + delta };
+    }
+  }
+
+  // MEXEM spec — final snap (text→CTA). When the kit carries a per-format
+  // text_to_cta gap, override whatever prior passes decided and place
+  // the CTA at (subheadline_bottom + gap), then re-clamp to ctaCeiling.
+  // Defeats the otherwise-strong bottom-anchor / visual-clearance
+  // writers that pin the CTA near the disclaimer band. Runs AFTER the
+  // logo→headline snap so subheadline's shifted position is what we
+  // anchor on.
+  if (next.textToCtaGap != null) {
+    const subBottom = next.subheadline.y + next.subheadline.height;
+    next.cta.y = Math.min(
+      subBottom + next.textToCtaGap,
+      ctaCeiling - next.cta.height,
+    );
+  }
+
   return next;
 }
 
@@ -2564,7 +2624,7 @@ function applyCtaPlacement(p: CtaPlacementInput): { x: number; y: number } {
     }
     case "below_subheadline": {
       // Today's text_leading default. Use whichever x the upstream pass set.
-      return { x: layout.cta.x, y: Math.min(subY + subH + 20, ctaCeiling - ctaH) };
+      return { x: layout.cta.x, y: Math.min(subY + subH + (layout.textToCtaGap ?? 20), ctaCeiling - ctaH) };
     }
     case "bottom_left":
       return { x: startCol, y: bottomY };
@@ -2587,7 +2647,7 @@ function applyCtaPlacement(p: CtaPlacementInput): { x: number; y: number } {
           ? layout.headline.x >= endCol + ctaW + 24
           : endCol >= headlineRight + 24;
         if (headlineFitsBesideCta) return { x: endCol, y: headlineY };
-        return { x: layout.cta.x, y: Math.min(subY + subH + 20, ctaCeiling - ctaH) };
+        return { x: layout.cta.x, y: Math.min(subY + subH + (layout.textToCtaGap ?? 20), ctaCeiling - ctaH) };
       }
       return { x: endCol, y: Math.max(layout.logo.y, layout.logo.y + 16) };
     }
@@ -2610,7 +2670,7 @@ function applyCtaPlacement(p: CtaPlacementInput): { x: number; y: number } {
         : ctaLeftAtEndCol >= headlineRight + 24;
       const reservedTextW = innerRight - innerLeft - ctaW - 24;
       if (!headlineFitsBesideCta || reservedTextW < 240) {
-        return { x: layout.cta.x, y: Math.min(subY + subH + 20, ctaCeiling - ctaH) };
+        return { x: layout.cta.x, y: Math.min(subY + subH + (layout.textToCtaGap ?? 20), ctaCeiling - ctaH) };
       }
       return { x: endCol, y: headlineY };
     }
