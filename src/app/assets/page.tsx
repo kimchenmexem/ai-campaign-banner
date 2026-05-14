@@ -5,6 +5,7 @@ import {
   type AssetPreviewMap,
 } from "@/lib/preview/copyPreviewAssets";
 import { AssetUploader } from "./AssetUploader";
+import { AssetCard } from "./AssetCard";
 
 export const dynamic = "force-dynamic";
 
@@ -80,30 +81,7 @@ export default async function AssetsPage() {
             </header>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
               {items.map((item) => (
-                <a
-                  key={item.public_path}
-                  href={item.public_path}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block rounded border border-zinc-200 dark:border-zinc-800 p-2 hover:border-blue-400 transition"
-                >
-                  <div className="aspect-square bg-zinc-100 dark:bg-zinc-900 rounded flex items-center justify-center overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={item.public_path}
-                      alt={item.original_filename}
-                      className="max-w-full max-h-full object-contain"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div
-                    className="mt-2 text-xs font-mono truncate text-zinc-700 dark:text-zinc-300"
-                    title={item.original_filename}
-                  >
-                    {item.original_filename}
-                  </div>
-                  <div className="text-xs text-zinc-500">{item.asset_type}</div>
-                </a>
+                <AssetCard key={item.public_path} item={item} />
               ))}
               {items.length === 0 && (
                 <div className="col-span-full text-xs text-zinc-500">
