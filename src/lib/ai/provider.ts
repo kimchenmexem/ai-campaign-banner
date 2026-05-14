@@ -1146,7 +1146,7 @@ export class OpenAIProvider implements AIProvider {
       const completion = await client.chat.completions.create({
         model,
         response_format: { type: "json_object" },
-        max_tokens: 4096,
+        max_tokens: 8192,
         // Higher temperature encourages the 3 concepts to diverge instead of
         // collapsing into variants of the same idea.
         temperature,
@@ -1193,7 +1193,7 @@ export class OpenAIProvider implements AIProvider {
     const completion = await client.chat.completions.create({
       model,
       response_format: { type: "json_object" },
-      max_tokens: 4096,
+      max_tokens: 8192,
       temperature,
       messages: [
         { role: "system", content: baseSystem },
@@ -1228,7 +1228,7 @@ export class OpenAIProvider implements AIProvider {
     const completion = await client.chat.completions.create({
       model,
       response_format: { type: "json_object" },
-      max_tokens: 4096,
+      max_tokens: 8192,
       temperature,
       messages: [
         { role: "system", content: systemPrompt },
@@ -1276,7 +1276,7 @@ export class AnthropicProvider implements AIProvider {
     try {
       const response = await client.messages.create({
         model,
-        max_tokens: 4096,
+        max_tokens: 8192,
         temperature,
         system: systemPrompt,
         messages: [
@@ -1326,7 +1326,7 @@ export class AnthropicProvider implements AIProvider {
       "\n\nReturn the refined JSON object only.";
     const response = await client.messages.create({
       model,
-      max_tokens: 4096,
+      max_tokens: 8192,
       temperature,
       system: `${baseSystem}\n\n${refinementPrompt}`,
       messages: [{ role: "user", content: userPrompt }],
@@ -1353,7 +1353,7 @@ export class AnthropicProvider implements AIProvider {
       : VISUAL_PLANNER_SYSTEM_PROMPT;
     const response = await client.messages.create({
       model,
-      max_tokens: 4096,
+      max_tokens: 8192,
       temperature,
       system: systemPrompt,
       messages: [
