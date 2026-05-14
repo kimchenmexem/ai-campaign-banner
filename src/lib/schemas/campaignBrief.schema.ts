@@ -53,7 +53,10 @@ export const CampaignBriefSchema = z.object({
   // provider and detail page guard against undefined.
   platforms: z.array(z.string().min(1)).optional(),
   required_formats: z.array(CampaignFormatSchema).min(1),
-  preferred_contexts: z.array(ScreenshotContextSchema).min(1),
+  // Removed from the planner form. Kept on the schema as optional so
+  // existing saved campaigns + scripts that still pass it stay valid; the
+  // provider and detail page guard against undefined.
+  preferred_contexts: z.array(ScreenshotContextSchema).optional(),
   risk_warning_required: z.boolean().default(true),
   notes: z.string().optional(),
   // Output language. Drives:
