@@ -1545,7 +1545,11 @@ function computeLayout(
   const riskWarningHeight = Math.round(riskSize * 1.6);
   const riskWarningBottomGap = Math.round(m.bottom / 2);
 
-  const logoH = pickLogoHeight(size, hints);
+  // MEXEM spec — explicit logo box per format wins when present. Falls
+  // back to the canvas-percent + variant-aspect derivation otherwise.
+  const logoOverride =
+    kit.logo.size_per_format?.[size.name as keyof NonNullable<typeof kit.logo.size_per_format>];
+  const logoH = logoOverride ? Math.round(logoOverride.height) : pickLogoHeight(size, hints);
   // Logo aspect ratio depends on which MEXEM variant pickBrandLogoVariant
   // will pick at render time:
   //   - LANDSCAPE banners (1200x628) use "logo-white-v.png" — wide wordmark
@@ -1560,7 +1564,9 @@ function computeLayout(
   // matched the 50 px top inset. Match the bbox to the actual variant.
   const isPortraitVariant = size.height > size.width; // matches pickBrandLogoVariant's choice
   const logoAspect = isPortraitVariant ? 1.6 : 4;
-  const logoW = Math.round(logoH * logoAspect);
+  const logoW = logoOverride
+    ? Math.round(logoOverride.width)
+    : Math.round(logoH * logoAspect);
   // Brand rule (operator-set): MEXEM logo lives in the top-LEFT corner
   // with EQUAL distance from the top edge and the left edge. The kit's
   // m.top / m.left may differ; we use a single LOGO_CORNER_INSET so the

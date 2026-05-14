@@ -49,6 +49,15 @@
     "safe_area": {
       "padding_px": 24,
       "padding_percent_of_logo_height": 0.5
+    },
+    "size_per_format": {
+      "300x250": { "width": 153, "height": 29 },
+      "336x280": { "width": 153, "height": 30 },
+      "1080x1080": { "width": 457, "height": 100 },
+      "1080x1920": { "width": 787.21, "height": 171 },
+      "1200x628": { "width": 456, "height": 90 },
+      "1200x1200": { "width": 710, "height": 142 },
+      "960x1200": { "width": 523, "height": 98 }
     }
   },
   "colors": {

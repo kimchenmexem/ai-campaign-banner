@@ -82,6 +82,21 @@ export const LogoSchema = z.object({
       padding_percent_of_logo_height: z.number().nonnegative().optional(),
     })
     .optional(),
+  // Per-format explicit logo box dimensions sourced from the MEXEM banner
+  // spec. When present for the active format, computeLayout uses these
+  // verbatim instead of the height-from-canvas + aspect-from-variant
+  // derivation. Partial record: formats without an entry use the derivation.
+  size_per_format: z
+    .record(
+      FormatKeySchema,
+      z
+        .object({
+          width: z.number().positive(),
+          height: z.number().positive(),
+        })
+        .optional(),
+    )
+    .optional(),
 });
 export type Logo = z.infer<typeof LogoSchema>;
 
