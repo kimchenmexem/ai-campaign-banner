@@ -265,6 +265,38 @@ export const LayoutSchema = z.object({
         .optional(),
     )
     .optional(),
+  // Per-format explicit element box dimensions sourced from the MEXEM
+  // banner spec. When present, computeLayout uses these for the text
+  // column width, CTA box dimensions, and risk-message band width.
+  // product_visual is part of the spec but intentionally NOT modeled here
+  // yet — its size is composition-dependent and folds into PR 5.
+  element_sizes_per_format: z
+    .record(
+      FormatKeySchema,
+      z
+        .object({
+          text: z
+            .object({
+              width: z.number().positive().optional(),
+              height: z.number().positive().optional(),
+            })
+            .optional(),
+          cta: z
+            .object({
+              width: z.number().positive().optional(),
+              height: z.number().positive().optional(),
+            })
+            .optional(),
+          risk_message: z
+            .object({
+              width: z.number().positive().optional(),
+              height: z.number().positive().optional(),
+            })
+            .optional(),
+        })
+        .optional(),
+    )
+    .optional(),
   disclaimer_placement_rules: z
     .object({
       allowed_positions: z.array(DisclaimerPlacementSchema).default(["bottom-center"]),

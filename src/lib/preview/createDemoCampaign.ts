@@ -1555,6 +1555,29 @@ function computeLayout(
   const GAP_LOGO_TO_TEXT = specGaps?.logo_to_text ?? 48;
   const GAP_TEXT_TO_CTA = specGaps?.text_to_cta ?? 20;
 
+  // MEXEM spec — per-format element box dimensions. Text width, CTA
+  // width/height, and risk-message width/height come from the spec when
+  // present; otherwise the existing derived values are used.
+  const specElements =
+    kit.layout.element_sizes_per_format?.[
+      size.name as keyof NonNullable<typeof kit.layout.element_sizes_per_format>
+    ];
+  const SPEC_TEXT_WIDTH = specElements?.text?.width
+    ? Math.round(specElements.text.width)
+    : undefined;
+  const SPEC_CTA_WIDTH = specElements?.cta?.width
+    ? Math.round(specElements.cta.width)
+    : undefined;
+  const SPEC_CTA_HEIGHT = specElements?.cta?.height
+    ? Math.round(specElements.cta.height)
+    : undefined;
+  const SPEC_RISK_WIDTH = specElements?.risk_message?.width
+    ? Math.round(specElements.risk_message.width)
+    : undefined;
+  const SPEC_RISK_HEIGHT = specElements?.risk_message?.height
+    ? Math.round(specElements.risk_message.height)
+    : undefined;
+
   // MEXEM spec — explicit logo box per format wins when present. Falls
   // back to the canvas-percent + variant-aspect derivation otherwise.
   const logoOverride =
@@ -1624,8 +1647,8 @@ function computeLayout(
   //   portrait / tall_portrait → portrait fall-through  (1080x1350,
   //                                                       1080x1920)
   if (fmt.is_wideish) {
-    const ctaH = Math.max(56, Math.round(ctaSize * 2));
-    const ctaW = Math.max(180, Math.round(ctaSize * 8));
+    const ctaH = SPEC_CTA_HEIGHT ?? Math.max(56, Math.round(ctaSize * 2));
+    const ctaW = SPEC_CTA_WIDTH ?? Math.max(180, Math.round(ctaSize * 8));
     const headlineH = Math.round(headlineSize * 1.2 * 2); // up to 2 lines
     const subH = Math.round(bodySize * 1.4 * 2); // up to 2 lines
 
@@ -1648,7 +1671,7 @@ function computeLayout(
       const visualY = innerTop + 8;
       const visualH = innerBottom - visualY;
       const textX = innerLeft;
-      const textWidth = visualX - textX - 24;
+      const textWidth = SPEC_TEXT_WIDTH ?? visualX - textX - 24;
       const headlineY = innerTop + logoH + GAP_LOGO_TO_TEXT;
       const subY = headlineY + headlineH + 12;
       const ctaY = subY + subH + GAP_TEXT_TO_CTA;
@@ -1665,8 +1688,8 @@ function computeLayout(
         riskWarning: {
           x: innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-          width: size.width - m.left - m.right,
-          height: riskWarningHeight,
+          width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
           fontSize: riskSize,
         },
       };
@@ -1688,7 +1711,7 @@ function computeLayout(
       const ctaY2 = innerBottom - ctaH;
       const subY2 = ctaY2 - heroSubH - 12;
       const headlineY2 = subY2 - heroHeadlineH - 8;
-      const textWidth = Math.round((size.width - m.left - m.right) * 0.6);
+      const textWidth = SPEC_TEXT_WIDTH ?? Math.round((size.width - m.left - m.right) * 0.6);
       return {
         margin: m,
         riskWarningHeight,
@@ -1702,15 +1725,15 @@ function computeLayout(
         riskWarning: {
           x: innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-          width: size.width - m.left - m.right,
-          height: riskWarningHeight,
+          width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
           fontSize: riskSize,
         },
       };
     }
 
     // Default: text_leading — text on the left, visual on the right.
-    const textWidth = Math.round((size.width - m.left - m.right) * 0.55);
+    const textWidth = SPEC_TEXT_WIDTH ?? Math.round((size.width - m.left - m.right) * 0.55);
     const headlineX = innerLeft;
     const headlineY = innerTop + logoH + GAP_LOGO_TO_TEXT;
     const subY = headlineY + headlineH + 12;
@@ -1732,19 +1755,19 @@ function computeLayout(
       riskWarning: {
         x: innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-        width: size.width - m.left - m.right,
-        height: riskWarningHeight,
+        width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
         fontSize: riskSize,
       },
     };
   }
 
   if (fmt.bucket === "square") {
-    const textWidth = size.width - m.left - m.right;
+    const textWidth = SPEC_TEXT_WIDTH ?? size.width - m.left - m.right;
     const headlineH = Math.round(headlineSize * 1.15 * 2);
     const subH = Math.round(bodySize * 1.4 * 2);
-    const ctaH = Math.max(72, Math.round(ctaSize * 2.2));
-    const ctaW = Math.max(220, Math.round(ctaSize * 9));
+    const ctaH = SPEC_CTA_HEIGHT ?? Math.max(72, Math.round(ctaSize * 2.2));
+    const ctaW = SPEC_CTA_WIDTH ?? Math.max(220, Math.round(ctaSize * 9));
 
     if (composition === "visual_leading") {
       // Visual on top, text + CTA below. The visualH must leave room for
@@ -1778,8 +1801,8 @@ function computeLayout(
         riskWarning: {
           x: innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-          width: size.width - m.left - m.right,
-          height: riskWarningHeight,
+          width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
           fontSize: riskSize,
         },
       };
@@ -1805,8 +1828,8 @@ function computeLayout(
         riskWarning: {
           x: innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-          width: size.width - m.left - m.right,
-          height: riskWarningHeight,
+          width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
           fontSize: riskSize,
         },
       };
@@ -1831,19 +1854,19 @@ function computeLayout(
       riskWarning: {
         x: innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-        width: size.width - m.left - m.right,
-        height: riskWarningHeight,
+        width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
         fontSize: riskSize,
       },
     };
   }
 
   // 1080x1920
-  const textWidth = size.width - m.left - m.right;
+  const textWidth = SPEC_TEXT_WIDTH ?? size.width - m.left - m.right;
   const headlineH = Math.round(headlineSize * 1.1 * 3);
   const subH = Math.round(bodySize * 1.4 * 3);
-  const ctaH = Math.max(80, Math.round(ctaSize * 2.4));
-  const ctaW = Math.max(260, Math.round(ctaSize * 10));
+  const ctaH = SPEC_CTA_HEIGHT ?? Math.max(80, Math.round(ctaSize * 2.4));
+  const ctaW = SPEC_CTA_WIDTH ?? Math.max(260, Math.round(ctaSize * 10));
 
   if (composition === "visual_leading") {
     // Visual fills the upper portion of the story; text + CTA below. As
@@ -1877,8 +1900,8 @@ function computeLayout(
       riskWarning: {
         x: innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-        width: size.width - m.left - m.right,
-        height: riskWarningHeight,
+        width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
         fontSize: riskSize,
       },
     };
@@ -1918,8 +1941,8 @@ function computeLayout(
       riskWarning: {
         x: innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-        width: size.width - m.left - m.right,
-        height: riskWarningHeight,
+        width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
         fontSize: riskSize,
       },
     };
@@ -1946,8 +1969,8 @@ function computeLayout(
     riskWarning: {
       x: innerLeft,
       y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-      width: size.width - m.left - m.right,
-      height: riskWarningHeight,
+      width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+      height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
       fontSize: riskSize,
     },
   };
