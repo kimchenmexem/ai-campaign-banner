@@ -2,6 +2,12 @@
 
 MVP that turns a marketing message into rendered banner ads, with a full element manifest and exportable ZIP package.
 
+> **Production deployment:** read [`docs/PRODUCTION_HARDENING.md`](docs/PRODUCTION_HARDENING.md) first.
+> It documents the auth + role model, repository / storage drivers, Supabase
+> migrations, the job worker, and the local-dev escape hatches.
+> [`docs/SECURITY_AUDIT.md`](docs/SECURITY_AUDIT.md) is the route inventory
+> that drove this pass.
+
 ## Stack
 
 Next.js 16 (App Router) · TypeScript · Tailwind 4 · Zod · Supabase · Cloudinary · Bannerbear · OpenAI / Anthropic · JSZip
@@ -276,9 +282,20 @@ open http://localhost:3000/code-render-preview # active campaign side-by-side wi
 
 Architecture:
 - The AI returns concept stubs (`AICampaignPlanRaw`): names, strategy, copy, target emotion, visual direction, per-concept Midjourney prompts.
-- The system runs the existing demo machinery (`pickAssets`, `pickVisualForSpec`, `buildAdSpec`) to construct Element Manifests for every (concept × format) — 1200×628, 1080×1080, 1080×1920.
+- The system runs the existing demo machinery (`pickAssets`, `pickVisualForSpec`, `buildAdSpec`) to construct Element Manifests for every (concept × format) across all 19 supported sizes (see below).
 - All AI output is Zod-validated immediately after the model call. Schema failures are rejected with redacted error messages (`Bearer …`, `api_key=…`, `sk-…` are stripped).
 - Three providers via `AI_PROVIDER`: `mock` (default, deterministic, no network), `openai` (requires `OPENAI_API_KEY`), `anthropic` (requires `ANTHROPIC_API_KEY`).
 - The demo flow is untouched: with no active campaign, `/visual-preview` and `/code-render-preview` fall back to `data/demo-campaign.preview.json` and the existing render scripts keep working.
+
+### Supported ad formats
+
+The brand kit (`data/brand-kit-lite.generated.json`) ships layout, typography, logo, and element-size rules for 19 formats. Set 1 (social / hero canvases) flows through the AI-driven layout pipeline (`computeLayout` → `applyDensityToLayout` → `applyCompositionFromSpec`). Set 2 (IAB-standard display banners) is layout-locked by a dedicated deterministic renderer (`computeCompactLayout` in [src/lib/preview/createDemoCampaign.ts](src/lib/preview/createDemoCampaign.ts)) — positions and box sizes come straight from the spec, while copy, color, and asset picks still vary per concept.
+
+| Bucket | Sizes |
+|---|---|
+| MEXEM Set 1 — social / hero | 1200×628, 1080×1080, 1080×1920, 1200×1200, 960×1200, 300×250, 336×280 |
+| MEXEM Set 2 — IAB display (layout-locked) | 320×100, 320×50, 300×1050, 300×600, 160×600, 970×250, 728×90, 250×250 |
+
+Selecting formats in the Campaign Planner form (`/campaign-planner`) sends them in `brief.required_formats`; the planner generates one manifest per (concept × format) and the code renderer writes one PNG per manifest under `public/rendered-ads/campaigns/{campaign_id}/`.
 
 See [docs/AI_CAMPAIGN_PLANNER_WORKFLOW.md](./docs/AI_CAMPAIGN_PLANNER_WORKFLOW.md) for the full schema layering, what the AI is and is not allowed to decide, and the verification steps.
