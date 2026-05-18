@@ -88,7 +88,11 @@ docs/                        # ARCHITECTURE.md, ASSUMPTIONS.md
 
 ## Status
 
-This is the project skeleton. Business logic in `src/lib/**` is intentionally stubbed; route handlers return HTTP 501 once Zod validation passes. See `docs/ARCHITECTURE.md` for the intended pipeline.
+The MVP is wired end-to-end: campaign planning (AI provider + marketing-translator copy + deterministic ad-spec construction), Playwright code-render, Gemini Vision QA, SVG / element / full-ZIP export, Midjourney upload validation, and a job queue + worker for long-running work. Auth guards, role-based authorization, rate limiting, and the CampaignRepository / AssetStorage abstractions protect every mutating or expensive route.
+
+A few legacy routes still return HTTP 501 placeholders (`/api/export-campaign`, `/api/qa`, `/api/sync-bannerbear-template`) — they are auth-guarded so they cannot be hit anonymously, and the real work for those flows lives in the equivalent campaign-scoped endpoints (`/api/campaigns/[id]/export-jobs`, `/api/qa-campaign`, the Bannerbear sync script).
+
+Production deployment is not just "set the env vars and go" — read [`docs/PRODUCTION_HARDENING.md`](docs/PRODUCTION_HARDENING.md) for the auth + role model, Supabase migrations, storage buckets, job worker process, and the local-FS escape hatches. See `docs/ARCHITECTURE.md` for the full data-flow pipeline.
 
 ## Scripts
 
