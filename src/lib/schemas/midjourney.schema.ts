@@ -105,8 +105,13 @@ export const MidjourneyUploadSchema = z.object({
   intended_use: MidjourneyIntendedUseSchema,
   context: MidjourneyContextSchema,
   // Local copy under /public/midjourney-uploads/.
-  local_path: z.string().min(1), // relative to repo root, e.g. "public/midjourney-uploads/<id>/file.png"
-  public_path: z.string().min(1), // e.g. "/midjourney-uploads/<id>/file.png"
+  // Provider-relative key (Supabase Storage key in prod, fs-relative path
+  // in local dev). Identifies the bytes in whatever storage backend is in use.
+  local_path: z.string().min(1),
+  // Direct public URL — set when the bytes are served from the dev server's
+  // `public/` dir. Null in production where the bucket is private; readers
+  // should use `cloudinary_secure_url` (a short-lived signed URL) instead.
+  public_path: z.string().min(1).nullable(),
   cloudinary_public_id: z.string().nullable().optional(),
   cloudinary_secure_url: z.string().nullable().optional(),
   filename: z.string().min(1),

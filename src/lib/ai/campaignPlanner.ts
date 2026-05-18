@@ -35,6 +35,7 @@ import {
 } from "@/lib/midjourney/loadUploads";
 import { fetchCampaignCopy } from "@/lib/marketing-translator/client";
 import type { LocalizedCopyPackage } from "@/lib/marketing-translator/schema";
+import { getCampaignRepository } from "@/lib/repositories/CampaignRepository";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Campaign Planner — the orchestrator.
@@ -403,12 +404,24 @@ export async function planCampaign(
     created_at: new Date().toISOString(),
   });
 
-  // 6. Save.
-  const saved_path = await saveCampaignPlan(cwd, planCandidate);
-  const index_path = await upsertCampaignIndex(cwd, planCandidate);
+  // 6. Save. In production this hits the Supabase-backed repository;
+  // locally it falls through to the JSON files. The legacy file paths are
+  // also kept up-to-date in local dev so scripts that read them directly
+  // (e.g. render-code-campaign.ts) keep working.
+  const repo = getCampaignRepository();
+  await repo.insertCampaign(planCandidate);
+  let saved_path = "supabase://campaigns";
+  let index_path = "supabase://campaigns";
+  if (repo.driver === "local") {
+    saved_path = await saveCampaignPlan(cwd, planCandidate);
+    index_path = await upsertCampaignIndex(cwd, planCandidate);
+  }
   let active = false;
   if (opts.setAsActive) {
-    await setActiveCampaign(cwd, planCandidate.campaign_id, saved_path);
+    await repo.setActiveCampaign(planCandidate.campaign_id);
+    if (repo.driver === "local") {
+      await setActiveCampaign(cwd, planCandidate.campaign_id, saved_path);
+    }
     active = true;
   }
 
@@ -527,6 +540,17 @@ export async function loadCampaignPlanIfExists(
   campaign_id: string,
   cwd: string = process.cwd(),
 ): Promise<CampaignPlan | null> {
+  // Repository wins. In dev with the local driver, it reads the same JSON
+  // file the legacy code path used; in production it reads Supabase.
+  try {
+    return await getCampaignRepository().getCampaign(campaign_id);
+  } catch (err) {
+    // If the repo factory threw because Supabase isn't configured but we're
+    // not in production, fall through to the legacy file path so dev work
+    // keeps working.
+    if (process.env.NODE_ENV === "production") throw err;
+    void cwd;
+  }
   const filePath = path.join(
     cwd,
     "data",

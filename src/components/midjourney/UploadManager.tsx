@@ -395,7 +395,7 @@ function UploadCard({
         <div className="flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded bg-zinc-100 dark:bg-zinc-900">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={u.public_path}
+            src={u.public_path ?? u.cloudinary_secure_url ?? ""}
             alt={u.filename}
             className="h-full w-full object-contain"
           />

@@ -3677,7 +3677,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
           cloudinary_public_id: mjBgUpload?.cloudinary_public_id ?? null,
           delivery_source: "cloudinary" as const,
         }
-      : mjBgUpload
+      : mjBgUpload && mjBgUpload.public_path
         ? {
             file_url: absolutePreviewUrl(mjBgUpload.public_path),
             local_public_path: mjBgUpload.public_path,
@@ -3919,8 +3919,13 @@ function buildElements(args: BuildElementsArgs): Element[] {
     const decoSize = Math.min(220, Math.round(size.width * 0.18));
     const x = size.width - decoSize - 24;
     const y = i === 0 ? 24 : Math.max(24, size.height - decoSize - 24);
+    // Prefer cloudinary/signed URL when set (production), otherwise the
+    // dev-server public path. Skip the slot entirely if neither is set —
+    // a private upload with no signed URL has nothing to render.
     const fileUrl =
-      u.cloudinary_secure_url ?? absolutePreviewUrl(u.public_path);
+      u.cloudinary_secure_url ??
+      (u.public_path ? absolutePreviewUrl(u.public_path) : null);
+    if (!fileUrl) continue;
     const targetRole: "decorative_1" | "decorative_2" =
       i === 0 ? "decorative_1" : "decorative_2";
     elements.push({
@@ -3938,7 +3943,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
       visible: true,
       version: 1,
       file_url: fileUrl,
-      local_public_path: u.public_path,
+      ...(u.public_path ? { local_public_path: u.public_path } : {}),
       ...(u.cloudinary_public_id ? { cloudinary_public_id: u.cloudinary_public_id } : {}),
       delivery_source: u.cloudinary_secure_url ? "cloudinary" : "local_preview",
       object_fit: "contain",

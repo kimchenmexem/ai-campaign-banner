@@ -1,5 +1,3 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
 import crypto from "node:crypto";
 import type { MidjourneyContext, MidjourneyIntendedUse, MidjourneyUpload } from "@/lib/schemas/midjourney.schema";
 
@@ -207,23 +205,25 @@ async function saveAsUpload(args: {
     (args.conceptHint ?? args.promptId).toLowerCase().replace(/[^a-z0-9_-]+/g, "-").slice(0, 32) ||
     "image";
   const filename = `${slug}_${upload_id}.png`;
-  const dir = path.join(args.cwd, "public", "midjourney-uploads", upload_id);
-  await fs.mkdir(dir, { recursive: true });
-  const localPath = path.join(dir, filename);
-  await fs.writeFile(localPath, args.pngBuffer);
-  const stat = await fs.stat(localPath);
+
+  // Route through AssetStorage so production lands the bytes in Supabase
+  // Storage instead of the repo's public/ dir.
+  const { getAssetStorage } = await import("@/lib/storage/AssetStorage");
+  const storage = getAssetStorage("uploads");
+  const storageKey = `${upload_id}/${filename}`;
+  const put = await storage.put(storageKey, args.pngBuffer, "image/png");
 
   return {
     upload_id,
     prompt_id: args.promptId,
     intended_use: args.intendedUse,
     context: args.context,
-    local_path: path.relative(args.cwd, localPath),
-    public_path: `/midjourney-uploads/${upload_id}/${filename}`,
+    local_path: put.key,
+    public_path: put.public_url,
     cloudinary_public_id: null,
-    cloudinary_secure_url: null,
+    cloudinary_secure_url: put.signed_url,
     filename,
-    bytes: stat.size,
+    bytes: put.bytes,
     approved: true, // auto-approve so the planner picks it up immediately
     notes: args.note,
     source: "openai_image",

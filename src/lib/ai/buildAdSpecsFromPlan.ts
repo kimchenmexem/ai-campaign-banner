@@ -852,14 +852,19 @@ function applyConceptVisuals(args: {
       : filterManualDecoratives(base.midjourney.decorative_upload_ids),
   };
 
-  // 1. Midjourney background match → swap the fill to a real image.
+  // 1. Midjourney background match → swap the fill to a real image. Prefer
+  // public_path (dev local path); fall back to the signed Cloudinary URL when
+  // the storage backend is private (production).
   if (mjBg) {
-    return {
-      ...base,
-      background: mjBg.public_path,
-      background_fill: { kind: "image", public_path: mjBg.public_path },
-      midjourney,
-    };
+    const url = mjBg.public_path ?? mjBg.cloudinary_secure_url;
+    if (url) {
+      return {
+        ...base,
+        background: url,
+        background_fill: { kind: "image", public_path: url },
+        midjourney,
+      };
+    }
   }
 
   // 2. Brand-locked gradient. We always pick stops from brandKit.colors —
