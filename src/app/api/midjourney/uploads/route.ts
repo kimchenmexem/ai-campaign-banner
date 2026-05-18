@@ -1,4 +1,3 @@
-import { promises as fs } from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { NextResponse } from "next/server";
@@ -10,22 +9,28 @@ import {
   type MidjourneyUpload,
 } from "@/lib/schemas/midjourney.schema";
 import {
-  UPLOADS_PUBLIC_DIR,
   loadMidjourneyUploads,
   writeMidjourneyUploads,
 } from "@/lib/midjourney/loadUploads";
+import { refuseInProduction, requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
+import {
+  UploadValidationError,
+  validateImageUpload,
+} from "@/lib/uploads/validateImageUpload";
+import { getAssetStorage } from "@/lib/storage/AssetStorage";
 
 // /api/midjourney/uploads
-//   GET           → list current upload records
-//   POST (multipart) → save the file under public/midjourney-uploads/<prompt_id>/
-//                     and append to data/midjourney-uploads.generated.json
-//   POST (JSON)   → patch one upload's `approved` / `notes` fields
-//   DELETE        → ?upload_id=...  remove the local file + record
+//   GET           → list current upload records (viewer)
+//   POST (multipart) → validate, scan, decode, store via AssetStorage, append
+//                      to the uploads index (editor)
+//   POST (JSON)   → patch one upload's `approved` / `notes` fields (editor)
+//   DELETE        → ?upload_id=...  remove the stored bytes + record (editor)
 //
-// Local-development tool. Writing to the repo's public/ dir is intentional —
-// production deployments should swap the storage layer. No auth.
-
-const ALLOWED_EXTENSIONS = new Set(["png", "jpg", "jpeg", "webp"]);
+// File payload goes through validateImageUpload (size + MIME + magic-byte +
+// sharp decode). Bytes are persisted via AssetStorage which is backed by
+// Supabase Storage in production. Public direct URLs are only returned in
+// local development; in production we hand back a signed URL.
 
 const PatchSchema = z.object({
   upload_id: z.string().min(1),
@@ -37,12 +42,20 @@ const DeleteSchema = z.object({
   upload_id: z.string().min(1),
 });
 
-export async function GET() {
+export async function GET(request: Request) {
+  const auth = await requireRole(request, "viewer");
+  if (auth instanceof NextResponse) return auth;
   const file = await loadMidjourneyUploads();
   return NextResponse.json({ ok: true, uploads: file.uploads });
 }
 
 export async function POST(request: Request) {
+  // Both write paths go through editor+rate-limit.
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.upload, auth);
+  if (limited) return limited;
+
   const contentType = request.headers.get("content-type") ?? "";
 
   // ── JSON patch: approve / notes ──
@@ -55,6 +68,11 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
+    // Patching the index file is a dev-only operation today (JSON file).
+    // Refuse in production unless the explicit local-fs flag is set.
+    const blocked = refuseInProduction();
+    if (blocked) return blocked;
+
     const file = await loadMidjourneyUploads();
     const idx = file.uploads.findIndex((u) => u.upload_id === parsed.data.upload_id);
     if (idx === -1) {
@@ -98,30 +116,28 @@ export async function POST(request: Request) {
     );
   }
 
-  const ext = path.extname(file.name).slice(1).toLowerCase();
-  if (!ALLOWED_EXTENSIONS.has(ext)) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "unsupported_extension",
-        hint: `Allowed: ${Array.from(ALLOWED_EXTENSIONS).join(", ")}`,
-      },
-      { status: 415 },
-    );
+  // Real upload validation: size, MIME, magic bytes, sharp decode, optional
+  // content scanner. Strips EXIF by re-encoding.
+  let validated;
+  try {
+    validated = await validateImageUpload(file);
+  } catch (err) {
+    if (err instanceof UploadValidationError) {
+      return NextResponse.json(
+        { ok: false, error: err.code, message: err.message },
+        { status: err.status },
+      );
+    }
+    throw err;
   }
 
+  // Persist bytes via storage abstraction. In production this is Supabase
+  // Storage; in dev it's the public/midjourney-uploads dir.
+  const storage = getAssetStorage("uploads");
   const upload_id = `mj_${crypto.randomBytes(6).toString("hex")}`;
-  const sanitized = sanitizeFilename(file.name);
   const promptDir = sanitizePromptDir(meta.data.prompt_id);
-  const publicDir = path.join(process.cwd(), "public", UPLOADS_PUBLIC_DIR, promptDir);
-  await fs.mkdir(publicDir, { recursive: true });
-  const localFilename = `${upload_id}-${sanitized}`;
-  const absPath = path.join(publicDir, localFilename);
-  const localPath = path.relative(process.cwd(), absPath);
-  const publicPath = `/${UPLOADS_PUBLIC_DIR}/${promptDir}/${localFilename}`;
-
-  const arrayBuf = await file.arrayBuffer();
-  await fs.writeFile(absPath, Buffer.from(arrayBuf));
+  const storedKey = `${promptDir}/${upload_id}-${validated.safe_filename}`;
+  const put = await storage.put(storedKey, validated.bytes, validated.mime);
 
   const record: MidjourneyUpload = {
     upload_id,
@@ -130,26 +146,53 @@ export async function POST(request: Request) {
     ad_id: meta.data.ad_id,
     intended_use: meta.data.intended_use,
     context: meta.data.context,
-    local_path: localPath,
-    public_path: publicPath,
+    // local_path is now the storage key (provider-relative). The bytes are
+    // never exposed at a public repo path in production.
+    local_path: put.key,
+    public_path: put.public_url,
     cloudinary_public_id: null,
-    cloudinary_secure_url: null,
-    filename: file.name,
-    bytes: file.size,
+    cloudinary_secure_url: put.signed_url,
+    filename: validated.safe_filename,
+    bytes: validated.size_bytes,
     approved: meta.data.approved ?? false,
     notes: meta.data.notes,
     source: "midjourney_manual_upload",
     created_at: new Date().toISOString(),
   };
 
+  // The uploads index is a JSON file today (local dev). Writes to it are
+  // dev-only — production should rely on a DB table backed by the same key.
+  const indexBlocked = refuseInProduction();
+  if (indexBlocked) {
+    // Storage already accepted the bytes; surface a 202-ish state so the
+    // operator can recover.
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "uploads_index_unavailable_in_production",
+        stored_key: put.key,
+        signed_url: put.signed_url,
+        message:
+          "Production indexing is not implemented yet. Bytes were stored at the returned key.",
+      },
+      { status: 503 },
+    );
+  }
   const indexFile = await loadMidjourneyUploads();
   await writeMidjourneyUploads([record, ...indexFile.uploads]);
   return NextResponse.json({ ok: true, upload: record });
 }
 
 export async function DELETE(request: Request) {
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.write, auth);
+  if (limited) return limited;
+
   const url = new URL(request.url);
-  const parsed = DeleteSchema.safeParse({ upload_id: url.searchParams.get("upload_id") ?? "" });
+  const parsed = DeleteSchema.safeParse({
+    upload_id: url.searchParams.get("upload_id") ?? "",
+  });
   if (!parsed.success) {
     return NextResponse.json(
       { ok: false, error: "invalid_request", issues: parsed.error.issues },
@@ -164,14 +207,18 @@ export async function DELETE(request: Request) {
       { status: 404 },
     );
   }
-  // Best-effort delete of the local file.
+  // Delete via the storage abstraction. The local_path field on legacy
+  // records may be a filesystem path; in that case we try a local unlink as
+  // a courtesy. Either way the index update wins as source of truth.
   try {
-    const abs = path.resolve(process.cwd(), target.local_path);
-    await fs.unlink(abs);
+    const storage = getAssetStorage("uploads");
+    await storage.delete(target.local_path);
   } catch (err) {
-    // OK to ignore — the index is the authoritative record.
-    void err;
+    // Best-effort; the index entry is authoritative. Log and continue.
+    console.warn("midjourney upload delete: storage delete failed", (err as Error).message);
   }
+  const indexBlocked = refuseInProduction();
+  if (indexBlocked) return indexBlocked;
   await writeMidjourneyUploads(
     file.uploads.filter((u) => u.upload_id !== parsed.data.upload_id),
   );
@@ -182,8 +229,6 @@ const MetaSchema = z.object({
   prompt_id: z.string().min(1),
   intended_use: MidjourneyIntendedUseSchema,
   context: MidjourneyContextSchema,
-  // Aspect ratio is informational; we still accept it from the form so the UI
-  // can pre-fill it from the chosen prompt without a separate lookup.
   aspect_ratio: MidjourneyAspectRatioSchema.optional(),
   campaign_id: z.string().optional(),
   ad_id: z.string().optional(),
@@ -213,18 +258,6 @@ function parseFormMeta(form: FormData):
   return { success: true, data: parsed.data };
 }
 
-function sanitizeFilename(name: string): string {
-  const dot = name.lastIndexOf(".");
-  const stem = dot === -1 ? name : name.slice(0, dot);
-  const ext = dot === -1 ? "" : name.slice(dot).toLowerCase();
-  const cleanStem = stem
-    .toLowerCase()
-    .replace(/[^a-z0-9._-]+/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^[-.]+|[-.]+$/g, "");
-  return (cleanStem || "asset") + ext.replace(/[^a-z0-9.]/g, "");
-}
-
 function sanitizePromptDir(name: string): string {
   return (
     name
@@ -234,3 +267,7 @@ function sanitizePromptDir(name: string): string {
       .replace(/^[-.]+|[-.]+$/g, "") || "_unsorted"
   );
 }
+
+// `path` import remains for tests/loaders elsewhere — keep tree-shaking
+// honest by referencing it in a no-op.
+void path;

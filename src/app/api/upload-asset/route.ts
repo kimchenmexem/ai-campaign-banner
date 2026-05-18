@@ -6,6 +6,12 @@ import {
   type AssetPreviewMap,
   type AssetPreviewRecord,
 } from "@/lib/preview/copyPreviewAssets";
+import { refuseInProduction, requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
+import {
+  UploadValidationError,
+  validateImageUpload,
+} from "@/lib/uploads/validateImageUpload";
 
 // POST /api/upload-asset
 //
@@ -54,6 +60,14 @@ function sanitizeFilename(name: string): string {
 }
 
 export async function POST(request: Request) {
+  // This route writes into the repo's public/ tree and JSON map. Dev-only.
+  const blocked = refuseInProduction();
+  if (blocked) return blocked;
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.upload, auth);
+  if (limited) return limited;
+
   let form: FormData;
   try {
     form = await request.formData();
@@ -93,6 +107,9 @@ export async function POST(request: Request) {
 
   const safeName = sanitizeFilename(file.name);
   const ext = path.extname(safeName).toLowerCase();
+  // SVG is still accepted via legacy extension check (vector logos / icons).
+  // Raster types must pass the full validator: MIME + magic bytes + sharp.
+  const isSvg = ext === ".svg";
   if (!ALLOWED_EXTENSIONS.has(ext)) {
     return NextResponse.json(
       {
@@ -102,6 +119,19 @@ export async function POST(request: Request) {
       },
       { status: 400 },
     );
+  }
+  if (!isSvg) {
+    try {
+      await validateImageUpload(file, { maxBytes: MAX_BYTES });
+    } catch (err) {
+      if (err instanceof UploadValidationError) {
+        return NextResponse.json(
+          { ok: false, error: err.code, message: err.message },
+          { status: err.status },
+        );
+      }
+      throw err;
+    }
   }
 
   const folderAbs = path.join(PUBLIC_DIR_ABS, folderType);
