@@ -70,6 +70,10 @@ export function UploadManager({
   const [notes, setNotes] = useState("");
 
   // When the prompt selection changes, prefill intended_use / context / aspect.
+  // The user can still override each field via the dropdowns below, so this
+  // isn't pure derived state — it's "prefill defaults, then let the user
+  // override". An effect is the right tool here despite the lint rule.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     const p = prompts.find((pp) => pp.prompt_id === promptId);
     if (!p) return;
