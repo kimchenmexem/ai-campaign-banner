@@ -8,6 +8,8 @@ import {
 } from "@/lib/schemas/campaignBrief.schema";
 import { planCampaign } from "@/lib/ai/campaignPlanner";
 import { readProviderName } from "@/lib/ai/provider";
+import { requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 // POST /api/generate-campaign-variants
 //
@@ -40,6 +42,11 @@ const RequestSchema = z.object({
 export const maxDuration = 600;
 
 export async function POST(request: Request) {
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.expensive, auth);
+  if (limited) return limited;
+
   const json = await request.json().catch(() => null);
   const parsed = RequestSchema.safeParse(json);
   if (!parsed.success) {

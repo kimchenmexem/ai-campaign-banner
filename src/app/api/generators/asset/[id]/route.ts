@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { deleteAsset, setAssetApproval } from "@/lib/generators/storage";
 import { isAssetUsed } from "@/lib/generators/usage";
+import { refuseInProduction, requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 // /api/generators/asset/:id
 //   DELETE — refuses when the asset is referenced from any saved campaign
@@ -17,6 +19,16 @@ export async function DELETE(
   request: Request,
   ctx: { params: Promise<{ id: string }> },
 ) {
+  const blocked = refuseInProduction();
+  if (blocked) return blocked;
+  // Plain delete needs editor; force=1 bypass of in-use protection needs admin.
+  const url = new URL(request.url);
+  const force = url.searchParams.get("force") === "1";
+  const auth = await requireRole(request, force ? "admin" : "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.write, auth);
+  if (limited) return limited;
+
   const { id } = await ctx.params;
   if (!id) {
     return NextResponse.json(
@@ -24,8 +36,6 @@ export async function DELETE(
       { status: 400 },
     );
   }
-  const url = new URL(request.url);
-  const force = url.searchParams.get("force") === "1";
 
   if (!force) {
     const usage = await isAssetUsed(id);
@@ -55,6 +65,13 @@ export async function PATCH(
   request: Request,
   ctx: { params: Promise<{ id: string }> },
 ) {
+  const blocked = refuseInProduction();
+  if (blocked) return blocked;
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.write, auth);
+  if (limited) return limited;
+
   const { id } = await ctx.params;
   if (!id) {
     return NextResponse.json(

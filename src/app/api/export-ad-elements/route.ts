@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { loadCampaignPlanIfExists } from "@/lib/ai/campaignPlanner";
 import { exportAdElementsZip } from "@/lib/export/exportAdElements";
+import { requireRole } from "@/lib/auth/guard";
 
 // GET /api/export-ad-elements?campaign_id=cam_xxxxxxxx&ad_id=ad_concept_…
 //
@@ -17,6 +18,8 @@ import { exportAdElementsZip } from "@/lib/export/exportAdElements";
 export const maxDuration = 60;
 
 export async function GET(request: Request) {
+  const auth = await requireRole(request, "viewer");
+  if (auth instanceof NextResponse) return auth;
   const url = new URL(request.url);
   const campaignId = url.searchParams.get("campaign_id");
   const adId = url.searchParams.get("ad_id");

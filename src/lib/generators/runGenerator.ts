@@ -3,6 +3,8 @@ import { ZodError } from "zod";
 import { loadBrandKit } from "@/lib/generators/brandKit";
 import { persistAsset } from "@/lib/generators/storage";
 import type { GenerateContext, GenerateResult } from "@/lib/generators/types";
+import { refuseInProduction, requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 // Shared runner for the five generator POST routes. Each route just supplies
 // a `generate(params, ctx)` and the rest of the lifecycle (parse JSON →
@@ -17,6 +19,16 @@ export async function runGenerator(
   request: Request,
   generate: GenerateFn,
 ): Promise<Response> {
+  // All generator routes are AI-backed and write to data/generated-assets.
+  // They share the same protection: dev-only writes, editor role, expensive
+  // rate limit.
+  const blocked = refuseInProduction();
+  if (blocked) return blocked;
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.expensive, auth);
+  if (limited) return limited;
+
   let json: unknown;
   try {
     json = await request.json();

@@ -10,6 +10,8 @@ import {
   DemoCampaignSchema,
   type DemoCampaign,
 } from "@/lib/preview/createDemoCampaign";
+import { requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 // POST /api/render-ad
 // Body shape (one of):
@@ -28,6 +30,11 @@ const RequestSchema = z.union([
 const DEMO_PATH = path.join(process.cwd(), "data", "demo-campaign.preview.json");
 
 export async function POST(request: Request) {
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.expensive, auth);
+  if (limited) return limited;
+
   const json = await request.json().catch(() => null);
   const parsed = RequestSchema.safeParse(json);
   if (!parsed.success) {

@@ -1,11 +1,18 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 const ExportRequestSchema = z.object({
   campaignId: z.string().min(1),
 });
 
 export async function POST(request: Request) {
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.expensive, auth);
+  if (limited) return limited;
+
   const json = await request.json().catch(() => null);
   const parsed = ExportRequestSchema.safeParse(json);
   if (!parsed.success) {

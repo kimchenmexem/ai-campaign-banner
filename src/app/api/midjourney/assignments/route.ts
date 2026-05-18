@@ -11,6 +11,8 @@ import {
   writeMidjourneyAssignments,
 } from "@/lib/midjourney/loadAssignments";
 import { loadMidjourneyUploads } from "@/lib/midjourney/loadUploads";
+import { refuseInProduction, requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 // /api/midjourney/assignments
 //   GET           → list current assignments
@@ -44,12 +46,21 @@ const DeleteSchema = z.object({
   assignment_id: z.string().min(1),
 });
 
-export async function GET() {
+export async function GET(request: Request) {
+  const auth = await requireRole(request, "viewer");
+  if (auth instanceof NextResponse) return auth;
   const file = await loadMidjourneyAssignments();
   return NextResponse.json({ ok: true, assignments: file.assignments });
 }
 
 export async function POST(request: Request) {
+  const blocked = refuseInProduction();
+  if (blocked) return blocked;
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.write, auth);
+  if (limited) return limited;
+
   const json = await request.json().catch(() => null);
   if (!json) {
     return NextResponse.json(
@@ -150,6 +161,13 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+  const blocked = refuseInProduction();
+  if (blocked) return blocked;
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.write, auth);
+  if (limited) return limited;
+
   const url = new URL(request.url);
   const parsed = DeleteSchema.safeParse({
     assignment_id: url.searchParams.get("assignment_id") ?? "",
