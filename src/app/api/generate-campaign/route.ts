@@ -8,6 +8,9 @@ import {
 } from "@/lib/schemas/campaignBrief.schema";
 import { planCampaign } from "@/lib/ai/campaignPlanner";
 import { readProviderName } from "@/lib/ai/provider";
+import { requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
+import { ImageGenerationModeSchema } from "@/lib/ai/imageGenerationMode";
 
 // POST /api/generate-campaign
 // Body: { brief: CampaignBriefInput, ai_provider?: "mock" | "openai" | "anthropic", set_as_active?: boolean }
@@ -22,12 +25,19 @@ const RequestSchema = z.object({
   brief: CampaignBriefInputSchema,
   ai_provider: z.enum(["mock", "openai", "anthropic"]).optional(),
   set_as_active: z.boolean().optional(),
-  // Auto-generate one background image per concept via OpenAI Images.
-  // Costs roughly $0.04-0.06 per image (3-9 cents per campaign at 3 concepts).
+  // Auto-generate images via OpenAI Images. Default mode is "background-only"
+  // — one image per concept. Pass image_generation_mode: "all-prompts" to
+  // generate the full midjourney_prompt_pack per concept (cost x3-4).
   auto_generate_images: z.boolean().optional(),
+  image_generation_mode: ImageGenerationModeSchema.optional(),
 });
 
 export async function POST(request: Request) {
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.expensive, auth);
+  if (limited) return limited;
+
   const json = await request.json().catch(() => null);
   const parsed = RequestSchema.safeParse(json);
   if (!parsed.success) {
@@ -50,6 +60,7 @@ export async function POST(request: Request) {
       providerName: parsed.data.ai_provider ?? readProviderName(),
       setAsActive: parsed.data.set_as_active ?? false,
       imageProvider: parsed.data.auto_generate_images ? "openai" : "none",
+      imageGenerationMode: parsed.data.image_generation_mode ?? "background-only",
     });
     return NextResponse.json({
       ok: true,

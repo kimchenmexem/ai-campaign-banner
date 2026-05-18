@@ -35,6 +35,10 @@ import {
 } from "@/lib/midjourney/loadUploads";
 import { fetchCampaignCopy } from "@/lib/marketing-translator/client";
 import type { LocalizedCopyPackage } from "@/lib/marketing-translator/schema";
+import {
+  DEFAULT_IMAGE_GENERATION_MODE,
+  type ImageGenerationMode,
+} from "@/lib/ai/imageGenerationMode";
 import { getCampaignRepository } from "@/lib/repositories/CampaignRepository";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -78,6 +82,14 @@ export interface PlanCampaignOptions {
   // omitted (default), no images are generated — manual Midjourney uploads via
   // /midjourney still work.
   imageProvider?: ImageProviderName;
+  // Which prompts to send to the image provider when `imageProvider === "openai"`.
+  //   "background-only" — one image per concept (the background prompt).
+  //                       Default, matches per-route docs and keeps cost
+  //                       predictable.
+  //   "all-prompts"     — every prompt in midjourney_prompt_pack
+  //                       (background + decorative + hero + …), so a 3-concept
+  //                       campaign with 3 prompts each generates 9 images.
+  imageGenerationMode?: ImageGenerationMode;
   cwd?: string;
 }
 
@@ -260,10 +272,12 @@ export async function planCampaign(
   // ones. The Element Manifest stays the source of truth — generated images
   // travel through the same upload schema as manual Midjourney outputs.
   const imageProviderName = opts.imageProvider ?? readImageProviderName();
+  const imageGenerationMode =
+    opts.imageGenerationMode ?? DEFAULT_IMAGE_GENERATION_MODE;
   let images: ImageGenerationSummary | undefined;
   let buildContext = ctx;
   if (imageProviderName === "openai") {
-    images = await generateImagesForConcepts(refined, cwd);
+    images = await generateImagesForConcepts(refined, cwd, imageGenerationMode);
     if (images.generated > 0) {
       buildContext = await loadAdBuildContext({
         cwd,
@@ -439,6 +453,7 @@ export async function planCampaign(
 async function generateImagesForConcepts(
   raw: import("@/lib/schemas/aiCampaignPlan.schema").AICampaignPlanRaw,
   cwd: string,
+  mode: ImageGenerationMode,
 ): Promise<ImageGenerationSummary> {
   const summary: ImageGenerationSummary = {
     provider: "openai",
@@ -452,7 +467,27 @@ async function generateImagesForConcepts(
   const next = [...uploadsFile.uploads];
   for (const concept of raw.concepts) {
     if (concept.midjourney_prompt_pack.length === 0) continue;
-    for (const prompt of concept.midjourney_prompt_pack) {
+    // Default mode generates only the background prompt per concept. The
+    // route comment + cost estimate match this number. "all-prompts" runs
+    // every prompt (decorative, hero, etc.) and is opt-in.
+    const promptsForThisConcept =
+      mode === "background-only"
+        ? concept.midjourney_prompt_pack
+            .filter((p) => p.intended_use === "background")
+            .slice(0, 1)
+        : concept.midjourney_prompt_pack;
+    if (promptsForThisConcept.length === 0) {
+      // Concept has no background prompt and the caller asked for
+      // background-only. Fall through to the first prompt of any context so
+      // each concept still gets one generated image (matches the documented
+      // contract: one image per concept).
+      if (mode === "background-only" && concept.midjourney_prompt_pack[0]) {
+        promptsForThisConcept.push(concept.midjourney_prompt_pack[0]);
+      } else {
+        continue;
+      }
+    }
+    for (const prompt of promptsForThisConcept) {
       try {
         const result = await generateImageOpenAI(
           {
@@ -505,15 +540,19 @@ function readTranslatorTimeoutMs(): number {
 }
 
 // Map the brief's 2-letter language code to the BCP-47 locale that
-// marketing-translator's /api/campaign-copy expects. The translator only
-// supports a fixed set of EU LTR locales today; ar/he are rejected so the
-// operator picks a different language rather than getting silent fallback.
-function mapLanguageToLocale(language: string): string {
+// marketing-translator's /api/campaign-copy expects. RTL languages (he/ar)
+// are first-class — the renderer already has the font stack + RTL handling
+// for both, and the translator stub / mock honours them.
+export function mapLanguageToLocale(language: string): string {
   const map: Record<string, string> = {
     en: "en-GB",
     fr: "fr-FR",
     it: "it-IT",
     nl: "nl-NL",
+    he: "he-IL",
+    // ar-AE is the finance-region default for Arabic; override per-brief
+    // with `target_locale` once the translator exposes regional variants.
+    ar: "ar-AE",
   };
   const locale = map[language];
   if (!locale) {
