@@ -2,26 +2,36 @@ import type { CampaignPlan } from "@/lib/schemas/aiCampaignPlan.schema";
 import { exportAdSvg } from "@/lib/export/exportAdSvg";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Combined-SVG export: one .svg file containing every banner in the campaign,
-// arranged in a grid. Each banner is nested as a child <svg> element so it
-// keeps its own viewBox + element coordinate system — that is what makes
-// Figma's importer treat each banner as a separate frame.
+// Combined-SVG export — Figma-editable.
 //
-// Figma behaviour (verified against current SVG importer):
-//   - Each nested <svg> becomes a frame named after its data-frame-name.
-//   - Text elements stay editable; image elements stay positioned correctly.
-//   - <defs> inside each nested <svg> are scoped — filter/gradient IDs do
-//     not collide across banners.
+// Builds ONE master SVG that contains every banner in the campaign. Banners
+// are placed via <g transform="translate(x,y)"> — NOT as nested <svg>
+// elements. Nesting <svg> caused Figma's importer to flatten each banner
+// to a single rasterised image (lost editability); flattening to <g> keeps
+// every <text> / <rect> / <image> as an individual editable object after
+// import.
 //
-// Layout choice: 3 columns by default, gutters of 60 px, label band of
-// 36 px above each cell. Row height = max banner height in that row. Each
-// cell is placed at the natural banner size (no scaling) — Figma users
-// usually want pixel-true canvases. Designers can resize after import.
+// What gets done to make this work:
 //
-// embedLocalImages defaults to FALSE for the same reason exportCampaignSvgsZip
-// uses that default: a single combined file with multiple base64-embedded
-// product mockups inflates past Vercel's response cap. Cloudinary refs stay
-// remote and Figma fetches them on import.
+//   1. Per banner we call exportAdSvg() and extract two regions from its
+//      output — the <defs>…</defs> block and the inner banner <g>.
+//   2. We collect every id="X" declaration inside the defs and rewrite
+//      them to "bN_X". The same prefix is applied to every url(#X) and
+//      xlink:href="#X" reference in BOTH defs and body so gradients,
+//      drop-shadow filters and clip-paths keep pointing at the right
+//      def even when multiple banners use overlapping auto-generated ids.
+//   3. The rewritten body is wrapped in <g transform="translate(X,Y)">
+//      so it lands at the right position on the master canvas. Banner
+//      coordinates relative to the wrapper match the original viewBox.
+//   4. All rewritten defs are merged into a single master <defs>.
+//
+// Layout: 3-column grid by default (override via ?cols=). Each cell has
+// a small label band above the banner. Pixel-true canvases survive into
+// Figma at native size.
+//
+// embedLocalImages defaults to FALSE so heavy product mockups stay as
+// remote Cloudinary refs and the combined file stays safely under
+// Vercel's response-size cap.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface ExportCombinedSvgResult {
@@ -45,15 +55,16 @@ interface PlacedBanner {
   conceptId: string;
   width: number;
   height: number;
-  /** Raw output of exportAdSvg (the full <svg>…</svg> string). */
-  rawSvg: string;
+  /** Rewritten defs block (or empty string) — IDs already namespaced. */
+  defs: string;
+  /** Rewritten banner body wrapped in its outer <g> — IDs already namespaced. */
+  body: string;
 }
 
 export async function exportCampaignCombinedSvg(args: {
   plan: CampaignPlan;
   cwd?: string;
   embedLocalImages?: boolean;
-  /** Override the default 3-column grid. */
   cols?: number;
 }): Promise<ExportCombinedSvgResult> {
   const { plan } = args;
@@ -63,6 +74,7 @@ export async function exportCampaignCombinedSvg(args: {
   const succeeded: PlacedBanner[] = [];
   const failed: Array<{ ad_id: string; error: string }> = [];
 
+  let bannerIndex = 0;
   for (const concept of plan.concepts) {
     for (const ad of concept.ad_specs) {
       try {
@@ -72,23 +84,25 @@ export async function exportCampaignCombinedSvg(args: {
           cwd: args.cwd,
           embedLocalImages,
         });
+        const prefix = `b${bannerIndex}_`;
+        const { defs, body } = extractAndNamespace(result.svg, prefix);
         succeeded.push({
           adId: ad.ad_id,
           format: ad.format,
           conceptId: concept.concept_id,
           width: ad.canvas_width,
           height: ad.canvas_height,
-          rawSvg: result.svg,
+          defs,
+          body,
         });
+        bannerIndex++;
       } catch (err) {
         failed.push({ ad_id: ad.ad_id, error: (err as Error).message });
       }
     }
   }
 
-  // ── Lay out the banners on a grid ──────────────────────────────────────
-  // Row stride is computed per-row from the max banner height in that row.
-  // Column stride uses the widest banner in the column for tidy alignment.
+  // ── Layout ─────────────────────────────────────────────────────────────
   const rows: PlacedBanner[][] = [];
   for (let i = 0; i < succeeded.length; i += cols) {
     rows.push(succeeded.slice(i, i + cols));
@@ -118,25 +132,31 @@ export async function exportCampaignCombinedSvg(args: {
     GUTTER_PX * Math.max(0, rows.length - 1);
 
   const masterWidth = OUTER_PAD_PX * 2 + gridWidth;
-  const masterHeight =
-    OUTER_PAD_PX * 2 + TITLE_BAND_PX + gridHeight;
+  const masterHeight = OUTER_PAD_PX * 2 + TITLE_BAND_PX + gridHeight;
 
-  // ── Emit master SVG ────────────────────────────────────────────────────
+  // ── Compose master SVG ─────────────────────────────────────────────────
   const parts: string[] = [];
   parts.push(
-    `<?xml version="1.0" encoding="UTF-8" standalone="no"?>` +
-      `<svg xmlns="http://www.w3.org/2000/svg" width="${masterWidth}" height="${masterHeight}"` +
+    `<?xml version="1.0" encoding="UTF-8" standalone="no"?>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"` +
+      ` width="${masterWidth}" height="${masterHeight}"` +
       ` viewBox="0 0 ${masterWidth} ${masterHeight}"` +
       ` data-campaign-id="${esc(plan.campaign_id)}"` +
       ` data-banner-count="${succeeded.length}">`,
   );
 
-  // Subtle off-white background so the grid reads as a "deck" page in Figma.
+  // Merged defs — every banner's gradients + filters with namespaced IDs.
+  const mergedDefs = succeeded.map((b) => b.defs).filter(Boolean).join("\n");
+  if (mergedDefs.length > 0) {
+    parts.push(`<defs>\n${mergedDefs}\n</defs>`);
+  }
+
+  // Page background (helps the deck read as a Figma page).
   parts.push(
     `<rect width="${masterWidth}" height="${masterHeight}" fill="#FAFAFA"/>`,
   );
 
-  // Master title.
+  // Title.
   const titleText = `${plan.campaign_id} · ${succeeded.length} banner${succeeded.length === 1 ? "" : "s"}`;
   parts.push(
     `<text x="${OUTER_PAD_PX}" y="${OUTER_PAD_PX + 28}"` +
@@ -152,23 +172,23 @@ export async function exportCampaignCombinedSvg(args: {
       const b = row[c];
       const cellX = gridOriginX + colOffsets[c];
       const cellY = gridOriginY + rowOffsets[r];
+      const bannerOriginY = cellY + LABEL_BAND_PX;
 
-      // Label band above the banner.
       parts.push(
-        `<g data-cell="${esc(b.adId)}">`,
+        `<g data-frame-name="${esc(b.format)} · ${esc(b.conceptId)}">`,
+        `<title>${esc(b.format)} · ${esc(b.conceptId)}</title>`,
+        // Label band text above the banner.
         `<text x="${cellX}" y="${cellY + 20}"` +
-          ` font-family="${LABEL_FONT}" font-size="13" font-weight="500" fill="#444">` +
-          `${esc(b.conceptId)} · ${esc(b.format)}` +
-          `</text>`,
+          ` font-family="${LABEL_FONT}" font-size="13" font-weight="500" fill="#444">${esc(b.conceptId)} · ${esc(b.format)}</text>`,
+        // The banner body — already rewritten + ID-namespaced. translate()
+        // is what positions every element on the master canvas; the banner's
+        // own coordinates (0..W, 0..H) flow through unchanged so Figma sees
+        // pixel-true element positions.
+        `<g transform="translate(${cellX} ${bannerOriginY})">`,
+        b.body,
+        `</g>`,
+        `</g>`,
       );
-
-      // Nested banner SVG. Re-write the opening <svg ...> tag so the nested
-      // element sits at (cellX, cellY + LABEL_BAND_PX) inside the master.
-      // The original viewBox + width/height stay so Figma keeps frame size
-      // pixel-accurate.
-      const nested = nestSvg(b.rawSvg, cellX, cellY + LABEL_BAND_PX, b.adId, b.format);
-      parts.push(nested);
-      parts.push(`</g>`);
     }
   }
 
@@ -187,22 +207,105 @@ export async function exportCampaignCombinedSvg(args: {
   };
 }
 
-/** Strip any XML prolog and rewrite the outer <svg ...> opening tag so it
- *  carries the banner's grid coordinates and a Figma-friendly frame name. */
-function nestSvg(raw: string, x: number, y: number, adId: string, format: string): string {
-  // Drop any leading <?xml ?> prolog — multiple prologs inside one document
-  // make some parsers (including stricter SVG renderers) reject the whole
-  // file. The xmlns on each nested <svg> is fine to repeat.
-  let body = raw.replace(/^\s*<\?xml[^>]*\?>\s*/i, "");
+// ─── ID-namespace helpers ──────────────────────────────────────────────────
+//
+// exportAdSvg uses auto-generated def IDs like "shadow_<hash>" or
+// "bg_gradient_<idx>". When we merge multiple banners into one master we
+// must rewrite those IDs (and every url(#…) reference to them) with a
+// per-banner prefix or two banners will collide on the same gradient or
+// drop-shadow filter.
 
-  // Inject x/y + data-frame-name into the opening <svg ...> tag. data-frame-name
-  // gives Figma a readable name in the layers panel.
-  body = body.replace(
-    /<svg\b/i,
-    `<svg x="${x}" y="${y}" data-frame-name="${esc(format)} · ${esc(adId)}"`,
-  );
+/**
+ * Extract the <defs>…</defs> + the inner banner <g> from a single-banner
+ * SVG. Both regions are returned with every id="…" declared inside the
+ * defs rewritten to `${prefix}id`, and every matching url(#id) /
+ * xlink:href="#id" reference rewritten the same way.
+ */
+function extractAndNamespace(rawSvg: string, prefix: string): { defs: string; body: string } {
+  // 1. Drop the XML prolog if present — the master writes its own.
+  const noProlog = rawSvg.replace(/^\s*<\?xml[^>]*\?>\s*/i, "");
 
-  return body;
+  // 2. Pull out everything between the opening <svg ...> and the matching
+  //    </svg>. We treat the contents inside that pair as the document
+  //    body for further processing.
+  const inner = stripOuterSvg(noProlog);
+
+  // 3. Pull out the <defs>…</defs> block if present.
+  const { defs: defsRaw, rest } = extractDefs(inner);
+
+  // 4. Find every id="X" declared in defs. We DELIBERATELY do NOT rewrite
+  //    IDs declared in the body — only def-declared IDs participate in the
+  //    rename. Element IDs like "el_logo" can stay distinct across banners
+  //    (Figma reads them as layer names) and the body never points to
+  //    them via url(#…).
+  const defIds = collectIds(defsRaw);
+
+  const rewriteRefs = (s: string): string => {
+    let out = s;
+    for (const id of defIds) {
+      const newId = `${prefix}${id}`;
+      // Rewrite id="X" (only inside defs — see below for split).
+      // url(#X) refs — both in defs (gradient stop chains) and body.
+      out = replaceAll(out, `url(#${id})`, `url(#${newId})`);
+      out = replaceAll(out, `url("#${id}")`, `url("#${newId}")`);
+      out = replaceAll(out, `url('#${id}')`, `url('#${newId}')`);
+      // xlink:href="#X" — used by some <use> elements.
+      out = replaceAll(out, `xlink:href="#${id}"`, `xlink:href="#${newId}"`);
+      out = replaceAll(out, `href="#${id}"`, `href="#${newId}"`);
+    }
+    return out;
+  };
+
+  const renamedDefs = defsRaw
+    ? defIds.reduce(
+        (acc, id) => replaceAll(acc, `id="${id}"`, `id="${prefix}${id}"`),
+        rewriteRefs(defsRaw),
+      )
+    : "";
+
+  const renamedBody = rewriteRefs(rest);
+
+  return { defs: renamedDefs, body: renamedBody };
+}
+
+/**
+ * Strip the outer <svg>…</svg> wrapper and return the inner string. The
+ * exportAdSvg output is well-formed; we accept a single top-level <svg>
+ * pair.
+ */
+function stripOuterSvg(s: string): string {
+  const openMatch = s.match(/<svg\b[^>]*>/i);
+  if (!openMatch) return s;
+  const openEnd = (openMatch.index ?? 0) + openMatch[0].length;
+  const closeIdx = s.lastIndexOf("</svg>");
+  if (closeIdx < 0 || closeIdx < openEnd) return s.slice(openEnd);
+  return s.slice(openEnd, closeIdx);
+}
+
+function extractDefs(s: string): { defs: string; rest: string } {
+  // Match the first <defs>…</defs> only — exportAdSvg emits at most one.
+  const match = s.match(/<defs\b[^>]*>([\s\S]*?)<\/defs>/i);
+  if (!match) return { defs: "", rest: s };
+  const start = match.index ?? 0;
+  const end = start + match[0].length;
+  const inner = match[1];
+  const rest = (s.slice(0, start) + s.slice(end)).trim();
+  return { defs: inner, rest };
+}
+
+/** Return every id="X" value declared in the input string. */
+function collectIds(s: string): string[] {
+  const out: string[] = [];
+  const re = /\bid="([^"]+)"/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(s)) !== null) {
+    out.push(m[1]);
+  }
+  return out;
+}
+
+function replaceAll(haystack: string, needle: string, replacement: string): string {
+  return haystack.split(needle).join(replacement);
 }
 
 function esc(s: string): string {
