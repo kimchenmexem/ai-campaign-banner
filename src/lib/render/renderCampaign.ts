@@ -193,15 +193,23 @@ async function renderOne(
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30_000 });
     await page.waitForLoadState("networkidle", { timeout: 30_000 });
     await page.evaluate(async () => {
-      // Wait for every embedded image to decode...
+      // Wait for every embedded image to decode (or fail). The
+      // `img.complete` flag is true once the load/error event has fired —
+      // attaching the listener AFTER that point would wait forever. So we
+      // gate on `complete`, not on `complete && naturalWidth > 0`: a 404'd
+      // image is "complete-with-no-pixels", and treating that as still-
+      // loading is what hangs the render. Capping each wait at 5s is a
+      // belt-and-suspenders timeout in case the browser ever lies.
       const imgs = Array.from(document.images);
       await Promise.all(
         imgs.map((img) =>
-          img.complete && img.naturalWidth > 0
+          img.complete
             ? Promise.resolve()
             : new Promise<void>((resolve) => {
-                img.addEventListener("load", () => resolve(), { once: true });
-                img.addEventListener("error", () => resolve(), { once: true });
+                const done = () => resolve();
+                img.addEventListener("load", done, { once: true });
+                img.addEventListener("error", done, { once: true });
+                setTimeout(done, 5000);
               }),
         ),
       );
