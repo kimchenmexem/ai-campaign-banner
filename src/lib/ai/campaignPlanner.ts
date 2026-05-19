@@ -219,11 +219,40 @@ export async function planCampaign(
       clearTimeout(timer);
     }
   }
+  // Topic-aware disclaimer appendix. We append the brand-kit's
+  // topic_disclaimers entries (ETF / complex products / tax) to the
+  // translator's localised general disclaimer whenever the concept's copy
+  // mentions the topic's keywords. The general string keeps its locale;
+  // topic appendices today are English-only (see `topic_disclaimers`
+  // docstring in brandKit.schema.ts) — operators with localised compliance
+  // requirements should fill the language-specific disclaimers_by_language
+  // and skip topic auto-append for that brand.
+  const { appendTopicDisclaimers } = await import("@/lib/ai/disclaimerTopics");
+  const topicTexts = ctx.brandKit.legal.topic_disclaimers;
   refined = {
     ...refined,
     concepts: refined.concepts.map((c) => {
       const localized = copyByConceptId.get(c.concept_id);
       if (!localized) return c;
+      // Build the corpus we run keyword detection against. Per-concept so
+      // each concept in a multi-concept campaign can get a different
+      // appendix when their strategic angles emphasise different topics.
+      const corpus = [
+        brief.marketing_message,
+        brief.notes ?? "",
+        c.strategic_idea,
+        c.name,
+        localized.headline,
+        localized.subheadline,
+        localized.body ?? c.copy_package.body,
+      ]
+        .filter(Boolean)
+        .join(" ");
+      const disclaimerWithTopics = appendTopicDisclaimers(
+        localized.disclaimer,
+        corpus,
+        topicTexts,
+      );
       return {
         ...c,
         copy_package: {
@@ -232,7 +261,7 @@ export async function planCampaign(
           subheadline: localized.subheadline,
           body: localized.body ?? c.copy_package.body,
           cta: localized.cta,
-          disclaimer: localized.disclaimer,
+          disclaimer: disclaimerWithTopics,
           // Drop fields that came from the LLM and no longer match the
           // localized headline/cta. headline_emphasis was a verbatim
           // prefix of the LLM headline; alternates / platform variations

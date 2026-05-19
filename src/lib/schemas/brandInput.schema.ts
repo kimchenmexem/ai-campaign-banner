@@ -71,6 +71,18 @@ const ScreenshotsRequirementsSchema = z.object({
 
 const DisclaimerSchema = z.object({
   required_texts: z.array(z.string().min(1)).min(1),
+  // Topic-specific appendix disclaimers. Optional. When present, the
+  // brand-kit converter copies these onto the generated brand-kit's
+  // `legal.topic_disclaimers` field, and the planner appends them to the
+  // general disclaimer when the campaign copy matches the topic's
+  // keywords (see src/lib/ai/disclaimerTopics.ts).
+  topic_disclaimers: z
+    .object({
+      etf_free: z.string().optional(),
+      complex_products: z.string().optional(),
+      tax_advice: z.string().optional(),
+    })
+    .optional(),
   notes: NotesField,
 });
 

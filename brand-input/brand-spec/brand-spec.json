@@ -99,9 +99,13 @@
     },
     "disclaimer_or_risk_warnings": {
       "required_texts": [
-        "Caution. Investing involves risk of loss.",
-        "Third party fees and Terms & conditions apply."
-      ]
+        "Caution. Investing involves risk of loss."
+      ],
+      "topic_disclaimers": {
+        "etf_free": "Third party fees and Terms & conditions apply*.",
+        "complex_products": "Trading complex products such as options, futures, and warrants carries a high level of risk and may not be suitable for all investors",
+        "tax_advice": "MEXEM does not provide tax advice and is not responsible for the content or accuracy of third-party services. You should consult an independent tax advisor regarding your individual circumstances."
+      }
     },
     "spacing": {
       "frame": {
