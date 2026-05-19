@@ -101,6 +101,17 @@ const FORMAT_TO_DEVICE: Record<CampaignFormat, DeviceType> = {
   "300x250": "phone",
   "336x280": "phone",
   "960x1200": "tablet",
+  // MEXEM Set 2 — display ad formats. Device-family is mostly a hint
+  // for the compact renderer to pick an appropriately-cropped product
+  // visual asset; small canvases need phone-shape, larger need tablet.
+  "320x100": "phone",
+  "320x50": "phone",
+  "300x1050": "phone",
+  "300x600": "phone",
+  "160x600": "phone",
+  "970x250": "tablet",
+  "728x90": "phone",
+  "250x250": "phone",
 };
 
 const FORMAT_TO_CHANNEL: Record<CampaignFormat, string> = {
@@ -117,6 +128,15 @@ const FORMAT_TO_CHANNEL: Record<CampaignFormat, string> = {
   "300x250": "medium-rectangle",
   "336x280": "large-rectangle",
   "960x1200": "portrait-tall",
+  // IAB Set 2.
+  "320x100": "large-mobile-banner",
+  "320x50": "mobile-banner",
+  "300x1050": "portrait-skyscraper",
+  "300x600": "half-page",
+  "160x600": "skyscraper",
+  "970x250": "billboard",
+  "728x90": "leaderboard",
+  "250x250": "square",
 };
 
 const FORMAT_TO_SIZE: Record<
@@ -134,6 +154,14 @@ const FORMAT_TO_SIZE: Record<
   "300x250": { width: 300, height: 250 },
   "336x280": { width: 336, height: 280 },
   "960x1200": { width: 960, height: 1200 },
+  "320x100": { width: 320, height: 100 },
+  "320x50": { width: 320, height: 50 },
+  "300x1050": { width: 300, height: 1050 },
+  "300x600": { width: 300, height: 600 },
+  "160x600": { width: 160, height: 600 },
+  "970x250": { width: 970, height: 250 },
+  "728x90": { width: 728, height: 90 },
+  "250x250": { width: 250, height: 250 },
 };
 
 // Fallback chain keyed by the AI's 6-value desired_visual_context. The
