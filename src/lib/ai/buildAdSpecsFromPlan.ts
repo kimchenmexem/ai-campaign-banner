@@ -448,7 +448,12 @@ export function buildAdSpecsForConcept(
       midjourneyAssignments: context.activeAssignments,
       copy: {
         headline: concept.copy_package.headline,
-        headline_emphasis: concept.copy_package.headline_emphasis,
+        // Normalise null → undefined: the AI plan schema accepts both
+        // (some providers emit explicit null instead of omitting the
+        // key) but the downstream BuildAdSpec `copy.headline_emphasis`
+        // contract is `string | undefined`, no null.
+        headline_emphasis:
+          concept.copy_package.headline_emphasis ?? undefined,
         subheadline: concept.copy_package.subheadline,
         cta: ctaText,
         disclaimer: disclaimerText,

@@ -41,8 +41,15 @@ export const CopyPackageSchema = z.object({
   // MEXEM reference style where the first clause of the headline (e.g.
   // "ONE INVESTING ACCOUNT.") is rendered in brand-accent yellow and the
   // rest ("ACCESS ACROSS EVERY DEVICE.") in white. Must be a verbatim
-  // prefix of `headline`. When omitted the headline renders single-color.
-  headline_emphasis: z.string().optional(),
+  // prefix of `headline`. When omitted or null the headline renders
+  // single-color.
+  //
+  // Accepts `null` because some AI providers (notably GPT-4o in JSON-mode)
+  // emit `"headline_emphasis": null` rather than omitting the key when no
+  // emphasis fits, even though the prompt asks for the latter. Treating
+  // null the same as undefined keeps the planner from rejecting otherwise
+  // valid plans.
+  headline_emphasis: z.string().nullable().optional(),
   subheadline: z.string().min(1),
   body: z.string().optional(),
   cta: z.string().min(1),
