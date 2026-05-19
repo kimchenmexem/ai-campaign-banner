@@ -26,6 +26,9 @@ export const FormatKeySchema = z.enum([
   "1200x1200",
   "1500x500",
   "1920x1080",
+  "300x250",
+  "336x280",
+  "960x1200",
 ]);
 export type FormatKey = z.infer<typeof FormatKeySchema>;
 
@@ -78,6 +81,21 @@ export const LogoSchema = z.object({
       padding_px: z.number().nonnegative().optional(),
       padding_percent_of_logo_height: z.number().nonnegative().optional(),
     })
+    .optional(),
+  // Per-format explicit logo box dimensions sourced from the MEXEM banner
+  // spec. When present for the active format, computeLayout uses these
+  // verbatim instead of the height-from-canvas + aspect-from-variant
+  // derivation. Partial record: formats without an entry use the derivation.
+  size_per_format: z
+    .record(
+      FormatKeySchema,
+      z
+        .object({
+          width: z.number().positive(),
+          height: z.number().positive(),
+        })
+        .optional(),
+    )
     .optional(),
 });
 export type Logo = z.infer<typeof LogoSchema>;
@@ -230,6 +248,135 @@ export const LayoutSchema = z.object({
   // The QA layer cross-references these against the manifest's role layout.
   allowed_compositions: z.array(z.string().min(1)).default([]),
   safe_areas: z.record(FormatKeySchema, Inset).optional(),
+  // Per-format inter-section gaps sourced from the MEXEM banner spec. When
+  // present, computeLayout uses these instead of the historic hardcoded
+  // gaps (logo→headline 48, sub→CTA 20). Partial record — formats without
+  // an entry retain the existing literal gaps. Only the most-common text-
+  // stack code paths honor these; rarer composition branches retain their
+  // own gap math.
+  section_gaps_per_format: z
+    .record(
+      FormatKeySchema,
+      z
+        .object({
+          logo_to_text: z.number().nonnegative().optional(),
+          text_to_cta: z.number().nonnegative().optional(),
+        })
+        .optional(),
+    )
+    .optional(),
+  // Per-format logo placement (top-anchor). When the MEXEM spec specifies
+  // symmetric logo side margins that center the logo (e.g. 1080x1920 with
+  // 144px on each side and a 787px-wide logo), set "top-center". Other
+  // formats keep the default "top-left" corner-anchor behaviour.
+  logo_position_per_format: z
+    .record(FormatKeySchema, z.enum(["top-left", "top-center", "top-right"]).optional())
+    .optional(),
+  // Per-format product-visual anchor. "right" (default) keeps the
+  // historic phone-on-right placement. "bottom-band" pins the visual
+  // as a full-canvas-width band hugging the risk-message band (1080x1920
+  // and 960x1200 per the MEXEM spec).
+  visual_anchor_per_format: z
+    .record(FormatKeySchema, z.enum(["right", "bottom-band"]).optional())
+    .optional(),
+  // Per-format explicit element box dimensions sourced from the MEXEM
+  // banner spec. When present, computeLayout uses these for the text
+  // column width, CTA box dimensions, and risk-message band width.
+  // product_visual is part of the spec but intentionally NOT modeled here
+  // yet — its size is composition-dependent and folds into PR 5.
+  element_sizes_per_format: z
+    .record(
+      FormatKeySchema,
+      z
+        .object({
+          text: z
+            .object({
+              width: z.number().positive().optional(),
+              height: z.number().positive().optional(),
+            })
+            .optional(),
+          cta: z
+            .object({
+              width: z.number().positive().optional(),
+              height: z.number().positive().optional(),
+            })
+            .optional(),
+          risk_message: z
+            .object({
+              width: z.number().positive().optional(),
+              height: z.number().positive().optional(),
+            })
+            .optional(),
+          product_visual: z
+            .object({
+              width: z.number().positive().optional(),
+              height: z.number().positive().optional(),
+            })
+            .optional(),
+        })
+        .optional(),
+    )
+    .optional(),
+  // Per-format alternative compositions sourced from the MEXEM banner spec.
+  // 1200x1200 has two designed variants (Variant A "phone right" — the
+  // default — and Variant B "phone lower"). This block stores the
+  // measurements for the non-default variants so a future variant-selector
+  // PR can pick them at render time. **Currently DATA-ONLY** — computeLayout
+  // does not yet consume this block. Adding the data here so it's tracked
+  // and ready when the selector is wired.
+  composition_variants_per_format: z
+    .record(
+      FormatKeySchema,
+      z
+        .record(
+          z.string().min(1),
+          z
+            .object({
+              logo_position: z
+                .enum(["top-left", "top-center", "top-right"])
+                .optional(),
+              logo: z
+                .object({
+                  width: z.number().positive(),
+                  height: z.number().positive(),
+                })
+                .optional(),
+              text: z
+                .object({
+                  width: z.number().positive().optional(),
+                  height: z.number().positive().optional(),
+                })
+                .optional(),
+              cta: z
+                .object({
+                  width: z.number().positive().optional(),
+                  height: z.number().positive().optional(),
+                })
+                .optional(),
+              risk_message: z
+                .object({
+                  width: z.number().positive().optional(),
+                  height: z.number().positive().optional(),
+                })
+                .optional(),
+              product_visual: z
+                .object({
+                  width: z.number().positive().optional(),
+                  height: z.number().positive().optional(),
+                })
+                .optional(),
+              section_gaps: z
+                .object({
+                  logo_to_text: z.number().nonnegative().optional(),
+                  text_to_cta: z.number().nonnegative().optional(),
+                })
+                .optional(),
+            })
+            .optional(),
+        )
+        .optional(),
+    )
+    .optional(),
   disclaimer_placement_rules: z
     .object({
       allowed_positions: z.array(DisclaimerPlacementSchema).default(["bottom-center"]),

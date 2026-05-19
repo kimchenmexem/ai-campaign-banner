@@ -464,7 +464,9 @@ function buildUserPrompt(input: AIProviderInput): string {
     `Goal: ${brief.campaign_goal}`,
     `Tone: ${brief.tone.join(", ")}`,
     `Required formats: ${brief.required_formats.join(", ")}`,
-    `Preferred contexts: ${brief.preferred_contexts.join(", ")}`,
+    ...(brief.preferred_contexts && brief.preferred_contexts.length > 0
+      ? [`Preferred contexts: ${brief.preferred_contexts.join(", ")}`]
+      : []),
     `Risk-warning required: ${brief.risk_warning_required}`,
     localizedFromKit
       ? `REGULATOR-APPROVED DISCLAIMER for ${langMeta.englishName} (USE VERBATIM, do NOT translate or paraphrase — compliance requires exact wording): ${fallbackDisclaimer}`
@@ -787,7 +789,7 @@ function mockShapes(brief: CampaignBrief): MockConceptShape[] {
       target_emotion: "calm authority",
       tone: brief.tone[0] ?? "confident",
       context:
-        brief.preferred_contexts.find((c) => c === "charts") ?? "premium_fintech",
+        brief.preferred_contexts?.find((c) => c === "charts") ?? "premium_fintech",
       copy: {
         headline: "ONE INVESTING ACCOUNT. ACCESS ACROSS EVERY DEVICE.",
         headline_emphasis: "ONE INVESTING ACCOUNT.",
@@ -810,7 +812,7 @@ function mockShapes(brief: CampaignBrief): MockConceptShape[] {
       strategic_idea: `Reposition ${message.toLowerCase()} around ETF-led diversification — disciplined, never reckless.`,
       target_emotion: "measured optimism",
       tone: brief.tone[1] ?? brief.tone[0] ?? "trustworthy",
-      context: brief.preferred_contexts.find((c) => c === "etfs") ?? "etfs",
+      context: brief.preferred_contexts?.find((c) => c === "etfs") ?? "etfs",
       copy: {
         headline: "GLOBAL INVESTING, LOCAL SUPPORT.",
         headline_emphasis: "GLOBAL INVESTING,",
@@ -834,7 +836,7 @@ function mockShapes(brief: CampaignBrief): MockConceptShape[] {
       target_emotion: "alert focus",
       tone: brief.tone[2] ?? brief.tone[1] ?? brief.tone[0] ?? "energetic",
       context:
-        brief.preferred_contexts.find((c) => c === "stocks") ?? "stocks",
+        brief.preferred_contexts?.find((c) => c === "stocks") ?? "stocks",
       copy: {
         headline: "ACCESS FUTURES TRADING IN ONE PLATFORM",
         headline_emphasis: "ACCESS FUTURES TRADING",
@@ -1146,7 +1148,7 @@ export class OpenAIProvider implements AIProvider {
       const completion = await client.chat.completions.create({
         model,
         response_format: { type: "json_object" },
-        max_tokens: 4096,
+        max_tokens: 8192,
         // Higher temperature encourages the 3 concepts to diverge instead of
         // collapsing into variants of the same idea.
         temperature,
@@ -1193,7 +1195,7 @@ export class OpenAIProvider implements AIProvider {
     const completion = await client.chat.completions.create({
       model,
       response_format: { type: "json_object" },
-      max_tokens: 4096,
+      max_tokens: 8192,
       temperature,
       messages: [
         { role: "system", content: baseSystem },
@@ -1228,7 +1230,7 @@ export class OpenAIProvider implements AIProvider {
     const completion = await client.chat.completions.create({
       model,
       response_format: { type: "json_object" },
-      max_tokens: 4096,
+      max_tokens: 8192,
       temperature,
       messages: [
         { role: "system", content: systemPrompt },
@@ -1276,7 +1278,7 @@ export class AnthropicProvider implements AIProvider {
     try {
       const response = await client.messages.create({
         model,
-        max_tokens: 4096,
+        max_tokens: 8192,
         temperature,
         system: systemPrompt,
         messages: [
@@ -1326,7 +1328,7 @@ export class AnthropicProvider implements AIProvider {
       "\n\nReturn the refined JSON object only.";
     const response = await client.messages.create({
       model,
-      max_tokens: 4096,
+      max_tokens: 8192,
       temperature,
       system: `${baseSystem}\n\n${refinementPrompt}`,
       messages: [{ role: "user", content: userPrompt }],
@@ -1353,7 +1355,7 @@ export class AnthropicProvider implements AIProvider {
       : VISUAL_PLANNER_SYSTEM_PROMPT;
     const response = await client.messages.create({
       model,
-      max_tokens: 4096,
+      max_tokens: 8192,
       temperature,
       system: systemPrompt,
       messages: [

@@ -151,7 +151,6 @@ function BriefBlock({ brief }: { brief: import("@/lib/schemas/campaignBrief.sche
           }
         />
         <Row k="formats" v={brief.required_formats.join(", ")} />
-        <Row k="contexts" v={brief.preferred_contexts.join(", ")} />
         <Row k="risk warning" v={brief.risk_warning_required ? "required" : "off"} />
       </dl>
       <div className="mt-3 space-y-2">

@@ -162,6 +162,9 @@ export function convertBrandInputToBrandKitWithProvenance(
     "1200x1200": sizesPerRole,
     "1500x500": sizesPerRole,
     "1920x1080": sizesPerRole,
+    "300x250": sizesPerRole,
+    "336x280": sizesPerRole,
+    "960x1200": sizesPerRole,
   };
 
   const frame = spec.materials.spacing.frame;
@@ -180,6 +183,9 @@ export function convertBrandInputToBrandKitWithProvenance(
     "1200x1200": inset,
     "1500x500": inset,
     "1920x1080": inset,
+    "300x250": inset,
+    "336x280": inset,
+    "960x1200": inset,
   };
 
   const disclaimerText = spec.materials.disclaimer_or_risk_warnings.required_texts.join(

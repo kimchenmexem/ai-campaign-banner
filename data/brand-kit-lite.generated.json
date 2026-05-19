@@ -49,6 +49,15 @@
     "safe_area": {
       "padding_px": 24,
       "padding_percent_of_logo_height": 0.5
+    },
+    "size_per_format": {
+      "300x250": { "width": 153, "height": 29 },
+      "336x280": { "width": 153, "height": 30 },
+      "1080x1080": { "width": 457, "height": 100 },
+      "1080x1920": { "width": 787.21, "height": 171 },
+      "1200x628": { "width": 456, "height": 90 },
+      "1200x1200": { "width": 710, "height": 142 },
+      "960x1200": { "width": 523, "height": 98 }
     }
   },
   "colors": {
@@ -190,6 +199,27 @@
         "body": 42,
         "cta": 42,
         "disclaimer": 38
+      },
+      "300x250": {
+        "headline": 22,
+        "subheadline": 14,
+        "body": 11,
+        "cta": 12,
+        "disclaimer": 11
+      },
+      "336x280": {
+        "headline": 24,
+        "subheadline": 15,
+        "body": 12,
+        "cta": 13,
+        "disclaimer": 12
+      },
+      "960x1200": {
+        "headline": 90,
+        "subheadline": 50,
+        "body": 32,
+        "cta": 32,
+        "disclaimer": 30
       }
     },
     "line_heights": {
@@ -306,22 +336,22 @@
     },
     "outer_margins": {
       "1200x628": {
-        "top": 71,
+        "top": 54,
         "right": 50,
-        "bottom": 180,
+        "bottom": 80,
         "left": 50
       },
       "1080x1080": {
-        "top": 71,
+        "top": 70,
         "right": 50,
-        "bottom": 180,
+        "bottom": 130,
         "left": 50
       },
       "1080x1920": {
-        "top": 71,
-        "right": 50,
-        "bottom": 180,
-        "left": 50
+        "top": 182,
+        "right": 71,
+        "bottom": 100,
+        "left": 71
       },
       "1080x1350": {
         "top": 71,
@@ -336,9 +366,9 @@
         "left": 50
       },
       "1200x1200": {
-        "top": 71,
+        "top": 160,
         "right": 50,
-        "bottom": 180,
+        "bottom": 130,
         "left": 50
       },
       "1500x500": {
@@ -352,6 +382,24 @@
         "right": 80,
         "bottom": 200,
         "left": 80
+      },
+      "300x250": {
+        "top": 34,
+        "right": 10,
+        "bottom": 35,
+        "left": 10
+      },
+      "336x280": {
+        "top": 33,
+        "right": 10,
+        "bottom": 38,
+        "left": 10
+      },
+      "960x1200": {
+        "top": 89,
+        "right": 107,
+        "bottom": 90,
+        "left": 107
       }
     },
     "allowed_templates": [
@@ -368,22 +416,22 @@
     ],
     "safe_areas": {
       "1200x628": {
-        "top": 71,
+        "top": 54,
         "right": 50,
-        "bottom": 180,
+        "bottom": 80,
         "left": 50
       },
       "1080x1080": {
-        "top": 71,
+        "top": 70,
         "right": 50,
-        "bottom": 180,
+        "bottom": 130,
         "left": 50
       },
       "1080x1920": {
-        "top": 71,
-        "right": 50,
-        "bottom": 180,
-        "left": 50
+        "top": 182,
+        "right": 71,
+        "bottom": 100,
+        "left": 71
       },
       "1080x1350": {
         "top": 71,
@@ -398,9 +446,9 @@
         "left": 50
       },
       "1200x1200": {
-        "top": 71,
+        "top": 160,
         "right": 50,
-        "bottom": 180,
+        "bottom": 130,
         "left": 50
       },
       "1500x500": {
@@ -414,6 +462,96 @@
         "right": 80,
         "bottom": 200,
         "left": 80
+      },
+      "300x250": {
+        "top": 34,
+        "right": 10,
+        "bottom": 35,
+        "left": 10
+      },
+      "336x280": {
+        "top": 33,
+        "right": 10,
+        "bottom": 38,
+        "left": 10
+      },
+      "960x1200": {
+        "top": 89,
+        "right": 107,
+        "bottom": 90,
+        "left": 107
+      }
+    },
+    "logo_position_per_format": {
+      "1080x1920": "top-center",
+      "960x1200": "top-center"
+    },
+    "visual_anchor_per_format": {
+      "1080x1920": "bottom-band",
+      "960x1200": "bottom-band"
+    },
+    "section_gaps_per_format": {
+      "300x250":   { "logo_to_text": 77,  "text_to_cta": 19 },
+      "1080x1080": { "logo_to_text": 70,  "text_to_cta": 39 },
+      "1080x1920": { "logo_to_text": 107, "text_to_cta": 62 },
+      "1200x1200": { "logo_to_text": 88,  "text_to_cta": 88 },
+      "960x1200":  { "logo_to_text": 63,  "text_to_cta": 63 }
+    },
+    "element_sizes_per_format": {
+      "300x250": {
+        "text":           { "width": 184, "height": 100 },
+        "cta":            { "width": 125, "height": 26 },
+        "risk_message":   { "width": 300, "height": 25 },
+        "product_visual": { "width": 104, "height": 171 }
+      },
+      "336x280": {
+        "text":           { "width": 185, "height": 101 },
+        "cta":            { "width": 125, "height": 26 },
+        "risk_message":   { "width": 336, "height": 28 },
+        "product_visual": { "width": 136, "height": 234 }
+      },
+      "1080x1080": {
+        "text":           { "width": 642, "height": 502 },
+        "cta":            { "width": 642, "height": 85 },
+        "risk_message":   { "width": 1080, "height": 112 },
+        "product_visual": { "width": 373, "height": 811 }
+      },
+      "1080x1920": {
+        "text":           { "width": 938, "height": 534 },
+        "cta":            { "width": 938, "height": 87 },
+        "risk_message":   { "width": 938, "height": 83 },
+        "product_visual": { "width": 1080, "height": 568 }
+      },
+      "1200x628": {
+        "text":           { "width": 711, "height": 161 },
+        "cta":            { "width": 711, "height": 85 },
+        "risk_message":   { "width": 1200, "height": 66 },
+        "product_visual": { "width": 426, "height": 498 }
+      },
+      "1200x1200": {
+        "text":           { "width": 717, "height": 437 },
+        "cta":            { "width": 717, "height": 85 },
+        "risk_message":   { "width": 1200, "height": 109 },
+        "product_visual": { "width": 412, "height": 931 }
+      },
+      "960x1200": {
+        "text":           { "width": 746, "height": 297 },
+        "cta":            { "width": 359, "height": 86 },
+        "risk_message":   { "width": 960, "height": 66 },
+        "product_visual": { "width": 960, "height": 371 }
+      }
+    },
+    "composition_variants_per_format": {
+      "1200x1200": {
+        "variant_b_expand_portfolio": {
+          "logo_position":   "top-center",
+          "logo":            { "width": 688.37, "height": 140.57 },
+          "text":            { "width": 850, "height": 275 },
+          "cta":             { "width": 358, "height": 85 },
+          "risk_message":    { "width": 1200, "height": 102 },
+          "product_visual":  { "width": 1200, "height": 348 },
+          "section_gaps":    { "logo_to_text": 64, "text_to_cta": 53 }
+        }
       }
     },
     "disclaimer_placement_rules": {

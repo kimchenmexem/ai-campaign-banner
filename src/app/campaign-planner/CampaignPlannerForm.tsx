@@ -7,10 +7,7 @@ import {
   type CampaignBriefInput,
   type CampaignFormat,
 } from "@/lib/schemas/campaignBrief.schema";
-import { SCREENSHOT_CONTEXTS } from "@/lib/schemas/screenshotContext.schema";
 import { LANGUAGES, LANG_META, type Language } from "@/lib/i18n/language";
-
-const ALL_CONTEXTS = SCREENSHOT_CONTEXTS;
 
 // Form for /campaign-planner.
 //
@@ -30,6 +27,11 @@ const ALL_FORMATS: CampaignFormat[] = [
   "1200x1200",
   "1500x500",
   "1920x1080",
+  // MEXEM spec formats — rendered through the Playwright path (Bannerbear
+  // + Midjourney assignment paths intentionally not extended).
+  "300x250",
+  "336x280",
+  "960x1200",
 ];
 const DEFAULT_FORMATS: CampaignFormat[] = [
   "1200x628",
@@ -61,9 +63,6 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
   const [toneInput, setToneInput] = useState("");
   const [required_formats, setRequiredFormats] = useState<CampaignFormat[]>([
     ...DEFAULT_FORMATS,
-  ]);
-  const [preferred_contexts, setPreferredContexts] = useState<string[]>([
-    "general_platform",
   ]);
   const [risk_warning_required, setRiskWarning] = useState(true);
   const [language, setLanguage] = useState<Language>("en");
@@ -115,7 +114,6 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
       campaign_goal,
       tone,
       required_formats,
-      preferred_contexts: preferred_contexts as CampaignBriefInput["preferred_contexts"],
       risk_warning_required,
       language,
       notes: notes.trim() || undefined,
@@ -262,25 +260,6 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
                 onChange={() => setRequiredFormats(toggle(required_formats, f))}
               />
               {f}
-            </label>
-          ))}
-        </div>
-      </Field>
-
-      <Field
-        label="Preferred screenshot contexts"
-        hint="Drives which platform screenshots can be selected. Pick at least one."
-      >
-        <div className="flex flex-wrap gap-2">
-          {ALL_CONTEXTS.map((c) => (
-            <label key={c} className={pillCls(preferred_contexts.includes(c))}>
-              <input
-                type="checkbox"
-                className="sr-only"
-                checked={preferred_contexts.includes(c)}
-                onChange={() => setPreferredContexts(toggle(preferred_contexts, c))}
-              />
-              {c}
             </label>
           ))}
         </div>
@@ -531,7 +510,6 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
       campaign_goal,
       tone,
       required_formats,
-      preferred_contexts: preferred_contexts as CampaignBriefInput["preferred_contexts"],
       risk_warning_required,
       language,
       notes: notes.trim() || undefined,

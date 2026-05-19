@@ -26,6 +26,11 @@ export const CampaignFormatSchema = z.enum([
   "1200x1200",  // LinkedIn / generic large square
   "1500x500",   // X / LinkedIn cover (3:1)
   "1920x1080",  // YouTube card / landscape HD
+  // Added: MEXEM spec set (Playwright render path only — Bannerbear +
+  // Midjourney paths intentionally not extended yet).
+  "300x250",    // IAB Medium Rectangle (compact display)
+  "336x280",    // IAB Large Rectangle (compact display)
+  "960x1200",   // Vertical 4:5 (display / social portrait, taller than 1080x1350)
 ]);
 export type CampaignFormat = z.infer<typeof CampaignFormatSchema>;
 
@@ -48,7 +53,10 @@ export const CampaignBriefSchema = z.object({
   // provider and detail page guard against undefined.
   platforms: z.array(z.string().min(1)).optional(),
   required_formats: z.array(CampaignFormatSchema).min(1),
-  preferred_contexts: z.array(ScreenshotContextSchema).min(1),
+  // Removed from the planner form. Kept on the schema as optional so
+  // existing saved campaigns + scripts that still pass it stay valid; the
+  // provider and detail page guard against undefined.
+  preferred_contexts: z.array(ScreenshotContextSchema).optional(),
   risk_warning_required: z.boolean().default(true),
   notes: z.string().optional(),
   // Output language. Drives:

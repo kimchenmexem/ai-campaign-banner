@@ -860,8 +860,14 @@ function pickCtaPalette(args: {
   headlineColor: string;
   accentColor: string;
   seedKey: string;
+  // Effective canvas background color. When provided, the palette is
+  // post-filtered to guarantee the CTA fill never falls below WCAG-AA
+  // 3:1 contrast against the background (the "no buttons in the
+  // background color" rule). Transparent fills are exempt (their
+  // visibility is governed by the border color).
+  canvasBg?: string;
 }): CtaPaletteResult {
-  const { ctaStyle, brandKit, headlineColor, accentColor, seedKey } = args;
+  const { ctaStyle, brandKit, headlineColor, accentColor, seedKey, canvasBg } = args;
   const variants = brandKit.cta.variants ?? [];
   const fallbackDefault: CtaPaletteResult = {
     bg: brandKit.cta.button_background_color,
@@ -879,30 +885,52 @@ function pickCtaPalette(args: {
     variantId: v.id,
   });
 
+  // Brand discipline: CTA fill must never match the canvas background.
+  // Returns the highest-contrast variant against the canvas if the
+  // seed-picked one is below 3:1, else returns the original palette.
+  const MIN_CTA_BG_CONTRAST = 3.0;
+  const enforceContrast = (palette: CtaPaletteResult): CtaPaletteResult => {
+    if (!canvasBg) return palette;
+    if (palette.bg === "transparent") return palette; // border governs visibility
+    if (contrastRatio(palette.bg, canvasBg) >= MIN_CTA_BG_CONTRAST) return palette;
+    // Find any variant with sufficient contrast — prefer the highest.
+    const ranked = variants
+      .filter((v) => v.background_color !== "transparent")
+      .map((v) => ({ v, ratio: contrastRatio(v.background_color, canvasBg) }))
+      .filter((x) => x.ratio >= MIN_CTA_BG_CONTRAST)
+      .sort((a, b) => b.ratio - a.ratio);
+    if (ranked.length > 0) return variantToPalette(ranked[0].v);
+    // No variant clears the bar — fall back to a derived high-contrast
+    // pair so the CTA is at least visible.
+    const fg = pickHighContrast(canvasBg, ["#FFFFFF", "#000000"], "#FFFFFF");
+    const bg = fg === "#FFFFFF" ? "#FFFFFF" : "#0A1A2E";
+    return { bg, fg: fg === "#FFFFFF" ? "#0A1A2E" : "#FFFFFF", borderRadius: palette.borderRadius };
+  };
+
   // Ghost intent → first variant whose id signals ghost/outline. Falls back
   // to the legacy "transparent + headline color" recipe.
   if (ctaStyle === "ghost") {
     const hit = variants.find((v) => /ghost|outline/i.test(v.id));
-    if (hit) return variantToPalette(hit);
-    return {
+    if (hit) return enforceContrast(variantToPalette(hit));
+    return enforceContrast({
       bg: "transparent",
       fg: headlineColor,
       borderWidth: 2,
       borderColor: headlineColor,
       variantId: "ghost-derived",
-    };
+    });
   }
 
   // Accent intent → first variant tagged accent/yellow. Falls back to the
   // brand's first accent color filled.
   if (ctaStyle === "accent") {
     const hit = variants.find((v) => /accent|yellow|loud/i.test(v.id));
-    if (hit) return variantToPalette(hit);
-    return {
+    if (hit) return enforceContrast(variantToPalette(hit));
+    return enforceContrast({
       bg: accentColor,
       fg: pickHighContrast(accentColor, ["#FFFFFF", "#000000"], "#FFFFFF"),
       variantId: "accent-derived",
-    };
+    });
   }
 
   // Standard intent → pick from the "regular" variants (anything that's
@@ -912,9 +940,9 @@ function pickCtaPalette(args: {
   const regulars = variants.filter((v) => !/ghost|outline|accent|yellow|loud/i.test(v.id));
   if (regulars.length > 0) {
     const pick = regulars[ctaSeedToInt(seedKey) % regulars.length];
-    return variantToPalette(pick);
+    return enforceContrast(variantToPalette(pick));
   }
-  return fallbackDefault;
+  return enforceContrast(fallbackDefault);
 }
 
 function deviceTypeFromAsset(asset: AssetPreviewRecord): DeviceType {
@@ -1275,7 +1303,21 @@ export function buildAdSpec(args: BuildAdSpecArgs): DemoAdSpec {
   const composition = args.composition ?? "text_leading";
   const template = args.template ?? "mockup_hero";
   const rendererHints = args.rendererHints ?? DEFAULT_RENDERER_HINTS;
-  const baseLayout = computeLayout(size, brandKit, composition, rendererHints);
+  const baseLayoutRaw = computeLayout(size, brandKit, composition, rendererHints);
+  // Carry the spec text→CTA gap into ComputedLayout so applyCtaPlacement
+  // can use it when re-anchoring the CTA below the subheadline. Without
+  // this, downstream uses a 20px default and the MEXEM spec gap is lost.
+  const specSectionGaps =
+    brandKit.layout.section_gaps_per_format?.[
+      size.name as keyof NonNullable<typeof brandKit.layout.section_gaps_per_format>
+    ];
+  const specTextToCtaGap = specSectionGaps?.text_to_cta;
+  const specLogoToTextGap = specSectionGaps?.logo_to_text;
+  const baseLayout: ComputedLayout = {
+    ...baseLayoutRaw,
+    ...(specTextToCtaGap != null ? { textToCtaGap: specTextToCtaGap } : {}),
+    ...(specLogoToTextGap != null ? { logoToTextGap: specLogoToTextGap } : {}),
+  };
   const densityLayout = applyDensityToLayout(baseLayout, rendererHints);
   // Pre-compute the rendered CTA width and bake it into the layout BEFORE
   // composition placement runs. buildElements grows the CTA box to fit the
@@ -1369,6 +1411,18 @@ interface ComputedLayout {
   cta: { x: number; y: number; width: number; height: number; fontSize: number };
   visual: { x: number; y: number; width: number; height: number } | null;
   riskWarning: { x: number; y: number; width: number; height: number; fontSize: number };
+  // MEXEM spec — propagate per-format text→CTA gap so that the
+  // downstream applyCtaPlacement / final snap-pass honors the spec gap
+  // when repositioning the CTA relative to the subheadline (otherwise
+  // bottom-anchor logic uses a 20px default and ignores spec values).
+  textToCtaGap?: number;
+  // MEXEM spec — same idea for logo→headline. The historic formula uses
+  // `innerTop + logoH + gap` but the logo can sit higher than innerTop
+  // (LOGO_CORNER_INSET = min(m.top, m.left)), so the rendered gap drifts
+  // from the spec by `(innerTop - logo.y)`. The final snap-pass corrects
+  // it by re-anchoring headline to `logo.y + logo.height + gap` and
+  // sliding the dependent subheadline+CTA by the same delta.
+  logoToTextGap?: number;
 }
 
 // ── Format classifier ───────────────────────────────────────────────────────
@@ -1438,7 +1492,14 @@ function computeLayout(
   // the AI asks for "tight" padding. The bottom floor is the strictest: the
   // disclaimer band sits inside this margin and the renderer assumes ≥70%
   // of the original bottom margin to fit it without clipping.
-  const SIDE_FLOOR = 24;
+  //
+  // Floor is canvas-aware so compact formats (300×250 / 336×280 want
+  // 10-px side margins) aren't forced into 24-px inflation that eats
+  // half their canvas. Capped at 24 so 1080+ formats see no change.
+  const SIDE_FLOOR = Math.max(
+    4,
+    Math.min(24, Math.round(Math.min(size.width, size.height) * 0.04)),
+  );
   const m = {
     top: Math.max(SIDE_FLOOR, Math.round(rawM.top * hints.marginMultiplier)),
     right: Math.max(SIDE_FLOOR, Math.round(rawM.right * hints.marginMultiplier)),
@@ -1484,7 +1545,10 @@ function computeLayout(
   // Floor at the per-format readable minimum so "compact" can't make the
   // headline disappear; ceiling at +50% over the per-format cap so "hero"
   // still has fitFontToBox shrink-to-fit room downstream.
-  const HEADLINE_FLOOR = 36;
+  // Canvas-aware. 1080+ formats see the historic 36 cap; compact
+  // formats (300×250 / 336×280) need a much lower floor so the spec's
+  // 22-24 px headline survives.
+  const HEADLINE_FLOOR = Math.max(10, Math.min(36, Math.round(size.height * 0.05)));
   headlineSize = Math.round(headlineSize * hints.headlineSizeMultiplier);
   headlineSize = Math.max(HEADLINE_FLOOR, headlineSize);
 
@@ -1545,7 +1609,63 @@ function computeLayout(
   const riskWarningHeight = Math.round(riskSize * 1.6);
   const riskWarningBottomGap = Math.round(m.bottom / 2);
 
-  const logoH = pickLogoHeight(size, hints);
+  // MEXEM spec — per-format section gaps win when present. Defaults match
+  // the prior hardcoded values (48 logo→headline, 20 sub→CTA) so formats
+  // without an entry keep the historic look.
+  const specGaps =
+    kit.layout.section_gaps_per_format?.[
+      size.name as keyof NonNullable<typeof kit.layout.section_gaps_per_format>
+    ];
+  const GAP_LOGO_TO_TEXT = specGaps?.logo_to_text ?? 48;
+  const GAP_TEXT_TO_CTA = specGaps?.text_to_cta ?? 20;
+
+  // MEXEM spec — per-format element box dimensions. Text width, CTA
+  // width/height, and risk-message width/height come from the spec when
+  // present; otherwise the existing derived values are used.
+  const specElements =
+    kit.layout.element_sizes_per_format?.[
+      size.name as keyof NonNullable<typeof kit.layout.element_sizes_per_format>
+    ];
+  const SPEC_TEXT_WIDTH = specElements?.text?.width
+    ? Math.round(specElements.text.width)
+    : undefined;
+  const SPEC_CTA_WIDTH = specElements?.cta?.width
+    ? Math.round(specElements.cta.width)
+    : undefined;
+  const SPEC_CTA_HEIGHT = specElements?.cta?.height
+    ? Math.round(specElements.cta.height)
+    : undefined;
+  const SPEC_RISK_WIDTH = specElements?.risk_message?.width
+    ? Math.round(specElements.risk_message.width)
+    : undefined;
+  const SPEC_RISK_HEIGHT = specElements?.risk_message?.height
+    ? Math.round(specElements.risk_message.height)
+    : undefined;
+  // When the spec risk-message width is narrower than the canvas (e.g.
+  // 1080x1920 has a 938-wide risk band on a 1080 canvas), center the band
+  // horizontally. Otherwise stick to the existing left-anchor at innerLeft.
+  const RISK_X = SPEC_RISK_WIDTH
+    ? Math.round((size.width - SPEC_RISK_WIDTH) / 2)
+    : undefined;
+  // MEXEM spec — product_visual dimensions per format. Wired into the
+  // "phone right" / visual-leading branches that already place the visual
+  // on the right edge of the canvas. Branches that put the visual at a
+  // bottom-full-width band (1080x1920 / 960x1200 in the spec) are NOT
+  // overridden here — they need composition-aware positioning which
+  // arrives with the variant selector (data captured under
+  // composition_variants_per_format awaiting that work).
+  const SPEC_VISUAL_WIDTH = specElements?.product_visual?.width
+    ? Math.round(specElements.product_visual.width)
+    : undefined;
+  const SPEC_VISUAL_HEIGHT = specElements?.product_visual?.height
+    ? Math.round(specElements.product_visual.height)
+    : undefined;
+
+  // MEXEM spec — explicit logo box per format wins when present. Falls
+  // back to the canvas-percent + variant-aspect derivation otherwise.
+  const logoOverride =
+    kit.logo.size_per_format?.[size.name as keyof NonNullable<typeof kit.logo.size_per_format>];
+  const logoH = logoOverride ? Math.round(logoOverride.height) : pickLogoHeight(size, hints);
   // Logo aspect ratio depends on which MEXEM variant pickBrandLogoVariant
   // will pick at render time:
   //   - LANDSCAPE banners (1200x628) use "logo-white-v.png" — wide wordmark
@@ -1560,15 +1680,29 @@ function computeLayout(
   // matched the 50 px top inset. Match the bbox to the actual variant.
   const isPortraitVariant = size.height > size.width; // matches pickBrandLogoVariant's choice
   const logoAspect = isPortraitVariant ? 1.6 : 4;
-  const logoW = Math.round(logoH * logoAspect);
+  const logoW = logoOverride
+    ? Math.round(logoOverride.width)
+    : Math.round(logoH * logoAspect);
   // Brand rule (operator-set): MEXEM logo lives in the top-LEFT corner
   // with EQUAL distance from the top edge and the left edge. The kit's
   // m.top / m.left may differ; we use a single LOGO_CORNER_INSET so the
   // corner inset is symmetric. inset is taken from the smaller of the
   // two so the logo never crashes into the kit's safe area.
+  // MEXEM spec — per-format override for centered/right-anchored layouts
+  // (1080x1920 + 960x1200 want logo top-center per spec).
   const LOGO_CORNER_INSET = Math.max(24, Math.min(m.top, m.left));
+  const logoPos =
+    kit.layout.logo_position_per_format?.[
+      size.name as keyof NonNullable<typeof kit.layout.logo_position_per_format>
+    ] ?? "top-left";
+  const logoX =
+    logoPos === "top-center"
+      ? Math.round((size.width - logoW) / 2)
+      : logoPos === "top-right"
+        ? size.width - LOGO_CORNER_INSET - logoW
+        : LOGO_CORNER_INSET;
   const logo = {
-    x: LOGO_CORNER_INSET,
+    x: logoX,
     y: LOGO_CORNER_INSET,
     width: logoW,
     height: logoH,
@@ -1608,8 +1742,8 @@ function computeLayout(
   //   portrait / tall_portrait → portrait fall-through  (1080x1350,
   //                                                       1080x1920)
   if (fmt.is_wideish) {
-    const ctaH = Math.max(56, Math.round(ctaSize * 2));
-    const ctaW = Math.max(180, Math.round(ctaSize * 8));
+    const ctaH = SPEC_CTA_HEIGHT ?? Math.max(56, Math.round(ctaSize * 2));
+    const ctaW = SPEC_CTA_WIDTH ?? Math.max(180, Math.round(ctaSize * 8));
     const headlineH = Math.round(headlineSize * 1.2 * 2); // up to 2 lines
     const subH = Math.round(bodySize * 1.4 * 2); // up to 2 lines
 
@@ -1627,15 +1761,15 @@ function computeLayout(
       // the visual in the AI's mental model"; the rendered layout just
       // honours the text-position invariant. RTL formats can flip back via
       // a separate guard later if needed.
-      const visualW = Math.round((size.width - m.left - m.right) * 0.45);
+      const visualW = SPEC_VISUAL_WIDTH ?? Math.round((size.width - m.left - m.right) * 0.45);
       const visualX = innerRight - visualW;
       const visualY = innerTop + 8;
-      const visualH = innerBottom - visualY;
+      const visualH = SPEC_VISUAL_HEIGHT ?? innerBottom - visualY;
       const textX = innerLeft;
-      const textWidth = visualX - textX - 24;
-      const headlineY = innerTop + logoH + 48;
+      const textWidth = SPEC_TEXT_WIDTH ?? visualX - textX - 24;
+      const headlineY = innerTop + logoH + GAP_LOGO_TO_TEXT;
       const subY = headlineY + headlineH + 12;
-      const ctaY = subY + subH + 20;
+      const ctaY = subY + subH + GAP_TEXT_TO_CTA;
       return {
         margin: m,
         riskWarningHeight,
@@ -1647,10 +1781,10 @@ function computeLayout(
         cta: { x: textX, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
         visual: { x: visualX, y: visualY, width: visualW, height: visualH },
         riskWarning: {
-          x: innerLeft,
+          x: RISK_X ?? innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-          width: size.width - m.left - m.right,
-          height: riskWarningHeight,
+          width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
           fontSize: riskSize,
         },
       };
@@ -1672,7 +1806,7 @@ function computeLayout(
       const ctaY2 = innerBottom - ctaH;
       const subY2 = ctaY2 - heroSubH - 12;
       const headlineY2 = subY2 - heroHeadlineH - 8;
-      const textWidth = Math.round((size.width - m.left - m.right) * 0.6);
+      const textWidth = SPEC_TEXT_WIDTH ?? Math.round((size.width - m.left - m.right) * 0.6);
       return {
         margin: m,
         riskWarningHeight,
@@ -1684,25 +1818,25 @@ function computeLayout(
         cta: { x: innerLeft, y: ctaY2, width: ctaW, height: ctaH, fontSize: ctaSize },
         visual: { x: 0, y: 0, width: size.width, height: size.height },
         riskWarning: {
-          x: innerLeft,
+          x: RISK_X ?? innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-          width: size.width - m.left - m.right,
-          height: riskWarningHeight,
+          width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
           fontSize: riskSize,
         },
       };
     }
 
     // Default: text_leading — text on the left, visual on the right.
-    const textWidth = Math.round((size.width - m.left - m.right) * 0.55);
+    const textWidth = SPEC_TEXT_WIDTH ?? Math.round((size.width - m.left - m.right) * 0.55);
     const headlineX = innerLeft;
-    const headlineY = innerTop + logoH + 48;
+    const headlineY = innerTop + logoH + GAP_LOGO_TO_TEXT;
     const subY = headlineY + headlineH + 12;
-    const ctaY = subY + subH + 20;
+    const ctaY = subY + subH + GAP_TEXT_TO_CTA;
     const visualX = innerLeft + textWidth + 24;
     const visualY = innerTop + 8;
-    const visualW = innerRight - visualX;
-    const visualH = innerBottom - visualY;
+    const visualW = SPEC_VISUAL_WIDTH ?? innerRight - visualX;
+    const visualH = SPEC_VISUAL_HEIGHT ?? innerBottom - visualY;
     return {
       margin: m,
       riskWarningHeight,
@@ -1714,21 +1848,21 @@ function computeLayout(
       cta: { x: headlineX, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
       visual: { x: visualX, y: visualY, width: visualW, height: visualH },
       riskWarning: {
-        x: innerLeft,
+        x: RISK_X ?? innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-        width: size.width - m.left - m.right,
-        height: riskWarningHeight,
+        width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
         fontSize: riskSize,
       },
     };
   }
 
   if (fmt.bucket === "square") {
-    const textWidth = size.width - m.left - m.right;
+    const textWidth = SPEC_TEXT_WIDTH ?? size.width - m.left - m.right;
     const headlineH = Math.round(headlineSize * 1.15 * 2);
     const subH = Math.round(bodySize * 1.4 * 2);
-    const ctaH = Math.max(72, Math.round(ctaSize * 2.2));
-    const ctaW = Math.max(220, Math.round(ctaSize * 9));
+    const ctaH = SPEC_CTA_HEIGHT ?? Math.max(72, Math.round(ctaSize * 2.2));
+    const ctaW = SPEC_CTA_WIDTH ?? Math.max(220, Math.round(ctaSize * 9));
 
     if (composition === "visual_leading") {
       // Visual on top, text + CTA below. The visualH must leave room for
@@ -1748,7 +1882,7 @@ function computeLayout(
       );
       const headlineY = visualY + visualH + 24;
       const subY = headlineY + headlineH + 16;
-      const ctaY = subY + subH + 16;
+      const ctaY = subY + subH + (specGaps?.text_to_cta ?? 16);
       return {
         margin: m,
         riskWarningHeight,
@@ -1760,10 +1894,10 @@ function computeLayout(
         cta: { x: innerLeft, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
         visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
         riskWarning: {
-          x: innerLeft,
+          x: RISK_X ?? innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-          width: size.width - m.left - m.right,
-          height: riskWarningHeight,
+          width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
           fontSize: riskSize,
         },
       };
@@ -1787,17 +1921,17 @@ function computeLayout(
         cta: { x: innerLeft, y: ctaY2, width: ctaW, height: ctaH, fontSize: ctaSize },
         visual: { x: 0, y: 0, width: size.width, height: size.height },
         riskWarning: {
-          x: innerLeft,
+          x: RISK_X ?? innerLeft,
           y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-          width: size.width - m.left - m.right,
-          height: riskWarningHeight,
+          width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
           fontSize: riskSize,
         },
       };
     }
 
     // Default: text_leading — text on top, visual below, CTA at the bottom.
-    const headlineY = innerTop + logoH + 56;
+    const headlineY = innerTop + logoH + (specGaps?.logo_to_text ?? 56);
     const subY = headlineY + headlineH + 16;
     const visualY = subY + subH + 24;
     const visualH = Math.max(280, innerBottom - visualY - 120);
@@ -1813,21 +1947,21 @@ function computeLayout(
       cta: { x: innerLeft, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
       visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
       riskWarning: {
-        x: innerLeft,
+        x: RISK_X ?? innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-        width: size.width - m.left - m.right,
-        height: riskWarningHeight,
+        width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
         fontSize: riskSize,
       },
     };
   }
 
   // 1080x1920
-  const textWidth = size.width - m.left - m.right;
+  const textWidth = SPEC_TEXT_WIDTH ?? size.width - m.left - m.right;
   const headlineH = Math.round(headlineSize * 1.1 * 3);
   const subH = Math.round(bodySize * 1.4 * 3);
-  const ctaH = Math.max(80, Math.round(ctaSize * 2.4));
-  const ctaW = Math.max(260, Math.round(ctaSize * 10));
+  const ctaH = SPEC_CTA_HEIGHT ?? Math.max(80, Math.round(ctaSize * 2.4));
+  const ctaW = SPEC_CTA_WIDTH ?? Math.max(260, Math.round(ctaSize * 10));
 
   if (composition === "visual_leading") {
     // Visual fills the upper portion of the story; text + CTA below. As
@@ -1846,7 +1980,7 @@ function computeLayout(
     );
     const headlineY = visualY + visualH + 40;
     const subY = headlineY + headlineH + 20;
-    const ctaY = subY + subH + 28;
+    const ctaY = subY + subH + (specGaps?.text_to_cta ?? 28);
     const ctaX = innerLeft + Math.round((textWidth - ctaW) / 2);
     return {
       margin: m,
@@ -1859,10 +1993,10 @@ function computeLayout(
       cta: { x: ctaX, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
       visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
       riskWarning: {
-        x: innerLeft,
+        x: RISK_X ?? innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-        width: size.width - m.left - m.right,
-        height: riskWarningHeight,
+        width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
         fontSize: riskSize,
       },
     };
@@ -1888,7 +2022,7 @@ function computeLayout(
     const blockTop = innerTop + Math.round((innerH - blockHeight) / 2 + innerH * 0.04);
     const headlineY2 = blockTop;
     const subY2 = headlineY2 + heroHeadlineH + 24;
-    const ctaY2 = subY2 + subH + 32;
+    const ctaY2 = subY2 + subH + (specGaps?.text_to_cta ?? 32);
     return {
       margin: m,
       riskWarningHeight,
@@ -1900,17 +2034,17 @@ function computeLayout(
       cta: { x: ctaX, y: ctaY2, width: ctaW, height: ctaH, fontSize: ctaSize },
       visual: { x: 0, y: 0, width: size.width, height: size.height },
       riskWarning: {
-        x: innerLeft,
+        x: RISK_X ?? innerLeft,
         y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-        width: size.width - m.left - m.right,
-        height: riskWarningHeight,
+        width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
         fontSize: riskSize,
       },
     };
   }
 
   // Default: text_leading — text on top, visual middle, CTA bottom.
-  const headlineY = innerTop + logoH + 64;
+  const headlineY = innerTop + logoH + (specGaps?.logo_to_text ?? 64);
   const subY = headlineY + headlineH + 24;
   const visualY = subY + subH + 48;
   const visualH = Math.max(480, Math.min(900, size.height - visualY - 320));
@@ -1928,10 +2062,10 @@ function computeLayout(
     cta: { x: ctaX, y: ctaY, width: ctaW, height: ctaH, fontSize: ctaSize },
     visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
     riskWarning: {
-      x: innerLeft,
+      x: RISK_X ?? innerLeft,
       y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
-      width: size.width - m.left - m.right,
-      height: riskWarningHeight,
+      width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
+      height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
       fontSize: riskSize,
     },
   };
@@ -2411,6 +2545,73 @@ function applyCompositionFromSpec(
       };
     }
   }
+
+  // MEXEM spec — visual anchor. When the kit's visual_anchor_per_format
+  // for this size is "bottom-band" (1080x1920 + 960x1200 in the spec),
+  // pin the product visual as a full-canvas-width band sitting directly
+  // above the risk-message band. Uses the spec-supplied visual height
+  // from element_sizes_per_format[size].product_visual.height when
+  // present, otherwise falls back to the existing visualH.
+  // NOTE: brandKit lookup happens at the caller (which has access);
+  // this function reads the resolved anchor + height from the layout's
+  // next.visual.* fields after the caller updated them via the
+  // bottom-band wiring at the top of applyCompositionFromSpec — but
+  // since this function doesn't yet receive brandKit, we apply the
+  // bottom-band repositioning purely from the values that ARE on
+  // next.visual: if its width is larger than canvas - left - right
+  // AND we have a riskWarning at the bottom, we treat it as a
+  // bottom-band signal and reposition. Conservative — doesn't change
+  // behaviour when widths match the legacy 45%-of-inner formula.
+  if (next.visual) {
+    const innerW = size.width - layout.margin.left - layout.margin.right;
+    const visualClaimsFullWidth = next.visual.width >= innerW + 1;
+    if (visualClaimsFullWidth) {
+      const visualH = next.visual.height;
+      next.visual = {
+        ...next.visual,
+        x: 0,
+        width: size.width,
+        // Sit directly above the risk-message band with an 8px breathing
+        // gap so the disclaimer band stays visually independent.
+        y: next.riskWarning.y - visualH - 8,
+        height: visualH,
+      };
+    }
+  }
+
+  // MEXEM spec — final snap (logo→headline). When the kit carries a
+  // per-format logo_to_text gap, re-anchor the headline to
+  // (logo.y + logo.height + gap) and slide the subheadline by the same
+  // delta. The historic formula uses `innerTop + logoH + 48` which is
+  // measured from the safe-area top — that drifts from the literal
+  // logo bottom by (innerTop - logo.y) for formats where m.top differs
+  // from LOGO_CORNER_INSET. The snap closes that drift so the rendered
+  // gap matches the spec.
+  if (next.logoToTextGap != null) {
+    const logoBottom = next.logo.y + next.logo.height;
+    const targetHeadlineY = logoBottom + next.logoToTextGap;
+    const delta = targetHeadlineY - next.headline.y;
+    if (delta !== 0) {
+      next.headline = { ...next.headline, y: targetHeadlineY };
+      next.subheadline = { ...next.subheadline, y: next.subheadline.y + delta };
+    }
+  }
+
+  // MEXEM spec — final snap (text→CTA). When the kit carries a per-format
+  // text_to_cta gap, override whatever prior passes decided and place
+  // the CTA at (subheadline_bottom + gap), then re-clamp to ctaCeiling.
+  // Defeats the otherwise-strong bottom-anchor / visual-clearance
+  // writers that pin the CTA near the disclaimer band. Runs AFTER the
+  // logo→headline snap so subheadline's shifted position is what we
+  // anchor on.
+  if (next.textToCtaGap != null) {
+    const subBottom = next.subheadline.y + next.subheadline.height;
+    next.cta.y = Math.min(
+      subBottom + next.textToCtaGap,
+      ctaCeiling - next.cta.height,
+    );
+  }
+
   return next;
 }
 
@@ -2466,7 +2667,7 @@ function applyCtaPlacement(p: CtaPlacementInput): { x: number; y: number } {
     }
     case "below_subheadline": {
       // Today's text_leading default. Use whichever x the upstream pass set.
-      return { x: layout.cta.x, y: Math.min(subY + subH + 20, ctaCeiling - ctaH) };
+      return { x: layout.cta.x, y: Math.min(subY + subH + (layout.textToCtaGap ?? 20), ctaCeiling - ctaH) };
     }
     case "bottom_left":
       return { x: startCol, y: bottomY };
@@ -2489,7 +2690,7 @@ function applyCtaPlacement(p: CtaPlacementInput): { x: number; y: number } {
           ? layout.headline.x >= endCol + ctaW + 24
           : endCol >= headlineRight + 24;
         if (headlineFitsBesideCta) return { x: endCol, y: headlineY };
-        return { x: layout.cta.x, y: Math.min(subY + subH + 20, ctaCeiling - ctaH) };
+        return { x: layout.cta.x, y: Math.min(subY + subH + (layout.textToCtaGap ?? 20), ctaCeiling - ctaH) };
       }
       return { x: endCol, y: Math.max(layout.logo.y, layout.logo.y + 16) };
     }
@@ -2512,7 +2713,7 @@ function applyCtaPlacement(p: CtaPlacementInput): { x: number; y: number } {
         : ctaLeftAtEndCol >= headlineRight + 24;
       const reservedTextW = innerRight - innerLeft - ctaW - 24;
       if (!headlineFitsBesideCta || reservedTextW < 240) {
-        return { x: layout.cta.x, y: Math.min(subY + subH + 20, ctaCeiling - ctaH) };
+        return { x: layout.cta.x, y: Math.min(subY + subH + (layout.textToCtaGap ?? 20), ctaCeiling - ctaH) };
       }
       return { x: endCol, y: headlineY };
     }
@@ -3448,6 +3649,10 @@ function buildElements(args: BuildElementsArgs): Element[] {
     headlineColor,
     accentColor,
     seedKey: `${args.campaignId}::${args.conceptId}::${size.name}::cta`,
+    // Brand rule: CTA fill must never match (or fall below 3:1 against)
+    // the canvas background. effectiveBackgroundColor folds gradient
+    // first-stop / image-assume-dark into a single hex for the check.
+    canvasBg: effectiveBackgroundColor(selection),
   });
   const ctaBg = ctaPalette.bg;
   const ctaFg = ctaPalette.fg;

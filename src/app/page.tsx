@@ -12,15 +12,9 @@ const SECTIONS = [
     blurb: "Saved AI campaigns: concepts, ad specs, manifests, rendered banners.",
   },
   {
-    href: "/asset-generator",
-    title: "Asset Generator",
-    blurb:
-      "Reusable creative blocks — backgrounds, CTA buttons, mockups, trading-UI widgets, FX overlays.",
-  },
-  {
     href: "/assets",
     title: "Assets",
-    blurb: "Manually uploaded Midjourney outputs, logos, and product photos.",
+    blurb: "All elements in use across the brand kit. View, browse by type, add new uploads.",
   },
   {
     href: "/settings",
