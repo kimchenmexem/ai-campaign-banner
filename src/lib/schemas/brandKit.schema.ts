@@ -441,6 +441,30 @@ export const LegalDisclaimersByLanguageSchema = z.object({
 });
 export type LegalDisclaimersByLanguage = z.infer<typeof LegalDisclaimersByLanguageSchema>;
 
+// Topic-keyed appendix disclaimers. Each one is appended to the campaign's
+// general disclaimer when the brief / concept copy mentions the topic. See
+// `detectDisclaimerTopics` in src/lib/ai/disclaimerTopics.ts for the keyword
+// rules driving the match.
+//
+// English source today. For non-English campaigns the topic appendix is
+// appended verbatim in English (the general disclaimer is still translated
+// per locale by marketing-translator). Per-language topic overrides are a
+// follow-up — until they land, operators who need localised topic text
+// should add full language entries to `disclaimers_by_language` and skip
+// the topic system for that campaign.
+export const TopicDisclaimersSchema = z.object({
+  // Free / commission-free ETF trading offers. Appended when copy mentions
+  // ETFs or exchange-traded funds.
+  etf_free: z.string().optional(),
+  // Complex / leveraged products (options, futures, warrants, derivatives).
+  // Appended when copy mentions any of those instruments.
+  complex_products: z.string().optional(),
+  // Tax advice / tax-related claims. Appended when copy mentions tax or
+  // taxation.
+  tax_advice: z.string().optional(),
+});
+export type TopicDisclaimers = z.infer<typeof TopicDisclaimersSchema>;
+
 export const LegalSchema = z.object({
   risk_warning_required: z.boolean().default(false),
   default_disclaimer: z.string().default(""),
@@ -448,6 +472,8 @@ export const LegalSchema = z.object({
   // planner uses the matching entry verbatim (regulators care about exact
   // wording — AI translation is risky for compliance).
   disclaimers_by_language: LegalDisclaimersByLanguageSchema.optional(),
+  // Topic-specific appendix strings — see TopicDisclaimersSchema above.
+  topic_disclaimers: TopicDisclaimersSchema.optional(),
   min_disclaimer_font_size: z.number().positive().optional(),
   disclaimer_must_appear_in_all_formats: z.boolean().default(true),
   legal_claim_rules: z.array(z.string()).default([]),

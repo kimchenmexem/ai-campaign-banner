@@ -191,6 +191,11 @@ export function convertBrandInputToBrandKitWithProvenance(
   const disclaimerText = spec.materials.disclaimer_or_risk_warnings.required_texts.join(
     " ",
   );
+  // Topic-specific disclaimer appendices. Optional on the source spec —
+  // when absent the brand kit's `topic_disclaimers` field stays undefined
+  // and the planner falls back to the general disclaimer only.
+  const topicDisclaimers =
+    spec.materials.disclaimer_or_risk_warnings.topic_disclaimers;
 
   // System policies — pulled from spec.rules. Keep human-readable so QA and
   // the AI planner can surface them verbatim.
@@ -399,6 +404,10 @@ export function convertBrandInputToBrandKitWithProvenance(
         ar: "تنبيه: الاستثمار ينطوي على مخاطر الخسارة. تنطبق رسوم الأطراف الثالثة والشروط والأحكام.",
         he: "אזהרה. השקעה כרוכה בסיכון להפסד. עמלות צד שלישי ותנאי שימוש חלים.",
       },
+      // Topic-specific appendices appended to the general disclaimer when
+      // the campaign copy mentions a matching topic. See
+      // `src/lib/ai/disclaimerTopics.ts` for the keyword rules.
+      ...(topicDisclaimers ? { topic_disclaimers: topicDisclaimers } : {}),
       min_disclaimer_font_size: disclaimerPx,
       disclaimer_must_appear_in_all_formats: true,
       legal_claim_rules: [

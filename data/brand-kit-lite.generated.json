@@ -6,31 +6,31 @@
     "variants": [
       {
         "name": "logo-blue-p",
-        "url": "file:///Users/KimChen/Desktop/ai-campaign-banner/brand-input/MEXEM%20logo/logo%20blue%20P.png",
+        "url": "file:///private/tmp/disc-pr-qd4x9J/brand-input/MEXEM%20logo/logo%20blue%20P.png",
         "format": "png",
         "background": "light"
       },
       {
         "name": "logo-blue-v",
-        "url": "file:///Users/KimChen/Desktop/ai-campaign-banner/brand-input/MEXEM%20logo/logo%20blue%20V.png",
+        "url": "file:///private/tmp/disc-pr-qd4x9J/brand-input/MEXEM%20logo/logo%20blue%20V.png",
         "format": "png",
         "background": "light"
       },
       {
         "name": "logo-white-p",
-        "url": "file:///Users/KimChen/Desktop/ai-campaign-banner/brand-input/MEXEM%20logo/logo%20white%20P.png",
+        "url": "file:///private/tmp/disc-pr-qd4x9J/brand-input/MEXEM%20logo/logo%20white%20P.png",
         "format": "png",
         "background": "dark"
       },
       {
         "name": "logo-white-v",
-        "url": "file:///Users/KimChen/Desktop/ai-campaign-banner/brand-input/MEXEM%20logo/logo%20white%20V.png",
+        "url": "file:///private/tmp/disc-pr-qd4x9J/brand-input/MEXEM%20logo/logo%20white%20V.png",
         "format": "png",
         "background": "dark"
       }
     ],
     "favicon": {
-      "url": "file:///Users/KimChen/Desktop/ai-campaign-banner/brand-input/MEXEM%20logo/fav%20icon%20blue.png",
+      "url": "file:///private/tmp/disc-pr-qd4x9J/brand-input/MEXEM%20logo/fav%20icon%20blue.png",
       "sizes": [
         "32x32",
         "180x180"
@@ -49,15 +49,6 @@
     "safe_area": {
       "padding_px": 24,
       "padding_percent_of_logo_height": 0.5
-    },
-    "size_per_format": {
-      "300x250": { "width": 153, "height": 29 },
-      "336x280": { "width": 153, "height": 30 },
-      "1080x1080": { "width": 457, "height": 100 },
-      "1080x1920": { "width": 787.21, "height": 171 },
-      "1200x628": { "width": 456, "height": 90 },
-      "1200x1200": { "width": 710, "height": 142 },
-      "960x1200": { "width": 523, "height": 98 }
     }
   },
   "colors": {
@@ -67,7 +58,6 @@
     ],
     "secondary": [],
     "accent": [
-      "#F5C518",
       "#D81222",
       "#000000"
     ],
@@ -180,46 +170,46 @@
         "disclaimer": 35
       },
       "1200x1200": {
-        "headline": 110,
-        "subheadline": 58,
-        "body": 36,
-        "cta": 36,
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
         "disclaimer": 35
       },
       "1500x500": {
-        "headline": 80,
-        "subheadline": 44,
-        "body": 28,
-        "cta": 30,
-        "disclaimer": 26
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
       },
       "1920x1080": {
-        "headline": 130,
-        "subheadline": 68,
-        "body": 42,
-        "cta": 42,
-        "disclaimer": 38
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
       },
       "300x250": {
-        "headline": 22,
-        "subheadline": 14,
-        "body": 11,
-        "cta": 12,
-        "disclaimer": 11
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
       },
       "336x280": {
-        "headline": 24,
-        "subheadline": 15,
-        "body": 12,
-        "cta": 13,
-        "disclaimer": 12
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
       },
       "960x1200": {
-        "headline": 90,
-        "subheadline": 50,
-        "body": 32,
-        "cta": 32,
-        "disclaimer": 30
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
       }
     },
     "line_heights": {
@@ -277,46 +267,7 @@
       "width": 180,
       "height": 56
     },
-    "variants": [
-      {
-        "id": "navy_block",
-        "name": "Navy block (legacy)",
-        "background_color": "#204489",
-        "text_color": "#FFFFFF",
-        "border_radius": 0,
-        "min_width": 180,
-        "min_height": 56
-      },
-      {
-        "id": "white_pill",
-        "name": "White pill (reference banners)",
-        "background_color": "#FFFFFF",
-        "text_color": "#0A1A2E",
-        "border_radius": 32,
-        "min_width": 220,
-        "min_height": 64
-      },
-      {
-        "id": "ghost",
-        "name": "Ghost outline (text-only)",
-        "background_color": "transparent",
-        "text_color": "#FFFFFF",
-        "border_radius": 32,
-        "border_width": 2,
-        "border_color": "#FFFFFF",
-        "min_width": 220,
-        "min_height": 64
-      },
-      {
-        "id": "yellow_block",
-        "name": "Yellow accent block",
-        "background_color": "#F5C518",
-        "text_color": "#0A0F1F",
-        "border_radius": 0,
-        "min_width": 180,
-        "min_height": 56
-      }
-    ]
+    "variants": []
   },
   "layout": {
     "spacing": {
@@ -336,22 +287,22 @@
     },
     "outer_margins": {
       "1200x628": {
-        "top": 54,
+        "top": 71,
         "right": 50,
-        "bottom": 80,
+        "bottom": 180,
         "left": 50
       },
       "1080x1080": {
-        "top": 70,
+        "top": 71,
         "right": 50,
-        "bottom": 130,
+        "bottom": 180,
         "left": 50
       },
       "1080x1920": {
-        "top": 182,
-        "right": 71,
-        "bottom": 100,
-        "left": 71
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       },
       "1080x1350": {
         "top": 71,
@@ -366,47 +317,43 @@
         "left": 50
       },
       "1200x1200": {
-        "top": 160,
+        "top": 71,
         "right": 50,
-        "bottom": 130,
+        "bottom": 180,
         "left": 50
       },
       "1500x500": {
-        "top": 48,
-        "right": 60,
-        "bottom": 120,
-        "left": 60
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       },
       "1920x1080": {
-        "top": 90,
-        "right": 80,
-        "bottom": 200,
-        "left": 80
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       },
       "300x250": {
-        "top": 34,
-        "right": 10,
-        "bottom": 35,
-        "left": 10
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       },
       "336x280": {
-        "top": 33,
-        "right": 10,
-        "bottom": 38,
-        "left": 10
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       },
       "960x1200": {
-        "top": 89,
-        "right": 107,
-        "bottom": 90,
-        "left": 107
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       }
     },
-    "allowed_templates": [
-      "qY4mReZpzyrLD97lP8",
-      "k4qoBVDyLVnd5zN0gj",
-      "7wpnPQZz02GrDdOgxo"
-    ],
+    "allowed_templates": [],
     "allowed_compositions": [
       "hero_left_mockup_right",
       "headline_top_mockup_bottom",
@@ -416,22 +363,22 @@
     ],
     "safe_areas": {
       "1200x628": {
-        "top": 54,
+        "top": 71,
         "right": 50,
-        "bottom": 80,
+        "bottom": 180,
         "left": 50
       },
       "1080x1080": {
-        "top": 70,
+        "top": 71,
         "right": 50,
-        "bottom": 130,
+        "bottom": 180,
         "left": 50
       },
       "1080x1920": {
-        "top": 182,
-        "right": 71,
-        "bottom": 100,
-        "left": 71
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       },
       "1080x1350": {
         "top": 71,
@@ -446,112 +393,40 @@
         "left": 50
       },
       "1200x1200": {
-        "top": 160,
+        "top": 71,
         "right": 50,
-        "bottom": 130,
+        "bottom": 180,
         "left": 50
       },
       "1500x500": {
-        "top": 48,
-        "right": 60,
-        "bottom": 120,
-        "left": 60
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       },
       "1920x1080": {
-        "top": 90,
-        "right": 80,
-        "bottom": 200,
-        "left": 80
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       },
       "300x250": {
-        "top": 34,
-        "right": 10,
-        "bottom": 35,
-        "left": 10
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       },
       "336x280": {
-        "top": 33,
-        "right": 10,
-        "bottom": 38,
-        "left": 10
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       },
       "960x1200": {
-        "top": 89,
-        "right": 107,
-        "bottom": 90,
-        "left": 107
-      }
-    },
-    "logo_position_per_format": {
-      "1080x1920": "top-center",
-      "960x1200": "top-center"
-    },
-    "visual_anchor_per_format": {
-      "1080x1920": "bottom-band",
-      "960x1200": "bottom-band"
-    },
-    "section_gaps_per_format": {
-      "300x250":   { "logo_to_text": 77,  "text_to_cta": 19 },
-      "1080x1080": { "logo_to_text": 70,  "text_to_cta": 39 },
-      "1080x1920": { "logo_to_text": 107, "text_to_cta": 62 },
-      "1200x1200": { "logo_to_text": 88,  "text_to_cta": 88 },
-      "960x1200":  { "logo_to_text": 63,  "text_to_cta": 63 }
-    },
-    "element_sizes_per_format": {
-      "300x250": {
-        "text":           { "width": 184, "height": 100 },
-        "cta":            { "width": 125, "height": 26 },
-        "risk_message":   { "width": 300, "height": 25 },
-        "product_visual": { "width": 104, "height": 171 }
-      },
-      "336x280": {
-        "text":           { "width": 185, "height": 101 },
-        "cta":            { "width": 125, "height": 26 },
-        "risk_message":   { "width": 336, "height": 28 },
-        "product_visual": { "width": 136, "height": 234 }
-      },
-      "1080x1080": {
-        "text":           { "width": 642, "height": 502 },
-        "cta":            { "width": 642, "height": 85 },
-        "risk_message":   { "width": 1080, "height": 112 },
-        "product_visual": { "width": 373, "height": 811 }
-      },
-      "1080x1920": {
-        "text":           { "width": 938, "height": 534 },
-        "cta":            { "width": 938, "height": 87 },
-        "risk_message":   { "width": 938, "height": 83 },
-        "product_visual": { "width": 1080, "height": 568 }
-      },
-      "1200x628": {
-        "text":           { "width": 711, "height": 161 },
-        "cta":            { "width": 711, "height": 85 },
-        "risk_message":   { "width": 1200, "height": 66 },
-        "product_visual": { "width": 426, "height": 498 }
-      },
-      "1200x1200": {
-        "text":           { "width": 717, "height": 437 },
-        "cta":            { "width": 717, "height": 85 },
-        "risk_message":   { "width": 1200, "height": 109 },
-        "product_visual": { "width": 412, "height": 931 }
-      },
-      "960x1200": {
-        "text":           { "width": 746, "height": 297 },
-        "cta":            { "width": 359, "height": 86 },
-        "risk_message":   { "width": 960, "height": 66 },
-        "product_visual": { "width": 960, "height": 371 }
-      }
-    },
-    "composition_variants_per_format": {
-      "1200x1200": {
-        "variant_b_expand_portfolio": {
-          "logo_position":   "top-center",
-          "logo":            { "width": 688.37, "height": 140.57 },
-          "text":            { "width": 850, "height": 275 },
-          "cta":             { "width": 358, "height": 85 },
-          "risk_message":    { "width": 1200, "height": 102 },
-          "product_visual":  { "width": 1200, "height": 348 },
-          "section_gaps":    { "logo_to_text": 64, "text_to_cta": 53 }
-        }
+        "top": 71,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
       }
     },
     "disclaimer_placement_rules": {
@@ -613,22 +488,27 @@
   },
   "legal": {
     "risk_warning_required": true,
-    "default_disclaimer": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
+    "default_disclaimer": "Caution. Investing involves risk of loss.",
+    "disclaimers_by_language": {
+      "en": "Caution. Investing involves risk of loss.",
+      "fr": "Attention. Investir comporte un risque de perte. Des frais tiers et les Conditions générales s'appliquent.",
+      "it": "Attenzione. Investire comporta rischio di perdita. Si applicano commissioni di terzi e Termini e condizioni.",
+      "nl": "Let op. Beleggen brengt risico's met zich mee. Kosten van derden en Algemene voorwaarden zijn van toepassing.",
+      "ar": "تنبيه: الاستثمار ينطوي على مخاطر الخسارة. تنطبق رسوم الأطراف الثالثة والشروط والأحكام.",
+      "he": "אזהרה. השקעה כרוכה בסיכון להפסד. עמלות צד שלישי ותנאי שימוש חלים."
+    },
+    "topic_disclaimers": {
+      "etf_free": "Third party fees and Terms & conditions apply*.",
+      "complex_products": "Trading complex products such as options, futures, and warrants carries a high level of risk and may not be suitable for all investors",
+      "tax_advice": "MEXEM does not provide tax advice and is not responsible for the content or accuracy of third-party services. You should consult an independent tax advisor regarding your individual circumstances."
+    },
     "min_disclaimer_font_size": 35,
     "disclaimer_must_appear_in_all_formats": true,
     "legal_claim_rules": [
       "Do not state or imply guaranteed returns.",
       "Any performance claim must include the time period it covers.",
       "All required disclaimers must appear as real text layers, never inside images."
-    ],
-    "disclaimers_by_language": {
-      "en": "Caution. Investing involves risk of loss. Third party fees and Terms & conditions apply.",
-      "fr": "Attention. Investir comporte un risque de perte. Des frais tiers et les Conditions générales s'appliquent.",
-      "it": "Attenzione. Investire comporta rischio di perdita. Si applicano commissioni di terzi e Termini e condizioni.",
-      "nl": "Let op. Beleggen brengt risico's met zich mee. Kosten van derden en Algemene voorwaarden zijn van toepassing.",
-      "ar": "تنبيه: الاستثمار ينطوي على مخاطر الخسارة. تنطبق رسوم الأطراف الثالثة والشروط والأحكام.",
-      "he": "אזהרה. השקעה כרוכה בסיכון להפסד. עמלות צד שלישי ותנאי שימוש חלים."
-    }
+    ]
   },
   "approved_asset_types": {
     "logo": {
@@ -764,8 +644,9 @@
     },
     {
       "path": "layout.allowed_templates",
-      "source": "env",
-      "needs_review": false
+      "source": "mvp_default",
+      "needs_review": true,
+      "fallback_reason": "No BANNERBEAR_TEMPLATE_* env vars set and template map contains only placeholders"
     },
     {
       "path": "layout.allowed_compositions",
