@@ -101,6 +101,17 @@ const FORMAT_TO_DEVICE: Record<CampaignFormat, DeviceType> = {
   "300x250": "phone",
   "336x280": "phone",
   "960x1200": "tablet",
+  // MEXEM Set 2 — display ad formats. Device-family is mostly a hint
+  // for the compact renderer to pick an appropriately-cropped product
+  // visual asset; small canvases need phone-shape, larger need tablet.
+  "320x100": "phone",
+  "320x50": "phone",
+  "300x1050": "phone",
+  "300x600": "phone",
+  "160x600": "phone",
+  "970x250": "tablet",
+  "728x90": "phone",
+  "250x250": "phone",
 };
 
 const FORMAT_TO_CHANNEL: Record<CampaignFormat, string> = {
@@ -117,6 +128,15 @@ const FORMAT_TO_CHANNEL: Record<CampaignFormat, string> = {
   "300x250": "medium-rectangle",
   "336x280": "large-rectangle",
   "960x1200": "portrait-tall",
+  // IAB Set 2.
+  "320x100": "large-mobile-banner",
+  "320x50": "mobile-banner",
+  "300x1050": "portrait-skyscraper",
+  "300x600": "half-page",
+  "160x600": "skyscraper",
+  "970x250": "billboard",
+  "728x90": "leaderboard",
+  "250x250": "square",
 };
 
 const FORMAT_TO_SIZE: Record<
@@ -134,6 +154,14 @@ const FORMAT_TO_SIZE: Record<
   "300x250": { width: 300, height: 250 },
   "336x280": { width: 336, height: 280 },
   "960x1200": { width: 960, height: 1200 },
+  "320x100": { width: 320, height: 100 },
+  "320x50": { width: 320, height: 50 },
+  "300x1050": { width: 300, height: 1050 },
+  "300x600": { width: 300, height: 600 },
+  "160x600": { width: 160, height: 600 },
+  "970x250": { width: 970, height: 250 },
+  "728x90": { width: 728, height: 90 },
+  "250x250": { width: 250, height: 250 },
 };
 
 // Fallback chain keyed by the AI's 6-value desired_visual_context. The
@@ -451,7 +479,12 @@ export function buildAdSpecsForConcept(
       midjourneyAssignments: context.activeAssignments,
       copy: {
         headline: concept.copy_package.headline,
-        headline_emphasis: concept.copy_package.headline_emphasis,
+        // Normalise null → undefined: the AI plan schema accepts both
+        // (some providers emit explicit null instead of omitting the
+        // key) but the downstream BuildAdSpec `copy.headline_emphasis`
+        // contract is `string | undefined`, no null.
+        headline_emphasis:
+          concept.copy_package.headline_emphasis ?? undefined,
         subheadline: concept.copy_package.subheadline,
         cta: ctaText,
         disclaimer: disclaimerText,
@@ -626,12 +659,12 @@ function pickMotifForContext(
   rng: () => number,
 ): DesignMotif {
   const pools: Record<string, DesignMotif[]> = {
-    charts: ["chart_silhouette", "wave_curve", "axis_grid", "ticker_strip", "none"],
-    stocks: ["chart_silhouette", "abstract_bars", "ticker_strip", "arc_meter", "none"],
-    etfs: ["abstract_bars", "node_network", "gradient_orb", "axis_grid", "none"],
-    green_data: ["wave_curve", "node_network", "gradient_orb", "none"],
-    general_platform: ["gradient_orb", "axis_grid", "wave_curve", "node_network", "none"],
-    premium_fintech: ["gradient_orb", "wave_curve", "arc_meter", "none"],
+    charts: ["chart_silhouette", "wave_curve", "axis_grid", "ticker_strip", "corner_brackets", "none"],
+    stocks: ["chart_silhouette", "abstract_bars", "ticker_strip", "arc_meter", "vertical_streaks", "none"],
+    etfs: ["abstract_bars", "node_network", "gradient_orb", "axis_grid", "floating_panel", "none"],
+    green_data: ["wave_curve", "node_network", "gradient_orb", "vertical_streaks", "none"],
+    general_platform: ["gradient_orb", "axis_grid", "wave_curve", "node_network", "corner_brackets", "floating_panel", "vertical_streaks", "none"],
+    premium_fintech: ["gradient_orb", "wave_curve", "arc_meter", "corner_brackets", "floating_panel", "none"],
   };
   const pool = pools[context] ?? pools.general_platform;
   return pool[Math.floor(rng() * pool.length)];

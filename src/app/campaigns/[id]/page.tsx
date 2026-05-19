@@ -103,26 +103,26 @@ export default async function CampaignDetailPage({
           Download ZIP ↓
         </a>
         <a
-          // PDF with one page per banner. Figma's PDF importer creates a
-          // real Frame per page with native editable text + shapes — the
-          // SVG path had nesting + rasterisation issues that the PDF path
-          // avoids entirely.
-          href={`/api/export-campaign-pdf?campaign_id=${plan.campaign_id}`}
-          download={`campaign-${plan.campaign_id}-figma.pdf`}
-          className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
-          title="One PDF, one page per banner. Drag into Figma — every page becomes a native editable frame. Best path for designers."
-        >
-          ↓ Open in Figma (PDF)
-        </a>
-        <a
-          // SVG fallback — kept for the "I just want the source SVGs"
-          // flow (designers comfortable with manual ungrouping).
+          // SVG is the primary path: Figma's SVG importer keeps <text>
+          // elements as native editable text nodes. The PDF route below
+          // looks tempting but Figma converts PDF text to outlined paths
+          // on import — that's a Figma-side limitation, not ours.
           href={`/api/export-campaign-svg?campaign_id=${plan.campaign_id}`}
           download={`campaign-${plan.campaign_id}-figma.svg`}
-          className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-xs font-medium text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900"
-          title="One SVG file. Requires more ungrouping in Figma than the PDF, but lighter and faster to generate."
+          className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
+          title="One SVG with every banner. Figma keeps text as editable text nodes. Install matching fonts (Poppins, Heebo, Cairo) in Figma for pixel-true rendering."
         >
-          (SVG)
+          ↓ Open in Figma (SVG)
+        </a>
+        <a
+          // PDF — pixel-perfect rendering, but Figma outlines the text on
+          // import. Useful when fidelity matters more than text edits.
+          href={`/api/export-campaign-pdf?campaign_id=${plan.campaign_id}`}
+          download={`campaign-${plan.campaign_id}-figma.pdf`}
+          className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-xs font-medium text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-900"
+          title="One PDF, one page per banner. Pixel-perfect rendering — but Figma's PDF importer outlines all text. Pick SVG when text needs to stay editable."
+        >
+          (PDF — outlined text)
         </a>
         <p className="text-xs text-zinc-600 dark:text-zinc-400">
           {renderMap === null

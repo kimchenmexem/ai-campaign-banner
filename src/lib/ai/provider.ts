@@ -589,7 +589,7 @@ text_strategy.max_text_density: low | medium | high
 visual_strategy.primary_visual: mockup | screenshot | motif | pattern | abstract_gradient | none
 visual_strategy.visual_position: left | right | center | background | foreground
 visual_strategy.visual_weight: subtle | balanced | dominant
-visual_strategy.motif_hint (optional): chart_silhouette | abstract_bars | axis_grid | wave_curve | gradient_orb | node_network | arc_meter | ticker_strip | none
+visual_strategy.motif_hint (optional): chart_silhouette | abstract_bars | axis_grid | wave_curve | gradient_orb | node_network | arc_meter | ticker_strip | corner_brackets | vertical_streaks | floating_panel | none
 visual_strategy.pattern_hint (optional): diagonal_lines | diagonal_lines_reverse | vertical_bars | dot_grid | concentric_arcs | none
 brand_strategy.background_style: solid | gradient | deep_gradient | split_color
 brand_strategy.palette_intensity: calm | standard | high_contrast

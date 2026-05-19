@@ -32,6 +32,16 @@ const ALL_FORMATS: CampaignFormat[] = [
   "300x250",
   "336x280",
   "960x1200",
+  // MEXEM Set 2 — display ad / IAB standard formats. These will use the
+  // compact renderer (deterministic layout from spec) once Phase 2 lands.
+  "320x100",
+  "320x50",
+  "300x1050",
+  "300x600",
+  "160x600",
+  "970x250",
+  "728x90",
+  "250x250",
 ];
 const DEFAULT_FORMATS: CampaignFormat[] = [
   "1200x628",
@@ -74,9 +84,11 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
   // Step 12 — creative-mode hatch. "exploratory" gives the AI more freedom
   // (higher temperature, skips the critique pass that kills consultant-ese,
   // softer brand-discipline rules in the visual planner). The renderer's
-  // safety clamps still apply, so layouts stay readable. Default off.
+  // safety clamps still apply, so layouts stay readable. Default ON now —
+  // operator feedback consistently called the "standard" output boring.
+  // Toggle off when the campaign must hit conservative compliance copy.
   const [creativeMode, setCreativeMode] = useState<"standard" | "exploratory">(
-    "standard",
+    "exploratory",
   );
   // Phase 3 — generated-asset injection. Operator pastes asset ids from
   // /asset-generator (or /api/generators/registry); the planner resolves them
@@ -87,7 +99,10 @@ export function CampaignPlannerForm({ brandId, defaultProvider }: Props) {
   // visual picks for the same brief. max_diversity forces 3 distinct
   // templates/motifs/palettes across the 3 concepts.
   const [diversitySeedRaw, setDiversitySeedRaw] = useState<string>("");
-  const [maxDiversity, setMaxDiversity] = useState<boolean>(false);
+  // Default ON — without this, two of the three concepts in a campaign can
+  // land on the same motif + template combination and the output feels
+  // repetitive. Operators can still untick when they want a uniform feel.
+  const [maxDiversity, setMaxDiversity] = useState<boolean>(true);
 
   const [error, setError] = useState<string | null>(null);
   const [issues, setIssues] = useState<{ path: string; message: string }[] | null>(null);

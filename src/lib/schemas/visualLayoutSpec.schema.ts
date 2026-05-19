@@ -165,6 +165,9 @@ export const MotifHintSchema = z.enum([
   "node_network",
   "arc_meter",
   "ticker_strip",
+  "corner_brackets",
+  "vertical_streaks",
+  "floating_panel",
   "none",
 ]);
 export type MotifHint = z.infer<typeof MotifHintSchema>;
@@ -445,6 +448,17 @@ export const FORMAT_KEY_TO_NAME = {
   "300x250": "leaderboard",  // AR 1.20 — compact rectangle
   "336x280": "leaderboard",  // AR 1.20 — compact rectangle
   "960x1200": "portrait",    // AR 0.80 — taller portrait
+  // MEXEM Set 2 — display ad formats. The persona bucket only matters
+  // for the AI strategy / copy pass; the compact renderer ignores it
+  // entirely and uses the spec data verbatim for positions.
+  "320x100": "leaderboard",   // AR 3.20 — micro horizontal
+  "320x50": "leaderboard",    // AR 6.40 — ultra-wide micro
+  "300x1050": "portrait",     // AR 0.29 — extreme tall
+  "300x600": "portrait",      // AR 0.50 — half-page
+  "160x600": "portrait",      // AR 0.27 — skyscraper
+  "970x250": "leaderboard",   // AR 3.88 — billboard
+  "728x90": "leaderboard",    // AR 8.09 — standard leaderboard
+  "250x250": "square",        // AR 1.00 — square compact
 } as const;
 
 export type FormatName = keyof typeof FORMAT_NAME_TO_KEY;
