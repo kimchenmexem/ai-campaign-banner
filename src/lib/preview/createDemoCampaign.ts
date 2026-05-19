@@ -497,6 +497,13 @@ interface PickVisualArgs {
   compositeMap: MockupCompositeMap | null;
   tagSidecar: Map<string, ScreenshotTag>;
   warnings: string[];
+  // Optional identity input. When set, the Elements/-pool pick is rotated
+  // across files matching the requested device type using a deterministic
+  // hash of the seed, so different (campaign, concept, format) combinations
+  // pick different files even when they all want the same device shape.
+  // When absent, the picker reverts to the legacy "largest matching file"
+  // behavior so demo / script callers keep their existing output.
+  seedKey?: string;
 }
 
 export function pickVisualForSpec(args: PickVisualArgs): VisualForSpec {
@@ -573,24 +580,41 @@ export function pickVisualForSpec(args: PickVisualArgs): VisualForSpec {
   }
 
   // Composite path skipped (or no composite available) → use Elements/-only.
-  const elementMockups = assets.items.filter(
-    (i) =>
-      i.canonical_folder_type === "elements" &&
-      deviceTypeFromAsset(i) !== "unknown",
+  // Pool: every file under brand-input/Elements/. Device-shaped ones
+  // (3-iphone.png, ipad.png, macbook.png, iwatch.png) compete against
+  // each other for the requested device_type slot; hero-named ones
+  // (HERO IMAGE.png, materials.png, middle.png, …) are the broader
+  // fallback when no device match exists.
+  const elementsPool = assets.items.filter(
+    (i) => i.canonical_folder_type === "elements",
   );
-  // Prefer the LARGEST file per device type. brand-input/Elements/ contains
-  // both empty bezel mockups (small files, ~50–300 KB) and pre-populated
-  // devices with platform screenshots embedded (large files, ~400 KB–2.5 MB).
-  // Larger byte size correlates with "populated screen" in this codebase
-  // because empty bezels compress dramatically. Sorting by size descending
-  // makes the picker robust to filename changes (otherwise it relies on
-  // alphabetical-first happening to land on the populated file).
-  const mockupPool = [...elementMockups].sort(
-    (a, b) => safeFileBytes(b) - safeFileBytes(a),
+
+  // Stable picker. When `args.seedKey` is set (the AI pipeline always
+  // supplies one), we hash it against the pool of candidates so a 3-concept
+  // × 5-format campaign lands on different files across its 15 ads instead
+  // of all phone-formatted ads collapsing to the same 3-iphone.png. When
+  // absent (legacy demo / script callers), we keep the historical "largest
+  // matching file" behavior — empty bezels compress small and populated
+  // devices are big, so largest correlates with "has a real screenshot
+  // embedded".
+  function pickStable(pool: AssetPreviewRecord[]): AssetPreviewRecord | undefined {
+    if (pool.length === 0) return undefined;
+    if (pool.length === 1) return pool[0];
+    if (!args.seedKey) {
+      return [...pool].sort(
+        (a, b) => safeFileBytes(b) - safeFileBytes(a),
+      )[0];
+    }
+    const stable = [...pool].sort((a, b) =>
+      a.original_filename.localeCompare(b.original_filename),
+    );
+    return stable[ctaSeedToInt(args.seedKey) % stable.length];
+  }
+
+  const deviceMatches = elementsPool.filter(
+    (m) => deviceTypeFromAsset(m) === plan.device_type,
   );
-  const mockup =
-    mockupPool.find((m) => deviceTypeFromAsset(m) === plan.device_type) ??
-    mockupPool[0];
+  const mockup = pickStable(deviceMatches) ?? pickStable(elementsPool);
 
   const screenshots = assets.items.filter(
     (i) => i.canonical_folder_type === "platform_screenshots",

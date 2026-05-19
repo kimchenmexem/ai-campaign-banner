@@ -391,6 +391,9 @@ export function buildAdSpecsForConcept(
       compositeMap: context.compositeMap,
       tagSidecar: context.tagSidecar,
       warnings,
+      // Rotate across same-device Elements/ files so 15 ads in a 3×5
+      // campaign don't all collapse to the same iphone/ipad/macbook PNG.
+      seedKey: `${args.campaign_id}::${concept.concept_id}::${format}::hero_pick`,
     });
 
     // pattern_immersive doesn't need an image bg — it renders a clean
