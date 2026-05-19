@@ -31,6 +31,19 @@ export const CampaignFormatSchema = z.enum([
   "300x250",    // IAB Medium Rectangle (compact display)
   "336x280",    // IAB Large Rectangle (compact display)
   "960x1200",   // Vertical 4:5 (display / social portrait, taller than 1080x1350)
+  // MEXEM Set 2 — display ad / IAB standard formats. These use a
+  // dedicated compact renderer (see computeCompactLayout) instead of the
+  // AI-composition pipeline — positions are deterministic from the
+  // brand-kit spec data; only content (copy / visual / colors) varies
+  // across concepts.
+  "320x100",    // wide micro banner
+  "320x50",     // ultra-wide micro / mobile banner
+  "300x1050",   // tall vertical / portrait skyscraper
+  "300x600",    // vertical / half-page
+  "160x600",    // narrow skyscraper
+  "970x250",    // large horizontal / billboard
+  "728x90",     // standard leaderboard
+  "250x250",    // square compact
 ]);
 export type CampaignFormat = z.infer<typeof CampaignFormatSchema>;
 

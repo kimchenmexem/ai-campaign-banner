@@ -165,6 +165,14 @@ export function convertBrandInputToBrandKitWithProvenance(
     "300x250": sizesPerRole,
     "336x280": sizesPerRole,
     "960x1200": sizesPerRole,
+    "320x100": sizesPerRole,
+    "320x50": sizesPerRole,
+    "300x1050": sizesPerRole,
+    "300x600": sizesPerRole,
+    "160x600": sizesPerRole,
+    "970x250": sizesPerRole,
+    "728x90": sizesPerRole,
+    "250x250": sizesPerRole,
   };
 
   const frame = spec.materials.spacing.frame;
@@ -186,6 +194,14 @@ export function convertBrandInputToBrandKitWithProvenance(
     "300x250": inset,
     "336x280": inset,
     "960x1200": inset,
+    "320x100": inset,
+    "320x50": inset,
+    "300x1050": inset,
+    "300x600": inset,
+    "160x600": inset,
+    "970x250": inset,
+    "728x90": inset,
+    "250x250": inset,
   };
 
   const disclaimerText = spec.materials.disclaimer_or_risk_warnings.required_texts.join(

@@ -32,6 +32,16 @@ const ALL_FORMATS: CampaignFormat[] = [
   "300x250",
   "336x280",
   "960x1200",
+  // MEXEM Set 2 — display ad / IAB standard formats. These will use the
+  // compact renderer (deterministic layout from spec) once Phase 2 lands.
+  "320x100",
+  "320x50",
+  "300x1050",
+  "300x600",
+  "160x600",
+  "970x250",
+  "728x90",
+  "250x250",
 ];
 const DEFAULT_FORMATS: CampaignFormat[] = [
   "1200x628",

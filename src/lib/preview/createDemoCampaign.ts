@@ -1303,46 +1303,56 @@ export function buildAdSpec(args: BuildAdSpecArgs): DemoAdSpec {
   const composition = args.composition ?? "text_leading";
   const template = args.template ?? "mockup_hero";
   const rendererHints = args.rendererHints ?? DEFAULT_RENDERER_HINTS;
-  const baseLayoutRaw = computeLayout(size, brandKit, composition, rendererHints);
-  // Carry the spec text→CTA gap into ComputedLayout so applyCtaPlacement
-  // can use it when re-anchoring the CTA below the subheadline. Without
-  // this, downstream uses a 20px default and the MEXEM spec gap is lost.
-  const specSectionGaps =
-    brandKit.layout.section_gaps_per_format?.[
-      size.name as keyof NonNullable<typeof brandKit.layout.section_gaps_per_format>
-    ];
-  const specTextToCtaGap = specSectionGaps?.text_to_cta;
-  const specLogoToTextGap = specSectionGaps?.logo_to_text;
-  const baseLayout: ComputedLayout = {
-    ...baseLayoutRaw,
-    ...(specTextToCtaGap != null ? { textToCtaGap: specTextToCtaGap } : {}),
-    ...(specLogoToTextGap != null ? { logoToTextGap: specLogoToTextGap } : {}),
-  };
-  const densityLayout = applyDensityToLayout(baseLayout, rendererHints);
-  // Pre-compute the rendered CTA width and bake it into the layout BEFORE
-  // composition placement runs. buildElements grows the CTA box to fit the
-  // CTA text (Math.max with ctaSafeWidth), which means a placement like
-  // bottom_center computed against the small computeLayout-default width
-  // would render off-center. Mirroring the same character-budget formula
-  // here keeps placement and rendered box aligned.
-  const ctaTextLen = Math.max(8, copy.cta?.length ?? 12);
-  const ctaCharBudgetPx = Math.ceil(densityLayout.cta.fontSize * 0.58 * ctaTextLen);
-  const PRE_CTA_BREATHING = 128; // 96 px breathing + ~32 px arrow + space
-  const finalCtaWidth = Math.max(
-    densityLayout.cta.width,
-    ctaCharBudgetPx + PRE_CTA_BREATHING,
-  );
-  const ctaSizedLayout: ComputedLayout = {
-    ...densityLayout,
-    cta: { ...densityLayout.cta, width: finalCtaWidth },
-  };
+  // MEXEM Set 2 — display-ad / IAB-standard formats use a dedicated
+  // deterministic renderer (computeCompactLayout). The downstream passes
+  // (applyDensityToLayout / CTA-budget-resize / applyCompositionFromSpec)
+  // are SKIPPED for these formats because they're tuned for AI-driven
+  // content variation that the spec layout has locked.
   const langForLayout = LANG_META[args.language ?? "en"];
-  const layout = applyCompositionFromSpec(
-    ctaSizedLayout,
-    size,
-    rendererHints,
-    langForLayout.rtl,
-  );
+  let layout: ComputedLayout;
+  if (isCompactFormat(size.name)) {
+    layout = computeCompactLayout(size, brandKit);
+  } else {
+    const baseLayoutRaw = computeLayout(size, brandKit, composition, rendererHints);
+    // Carry the spec text→CTA gap into ComputedLayout so applyCtaPlacement
+    // can use it when re-anchoring the CTA below the subheadline. Without
+    // this, downstream uses a 20px default and the MEXEM spec gap is lost.
+    const specSectionGaps =
+      brandKit.layout.section_gaps_per_format?.[
+        size.name as keyof NonNullable<typeof brandKit.layout.section_gaps_per_format>
+      ];
+    const specTextToCtaGap = specSectionGaps?.text_to_cta;
+    const specLogoToTextGap = specSectionGaps?.logo_to_text;
+    const baseLayout: ComputedLayout = {
+      ...baseLayoutRaw,
+      ...(specTextToCtaGap != null ? { textToCtaGap: specTextToCtaGap } : {}),
+      ...(specLogoToTextGap != null ? { logoToTextGap: specLogoToTextGap } : {}),
+    };
+    const densityLayout = applyDensityToLayout(baseLayout, rendererHints);
+    // Pre-compute the rendered CTA width and bake it into the layout BEFORE
+    // composition placement runs. buildElements grows the CTA box to fit the
+    // CTA text (Math.max with ctaSafeWidth), which means a placement like
+    // bottom_center computed against the small computeLayout-default width
+    // would render off-center. Mirroring the same character-budget formula
+    // here keeps placement and rendered box aligned.
+    const ctaTextLen = Math.max(8, copy.cta?.length ?? 12);
+    const ctaCharBudgetPx = Math.ceil(densityLayout.cta.fontSize * 0.58 * ctaTextLen);
+    const PRE_CTA_BREATHING = 128; // 96 px breathing + ~32 px arrow + space
+    const finalCtaWidth = Math.max(
+      densityLayout.cta.width,
+      ctaCharBudgetPx + PRE_CTA_BREATHING,
+    );
+    const ctaSizedLayout: ComputedLayout = {
+      ...densityLayout,
+      cta: { ...densityLayout.cta, width: finalCtaWidth },
+    };
+    layout = applyCompositionFromSpec(
+      ctaSizedLayout,
+      size,
+      rendererHints,
+      langForLayout.rtl,
+    );
+  }
   const elements = buildElements({
     campaignId,
     conceptId,
@@ -2068,6 +2078,316 @@ function computeLayout(
       height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
       fontSize: riskSize,
     },
+  };
+}
+
+// ── MEXEM Set 2 — compact / display-ad layout ───────────────────────────────
+// 8 IAB-standard banner sizes (320×100, 320×50, 300×1050, 300×600, 160×600,
+// 970×250, 728×90, 250×250). Positions are deterministic from the brand-kit
+// spec data — no AI hints, no PRNG, no composition picks. Only the CONTENT
+// varies per concept (copy / asset / colors); layout is locked per format.
+// The caller in createDemoCampaign bypasses applyDensityToLayout /
+// ctaSizedLayout / applyCompositionFromSpec for these formats so the
+// downstream passes can't undo the spec-precise positioning.
+
+const COMPACT_FORMATS = new Set([
+  "320x100",
+  "320x50",
+  "300x1050",
+  "300x600",
+  "160x600",
+  "970x250",
+  "728x90",
+  "250x250",
+]);
+
+function isCompactFormat(name: string): boolean {
+  return COMPACT_FORMATS.has(name);
+}
+
+function computeCompactLayout(
+  size: { name: string; width: number; height: number },
+  kit: BrandKitLite,
+): ComputedLayout {
+  // Pull every spec value with sensible fallbacks.
+  type Inset = { top: number; right: number; bottom: number; left: number };
+  type Box = { width: number; height: number };
+  type Gaps = { logo_to_text?: number; text_to_cta?: number };
+  type ElementSizes = {
+    text?: Box | undefined;
+    cta?: Box | undefined;
+    risk_message?: Box | undefined;
+    product_visual?: Box | undefined;
+  };
+
+  const margins: Inset =
+    (kit.layout.outer_margins?.[
+      size.name as keyof NonNullable<typeof kit.layout.outer_margins>
+    ] as Inset | undefined) ?? { top: 12, right: 12, bottom: 20, left: 12 };
+  const logoSize: Box =
+    (kit.logo.size_per_format?.[
+      size.name as keyof NonNullable<typeof kit.logo.size_per_format>
+    ] as Box | undefined) ?? { width: Math.round(size.width * 0.3), height: 16 };
+  const elems: ElementSizes =
+    (kit.layout.element_sizes_per_format?.[
+      size.name as keyof NonNullable<typeof kit.layout.element_sizes_per_format>
+    ] as ElementSizes | undefined) ?? {};
+  const gaps: Gaps =
+    (kit.layout.section_gaps_per_format?.[
+      size.name as keyof NonNullable<typeof kit.layout.section_gaps_per_format>
+    ] as Gaps | undefined) ?? { logo_to_text: 8, text_to_cta: 8 };
+  const logoPos =
+    kit.layout.logo_position_per_format?.[
+      size.name as keyof NonNullable<typeof kit.layout.logo_position_per_format>
+    ] ?? "top-left";
+  const fontSizes =
+    kit.typography.sizes_per_format?.[
+      size.name as keyof NonNullable<typeof kit.typography.sizes_per_format>
+    ] ?? {};
+
+  const headlineFont = fontSizes.headline ?? 14;
+  const subFont = fontSizes.subheadline ?? 11;
+  const ctaFont = fontSizes.cta ?? 11;
+  const discFont = fontSizes.disclaimer ?? 9;
+  const logoGap = gaps.logo_to_text ?? 8;
+  const textCtaGap = gaps.text_to_cta ?? 8;
+
+  const textBox: Box =
+    elems.text ?? {
+      width: size.width - margins.left - margins.right,
+      height: Math.round(size.height * 0.35),
+    };
+  const ctaBox: Box = elems.cta ?? { width: 80, height: 26 };
+  const riskBox: Box = elems.risk_message ?? { width: size.width, height: 12 };
+  const visualBox: Box | undefined = elems.product_visual;
+
+  // Risk band always sits flush against the canvas bottom, horizontally
+  // centered when narrower than canvas.
+  const riskW = Math.round(riskBox.width);
+  const riskH = Math.round(riskBox.height);
+  const riskWarning = {
+    x: Math.round((size.width - riskW) / 2),
+    y: size.height - riskH,
+    width: riskW,
+    height: riskH,
+    fontSize: discFont,
+  };
+
+  const contentTop = margins.top;
+  const contentBottom = size.height - riskH;
+  const ar = size.width / size.height;
+
+  const logoXFor = (): number => {
+    if (logoPos === "top-center")
+      return Math.round((size.width - logoSize.width) / 2);
+    if (logoPos === "top-right")
+      return size.width - margins.right - logoSize.width;
+    return margins.left;
+  };
+
+  const splitText = (
+    box: Box,
+  ): { headlineH: number; subH: number } => {
+    const headlineH = Math.max(headlineFont, Math.round(box.height * 0.6));
+    const subH = Math.max(subFont, box.height - headlineH - 2);
+    return { headlineH, subH };
+  };
+
+  const round = (n: number): number => Math.round(n);
+
+  // ── HORIZONTAL pattern ───────────────────────────────────────────────
+  // 320×50, 320×100, 728×90, 970×250 — wide canvases. Logo on the left,
+  // text in the middle, CTA on the right (tight) or below text (970×250).
+  // 320×100 is special: CTA is a full-canvas-width thin band above risk.
+  if (ar > 1.5) {
+    const innerCenter = (contentTop + contentBottom) / 2;
+    const hasVisual = !!visualBox;
+    // Tight-inline = wide canvas WITHOUT a side visual. Everything sits
+    // in one horizontal row (logo | text | CTA). Covers 320×50, 728×90,
+    // and any future horizontal-no-visual format.
+    const tightInline = !hasVisual;
+
+    const logoY = innerCenter - logoSize.height / 2;
+    const logoX = logoXFor();
+
+    let visualNode: ComputedLayout["visual"] = null;
+    let rightAnchorX = size.width - margins.right;
+    if (hasVisual && visualBox) {
+      const vX = size.width - margins.right - visualBox.width;
+      const vY = Math.max(margins.top, innerCenter - visualBox.height / 2);
+      visualNode = {
+        x: round(vX),
+        y: round(vY),
+        width: round(visualBox.width),
+        height: round(visualBox.height),
+      };
+      rightAnchorX = vX - textCtaGap;
+    }
+
+    const textX = logoX + logoSize.width + logoGap;
+
+    if (tightInline) {
+      // 320×50 / 728×90 — inline. CTA gets its spec width verbatim; text
+      // yields if the row is over-budget. (The other direction starved
+      // the CTA to 119 px in 728×90 and clipped "Explore Your Options →".
+      // The spec is geometrically tight there: logo 200 + textCtaGap 18 +
+      // text 344 + gap 11 + CTA 124 + margins 36 = 733 > 728.)
+      const textY = innerCenter - textBox.height / 2;
+      const ctaW = ctaBox.width;
+      const ctaX = rightAnchorX - ctaW;
+      const ctaY = innerCenter - ctaBox.height / 2;
+      const textXEnd = ctaX - textCtaGap;
+      const textW = Math.max(40, Math.min(textBox.width, textXEnd - textX));
+      const { headlineH, subH } = splitText({ width: textW, height: textBox.height });
+      return {
+        margin: margins,
+        riskWarningHeight: riskH,
+        riskWarningBottomGap: 0,
+        logo: { x: round(logoX), y: round(logoY), width: round(logoSize.width), height: round(logoSize.height) },
+        ibkrLogo: null,
+        headline: { x: round(textX), y: round(textY), width: round(textW), height: headlineH, fontSize: headlineFont },
+        subheadline: { x: round(textX), y: round(textY + headlineH + 2), width: round(textW), height: subH, fontSize: subFont },
+        cta: { x: round(ctaX), y: round(ctaY), width: round(ctaW), height: ctaBox.height, fontSize: ctaFont },
+        visual: null,
+        riskWarning,
+      };
+    }
+
+    if (size.name === "320x100") {
+      // CTA is a full-canvas-width band just above the risk strip.
+      const textY = contentTop;
+      const textW = rightAnchorX - textX;
+      const { headlineH, subH } = splitText({ width: textW, height: textBox.height });
+      const ctaY = contentBottom - ctaBox.height;
+      return {
+        margin: margins,
+        riskWarningHeight: riskH,
+        riskWarningBottomGap: 0,
+        logo: { x: round(logoX), y: round(logoY), width: round(logoSize.width), height: round(logoSize.height) },
+        ibkrLogo: null,
+        headline: { x: round(textX), y: round(textY), width: round(textW), height: headlineH, fontSize: headlineFont },
+        subheadline: { x: round(textX), y: round(textY + headlineH + 2), width: round(textW), height: subH, fontSize: subFont },
+        cta: { x: 0, y: round(ctaY), width: size.width, height: ctaBox.height, fontSize: ctaFont },
+        visual: visualNode,
+        riskWarning,
+      };
+    }
+
+    // 970×250 — text right-of-logo, CTA below text-left, visual on the right.
+    // Center the text+CTA *stack* vertically inside the content area so the
+    // CTA doesn't slide under the risk strip when both elements have spec
+    // heights that sum near the available inner height.
+    const textW = rightAnchorX - textX;
+    const stackH = textBox.height + textCtaGap + ctaBox.height;
+    const stackTop = contentTop + Math.max(0, ((contentBottom - contentTop) - stackH) / 2);
+    const textY = stackTop;
+    const { headlineH, subH } = splitText({ width: textW, height: textBox.height });
+    const ctaY = textY + textBox.height + textCtaGap;
+    return {
+      margin: margins,
+      riskWarningHeight: riskH,
+      riskWarningBottomGap: 0,
+      logo: { x: round(logoX), y: round(logoY), width: round(logoSize.width), height: round(logoSize.height) },
+      ibkrLogo: null,
+      headline: { x: round(textX), y: round(textY), width: round(textW), height: headlineH, fontSize: headlineFont },
+      subheadline: { x: round(textX), y: round(textY + headlineH + 2), width: round(textW), height: subH, fontSize: subFont },
+      cta: { x: round(textX), y: round(ctaY), width: round(ctaBox.width), height: ctaBox.height, fontSize: ctaFont },
+      visual: visualNode,
+      riskWarning,
+    };
+  }
+
+  // ── VERTICAL TALL pattern ────────────────────────────────────────────
+  // 160×600, 300×600, 300×1050. Vertical stack: logo → text → CTA → visual → risk.
+  if (ar < 0.7) {
+    const logoY = margins.top;
+    const logoX = logoXFor();
+    let cursorY = logoY + logoSize.height + logoGap;
+    const textX = Math.round((size.width - textBox.width) / 2);
+    const textY = cursorY;
+    const { headlineH, subH } = splitText(textBox);
+    cursorY = textY + textBox.height;
+    const ctaX = Math.round((size.width - ctaBox.width) / 2);
+    const ctaY = cursorY + textCtaGap;
+    cursorY = ctaY + ctaBox.height;
+    let visualNode: ComputedLayout["visual"] = null;
+    if (visualBox) {
+      const visualGap = Math.min(31, Math.round(size.height * 0.03));
+      const vX = Math.round((size.width - visualBox.width) / 2);
+      const vY = cursorY + visualGap;
+      visualNode = {
+        x: vX,
+        y: vY,
+        width: round(visualBox.width),
+        height: round(visualBox.height),
+      };
+    }
+    return {
+      margin: margins,
+      riskWarningHeight: riskH,
+      riskWarningBottomGap: 0,
+      logo: { x: logoX, y: logoY, width: round(logoSize.width), height: round(logoSize.height) },
+      ibkrLogo: null,
+      headline: { x: textX, y: textY, width: round(textBox.width), height: headlineH, fontSize: headlineFont },
+      subheadline: { x: textX, y: textY + headlineH + 2, width: round(textBox.width), height: subH, fontSize: subFont },
+      cta: { x: ctaX, y: ctaY, width: round(ctaBox.width), height: ctaBox.height, fontSize: ctaFont },
+      visual: visualNode,
+      riskWarning,
+    };
+  }
+
+  // ── SQUARE pattern ───────────────────────────────────────────────────
+  // 250×250. Logo top-center, text on the left, visual on the right (if
+  // present), CTA below text+visual, risk at the bottom band.
+  // The spec's text width + visual width often exceed canvas width
+  // (e.g. 250×250: text 153 + visual 149 = 302 > 250). When that
+  // happens we narrow text proportionally so they DON'T overlap.
+  const logoY = margins.top;
+  const logoX = logoXFor();
+  const cursorY = logoY + logoSize.height + logoGap;
+  const sideGap = 8;
+  const availableContentW = size.width - margins.left - margins.right;
+  let effectiveTextW = textBox.width;
+  let effectiveVisualW = visualBox?.width ?? 0;
+  let visualNode: ComputedLayout["visual"] = null;
+  if (visualBox) {
+    const totalSideBySide = textBox.width + sideGap + visualBox.width;
+    if (totalSideBySide > availableContentW) {
+      // Split available width proportionally between text & visual so
+      // neither gets starved. (Previous fix yielded ALL the excess to
+      // text and left a 49 px text column on 250×250 — unreadable for
+      // a long headline. Proportional split gives ~99 px each.)
+      const sharePool = Math.max(40, availableContentW - sideGap);
+      const totalReq = textBox.width + visualBox.width;
+      effectiveTextW = Math.max(40, Math.round(sharePool * (textBox.width / totalReq)));
+      effectiveVisualW = Math.max(40, sharePool - effectiveTextW);
+    }
+    const vH = Math.round((effectiveVisualW / visualBox.width) * visualBox.height);
+    const vX = size.width - margins.right - effectiveVisualW;
+    const vY = cursorY + Math.max(0, Math.round((textBox.height - vH) / 2));
+    visualNode = {
+      x: vX,
+      y: vY,
+      width: round(effectiveVisualW),
+      height: round(vH),
+    };
+  }
+  const textX = margins.left;
+  const textY = cursorY;
+  const { headlineH, subH } = splitText({ width: effectiveTextW, height: textBox.height });
+  const ctaX = Math.round((size.width - ctaBox.width) / 2);
+  const ctaY = textY + textBox.height + textCtaGap;
+  return {
+    margin: margins,
+    riskWarningHeight: riskH,
+    riskWarningBottomGap: 0,
+    logo: { x: logoX, y: logoY, width: round(logoSize.width), height: round(logoSize.height) },
+    ibkrLogo: null,
+    headline: { x: textX, y: textY, width: round(effectiveTextW), height: headlineH, fontSize: headlineFont },
+    subheadline: { x: textX, y: textY + headlineH + 2, width: round(effectiveTextW), height: subH, fontSize: subFont },
+    cta: { x: ctaX, y: ctaY, width: round(ctaBox.width), height: ctaBox.height, fontSize: ctaFont },
+    visual: visualNode,
+    riskWarning,
   };
 }
 
@@ -3677,7 +3997,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
           cloudinary_public_id: mjBgUpload?.cloudinary_public_id ?? null,
           delivery_source: "cloudinary" as const,
         }
-      : mjBgUpload
+      : mjBgUpload && mjBgUpload.public_path
         ? {
             file_url: absolutePreviewUrl(mjBgUpload.public_path),
             local_public_path: mjBgUpload.public_path,
@@ -3919,8 +4239,13 @@ function buildElements(args: BuildElementsArgs): Element[] {
     const decoSize = Math.min(220, Math.round(size.width * 0.18));
     const x = size.width - decoSize - 24;
     const y = i === 0 ? 24 : Math.max(24, size.height - decoSize - 24);
+    // Prefer cloudinary/signed URL when set (production), otherwise the
+    // dev-server public path. Skip the slot entirely if neither is set —
+    // a private upload with no signed URL has nothing to render.
     const fileUrl =
-      u.cloudinary_secure_url ?? absolutePreviewUrl(u.public_path);
+      u.cloudinary_secure_url ??
+      (u.public_path ? absolutePreviewUrl(u.public_path) : null);
+    if (!fileUrl) continue;
     const targetRole: "decorative_1" | "decorative_2" =
       i === 0 ? "decorative_1" : "decorative_2";
     elements.push({
@@ -3938,7 +4263,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
       visible: true,
       version: 1,
       file_url: fileUrl,
-      local_public_path: u.public_path,
+      ...(u.public_path ? { local_public_path: u.public_path } : {}),
       ...(u.cloudinary_public_id ? { cloudinary_public_id: u.cloudinary_public_id } : {}),
       delivery_source: u.cloudinary_secure_url ? "cloudinary" : "local_preview",
       object_fit: "contain",
@@ -4337,13 +4662,22 @@ function buildElements(args: BuildElementsArgs): Element[] {
   // height and step font size down until the text fits the allocated
   // box. Floor at 36 px so the headline stays the visual leader.
   const headlineLineHeight = brandKit.typography.line_heights?.headline ?? 1.0;
+  // Compact formats (320×50 etc.) have spec headline fonts of 12-22 px;
+  // hard-coding minFont: 36 would force the fitted font UP and overflow
+  // the spec text box. For compact we also need to ALLOW shrink below
+  // the spec base when the text box is narrower than the headline string
+  // can fit at base size (250×250 with text-box 49 wide — "Confidence at
+  // the Close" needs ~12 px to fit in 54 px height even at 22 px wraps
+  // out of the box). Floor at 10 keeps text legible.
+  const isCompact = isCompactFormat(size.name);
+  const headlineFloor = isCompact ? 10 : 36;
   const headlineFontFitted = fitFontToBox({
     text: copy.headline,
     boxWidth: layout.headline.width,
     boxHeight: layout.headline.height,
     baseFontSize: layout.headline.fontSize,
     lineHeight: headlineLineHeight,
-    minFont: 36,
+    minFont: headlineFloor,
     // ALL-CAPS bold headlines (the MEXEM reference style) actually render
     // WIDER per character than mixed-case body text — Poppins-bold
     // measures ~0.58 char-width-ratio in Chrome for uppercase letters.
@@ -4432,13 +4766,14 @@ function buildElements(args: BuildElementsArgs): Element[] {
   // the gap so the headline → CTA stack reads cleanly without an empty
   // band where the subheadline used to be.
   const subLineHeight = brandKit.typography.line_heights?.body ?? 1.4;
+  const subFloor = isCompact ? 8 : 14;
   const subFontFitted = fitFontToBox({
     text: copy.subheadline,
     boxWidth: layout.subheadline.width,
     boxHeight: layout.subheadline.height,
     baseFontSize: layout.subheadline.fontSize,
     lineHeight: subLineHeight,
-    minFont: 14,
+    minFont: subFloor,
     charWidthRatio: langCharWidthRatio,
   });
   if (!hints.suppressSubheadline) {
@@ -4578,7 +4913,10 @@ function buildElements(args: BuildElementsArgs): Element[] {
   // canvas (already set by applyCompositionFromSpec) and skips this path.
   const ctaCharBudgetPx = Math.ceil(layout.cta.fontSize * 0.58 * ctaText.length);
   const ctaSafeWidth = ctaCharBudgetPx + 96; // 48 px breathing room each side
-  const ctaWidth = isBottomBand
+  // Compact formats have spec CTA widths (e.g. 124 px) that are smaller
+  // than ctaSafeWidth for a long CTA string. The override would grow the
+  // box and shove it off-canvas. Trust the spec verbatim for compact.
+  const ctaWidth = isBottomBand || isCompact
     ? layout.cta.width
     : Math.max(layout.cta.width, ctaSafeWidth);
   // Reference rule: the bottom-band CTA fills with brand-accent yellow and
@@ -4602,6 +4940,22 @@ function buildElements(args: BuildElementsArgs): Element[] {
     const headlineCol = layout.headline;
     ctaX = Math.round(headlineCol.x + (headlineCol.width - ctaWidth) / 2);
   }
+  // Compact formats lock the CTA box to spec width, so a long CTA string
+  // (e.g. "Explore Your Options →" in a 124 px 728×90 box) clips on the
+  // right. The CTA renders with whiteSpace: nowrap, so fitFontToBox (which
+  // checks wrapped-line *height*) accepts any font that fits 1 line tall
+  // and never shrinks. Use a single-line WIDTH check instead.
+  // For very narrow CTAs (320×50 spec is 80 px) the floor drops to 6.
+  const ctaFontFitted = (() => {
+    if (!isCompact) return layout.cta.fontSize;
+    const charRatio = 0.58;
+    const availableW = Math.max(40, ctaWidth - 4);
+    let f = layout.cta.fontSize;
+    while (f > 6 && ctaText.length * f * charRatio > availableW) {
+      f -= 1;
+    }
+    return f;
+  })();
   elements.push({
     id: "el_cta",
     type: "cta-button",
@@ -4621,7 +4975,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
     // Step 6 — ghost CTAs read better with slightly heavier weight to
     // compensate for the missing fill. Filled variants stay at 600.
     font_weight: hints.ctaStyle === "ghost" ? 700 : isBottomBand ? 700 : 600,
-    font_size: layout.cta.fontSize,
+    font_size: ctaFontFitted,
     line_height: brandKit.typography.line_heights?.cta ?? 1.1,
     text_align: "center",
     color: finalCtaFg,
