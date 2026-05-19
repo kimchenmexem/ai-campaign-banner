@@ -102,6 +102,18 @@ export default async function CampaignDetailPage({
         >
           Download ZIP ↓
         </a>
+        <a
+          // SVG-only ZIP. No render dependency — works directly from the
+          // campaign plan. Remote Cloudinary refs by default to keep the
+          // archive small + safely under Vercel's response-size cap even
+          // for campaigns that reference large product mockups.
+          href={`/api/export-campaign-svgs?campaign_id=${plan.campaign_id}`}
+          download={`campaign-${plan.campaign_id}-svgs.zip`}
+          className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
+          title="All banners as SVG, bundled in a ZIP. Drag any file into Figma. Works even before rendering."
+        >
+          ↓ All SVGs (Figma)
+        </a>
         <p className="text-xs text-zinc-600 dark:text-zinc-400">
           {renderMap === null
             ? "PNGs not generated yet. Click to render this campaign as flat banners (~30s for 9 ads). The ZIP will auto-render if missing."
