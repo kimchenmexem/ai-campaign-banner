@@ -57,6 +57,256 @@ export interface ConversionResult {
 
 const TEMPLATE_PLACEHOLDER_PREFIX = "REPLACE_WITH";
 
+// MEXEM banner specification — per-format element measurements sourced from
+// the brand owner's spec document. The renderer's computeLayout reads these
+// via the per-format brand-kit fields:
+//   logo.size_per_format[F]                       width / height
+//   layout.element_sizes_per_format[F].text       text column box
+//   layout.element_sizes_per_format[F].cta        CTA box / layout zone
+//   layout.element_sizes_per_format[F].risk_message  risk-band box
+//   layout.element_sizes_per_format[F].product_visual product/visual box
+//   layout.section_gaps_per_format[F]             logo→text, text→cta gaps
+//   layout.logo_position_per_format[F]            top-left / top-center
+//   layout.visual_anchor_per_format[F]            right / bottom-band
+//   layout.outer_margins[F].top                   per-spec top inset
+//   layout.composition_variants_per_format[F][V]  data-only alt variants
+// Formats outside this table fall through to the converter's frame-based
+// inset and the historic literal gaps in computeLayout.
+//
+// Note on 1200x1200 CTA box 717×437 — per the spec this is the LAYOUT ZONE
+// available for the CTA, not the visible button height. The renderer's CTA
+// keeps the brand-kit min_height; the width caps at this zone's width.
+//
+// Note on 1200x1200 Variant B — captured here as data-only (under
+// composition_variants_per_format). The renderer does NOT pick it today;
+// the active 1200x1200 layout is Variant A. A future variant-selector PR
+// will wire B at render time.
+type MexemFormatSpec = {
+  // Boxes that may be absent for a given format when the spec doesn't label
+  // them (e.g., 320x100 risk strip is visible but unlabelled; 728x90 has no
+  // visual element; 320x50 CTA is visible but unlabelled). Omitted fields
+  // fall through to the renderer's defaults rather than fabricating values.
+  logo?: { width: number; height: number };
+  text?: { width: number; height: number };
+  cta?: { width: number; height: number };
+  risk_message?: { width: number; height: number };
+  product_visual?: { width: number; height: number };
+  top_margin?: number;
+  section_gaps?: { logo_to_text?: number; text_to_cta?: number };
+  logo_position?: "top-left" | "top-center" | "top-right";
+  visual_anchor?: "right" | "bottom-band";
+};
+
+const MEXEM_FORMAT_SPECS: Partial<Record<string, MexemFormatSpec>> = {
+  "300x250": {
+    logo: { width: 153, height: 29 },
+    text: { width: 184, height: 100 },
+    cta: { width: 125, height: 26 },
+    risk_message: { width: 300, height: 25 },
+    product_visual: { width: 104, height: 171 },
+    top_margin: 34,
+    section_gaps: { logo_to_text: 77, text_to_cta: 19 },
+    logo_position: "top-left",
+    visual_anchor: "right",
+  },
+  "336x280": {
+    logo: { width: 153, height: 30 },
+    text: { width: 185, height: 101 },
+    cta: { width: 125, height: 26 },
+    risk_message: { width: 336, height: 28 },
+    product_visual: { width: 136, height: 234 },
+    top_margin: 33,
+    // section_gaps not given by spec — renderer falls back to literal gaps.
+    logo_position: "top-left",
+    visual_anchor: "right",
+  },
+  "1080x1080": {
+    logo: { width: 457, height: 100 },
+    text: { width: 642, height: 502 },
+    cta: { width: 642, height: 85 },
+    risk_message: { width: 1080, height: 112 },
+    product_visual: { width: 373, height: 811 },
+    top_margin: 70,
+    section_gaps: { logo_to_text: 70, text_to_cta: 39 },
+    logo_position: "top-left",
+    visual_anchor: "right",
+  },
+  "1080x1920": {
+    logo: { width: 787.21, height: 171 },
+    text: { width: 938, height: 534 },
+    cta: { width: 938, height: 87 },
+    risk_message: { width: 938, height: 83 },
+    product_visual: { width: 1080, height: 568 },
+    top_margin: 182,
+    section_gaps: { logo_to_text: 107, text_to_cta: 62 },
+    logo_position: "top-center",
+    visual_anchor: "bottom-band",
+  },
+  "1200x628": {
+    logo: { width: 456, height: 90 },
+    text: { width: 711, height: 161 },
+    cta: { width: 711, height: 85 },
+    risk_message: { width: 1200, height: 66 },
+    product_visual: { width: 426, height: 498 },
+    top_margin: 54,
+    // section_gaps not directly given — spec lists "694 upper-layout
+    // spacing" which is the horizontal layout zone, not a vertical gap.
+    logo_position: "top-left",
+    visual_anchor: "right",
+  },
+  "1200x1200": {
+    logo: { width: 710, height: 142 },
+    text: { width: 717, height: 437 },
+    cta: { width: 717, height: 437 },
+    risk_message: { width: 1200, height: 109 },
+    product_visual: { width: 412, height: 931 },
+    top_margin: 160,
+    section_gaps: { logo_to_text: 88, text_to_cta: 88 },
+    logo_position: "top-left",
+    visual_anchor: "right",
+  },
+  "960x1200": {
+    logo: { width: 523, height: 98 },
+    text: { width: 746, height: 297 },
+    cta: { width: 359, height: 86 },
+    risk_message: { width: 960, height: 66 },
+    product_visual: { width: 960, height: 371 },
+    top_margin: 89,
+    section_gaps: { logo_to_text: 63, text_to_cta: 63 },
+    logo_position: "top-center",
+    visual_anchor: "bottom-band",
+  },
+
+  // MEXEM Set 2 — IAB / display standard formats. Measurements sourced
+  // from MEXEM_Banner_Specifications_Set_2 PDF. Some fields are
+  // intentionally omitted where the source either does not label that
+  // element or labels it ambiguously; in those cases the renderer falls
+  // back to its computed default.
+  "320x100": {
+    // Wide micro banner. Source labels CTA at 320x12 (the visible bottom
+    // strip); the visible START INVESTING button has no separate
+    // dimension labelled. Risk strip is visually present but unlabelled
+    // → risk_message omitted to avoid duplicate-with-CTA confusion.
+    logo: { width: 61, height: 44 },
+    text: { width: 151, height: 58 },
+    cta: { width: 320, height: 12 },
+    product_visual: { width: 67, height: 88 },
+    top_margin: 8,
+    logo_position: "top-left",
+    visual_anchor: "right",
+  },
+  "320x50": {
+    // Ultra-wide micro banner. CTA is visible but not labelled — omitted.
+    // No separate visual element labelled — product_visual omitted.
+    logo: { width: 65, height: 13 },
+    text: { width: 173, height: 26 },
+    risk_message: { width: 320, height: 9 },
+    top_margin: 15,
+    logo_position: "top-left",
+  },
+  "300x1050": {
+    logo: { width: 235, height: 167 },
+    text: { width: 277, height: 207 },
+    cta: { width: 277, height: 34 },
+    risk_message: { width: 300, height: 42 },
+    product_visual: { width: 300, height: 433 },
+    top_margin: 48,
+    section_gaps: { logo_to_text: 44, text_to_cta: 44 },
+    logo_position: "top-center",
+    visual_anchor: "bottom-band",
+  },
+  "300x600": {
+    logo: { width: 105, height: 106 },
+    text: { width: 277, height: 106 },
+    cta: { width: 277, height: 26 },
+    risk_message: { width: 300, height: 39 },
+    product_visual: { width: 277, height: 216 },
+    top_margin: 22,
+    section_gaps: { logo_to_text: 39, text_to_cta: 22 },
+    logo_position: "top-center",
+    visual_anchor: "bottom-band",
+  },
+  "160x600": {
+    logo: { width: 101, height: 73 },
+    text: { width: 145, height: 90 },
+    cta: { width: 145, height: 26 },
+    risk_message: { width: 160, height: 34 },
+    product_visual: { width: 160, height: 248 },
+    top_margin: 34,
+    section_gaps: { logo_to_text: 31, text_to_cta: 31 },
+    logo_position: "top-center",
+    visual_anchor: "bottom-band",
+  },
+  "970x250": {
+    // Large horizontal. CTA visible but not labelled — omitted. Source
+    // right-side label says "TEXT used space" but the visual role is the
+    // element/phone block (per PDF Section 4 Note 4) — assigned to
+    // product_visual rather than text.
+    logo: { width: 217, height: 158 },
+    text: { width: 425, height: 128 },
+    risk_message: { width: 970, height: 26 },
+    product_visual: { width: 425, height: 128 },
+    top_margin: 33,
+    section_gaps: { text_to_cta: 22 },
+    logo_position: "top-left",
+    visual_anchor: "right",
+  },
+  "728x90": {
+    // Standard leaderboard. Source labels the text block as "LOGO used
+    // space"; PDF Section 4 Note 5 corrects to text role. No separate
+    // visual element labelled — product_visual omitted.
+    logo: { width: 200, height: 38 },
+    text: { width: 344, height: 49 },
+    cta: { width: 124, height: 26 },
+    risk_message: { width: 728, height: 13 },
+    top_margin: 17,
+    section_gaps: { text_to_cta: 11 },
+    logo_position: "top-left",
+  },
+  "250x250": {
+    // Square compact. Source labels element as 149x29 — same shape as the
+    // logo box; transcribed verbatim per PDF Section 4 Note 8. No top
+    // callout in the spec — top_margin omitted; renderer defaults apply.
+    logo: { width: 149, height: 29 },
+    text: { width: 153, height: 90 },
+    cta: { width: 124, height: 26 },
+    risk_message: { width: 250, height: 21 },
+    product_visual: { width: 149, height: 29 },
+    section_gaps: { logo_to_text: 20, text_to_cta: 22 },
+    logo_position: "top-left",
+    visual_anchor: "right",
+  },
+};
+
+// 1200x1200 Variant B — captured as data-only for the variant-selector PR.
+const MEXEM_1200X1200_VARIANT_B = {
+  logo_position: "top-center" as const,
+  logo: { width: 688.37, height: 140.57 },
+  text: { width: 850, height: 275 },
+  cta: { width: 358, height: 85 },
+  risk_message: { width: 1200, height: 102 },
+  product_visual: { width: 1200, height: 348 },
+  section_gaps: { logo_to_text: 64, text_to_cta: 53 },
+};
+
+// Apply MEXEM spec top insets to the per-format outer_margins. Right /
+// bottom / left keep the converter's default frame inset where the spec
+// doesn't dictate a per-element value. Formats whose spec omits
+// top_margin (e.g., 250x250) keep the default top inset.
+function applyMexemTopMargins(
+  margins: Record<string, { top: number; right: number; bottom: number; left: number }>,
+): Record<string, { top: number; right: number; bottom: number; left: number }> {
+  const out = { ...margins };
+  for (const [fmt, spec] of Object.entries(MEXEM_FORMAT_SPECS)) {
+    if (spec === undefined) continue;
+    if (spec.top_margin === undefined) continue;
+    const prior = out[fmt];
+    if (prior === undefined) continue;
+    out[fmt] = { ...prior, top: spec.top_margin };
+  }
+  return out;
+}
+
 /**
  * Convert raw brand input into a validated BrandKitLite plus provenance.
  * Throws ZodError if the resulting kit fails the BrandKitLiteSchema.
@@ -165,6 +415,14 @@ export function convertBrandInputToBrandKitWithProvenance(
     "300x250": sizesPerRole,
     "336x280": sizesPerRole,
     "960x1200": sizesPerRole,
+    "320x100": sizesPerRole,
+    "320x50": sizesPerRole,
+    "300x1050": sizesPerRole,
+    "300x600": sizesPerRole,
+    "160x600": sizesPerRole,
+    "970x250": sizesPerRole,
+    "728x90": sizesPerRole,
+    "250x250": sizesPerRole,
   };
 
   const frame = spec.materials.spacing.frame;
@@ -186,6 +444,14 @@ export function convertBrandInputToBrandKitWithProvenance(
     "300x250": inset,
     "336x280": inset,
     "960x1200": inset,
+    "320x100": inset,
+    "320x50": inset,
+    "300x1050": inset,
+    "300x600": inset,
+    "160x600": inset,
+    "970x250": inset,
+    "728x90": inset,
+    "250x250": inset,
   };
 
   const disclaimerText = spec.materials.disclaimer_or_risk_warnings.required_texts.join(
@@ -277,6 +543,16 @@ export function convertBrandInputToBrandKitWithProvenance(
       allowed_positions: ["top-left", "top-right", "bottom-left", "bottom-right"],
       minimum_size: { width_px: 96, percent_of_canvas_width: 0.08 },
       safe_area: { padding_px: 24, padding_percent_of_logo_height: 0.5 },
+      // Per-format logo box dimensions sourced from the MEXEM spec.
+      // Cast: schema field is z.record(FormatKey, X.optional()).optional()
+      // which Zod infers as a strict Record requiring every format key. The
+      // runtime accepts partial records — this PR populates only the formats
+      // the spec covers, filtered by per-field presence.
+      size_per_format: Object.fromEntries(
+        Object.entries(MEXEM_FORMAT_SPECS)
+          .filter(([, s]) => s?.logo !== undefined)
+          .map(([fmt, s]) => [fmt, s!.logo!]),
+      ) as NonNullable<BrandKitLite["logo"]["size_per_format"]>,
     },
 
     colors: {
@@ -341,7 +617,9 @@ export function convertBrandInputToBrandKitWithProvenance(
 
     layout: {
       spacing: { unit_px: 4, scale: [0, 4, 8, 16, 24, 32, 48, 64, 96, 180] },
-      outer_margins,
+      // Override top inset per MEXEM spec for the listed formats; right /
+      // bottom / left fall back to the global brand-spec frame inset.
+      outer_margins: applyMexemTopMargins(outer_margins),
       allowed_templates: resolveAllowedTemplates(env, templateMap, provenance),
       allowed_compositions: pick(
         ddLayout.allowed_compositions,
@@ -353,7 +631,45 @@ export function convertBrandInputToBrandKitWithProvenance(
         ],
         "layout.allowed_compositions",
       ),
-      safe_areas: outer_margins,
+      safe_areas: applyMexemTopMargins(outer_margins),
+      // Per-format MEXEM data — see MEXEM_FORMAT_SPECS at top of file.
+      // Casts on the partial records use the inferred schema field types;
+      // see comment on `size_per_format` above for the why. Each element-
+      // size sub-field is wrapped in conditional spread so an undefined
+      // value (e.g., 320x100 risk_message, 728x90 product_visual) does
+      // not pollute the brand-kit with a `{ risk_message: undefined }`
+      // pair — the renderer falls back to its default for missing fields.
+      element_sizes_per_format: Object.fromEntries(
+        Object.entries(MEXEM_FORMAT_SPECS)
+          .filter(([, s]) => s !== undefined)
+          .map(([fmt, s]) => [
+            fmt,
+            {
+              ...(s!.text ? { text: s!.text } : {}),
+              ...(s!.cta ? { cta: s!.cta } : {}),
+              ...(s!.risk_message ? { risk_message: s!.risk_message } : {}),
+              ...(s!.product_visual ? { product_visual: s!.product_visual } : {}),
+            },
+          ]),
+      ) as NonNullable<BrandKitLite["layout"]["element_sizes_per_format"]>,
+      section_gaps_per_format: Object.fromEntries(
+        Object.entries(MEXEM_FORMAT_SPECS)
+          .filter(([, s]) => s?.section_gaps !== undefined)
+          .map(([fmt, s]) => [fmt, s!.section_gaps!]),
+      ) as NonNullable<BrandKitLite["layout"]["section_gaps_per_format"]>,
+      logo_position_per_format: Object.fromEntries(
+        Object.entries(MEXEM_FORMAT_SPECS)
+          .filter(([, s]) => s?.logo_position !== undefined)
+          .map(([fmt, s]) => [fmt, s!.logo_position!]),
+      ) as NonNullable<BrandKitLite["layout"]["logo_position_per_format"]>,
+      visual_anchor_per_format: Object.fromEntries(
+        Object.entries(MEXEM_FORMAT_SPECS)
+          .filter(([, s]) => s?.visual_anchor !== undefined)
+          .map(([fmt, s]) => [fmt, s!.visual_anchor!]),
+      ) as NonNullable<BrandKitLite["layout"]["visual_anchor_per_format"]>,
+      composition_variants_per_format: {
+        "1200x1200": { b: MEXEM_1200X1200_VARIANT_B },
+      } as unknown as NonNullable<BrandKitLite["layout"]["composition_variants_per_format"]>,
       disclaimer_placement_rules: {
         allowed_positions: ["bottom-center", "bottom-left"],
         min_distance_from_edge_px: 24,

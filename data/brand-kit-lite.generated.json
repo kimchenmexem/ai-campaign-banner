@@ -6,31 +6,31 @@
     "variants": [
       {
         "name": "logo-blue-p",
-        "url": "file:///private/tmp/disc-pr-qd4x9J/brand-input/MEXEM%20logo/logo%20blue%20P.png",
+        "url": "file:///Users/KimChen/Desktop/kim-integrations/ai-campaign-banner/brand-input/MEXEM%20logo/logo%20blue%20P.png",
         "format": "png",
         "background": "light"
       },
       {
         "name": "logo-blue-v",
-        "url": "file:///private/tmp/disc-pr-qd4x9J/brand-input/MEXEM%20logo/logo%20blue%20V.png",
+        "url": "file:///Users/KimChen/Desktop/kim-integrations/ai-campaign-banner/brand-input/MEXEM%20logo/logo%20blue%20V.png",
         "format": "png",
         "background": "light"
       },
       {
         "name": "logo-white-p",
-        "url": "file:///private/tmp/disc-pr-qd4x9J/brand-input/MEXEM%20logo/logo%20white%20P.png",
+        "url": "file:///Users/KimChen/Desktop/kim-integrations/ai-campaign-banner/brand-input/MEXEM%20logo/logo%20white%20P.png",
         "format": "png",
         "background": "dark"
       },
       {
         "name": "logo-white-v",
-        "url": "file:///private/tmp/disc-pr-qd4x9J/brand-input/MEXEM%20logo/logo%20white%20V.png",
+        "url": "file:///Users/KimChen/Desktop/kim-integrations/ai-campaign-banner/brand-input/MEXEM%20logo/logo%20white%20V.png",
         "format": "png",
         "background": "dark"
       }
     ],
     "favicon": {
-      "url": "file:///private/tmp/disc-pr-qd4x9J/brand-input/MEXEM%20logo/fav%20icon%20blue.png",
+      "url": "file:///Users/KimChen/Desktop/kim-integrations/ai-campaign-banner/brand-input/MEXEM%20logo/fav%20icon%20blue.png",
       "sizes": [
         "32x32",
         "180x180"
@@ -49,6 +49,68 @@
     "safe_area": {
       "padding_px": 24,
       "padding_percent_of_logo_height": 0.5
+    },
+    "size_per_format": {
+      "1200x628": {
+        "width": 456,
+        "height": 90
+      },
+      "1080x1080": {
+        "width": 457,
+        "height": 100
+      },
+      "1080x1920": {
+        "width": 787.21,
+        "height": 171
+      },
+      "1200x1200": {
+        "width": 710,
+        "height": 142
+      },
+      "300x250": {
+        "width": 153,
+        "height": 29
+      },
+      "336x280": {
+        "width": 153,
+        "height": 30
+      },
+      "960x1200": {
+        "width": 523,
+        "height": 98
+      },
+      "320x100": {
+        "width": 61,
+        "height": 44
+      },
+      "320x50": {
+        "width": 65,
+        "height": 13
+      },
+      "300x1050": {
+        "width": 235,
+        "height": 167
+      },
+      "300x600": {
+        "width": 105,
+        "height": 106
+      },
+      "160x600": {
+        "width": 101,
+        "height": 73
+      },
+      "970x250": {
+        "width": 217,
+        "height": 158
+      },
+      "728x90": {
+        "width": 200,
+        "height": 38
+      },
+      "250x250": {
+        "width": 149,
+        "height": 29
+      }
     }
   },
   "colors": {
@@ -210,6 +272,62 @@
         "body": 35,
         "cta": 35,
         "disclaimer": 35
+      },
+      "320x100": {
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
+      },
+      "320x50": {
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
+      },
+      "300x1050": {
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
+      },
+      "300x600": {
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
+      },
+      "160x600": {
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
+      },
+      "970x250": {
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
+      },
+      "728x90": {
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
+      },
+      "250x250": {
+        "headline": 100,
+        "subheadline": 55,
+        "body": 35,
+        "cta": 35,
+        "disclaimer": 35
       }
     },
     "line_heights": {
@@ -287,19 +405,19 @@
     },
     "outer_margins": {
       "1200x628": {
-        "top": 71,
+        "top": 54,
         "right": 50,
         "bottom": 180,
         "left": 50
       },
       "1080x1080": {
-        "top": 71,
+        "top": 70,
         "right": 50,
         "bottom": 180,
         "left": 50
       },
       "1080x1920": {
-        "top": 71,
+        "top": 182,
         "right": 50,
         "bottom": 180,
         "left": 50
@@ -317,7 +435,7 @@
         "left": 50
       },
       "1200x1200": {
-        "top": 71,
+        "top": 160,
         "right": 50,
         "bottom": 180,
         "left": 50
@@ -335,25 +453,77 @@
         "left": 50
       },
       "300x250": {
-        "top": 71,
+        "top": 34,
         "right": 50,
         "bottom": 180,
         "left": 50
       },
       "336x280": {
-        "top": 71,
+        "top": 33,
         "right": 50,
         "bottom": 180,
         "left": 50
       },
       "960x1200": {
+        "top": 89,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "320x100": {
+        "top": 8,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "320x50": {
+        "top": 15,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "300x1050": {
+        "top": 48,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "300x600": {
+        "top": 22,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "160x600": {
+        "top": 34,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "970x250": {
+        "top": 33,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "728x90": {
+        "top": 17,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "250x250": {
         "top": 71,
         "right": 50,
         "bottom": 180,
         "left": 50
       }
     },
-    "allowed_templates": [],
+    "allowed_templates": [
+      "qY4mReZpzyrLD97lP8",
+      "k4qoBVDyLVnd5zN0gj",
+      "7wpnPQZz02GrDdOgxo"
+    ],
     "allowed_compositions": [
       "hero_left_mockup_right",
       "headline_top_mockup_bottom",
@@ -363,19 +533,19 @@
     ],
     "safe_areas": {
       "1200x628": {
-        "top": 71,
+        "top": 54,
         "right": 50,
         "bottom": 180,
         "left": 50
       },
       "1080x1080": {
-        "top": 71,
+        "top": 70,
         "right": 50,
         "bottom": 180,
         "left": 50
       },
       "1080x1920": {
-        "top": 71,
+        "top": 182,
         "right": 50,
         "bottom": 180,
         "left": 50
@@ -393,7 +563,7 @@
         "left": 50
       },
       "1200x1200": {
-        "top": 71,
+        "top": 160,
         "right": 50,
         "bottom": 180,
         "left": 50
@@ -411,22 +581,429 @@
         "left": 50
       },
       "300x250": {
-        "top": 71,
+        "top": 34,
         "right": 50,
         "bottom": 180,
         "left": 50
       },
       "336x280": {
-        "top": 71,
+        "top": 33,
         "right": 50,
         "bottom": 180,
         "left": 50
       },
       "960x1200": {
+        "top": 89,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "320x100": {
+        "top": 8,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "320x50": {
+        "top": 15,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "300x1050": {
+        "top": 48,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "300x600": {
+        "top": 22,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "160x600": {
+        "top": 34,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "970x250": {
+        "top": 33,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "728x90": {
+        "top": 17,
+        "right": 50,
+        "bottom": 180,
+        "left": 50
+      },
+      "250x250": {
         "top": 71,
         "right": 50,
         "bottom": 180,
         "left": 50
+      }
+    },
+    "section_gaps_per_format": {
+      "1080x1080": {
+        "logo_to_text": 70,
+        "text_to_cta": 39
+      },
+      "1080x1920": {
+        "logo_to_text": 107,
+        "text_to_cta": 62
+      },
+      "1200x1200": {
+        "logo_to_text": 88,
+        "text_to_cta": 88
+      },
+      "300x250": {
+        "logo_to_text": 77,
+        "text_to_cta": 19
+      },
+      "960x1200": {
+        "logo_to_text": 63,
+        "text_to_cta": 63
+      },
+      "300x1050": {
+        "logo_to_text": 44,
+        "text_to_cta": 44
+      },
+      "300x600": {
+        "logo_to_text": 39,
+        "text_to_cta": 22
+      },
+      "160x600": {
+        "logo_to_text": 31,
+        "text_to_cta": 31
+      },
+      "970x250": {
+        "text_to_cta": 22
+      },
+      "728x90": {
+        "text_to_cta": 11
+      },
+      "250x250": {
+        "logo_to_text": 20,
+        "text_to_cta": 22
+      }
+    },
+    "logo_position_per_format": {
+      "1200x628": "top-left",
+      "1080x1080": "top-left",
+      "1080x1920": "top-center",
+      "1200x1200": "top-left",
+      "300x250": "top-left",
+      "336x280": "top-left",
+      "960x1200": "top-center",
+      "320x100": "top-left",
+      "320x50": "top-left",
+      "300x1050": "top-center",
+      "300x600": "top-center",
+      "160x600": "top-center",
+      "970x250": "top-left",
+      "728x90": "top-left",
+      "250x250": "top-left"
+    },
+    "visual_anchor_per_format": {
+      "1200x628": "right",
+      "1080x1080": "right",
+      "1080x1920": "bottom-band",
+      "1200x1200": "right",
+      "300x250": "right",
+      "336x280": "right",
+      "960x1200": "bottom-band",
+      "320x100": "right",
+      "300x1050": "bottom-band",
+      "300x600": "bottom-band",
+      "160x600": "bottom-band",
+      "970x250": "right",
+      "250x250": "right"
+    },
+    "element_sizes_per_format": {
+      "1200x628": {
+        "text": {
+          "width": 711,
+          "height": 161
+        },
+        "cta": {
+          "width": 711,
+          "height": 85
+        },
+        "risk_message": {
+          "width": 1200,
+          "height": 66
+        },
+        "product_visual": {
+          "width": 426,
+          "height": 498
+        }
+      },
+      "1080x1080": {
+        "text": {
+          "width": 642,
+          "height": 502
+        },
+        "cta": {
+          "width": 642,
+          "height": 85
+        },
+        "risk_message": {
+          "width": 1080,
+          "height": 112
+        },
+        "product_visual": {
+          "width": 373,
+          "height": 811
+        }
+      },
+      "1080x1920": {
+        "text": {
+          "width": 938,
+          "height": 534
+        },
+        "cta": {
+          "width": 938,
+          "height": 87
+        },
+        "risk_message": {
+          "width": 938,
+          "height": 83
+        },
+        "product_visual": {
+          "width": 1080,
+          "height": 568
+        }
+      },
+      "1200x1200": {
+        "text": {
+          "width": 717,
+          "height": 437
+        },
+        "cta": {
+          "width": 717,
+          "height": 437
+        },
+        "risk_message": {
+          "width": 1200,
+          "height": 109
+        },
+        "product_visual": {
+          "width": 412,
+          "height": 931
+        }
+      },
+      "300x250": {
+        "text": {
+          "width": 184,
+          "height": 100
+        },
+        "cta": {
+          "width": 125,
+          "height": 26
+        },
+        "risk_message": {
+          "width": 300,
+          "height": 25
+        },
+        "product_visual": {
+          "width": 104,
+          "height": 171
+        }
+      },
+      "336x280": {
+        "text": {
+          "width": 185,
+          "height": 101
+        },
+        "cta": {
+          "width": 125,
+          "height": 26
+        },
+        "risk_message": {
+          "width": 336,
+          "height": 28
+        },
+        "product_visual": {
+          "width": 136,
+          "height": 234
+        }
+      },
+      "960x1200": {
+        "text": {
+          "width": 746,
+          "height": 297
+        },
+        "cta": {
+          "width": 359,
+          "height": 86
+        },
+        "risk_message": {
+          "width": 960,
+          "height": 66
+        },
+        "product_visual": {
+          "width": 960,
+          "height": 371
+        }
+      },
+      "320x100": {
+        "text": {
+          "width": 151,
+          "height": 58
+        },
+        "cta": {
+          "width": 320,
+          "height": 12
+        },
+        "product_visual": {
+          "width": 67,
+          "height": 88
+        }
+      },
+      "320x50": {
+        "text": {
+          "width": 173,
+          "height": 26
+        },
+        "risk_message": {
+          "width": 320,
+          "height": 9
+        }
+      },
+      "300x1050": {
+        "text": {
+          "width": 277,
+          "height": 207
+        },
+        "cta": {
+          "width": 277,
+          "height": 34
+        },
+        "risk_message": {
+          "width": 300,
+          "height": 42
+        },
+        "product_visual": {
+          "width": 300,
+          "height": 433
+        }
+      },
+      "300x600": {
+        "text": {
+          "width": 277,
+          "height": 106
+        },
+        "cta": {
+          "width": 277,
+          "height": 26
+        },
+        "risk_message": {
+          "width": 300,
+          "height": 39
+        },
+        "product_visual": {
+          "width": 277,
+          "height": 216
+        }
+      },
+      "160x600": {
+        "text": {
+          "width": 145,
+          "height": 90
+        },
+        "cta": {
+          "width": 145,
+          "height": 26
+        },
+        "risk_message": {
+          "width": 160,
+          "height": 34
+        },
+        "product_visual": {
+          "width": 160,
+          "height": 248
+        }
+      },
+      "970x250": {
+        "text": {
+          "width": 425,
+          "height": 128
+        },
+        "risk_message": {
+          "width": 970,
+          "height": 26
+        },
+        "product_visual": {
+          "width": 425,
+          "height": 128
+        }
+      },
+      "728x90": {
+        "text": {
+          "width": 344,
+          "height": 49
+        },
+        "cta": {
+          "width": 124,
+          "height": 26
+        },
+        "risk_message": {
+          "width": 728,
+          "height": 13
+        }
+      },
+      "250x250": {
+        "text": {
+          "width": 153,
+          "height": 90
+        },
+        "cta": {
+          "width": 124,
+          "height": 26
+        },
+        "risk_message": {
+          "width": 250,
+          "height": 21
+        },
+        "product_visual": {
+          "width": 149,
+          "height": 29
+        }
+      }
+    },
+    "composition_variants_per_format": {
+      "1200x1200": {
+        "b": {
+          "logo_position": "top-center",
+          "logo": {
+            "width": 688.37,
+            "height": 140.57
+          },
+          "text": {
+            "width": 850,
+            "height": 275
+          },
+          "cta": {
+            "width": 358,
+            "height": 85
+          },
+          "risk_message": {
+            "width": 1200,
+            "height": 102
+          },
+          "product_visual": {
+            "width": 1200,
+            "height": 348
+          },
+          "section_gaps": {
+            "logo_to_text": 64,
+            "text_to_cta": 53
+          }
+        }
       }
     },
     "disclaimer_placement_rules": {
@@ -644,9 +1221,8 @@
     },
     {
       "path": "layout.allowed_templates",
-      "source": "mvp_default",
-      "needs_review": true,
-      "fallback_reason": "No BANNERBEAR_TEMPLATE_* env vars set and template map contains only placeholders"
+      "source": "env",
+      "needs_review": false
     },
     {
       "path": "layout.allowed_compositions",

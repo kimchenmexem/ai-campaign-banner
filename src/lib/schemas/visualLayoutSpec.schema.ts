@@ -445,6 +445,16 @@ export const FORMAT_KEY_TO_NAME = {
   "300x250": "leaderboard",  // AR 1.20 — compact rectangle
   "336x280": "leaderboard",  // AR 1.20 — compact rectangle
   "960x1200": "portrait",    // AR 0.80 — taller portrait
+  // MEXEM Set 2 — IAB / display standard sizes. Bucketed by aspect ratio
+  // using the AR cutoffs documented above.
+  "320x100": "leaderboard",  // AR 3.20 — wide micro banner
+  "320x50": "leaderboard",   // AR 6.40 — ultra-wide micro banner
+  "300x1050": "portrait",    // AR 0.286 — portrait skyscraper
+  "300x600": "portrait",     // AR 0.50  — half-page vertical
+  "160x600": "portrait",     // AR 0.267 — narrow skyscraper
+  "970x250": "leaderboard",  // AR 3.88 — IAB billboard
+  "728x90":  "leaderboard",  // AR 8.09 — IAB leaderboard
+  "250x250": "square",       // AR 1.00 — small square
 } as const;
 
 export type FormatName = keyof typeof FORMAT_NAME_TO_KEY;
