@@ -1,15 +1,23 @@
 import { NextResponse } from "next/server";
 import { loadCampaignPlanIfExists } from "@/lib/ai/campaignPlanner";
 import { exportAdSvg } from "@/lib/export/exportAdSvg";
+import { evaluateAdExportGate } from "@/lib/qa/exportGate";
 
 // GET /api/export-ad-svg?campaign_id=cam_xxxxxxxx&ad_id=ad_concept_…
 //   ?embed=0 — return SVG with raw image refs (Cloudinary/local paths) instead
 //              of embedded base64 data URIs. Smaller file but only works inside
 //              the dev server's network; default is to embed.
+//   ?override_blocking_qa=1 — proceed even if THIS banner has block-level QA
+//                             violations (operator decision after review).
 //
 // Returns a single SVG of the whole banner — designed for drag-and-drop into
 // Figma. Text elements stay editable, image elements ship as data URIs (so
 // the file is portable), drop-shadows use SVG <filter feDropShadow>.
+//
+// QA gate: refuses the export with 409 when the requested ad has block-level
+// violations in deterministic QA or an on-disk Vision QA report. Other ads in
+// the same campaign do NOT block this ad's download — a clean banner remains
+// reviewable while a sibling banner is being fixed.
 
 export const maxDuration = 30;
 
@@ -18,6 +26,7 @@ export async function GET(request: Request) {
   const campaignId = url.searchParams.get("campaign_id");
   const adId = url.searchParams.get("ad_id");
   const embed = url.searchParams.get("embed");
+  const override = url.searchParams.get("override_blocking_qa") === "1";
 
   if (!campaignId || !adId) {
     return NextResponse.json(
@@ -30,6 +39,21 @@ export async function GET(request: Request) {
     return NextResponse.json(
       { ok: false, error: "campaign_not_found", campaign_id: campaignId },
       { status: 404 },
+    );
+  }
+
+  const gate = await evaluateAdExportGate({ plan, adId, override });
+  if (gate.blocked) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "blocked_by_qa",
+        message:
+          "Export refused: block-level QA violations exist for this banner. Resolve them or retry with override_blocking_qa=1.",
+        block_count: gate.reasons.length,
+        reasons: gate.reasons,
+      },
+      { status: 409 },
     );
   }
 
