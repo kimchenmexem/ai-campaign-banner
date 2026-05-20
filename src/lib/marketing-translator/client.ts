@@ -10,8 +10,13 @@
  * The translator side accepts that as a static service-to-service token
  * via its CAMPAIGN_COPY_API_KEY.
  *
- * When MARKETING_TRANSLATOR_API_URL is unset, the call falls through to
- * the local mock so dev work doesn't depend on the translator running.
+ * Mock fallback (dev only):
+ *   When MARKETING_TRANSLATOR_API_URL is unset AND NODE_ENV !== "production",
+ *   the call falls through to a local deterministic mock so dev work doesn't
+ *   depend on the translator running. In production the missing URL is a
+ *   hard error; the mock fallback only re-enables when the operator
+ *   explicitly opts in via MARKETING_TRANSLATOR_ALLOW_MOCK=1. This prevents
+ *   "[mock] ..." copy from silently shipping in real campaigns.
  */
 
 import {
@@ -38,6 +43,13 @@ export class MarketingTranslatorError extends Error {
   }
 }
 
+export class MarketingTranslatorConfigError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "MarketingTranslatorConfigError";
+  }
+}
+
 export async function fetchCampaignCopy(
   request: CampaignCopyRequest,
   opts: FetchCampaignCopyOptions = {},
@@ -47,6 +59,16 @@ export async function fetchCampaignCopy(
   const apiKey = opts.apiKey ?? process.env.MARKETING_TRANSLATOR_API_KEY;
 
   if (!baseUrl) {
+    const isProduction = process.env.NODE_ENV === "production";
+    const allowMock = process.env.MARKETING_TRANSLATOR_ALLOW_MOCK === "1";
+    if (isProduction && !allowMock) {
+      throw new MarketingTranslatorConfigError(
+        "MARKETING_TRANSLATOR_API_URL is required in production. " +
+          "Set the env var to the translator service URL, or (for an " +
+          "intentional staging dry-run only) set " +
+          "MARKETING_TRANSLATOR_ALLOW_MOCK=1 to re-enable the local mock.",
+      );
+    }
     return mockCampaignCopy(validated);
   }
 
