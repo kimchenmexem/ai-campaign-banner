@@ -101,6 +101,17 @@ const FORMAT_TO_DEVICE: Record<CampaignFormat, DeviceType> = {
   "300x250": "phone",
   "336x280": "phone",
   "960x1200": "tablet",
+  // MEXEM Set 2 — display ad formats. Device-family is mostly a hint
+  // for the compact renderer to pick an appropriately-cropped product
+  // visual asset; small canvases need phone-shape, larger need tablet.
+  "320x100": "phone",
+  "320x50": "phone",
+  "300x1050": "phone",
+  "300x600": "phone",
+  "160x600": "phone",
+  "970x250": "tablet",
+  "728x90": "phone",
+  "250x250": "phone",
 };
 
 const FORMAT_TO_CHANNEL: Record<CampaignFormat, string> = {
@@ -117,6 +128,15 @@ const FORMAT_TO_CHANNEL: Record<CampaignFormat, string> = {
   "300x250": "medium-rectangle",
   "336x280": "large-rectangle",
   "960x1200": "portrait-tall",
+  // IAB Set 2.
+  "320x100": "large-mobile-banner",
+  "320x50": "mobile-banner",
+  "300x1050": "portrait-skyscraper",
+  "300x600": "half-page",
+  "160x600": "skyscraper",
+  "970x250": "billboard",
+  "728x90": "leaderboard",
+  "250x250": "square",
 };
 
 const FORMAT_TO_SIZE: Record<
@@ -134,6 +154,14 @@ const FORMAT_TO_SIZE: Record<
   "300x250": { width: 300, height: 250 },
   "336x280": { width: 336, height: 280 },
   "960x1200": { width: 960, height: 1200 },
+  "320x100": { width: 320, height: 100 },
+  "320x50": { width: 320, height: 50 },
+  "300x1050": { width: 300, height: 1050 },
+  "300x600": { width: 300, height: 600 },
+  "160x600": { width: 160, height: 600 },
+  "970x250": { width: 970, height: 250 },
+  "728x90": { width: 728, height: 90 },
+  "250x250": { width: 250, height: 250 },
 };
 
 // Fallback chain keyed by the AI's 6-value desired_visual_context. The
@@ -391,6 +419,9 @@ export function buildAdSpecsForConcept(
       compositeMap: context.compositeMap,
       tagSidecar: context.tagSidecar,
       warnings,
+      // Rotate across same-device Elements/ files so 15 ads in a 3×5
+      // campaign don't all collapse to the same iphone/ipad/macbook PNG.
+      seedKey: `${args.campaign_id}::${concept.concept_id}::${format}::hero_pick`,
     });
 
     // pattern_immersive doesn't need an image bg — it renders a clean
@@ -628,12 +659,12 @@ function pickMotifForContext(
   rng: () => number,
 ): DesignMotif {
   const pools: Record<string, DesignMotif[]> = {
-    charts: ["chart_silhouette", "wave_curve", "axis_grid", "ticker_strip", "none"],
-    stocks: ["chart_silhouette", "abstract_bars", "ticker_strip", "arc_meter", "none"],
-    etfs: ["abstract_bars", "node_network", "gradient_orb", "axis_grid", "none"],
-    green_data: ["wave_curve", "node_network", "gradient_orb", "none"],
-    general_platform: ["gradient_orb", "axis_grid", "wave_curve", "node_network", "none"],
-    premium_fintech: ["gradient_orb", "wave_curve", "arc_meter", "none"],
+    charts: ["chart_silhouette", "wave_curve", "axis_grid", "ticker_strip", "corner_brackets", "none"],
+    stocks: ["chart_silhouette", "abstract_bars", "ticker_strip", "arc_meter", "vertical_streaks", "none"],
+    etfs: ["abstract_bars", "node_network", "gradient_orb", "axis_grid", "floating_panel", "none"],
+    green_data: ["wave_curve", "node_network", "gradient_orb", "vertical_streaks", "none"],
+    general_platform: ["gradient_orb", "axis_grid", "wave_curve", "node_network", "corner_brackets", "floating_panel", "vertical_streaks", "none"],
+    premium_fintech: ["gradient_orb", "wave_curve", "arc_meter", "corner_brackets", "floating_panel", "none"],
   };
   const pool = pools[context] ?? pools.general_platform;
   return pool[Math.floor(rng() * pool.length)];
@@ -857,14 +888,19 @@ function applyConceptVisuals(args: {
       : filterManualDecoratives(base.midjourney.decorative_upload_ids),
   };
 
-  // 1. Midjourney background match → swap the fill to a real image.
+  // 1. Midjourney background match → swap the fill to a real image. Prefer
+  // public_path (dev local path); fall back to the signed Cloudinary URL when
+  // the storage backend is private (production).
   if (mjBg) {
-    return {
-      ...base,
-      background: mjBg.public_path,
-      background_fill: { kind: "image", public_path: mjBg.public_path },
-      midjourney,
-    };
+    const url = mjBg.public_path ?? mjBg.cloudinary_secure_url;
+    if (url) {
+      return {
+        ...base,
+        background: url,
+        background_fill: { kind: "image", public_path: url },
+        midjourney,
+      };
+    }
   }
 
   // 2. Brand-locked gradient. We always pick stops from brandKit.colors —

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 // POST /api/sync-bannerbear-template
 // Pulls a fresh BannerbearTemplateSnapshot for one template UID and persists
@@ -11,6 +13,11 @@ const SyncRequestSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.write, auth);
+  if (limited) return limited;
+
   const json = await request.json().catch(() => null);
   const parsed = SyncRequestSchema.safeParse(json);
   if (!parsed.success) {

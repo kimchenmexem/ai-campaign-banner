@@ -4,24 +4,28 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { loadCampaignPlanIfExists } from "@/lib/ai/campaignPlanner";
 import { exportCampaignPlanZip } from "@/lib/export/exportCampaignPlan";
-import { renderCampaign } from "@/lib/render/renderCampaign";
+import { requireRole } from "@/lib/auth/guard";
 
 // GET /api/export-campaign-zip?campaign_id=cam_xxxxxxxx
 //
-// Streams a self-contained ZIP back to the browser. Includes the validated
-// CampaignPlan, all rendered PNGs, per-ad Element Manifests, and Midjourney
-// prompt packs.
+// DOWNLOAD-ONLY. Streams the existing ZIP back to the browser; never renders,
+// never mutates anything. If the campaign has not been rendered + exported,
+// returns 409 conflict with a hint to POST /api/campaigns/:id/export-jobs.
 //
-// When the campaign hasn't been rendered yet, this endpoint AUTO-RENDERS
-// before zipping — the ZIP must always contain graphics, never just JSON.
+// (Pre-hardening behavior: a GET on this URL would *auto-render* the
+// campaign — kicking off Playwright + Gemini Vision QA — which meant a
+// download link could fire a 20-40s background job. That is fixed here.)
 
 const QuerySchema = z.object({
   campaign_id: z.string().min(1),
 });
 
-export const maxDuration = 120;
+export const maxDuration = 30;
 
 export async function GET(request: Request) {
+  const auth = await requireRole(request, "viewer");
+  if (auth instanceof NextResponse) return auth;
+
   const url = new URL(request.url);
   const parsed = QuerySchema.safeParse({
     campaign_id: url.searchParams.get("campaign_id"),
@@ -32,6 +36,7 @@ export async function GET(request: Request) {
       { status: 400 },
     );
   }
+
   const plan = await loadCampaignPlanIfExists(parsed.data.campaign_id);
   if (!plan) {
     return NextResponse.json(
@@ -39,32 +44,32 @@ export async function GET(request: Request) {
       { status: 404 },
     );
   }
-  try {
-    // Auto-render if no PNGs exist yet. ZIPs without graphics are useless
-    // for handoff — the recipient gets JSON they can't open in Photoshop.
-    const renderMapPath = path.join(
-      process.cwd(),
-      "data",
-      "campaigns",
-      plan.campaign_id,
-      "code-render-map.generated.json",
-    );
-    const alreadyRendered = await pathExists(renderMapPath);
-    if (!alreadyRendered) {
-      const requestOrigin = (() => {
-        try {
-          return new URL(request.url).origin;
-        } catch {
-          return null;
-        }
-      })();
-      const baseUrl =
-        requestOrigin ??
-        process.env.NEXT_PUBLIC_APP_URL ??
-        "http://localhost:3000";
-      await renderCampaign(plan, baseUrl);
-    }
 
+  // Refuse if the render artifacts that the ZIP needs aren't already on disk.
+  // The export build path is POST /api/campaigns/[id]/export-jobs.
+  const renderMapPath = path.join(
+    process.cwd(),
+    "data",
+    "campaigns",
+    plan.campaign_id,
+    "code-render-map.generated.json",
+  );
+  const rendered = await pathExists(renderMapPath);
+  if (!rendered) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "not_ready",
+        message:
+          "Campaign has no rendered PNGs yet. Enqueue a render job first: POST /api/campaigns/" +
+          plan.campaign_id +
+          "/render-jobs",
+      },
+      { status: 409 },
+    );
+  }
+
+  try {
     const result = await exportCampaignPlanZip({ plan });
     return new NextResponse(new Uint8Array(result.buffer), {
       status: 200,

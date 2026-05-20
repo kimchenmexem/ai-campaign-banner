@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "worker": "tsx scripts/worker.ts",
+    "test": "tsx --tsconfig tsconfig.test.json scripts/test/auth.test.ts && tsx --tsconfig tsconfig.test.json scripts/test/locale.test.ts && tsx --tsconfig tsconfig.test.json scripts/test/uploadValidator.test.ts && tsx --tsconfig tsconfig.test.json scripts/test/render-race.test.mts && tsx --tsconfig tsconfig.test.json scripts/test/export-side-effects.test.mts && tsx --tsconfig tsconfig.test.json scripts/test/api-auth.test.mts && tsx --tsconfig tsconfig.test.json scripts/test/image-gen-mode.test.mts && tsx --tsconfig tsconfig.test.json scripts/test/campaign-repo.test.mts",
     "brand:intake": "tsx scripts/brand-intake.ts",
     "preview:assets": "tsx scripts/preview-assets.ts",
     "preview:seed-screenshot-tags": "tsx scripts/seed-screenshot-tags.ts",
@@ -43,6 +46,7 @@
     "jszip": "^3.10.1",
     "next": "16.2.4",
     "openai": "^6.35.0",
+    "pdf-lib": "^1.17.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "zod": "^4.4.1"

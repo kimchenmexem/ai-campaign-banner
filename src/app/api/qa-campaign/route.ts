@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { loadCampaignPlanIfExists } from "@/lib/ai/campaignPlanner";
 import { runQaForCampaign } from "@/lib/qa/runQaForCampaign";
+import { requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 // POST /api/qa-campaign
 // Body: { campaign_id: string }
@@ -18,6 +20,11 @@ export const maxDuration = 300;
 const RequestSchema = z.object({ campaign_id: z.string().min(1) });
 
 export async function POST(request: Request) {
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.expensive, auth);
+  if (limited) return limited;
+
   let json: unknown;
   try {
     json = await request.json();

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { listBrandInputAssets } from "@/lib/generators/brandInput";
 import { GeneratedAssetTypeSchema } from "@/lib/schemas/generatedAsset.schema";
+import { requireRole } from "@/lib/auth/guard";
 
 // GET /api/generators/brand-input-assets
 //   ?for=background|cta|mockup|trading_ui|fx_overlay   (optional)
@@ -11,6 +12,8 @@ import { GeneratedAssetTypeSchema } from "@/lib/schemas/generatedAsset.schema";
 // the generator can pull in as source layers.
 
 export async function GET(request: Request) {
+  const auth = await requireRole(request, "viewer");
+  if (auth instanceof NextResponse) return auth;
   const url = new URL(request.url);
   const forParam = url.searchParams.get("for");
   const TypeParse = GeneratedAssetTypeSchema.safeParse(forParam);

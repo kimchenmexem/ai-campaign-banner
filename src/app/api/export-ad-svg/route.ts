@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { loadCampaignPlanIfExists } from "@/lib/ai/campaignPlanner";
 import { exportAdSvg } from "@/lib/export/exportAdSvg";
+import { requireRole } from "@/lib/auth/guard";
 
 // GET /api/export-ad-svg?campaign_id=cam_xxxxxxxx&ad_id=ad_concept_…
 //   ?embed=0 — return SVG with raw image refs (Cloudinary/local paths) instead
@@ -14,6 +15,8 @@ import { exportAdSvg } from "@/lib/export/exportAdSvg";
 export const maxDuration = 30;
 
 export async function GET(request: Request) {
+  const auth = await requireRole(request, "viewer");
+  if (auth instanceof NextResponse) return auth;
   const url = new URL(request.url);
   const campaignId = url.searchParams.get("campaign_id");
   const adId = url.searchParams.get("ad_id");

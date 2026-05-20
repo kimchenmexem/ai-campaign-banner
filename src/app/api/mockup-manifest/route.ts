@@ -5,21 +5,32 @@ import {
   writeMockupManifest,
   MockupManifestFileSchema,
 } from "@/lib/preview/mockupManifest";
+import { refuseInProduction, requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 // /api/mockup-manifest
-//   GET  → returns the current mockup-manifest.json contents (or [])
-//   POST → writes the body { entries: [...] } to the sidecar file
+//   GET  → returns the current mockup-manifest.json contents (or []) — viewer
+//   POST → writes the body { entries: [...] } — editor, dev-only
 
 const PostBodySchema = z.object({
   entries: MockupManifestFileSchema,
 });
 
-export async function GET() {
+export async function GET(request: Request) {
+  const auth = await requireRole(request, "viewer");
+  if (auth instanceof NextResponse) return auth;
   const entries = await loadMockupManifestArray();
   return NextResponse.json({ ok: true, entries });
 }
 
 export async function POST(request: Request) {
+  const blocked = refuseInProduction();
+  if (blocked) return blocked;
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.write, auth);
+  if (limited) return limited;
+
   const json = await request.json().catch(() => null);
   const parsed = PostBodySchema.safeParse(json);
   if (!parsed.success) {

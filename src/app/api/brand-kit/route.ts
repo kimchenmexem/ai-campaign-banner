@@ -2,6 +2,8 @@ import path from "node:path";
 import { promises as fs } from "node:fs";
 import { NextResponse } from "next/server";
 import { BrandKitLiteSchema, type BrandKitLite } from "@/lib/schemas/brandKit.schema";
+import { refuseInProduction, requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 // Lightweight read + write API for data/brand-kit-lite.generated.json.
 //
@@ -24,7 +26,9 @@ async function readKitFromDisk(): Promise<BrandKitLite> {
   return BrandKitLiteSchema.parse(JSON.parse(raw));
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const auth = await requireRole(request, "viewer");
+  if (auth instanceof NextResponse) return auth;
   try {
     const kit = await readKitFromDisk();
     return NextResponse.json({ ok: true, kit });
@@ -40,6 +44,13 @@ export async function GET() {
 // server — the client sends the canonical shape it wants persisted.
 // That keeps the contract simple and validation strict.
 export async function PATCH(request: Request) {
+  const blocked = refuseInProduction();
+  if (blocked) return blocked;
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.write, auth);
+  if (limited) return limited;
+
   let body: unknown;
   try {
     body = await request.json();

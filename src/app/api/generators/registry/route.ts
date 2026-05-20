@@ -4,6 +4,7 @@ import { GENERATOR_REGISTRY } from "@/lib/generators/registry";
 import { listAssets } from "@/lib/generators/storage";
 import { computeAssetUsage } from "@/lib/generators/usage";
 import { GeneratedAssetTypeSchema } from "@/lib/schemas/generatedAsset.schema";
+import { requireRole } from "@/lib/auth/guard";
 
 // GET /api/generators/registry
 //   ?type=background|cta|mockup|trading_ui|fx_overlay  (optional)
@@ -16,6 +17,8 @@ import { GeneratedAssetTypeSchema } from "@/lib/schemas/generatedAsset.schema";
 // in a single request.
 
 export async function GET(request: Request) {
+  const auth = await requireRole(request, "viewer");
+  if (auth instanceof NextResponse) return auth;
   const url = new URL(request.url);
   const TypeParse = GeneratedAssetTypeSchema.safeParse(url.searchParams.get("type"));
   const limitRaw = url.searchParams.get("limit");

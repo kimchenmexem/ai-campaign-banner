@@ -5,6 +5,8 @@ import {
   AssetPreviewMapSchema,
   type AssetPreviewMap,
 } from "@/lib/preview/copyPreviewAssets";
+import { refuseInProduction, requireRole } from "@/lib/auth/guard";
+import { enforceRateLimit, RATE_LIMITS } from "@/lib/auth/rateLimit";
 
 // DELETE /api/asset
 //
@@ -29,6 +31,13 @@ const PUBLIC_DIR_ABS = path.join(process.cwd(), "public");
 const ASSET_PREFIX = "/brand-input-preview/";
 
 export async function DELETE(request: Request) {
+  const blocked = refuseInProduction();
+  if (blocked) return blocked;
+  const auth = await requireRole(request, "editor");
+  if (auth instanceof NextResponse) return auth;
+  const limited = enforceRateLimit(request, RATE_LIMITS.write, auth);
+  if (limited) return limited;
+
   let body: unknown;
   try {
     body = await request.json();
