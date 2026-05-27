@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 1200" width="960" height="1200" data-source="figma-adapter" data-format="960x1200" data-language="it">
+  <defs><clipPath id="clip_960_1200_it"><rect x="0" y="0" width="960" height="1200"/></clipPath></defs>
+  <rect x="0" y="0" width="960" height="1200" fill="#00122C"/>
+  <g clip-path="url(#clip_960_1200_it)">
+    <g transform="translate(0 348.8) scale(0.8) translate(0 0)" data-layer-role="source-artwork" data-source-viewbox="0 0 1200 628">
+<rect width="1200" height="628" fill="#00122C"/><circle cx="980" cy="160" r="120" fill="#006A97" opacity="0.55"/>
+    </g>
+    <g data-layer-role="adaptive-layout">
+      <text x="480" y="118" data-text-role="logo" font-family="Poppins" font-size="46" font-weight="800" fill="#FFFFFF" text-anchor="middle" xml:space="preserve"><tspan x="480" dy="0">MEXEM</tspan></text>
+      <text x="480" y="237.4" data-text-role="headline" font-family="Poppins" font-size="78" font-weight="800" fill="#F5C518" text-anchor="middle" xml:space="preserve"><tspan x="480" dy="0">Confronta i</tspan><tspan x="480" dy="80.34">mercati</tspan></text>
+      <text x="480" y="461.92" data-text-role="subheadline" font-family="Poppins" font-size="42" font-weight="600" fill="#FFFFFF" text-anchor="middle" xml:space="preserve"><tspan x="480" dy="0">Segui i dati e agisci con</tspan><tspan x="480" dy="47.88">controllo</tspan></text>
+      <rect x="285" y="908" width="390" height="76" rx="38" fill="#FFFFFF" data-layer-role="cta-background"/>
+      <text x="480" y="956.15" data-text-role="cta" font-family="Poppins" font-size="29" font-weight="800" fill="#0A0F1F" text-anchor="middle" xml:space="preserve"><tspan x="480" dy="0">Esplora la piattaforma</tspan></text>
+      <text x="480" y="1108.2" data-text-role="disclaimer" font-family="Poppins" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle" xml:space="preserve"><tspan x="480" dy="0">Attenzione. Investire comporta rischio di perdita. Si applicano commissioni di</tspan><tspan x="480" dy="18.9">terzi e Termini e condizioni.</tspan></text>
+    </g>
+  </g>
+</svg>

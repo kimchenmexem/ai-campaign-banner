@@ -378,7 +378,7 @@ export interface RendererHints {
   // CTA visual treatment.
   //   standard → today's behavior: filled with kit.cta.button_background_color
   //   ghost    → outline only: transparent fill, brand-text-color border + text
-  //   accent   → filled with brand accent (e.g. #D81222) — only chosen when
+  //   accent   → filled with brand accent — only chosen when
   //              accent_usage permits it (cta_only / strong); otherwise the
   //              hint maps to "standard" so the brand discipline rule
   //              ("at most ONE concept may use accent_usage=strong") flows

@@ -35,6 +35,25 @@ export const DEFAULT_BRAND_SPEC_PATH = path.join(
 // Files we always skip during folder scans — OS / IDE noise.
 const SKIP_FILES = new Set([".DS_Store", "Thumbs.db", ".gitkeep"]);
 
+const SUPPORTED_BACKGROUND_SIZE_KEYS = new Set([
+  "1200x628",
+  "1080x1080",
+  "1080x1920",
+  "1200x1200",
+  "300x250",
+  "336x280",
+  "960x1200",
+  "320x100",
+  "320x50",
+  "300x1050",
+  "300x600",
+  "160x600",
+  "970x250",
+  "728x90",
+  "250x250",
+]);
+const BACKGROUND_SIZE_RE = /background[_-]?(\d+)x(\d+)/i;
+
 // ── Inventory shape ──────────────────────────────────────────────────────────
 export const BrandInputInventoryItemSchema = z.object({
   file_path: z.string(),
@@ -177,6 +196,13 @@ export async function createBrandInputInventory(
     if (!alias) {
       unknown_folders.add(file.folder);
       continue;
+    }
+    if (alias.canonical_folder_type === "backgrounds") {
+      const sizeMatch = file.filename.match(BACKGROUND_SIZE_RE);
+      if (sizeMatch) {
+        const sizeKey = `${sizeMatch[1]}x${sizeMatch[2]}`;
+        if (!SUPPORTED_BACKGROUND_SIZE_KEYS.has(sizeKey)) continue;
+      }
     }
     const flags = classifyFlags(alias.canonical_folder_type);
     items.push({

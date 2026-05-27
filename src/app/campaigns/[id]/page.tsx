@@ -7,6 +7,12 @@ import {
   loadActiveCampaignPointer,
 } from "@/lib/ai/campaignPlanner";
 import type { CampaignAdSpec, CampaignConcept } from "@/lib/schemas/aiCampaignPlan.schema";
+import {
+  loadFigmaAdapterCampaignIfExists,
+  type FigmaAdapterCampaign,
+  type FigmaAdapterVariant,
+} from "@/lib/figmaAdapter/campaign";
+import { LANG_META } from "@/lib/i18n/language";
 import { CopyPromptButton } from "./CopyPromptButton";
 import { RenderCampaignButton } from "./RenderCampaignButton";
 import { RunQaButton } from "./RunQaButton";
@@ -51,9 +57,18 @@ export default async function CampaignDetailPage({
   const { id } = await params;
   const cwd = process.cwd();
   const plan = await loadCampaignPlanIfExists(id, cwd);
-  if (!plan) notFound();
-
   const activeId = await loadActiveCampaignPointer(cwd);
+  if (!plan) {
+    const figmaCampaign = await loadFigmaAdapterCampaignIfExists(id, cwd);
+    if (!figmaCampaign) notFound();
+    return (
+      <FigmaAdapterCampaignDetail
+        campaign={figmaCampaign}
+        active={activeId === figmaCampaign.campaign_id}
+      />
+    );
+  }
+
   const renderMap = await readJSONIfExists<CodeRenderMap>(
     path.join(cwd, "data", "campaigns", id, "code-render-map.generated.json"),
   );
@@ -102,6 +117,14 @@ export default async function CampaignDetailPage({
         >
           Download ZIP ↓
         </a>
+        <a
+          href={`/api/export-campaign-svg?campaign_id=${encodeURIComponent(plan.campaign_id)}`}
+          download={`campaign-${plan.campaign_id}-all-banners.svg`}
+          className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
+          title="One editable SVG sheet containing every banner in this campaign, grouped by concept."
+        >
+          Download editable SVG ↓
+        </a>
         <p className="text-xs text-zinc-600 dark:text-zinc-400">
           {renderMap === null
             ? "PNGs not generated yet. Click to render this campaign as flat banners (~30s for 9 ads). The ZIP will auto-render if missing."
@@ -130,6 +153,142 @@ export default async function CampaignDetailPage({
         ))}
       </div>
     </section>
+  );
+}
+
+function FigmaAdapterCampaignDetail({
+  campaign,
+  active,
+}: {
+  campaign: FigmaAdapterCampaign;
+  active: boolean;
+}) {
+  const variantsByLanguage = new Map<string, FigmaAdapterVariant[]>();
+  for (const variant of campaign.variants) {
+    variantsByLanguage.set(variant.language, [
+      ...(variantsByLanguage.get(variant.language) ?? []),
+      variant,
+    ]);
+  }
+  const warnings = Array.from(
+    new Set(campaign.variants.flatMap((variant) => variant.warnings)),
+  );
+
+  return (
+    <section className="space-y-8">
+      <header className="space-y-2">
+        <div className="flex flex-wrap items-center gap-3">
+          <h1 className="text-2xl font-semibold tracking-tight">{campaign.campaign_name}</h1>
+          <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-950 dark:text-blue-200">
+            Figma Adapter
+          </span>
+          {active && (
+            <span className="rounded-full bg-amber-200 px-2 py-0.5 text-xs font-medium text-amber-900 dark:bg-amber-900 dark:text-amber-100">
+              ★ active
+            </span>
+          )}
+        </div>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+          {campaign.campaign_summary}
+        </p>
+        <p className="text-xs text-zinc-500">
+          <code className="font-mono">{campaign.campaign_id}</code> · source{" "}
+          <code className="font-mono">{campaign.source}</code> ·{" "}
+          {campaign.languages.length} language{campaign.languages.length === 1 ? "" : "s"} ·{" "}
+          {campaign.variants.length} editable SVG variant
+          {campaign.variants.length === 1 ? "" : "s"} · created{" "}
+          {new Date(campaign.created_at).toLocaleString()}
+        </p>
+        <nav className="flex gap-3 text-xs">
+          <Link className="underline" href="/campaigns">← All campaigns</Link>
+          <Link className="underline" href="/figma-adapter">Figma Adapter</Link>
+        </nav>
+      </header>
+
+      <div className="flex flex-wrap items-center gap-3 rounded-md border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+        <a
+          href={`/api/figma-adapter/export?campaign_id=${encodeURIComponent(campaign.campaign_id)}&type=zip`}
+          download={`${campaign.campaign_id}-figma-adapter.zip`}
+          className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
+        >
+          Download ZIP ↓
+        </a>
+        <a
+          href={`/api/figma-adapter/export?campaign_id=${encodeURIComponent(campaign.campaign_id)}&type=combined`}
+          download={`${campaign.campaign_id}-all-banners.svg`}
+          className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
+        >
+          Download editable SVG ↓
+        </a>
+        <p className="text-xs text-zinc-600 dark:text-zinc-400">
+          Saved from a Figma SVG source: {campaign.source_summary.width}×
+          {campaign.source_summary.height}, {campaign.source_summary.text_layer_count} text layers.
+        </p>
+      </div>
+
+      {warnings.length > 0 && <WarningsBlock warnings={warnings} />}
+
+      <div className="space-y-8">
+        {Array.from(variantsByLanguage.entries()).map(([language, variants]) => (
+          <section
+            key={language}
+            className="space-y-4 rounded-lg border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-950"
+          >
+            <header className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-lg font-semibold">
+                {LANG_META[language as keyof typeof LANG_META]?.nativeName ?? language}
+              </h2>
+              <span className="text-xs text-zinc-500">
+                {variants.length} SVG variant{variants.length === 1 ? "" : "s"}
+              </span>
+            </header>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {variants.map((variant) => (
+                <FigmaAdapterVariantCard key={variant.key} variant={variant} />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function FigmaAdapterVariantCard({ variant }: { variant: FigmaAdapterVariant }) {
+  const svgDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(variant.svg)}`;
+  return (
+    <div className="space-y-2 rounded-md border border-zinc-200 p-3 text-xs dark:border-zinc-800">
+      <div className="flex items-center justify-between gap-2">
+        <span className="font-medium">{variant.format}</span>
+        <span className="text-zinc-500">
+          {variant.width}×{variant.height}
+        </span>
+      </div>
+      <div
+        className="overflow-hidden rounded border border-zinc-200 bg-zinc-100 [&>svg]:h-full [&>svg]:w-full dark:border-zinc-800 dark:bg-zinc-900"
+        style={{ aspectRatio: `${variant.width} / ${variant.height}` }}
+        dangerouslySetInnerHTML={{ __html: variant.svg }}
+      />
+      <div className="flex flex-wrap items-center gap-2">
+        <a
+          href={svgDataUrl}
+          download={`${variant.language}-${variant.format}.svg`}
+          className="rounded border border-zinc-300 px-2 py-1 text-[11px] font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-900"
+        >
+          ↓ SVG
+        </a>
+      </div>
+      {variant.warnings.length > 0 && (
+        <details className="text-amber-700 dark:text-amber-300">
+          <summary className="cursor-pointer">Warnings ({variant.warnings.length})</summary>
+          <ul className="ml-4 mt-1 list-disc">
+            {variant.warnings.map((warning) => (
+              <li key={warning}>{warning}</li>
+            ))}
+          </ul>
+        </details>
+      )}
+    </div>
   );
 }
 

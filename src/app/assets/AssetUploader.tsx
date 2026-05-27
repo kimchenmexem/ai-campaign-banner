@@ -119,7 +119,7 @@ export function AssetUploader({ folderTypes }: Props) {
         </div>
       )}
       {status.kind === "error" && (
-        <div className="text-sm text-red-700 dark:text-red-400">✗ {status.message}</div>
+        <div className="text-sm text-amber-700 dark:text-amber-400">✗ {status.message}</div>
       )}
     </section>
   );

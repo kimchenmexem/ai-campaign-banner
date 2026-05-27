@@ -86,7 +86,7 @@ export function AssetCard({ item }: Props) {
         <div className="text-xs text-zinc-500">{item.asset_type}</div>
       </a>
       {error && (
-        <div className="mt-1 text-xs text-red-600 dark:text-red-400">{error}</div>
+        <div className="mt-1 text-xs text-amber-700 dark:text-amber-400">{error}</div>
       )}
     </div>
   );

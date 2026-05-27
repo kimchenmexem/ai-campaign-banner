@@ -67,7 +67,7 @@ export function RunQaButton({
             : "▶ Run Vision QA"}
       </button>
       {error && (
-        <p className="rounded border border-red-300 bg-red-50 p-1 text-xs text-red-900 dark:border-red-700 dark:bg-red-950/40 dark:text-red-200">
+        <p className="rounded border border-amber-300 bg-amber-50 p-1 text-xs text-amber-900 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-200">
           {error}
         </p>
       )}

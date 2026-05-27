@@ -203,26 +203,58 @@ async function renderOne(
     await page.evaluate(async () => {
       // Wait for every embedded image to decode...
       const imgs = Array.from(document.images);
-      await Promise.all(
-        imgs.map((img) =>
-          img.complete && img.naturalWidth > 0
-            ? Promise.resolve()
-            : new Promise<void>((resolve) => {
-                img.addEventListener("load", () => resolve(), { once: true });
-                img.addEventListener("error", () => resolve(), { once: true });
-              }),
+      await Promise.race([
+        Promise.all(
+          imgs.map((img) =>
+            img.complete && img.naturalWidth > 0
+              ? Promise.resolve()
+              : new Promise<void>((resolve) => {
+                  img.addEventListener("load", () => resolve(), { once: true });
+                  img.addEventListener("error", () => resolve(), { once: true });
+                }),
+          ),
         ),
-      );
+        new Promise<null>((resolve) => window.setTimeout(() => resolve(null), 8_000)),
+      ]);
       // ...AND every web font to be ready, so Hebrew/Arabic/Latin glyphs
       // are all painted from the right family before the screenshot. Without
       // this, non-Latin scripts can flash in a fallback for the first frame.
       if ("fonts" in document) {
-        await (document as Document & { fonts: { ready: Promise<unknown> } })
-          .fonts.ready;
+        await Promise.race([
+          (document as Document & { fonts: { ready: Promise<unknown> } }).fonts.ready,
+          new Promise<null>((resolve) => window.setTimeout(() => resolve(null), 8_000)),
+        ]);
       }
     });
     const canvas = page.locator("#render-canvas");
     await canvas.waitFor({ state: "visible", timeout: 10_000 });
+    await page.addStyleTag({
+      content: `
+        nextjs-portal,
+        [data-nextjs-toast],
+        [data-nextjs-dialog-overlay],
+        [data-nextjs-dev-tools-button],
+        [data-nextjs-build-error],
+        [data-nextjs-dev-overlay] {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+        }
+      `,
+    });
+    await page.evaluate(() => {
+      document.querySelectorAll("nextjs-portal").forEach((el) => el.remove());
+      const canvas = document.querySelector("#render-canvas");
+      for (const el of Array.from(document.body.querySelectorAll<HTMLElement>("*"))) {
+        if (canvas?.contains(el)) continue;
+        const style = window.getComputedStyle(el);
+        const z = Number.parseInt(style.zIndex || "0", 10);
+        if (style.position === "fixed" && z >= 100000) {
+          el.style.display = "none";
+          el.style.visibility = "hidden";
+        }
+      }
+    });
     await canvas.screenshot({ path: outputPath, type: "png" });
 
     const stat = await fs.stat(outputPath);

@@ -23,8 +23,29 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
-import { CampaignBriefSchema } from "@/lib/schemas/campaignBrief.schema";
+import {
+  CampaignBriefSchema,
+  type CampaignFormat,
+} from "@/lib/schemas/campaignBrief.schema";
 import { planCampaign } from "@/lib/ai/campaignPlanner";
+
+const SUPPORTED_FORMATS: CampaignFormat[] = [
+  "1200x628",
+  "1080x1080",
+  "1080x1920",
+  "1200x1200",
+  "300x250",
+  "336x280",
+  "960x1200",
+  "320x100",
+  "320x50",
+  "300x1050",
+  "300x600",
+  "160x600",
+  "970x250",
+  "728x90",
+  "250x250",
+];
 
 interface PackEntry {
   id: string;
@@ -77,7 +98,7 @@ async function main() {
     campaign_goal: "consideration",
     tone: ["confident", "premium", "trustworthy"],
     platforms: ["instagram-feed", "instagram-story", "linkedin"],
-    required_formats: ["1200x628", "1080x1080", "1080x1920"],
+    required_formats: SUPPORTED_FORMATS,
     preferred_contexts: ["stocks", "etfs", "charts"],
     risk_warning_required: true,
     notes: "MEXEM Pack v1 showcase — uses mixed pack picks across roles.",

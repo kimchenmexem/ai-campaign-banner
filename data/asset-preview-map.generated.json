@@ -1,6 +1,6 @@
 {
   "brand_id": "brand_001",
-  "generated_at": "2026-05-01T09:40:19.084Z",
+  "generated_at": "2026-05-25T11:54:05.816Z",
   "public_dir": "/brand-input-preview/",
   "items": [
     {
@@ -752,6 +752,262 @@
       "source": "local_preview_copy"
     },
     {
+      "original_local_path": "brand-input/background/background_1080x1080.png",
+      "public_path": "/brand-input-preview/backgrounds/background_1080x1080.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_1080x1080.png",
+      "original_filename": "background_1080x1080.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_1080x1920.png",
+      "public_path": "/brand-input-preview/backgrounds/background_1080x1920.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_1080x1920.png",
+      "original_filename": "background_1080x1920.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_1200x1200.png",
+      "public_path": "/brand-input-preview/backgrounds/background_1200x1200.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_1200x1200.png",
+      "original_filename": "background_1200x1200.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_1200x628.png",
+      "public_path": "/brand-input-preview/backgrounds/background_1200x628.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_1200x628.png",
+      "original_filename": "background_1200x628.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_160x600.png",
+      "public_path": "/brand-input-preview/backgrounds/background_160x600.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_160x600.png",
+      "original_filename": "background_160x600.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_250x250.png",
+      "public_path": "/brand-input-preview/backgrounds/background_250x250.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_250x250.png",
+      "original_filename": "background_250x250.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_300x1050.png",
+      "public_path": "/brand-input-preview/backgrounds/background_300x1050.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_300x1050.png",
+      "original_filename": "background_300x1050.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_300x250.png",
+      "public_path": "/brand-input-preview/backgrounds/background_300x250.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_300x250.png",
+      "original_filename": "background_300x250.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_300x250_copy2.png",
+      "public_path": "/brand-input-preview/backgrounds/background_300x250_copy2.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_300x250_copy2.png",
+      "original_filename": "background_300x250_copy2.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_300x600.png",
+      "public_path": "/brand-input-preview/backgrounds/background_300x600.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_300x600.png",
+      "original_filename": "background_300x600.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_320x100.png",
+      "public_path": "/brand-input-preview/backgrounds/background_320x100.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_320x100.png",
+      "original_filename": "background_320x100.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_320x50.png",
+      "public_path": "/brand-input-preview/backgrounds/background_320x50.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_320x50.png",
+      "original_filename": "background_320x50.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_336x280.png",
+      "public_path": "/brand-input-preview/backgrounds/background_336x280.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_336x280.png",
+      "original_filename": "background_336x280.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_728x90.png",
+      "public_path": "/brand-input-preview/backgrounds/background_728x90.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_728x90.png",
+      "original_filename": "background_728x90.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_960x1200.png",
+      "public_path": "/brand-input-preview/backgrounds/background_960x1200.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_960x1200.png",
+      "original_filename": "background_960x1200.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
+      "original_local_path": "brand-input/background/background_970x250.png",
+      "public_path": "/brand-input-preview/backgrounds/background_970x250.png",
+      "asset_type": "background",
+      "canonical_folder_type": "backgrounds",
+      "original_folder_name": "background",
+      "filename": "background_970x250.png",
+      "original_filename": "background_970x250.png",
+      "suggested_tags": [
+        "brand:brand_001",
+        "category:backgrounds",
+        "source:brand_input_folder",
+        "type:background"
+      ],
+      "source": "local_preview_copy"
+    },
+    {
       "original_local_path": "brand-input/mockup devices/ipad-3.png",
       "public_path": "/brand-input-preview/mockups/ipad-3.png",
       "asset_type": "mockup",
@@ -1005,10 +1261,6 @@
     }
   ],
   "skipped": [
-    {
-      "original_local_path": "brand-input/Elements/shutterstock_2309926753.psd",
-      "reason": "extension \".psd\" not in preview allowlist"
-    },
     {
       "original_local_path": "brand-input/Platform screenshot/screenshot-tags.json",
       "reason": "extension \".json\" not in preview allowlist"

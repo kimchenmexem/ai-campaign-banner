@@ -1,0 +1,101 @@
+{
+  "campaign_id": "cam_ea7f4d47",
+  "generated_at": "2026-05-25T12:51:01.167Z",
+  "total": 1,
+  "with_violations": 1,
+  "banners": [
+    {
+      "ad_id": "ad_concept_1_1200x628",
+      "format": "1200x628",
+      "png_path": "public/rendered-ads/campaigns/cam_ea7f4d47/concept_1_1200x628.png",
+      "violations": [
+        {
+          "rule_id": "logo-size-too-large",
+          "severity": "warn",
+          "description": "The MEXEM logo (el_logo) width is 250px, but the rule specifies a size of approximately 200px wide for leaderboards.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.0796,
+            "width": 0.2083,
+            "height": 0.0796
+          }
+        },
+        {
+          "rule_id": "logo-has-sublockup",
+          "severity": "block",
+          "description": "Leaderboard banners should not include the 'Powered by InteractiveBrokers' sub-lockup below the MEXEM logo.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.0796,
+            "width": 0.2083,
+            "height": 0.0796
+          }
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline (el_headline) font size is 78px, which is smaller than the recommended range of ~85-95px for leaderboard banners.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.3025,
+            "width": 0.5083,
+            "height": 0.3981
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) font size is 14px, which is significantly smaller than the recommended ~22-26px for leaderboard banners, impacting legibility.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.7962,
+            "width": 0.5083,
+            "height": 0.0541
+          }
+        },
+        {
+          "rule_id": "disclaimer-multi-line",
+          "severity": "warn",
+          "description": "The disclaimer (el_disclaimer) wraps to two lines, but the rule specifies it should be a single line on leaderboard banners.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.7962,
+            "width": 0.5083,
+            "height": 0.0541
+          }
+        },
+        {
+          "rule_id": "cta-missing-chevron",
+          "severity": "warn",
+          "description": "The Call to Action (el_cta) text 'COMPARE MARKETS' is missing the required chevron ('>') at the end.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8694,
+            "width": 1,
+            "height": 0.1306
+          }
+        },
+        {
+          "rule_id": "missing-visual-mockup",
+          "severity": "block",
+          "description": "The leaderboard banner is missing the required device mockup or visual region on the right side of the canvas."
+        }
+      ],
+      "qa_at": "2026-05-25T12:15:30.835Z",
+      "model": "gemini-2.5-flash"
+    }
+  ],
+  "concept_summary": [
+    {
+      "concept_id": "concept_1",
+      "total_banners": 1,
+      "banners_with_violations": 1,
+      "violation_count": 7,
+      "severities": {
+        "info": 0,
+        "warn": 4,
+        "block": 3
+      }
+    }
+  ]
+}

@@ -425,7 +425,7 @@ function UploadCard({
             <button
               type="button"
               onClick={onRemove}
-              className="text-red-700 hover:underline dark:text-red-400"
+              className="text-amber-700 hover:underline dark:text-amber-400"
             >
               Remove
             </button>
@@ -498,7 +498,7 @@ function UploadCard({
                   <button
                     type="button"
                     onClick={() => onRemoveAssignment(a.assignment_id)}
-                    className="text-red-700 hover:underline dark:text-red-400"
+                    className="text-amber-700 hover:underline dark:text-amber-400"
                   >
                     remove
                   </button>

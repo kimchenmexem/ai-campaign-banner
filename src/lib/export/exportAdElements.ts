@@ -284,10 +284,13 @@ function renderTextElementSvg(
   const lh = el.line_height ?? 1.4;
   const fg = el.color ?? "#FFFFFF";
   const align = el.text_align ?? "left";
-  // Two-color emphasis split (matches the renderer's headline rule).
+  // Headline emphasis split. Style changes decoration only; font metrics stay
+  // the same as the base text.
+  const emphasisStyle = el.emphasis_style ?? "accent_color";
   const useEmphasis =
     el.emphasis_text &&
     el.text &&
+    emphasisStyle !== "solid" &&
     el.text.startsWith(el.emphasis_text) &&
     el.emphasis_text.length > 0 &&
     el.emphasis_text.length < el.text.length;
@@ -296,8 +299,17 @@ function renderTextElementSvg(
   const emphasisColor = el.emphasis_color ?? "#F5C518";
   const x = align === "center" ? "50%" : align === "right" ? "100%" : "0";
   const anchor = align === "center" ? "middle" : align === "right" ? "end" : "start";
+  const emphasisStroke = Math.max(1, Math.round(size * 0.018));
+  const emphasisUnderline = Math.max(2, Math.round(size * 0.06));
+  const emphasisOffset = Math.max(3, Math.round(size * 0.12));
+  const emphasisTspan =
+    emphasisStyle === "underline"
+      ? `<tspan fill="${fg}" text-decoration="underline" style="text-decoration-color: ${emphasisColor}; text-decoration-thickness: ${emphasisUnderline}px; text-underline-offset: ${emphasisOffset}px">${emphasis}</tspan>`
+      : emphasisStyle === "outline"
+        ? `<tspan fill="${fg}" stroke="${emphasisColor}" stroke-width="${emphasisStroke}" paint-order="stroke fill">${emphasis}</tspan>`
+        : `<tspan fill="${emphasisColor}">${emphasis}</tspan>`;
   const tspans = useEmphasis
-    ? `<tspan fill="${emphasisColor}">${emphasis}</tspan><tspan>${rest}</tspan>`
+    ? `${emphasisTspan}<tspan>${rest}</tspan>`
     : text;
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">

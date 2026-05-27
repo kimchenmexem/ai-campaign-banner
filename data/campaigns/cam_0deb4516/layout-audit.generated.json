@@ -1,0 +1,36 @@
+{
+  "campaign_id": "cam_0deb4516",
+  "generated_at": "2026-05-25T11:34:57.784Z",
+  "supported_formats": [
+    "1200x628",
+    "1080x1080",
+    "1080x1920",
+    "1200x1200",
+    "300x250",
+    "336x280",
+    "960x1200",
+    "320x100",
+    "320x50",
+    "300x1050",
+    "300x600",
+    "160x600",
+    "970x250",
+    "728x90",
+    "250x250"
+  ],
+  "totals": {
+    "concepts": 3,
+    "ads": 45,
+    "render_map_total": 45,
+    "render_map_completed": 45,
+    "rendered_png_files": 45
+  },
+  "checks": {
+    "unsupported_formats_absent": true,
+    "exact_brand_input_backgrounds": true,
+    "supplied_logo_only": true,
+    "required_text_roles_present": true
+  },
+  "issue_count": 0,
+  "issues": []
+}

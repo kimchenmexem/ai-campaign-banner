@@ -97,6 +97,7 @@ export async function copyPreviewAssets(
   const planRaw = await fs.readFile(importPlanPath, "utf8");
   const plan: AssetImportPlan = AssetImportPlanSchema.parse(JSON.parse(planRaw));
 
+  await fs.rm(publicRoot, { recursive: true, force: true });
   await fs.mkdir(publicRoot, { recursive: true });
 
   const items: AssetPreviewRecord[] = [];

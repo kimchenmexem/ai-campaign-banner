@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:figma-adapter": "tsx scripts/test-figma-adapter.ts",
     "brand:intake": "tsx scripts/brand-intake.ts",
     "preview:assets": "tsx scripts/preview-assets.ts",
     "preview:seed-screenshot-tags": "tsx scripts/seed-screenshot-tags.ts",

@@ -251,14 +251,14 @@ export const ElementSchema = z.object({
   letter_spacing: z.number().optional(),
   text_align: z.enum(["left", "center", "right", "justify"]).optional(),
   color: z.string().optional(),
-  // Two-color headline split (matches MEXEM reference banners — yellow
-  // emphasis prefix + white rest). When present, the renderer wraps the
-  // first `emphasis_text.length` characters of `text` in a span colored
-  // `emphasis_color`, and the remainder in `color`. Must be a prefix of
-  // `text` (the renderer doesn't search/match — it slices). When absent,
-  // the element renders as a single color (today's behavior).
+  // Headline emphasis prefix. Must be a prefix of `text` (the renderer
+  // doesn't search/match — it slices). `emphasis_style` controls the visual
+  // treatment without changing font, size, line-height, or layout boxes.
   emphasis_text: z.string().optional(),
   emphasis_color: z.string().optional(),
+  emphasis_style: z
+    .enum(["accent_color", "underline", "outline", "solid"])
+    .optional(),
 
   // Image fields
   file_url: z.string().url().optional(),

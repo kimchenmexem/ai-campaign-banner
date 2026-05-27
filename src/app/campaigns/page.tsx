@@ -5,9 +5,8 @@ import { loadCampaignIndex } from "@/lib/ai/campaignPlanner";
 
 // /campaigns
 //
-// Lists every saved CampaignPlan. Source of truth: data/campaigns/index.generated.json.
-// The active marker (★) and rendered marker (✓) come from disk so the page
-// never lies about what actually exists.
+// Lists every saved campaign. Source of truth: data/campaigns/index.generated.json.
+// Campaigns can come from the AI planner or from the Figma Adapter flow.
 
 async function fileExists(p: string): Promise<boolean> {
   try {
@@ -28,6 +27,19 @@ export default async function CampaignsPage() {
       ),
     ),
   );
+  const figmaFlags = await Promise.all(
+    index.campaigns.map((c) =>
+      fileExists(
+        path.join(
+          cwd,
+          "data",
+          "campaigns",
+          c.campaign_id,
+          "figma-adapter-campaign.generated.json",
+        ),
+      ),
+    ),
+  );
 
   return (
     <section className="space-y-6">
@@ -44,12 +56,18 @@ export default async function CampaignsPage() {
           )}
         </p>
       </header>
-      <div>
+      <div className="flex flex-wrap gap-2">
         <Link
           href="/campaign-planner"
           className="inline-flex items-center gap-2 rounded-md bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
         >
           + Plan a new campaign
+        </Link>
+        <Link
+          href="/figma-adapter"
+          className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-900 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
+        >
+          + Adapt Figma banner
         </Link>
       </div>
 
@@ -57,27 +75,50 @@ export default async function CampaignsPage() {
         <p className="text-sm text-zinc-500">
           No campaigns yet. Run{" "}
           <code className="font-mono">npm run campaign:generate-mock</code> or
-          use <Link className="underline" href="/campaign-planner">/campaign-planner</Link>.
+          use <Link className="underline" href="/campaign-planner">/campaign-planner</Link> or{" "}
+          <Link className="underline" href="/figma-adapter">/figma-adapter</Link>.
         </p>
       ) : (
         <ul className="divide-y divide-zinc-200 dark:divide-zinc-800">
           {index.campaigns.map((c, idx) => {
             const active = index.active_campaign_id === c.campaign_id;
-            const rendered = renderedFlags[idx];
+            const figmaAdapter =
+              c.source === "figma-adapter" ||
+              c.campaign_id.startsWith("cam_figma_") ||
+              figmaFlags[idx];
+            const rendered = figmaAdapter ? true : renderedFlags[idx];
             return (
               <li key={c.campaign_id} className="flex items-center justify-between py-3 text-sm">
                 <div className="space-y-0.5">
-                  <Link
-                    href={`/campaigns/${c.campaign_id}`}
-                    className="font-medium hover:underline"
-                  >
-                    {c.campaign_name}
-                  </Link>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Link
+                      href={`/campaigns/${c.campaign_id}`}
+                      className="font-medium hover:underline"
+                    >
+                      {c.campaign_name}
+                    </Link>
+                    {figmaAdapter && (
+                      <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[11px] font-medium text-blue-800 dark:bg-blue-950 dark:text-blue-200">
+                        Figma Adapter
+                      </span>
+                    )}
+                  </div>
                   <div className="text-xs text-zinc-500">
                     <code className="font-mono">{c.campaign_id}</code> ·{" "}
-                    {c.concept_count} concept{c.concept_count === 1 ? "" : "s"} ·{" "}
-                    {c.ad_count} ad{c.ad_count === 1 ? "" : "s"} ·{" "}
-                    provider <code className="font-mono">{c.ai_provider}</code> ·{" "}
+                    {figmaAdapter ? (
+                      <>
+                        {c.concept_count} language{c.concept_count === 1 ? "" : "s"} ·{" "}
+                        {c.ad_count} editable SVG{c.ad_count === 1 ? "" : "s"} · source{" "}
+                        <code className="font-mono">figma-adapter</code>
+                      </>
+                    ) : (
+                      <>
+                        {c.concept_count} concept{c.concept_count === 1 ? "" : "s"} ·{" "}
+                        {c.ad_count} ad{c.ad_count === 1 ? "" : "s"} · provider{" "}
+                        <code className="font-mono">{c.ai_provider}</code>
+                      </>
+                    )}{" "}
+                    ·{" "}
                     {new Date(c.created_at).toLocaleString()}
                   </div>
                 </div>
@@ -87,9 +128,14 @@ export default async function CampaignsPage() {
                       ★ active
                     </span>
                   )}
-                  {rendered && (
+                  {rendered && !figmaAdapter && (
                     <span title="Code-rendered" className="rounded-full bg-emerald-200 px-2 py-0.5 font-medium text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100">
                       ✓ rendered
+                    </span>
+                  )}
+                  {figmaAdapter && (
+                    <span title="Editable SVGs saved" className="rounded-full bg-emerald-200 px-2 py-0.5 font-medium text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100">
+                      ✓ SVGs
                     </span>
                   )}
                 </div>

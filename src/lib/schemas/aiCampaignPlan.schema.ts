@@ -37,12 +37,12 @@ export type PlatformCopyVariation = z.infer<typeof PlatformCopyVariationSchema>;
 
 export const CopyPackageSchema = z.object({
   headline: z.string().min(1),
-  // Optional yellow-emphasis prefix that opens the headline. Matches the
-  // MEXEM reference style where the first clause of the headline (e.g.
-  // "ONE INVESTING ACCOUNT.") is rendered in brand-accent yellow and the
-  // rest ("ACCESS ACROSS EVERY DEVICE.") in white. Must be a verbatim
-  // prefix of `headline`. When omitted or null the headline renders
-  // single-color.
+  // Optional emphasis prefix that opens the headline. Matches the MEXEM
+  // reference structure where the first clause of the headline (e.g.
+  // "ONE INVESTING ACCOUNT.") can receive a distinct visual treatment and
+  // the rest ("ACCESS ACROSS EVERY DEVICE.") stays in the base text color.
+  // Must be a verbatim prefix of `headline`. When omitted or null the
+  // headline renders single-color.
   //
   // Accepts `null` because some AI providers (notably GPT-4o in JSON-mode)
   // emit `"headline_emphasis": null` rather than omitting the key when no
@@ -85,14 +85,39 @@ export type VisualDirection = z.infer<typeof VisualDirectionSchema>;
 //   stat    — a single big-number + label combo for editorial_type ads.
 //             Replaces the geometric accent when present.
 //   kicker  — a short pull-quote-style line below the subheadline.
-export const ConceptDesignElementsSchema = z.object({
-  eyebrow: z.string().min(1).max(40).optional(),
-  stat: z.object({
-    number: z.string().min(1).max(12),
-    label: z.string().min(1).max(40),
-  }).optional(),
-  kicker: z.string().min(1).max(120).optional(),
-});
+// The AI sometimes emits "" instead of omitting an optional accent. Strip
+// blank strings from the parent object before validating so each field's
+// .optional() sees a genuinely-missing key. We also drop the stat block if
+// either side is blank — a stat without both a number and a label is
+// meaningless. (Preprocess lives at the parent level rather than per-field
+// because Zod v4's `.optional()` doesn't reliably unwrap `undefined` returned
+// from a child preprocess.)
+export const ConceptDesignElementsSchema = z.preprocess(
+  (input) => {
+    if (!input || typeof input !== "object") return input;
+    const obj: Record<string, unknown> = { ...(input as Record<string, unknown>) };
+    for (const key of ["eyebrow", "kicker"] as const) {
+      const v = obj[key];
+      if (typeof v === "string" && v.trim() === "") delete obj[key];
+    }
+    const s = obj.stat;
+    if (s && typeof s === "object") {
+      const { number, label } = s as { number?: unknown; label?: unknown };
+      const numBlank = typeof number !== "string" || number.trim() === "";
+      const labBlank = typeof label !== "string" || label.trim() === "";
+      if (numBlank || labBlank) delete obj.stat;
+    }
+    return obj;
+  },
+  z.object({
+    eyebrow: z.string().min(1).max(40).optional(),
+    stat: z.object({
+      number: z.string().min(1).max(12),
+      label: z.string().min(1).max(40),
+    }).optional(),
+    kicker: z.string().min(1).max(120).optional(),
+  }),
+);
 export type ConceptDesignElements = z.infer<typeof ConceptDesignElementsSchema>;
 
 export const ConceptMidjourneyPromptSchema = z.object({
@@ -208,6 +233,7 @@ export type CampaignPlan = z.infer<typeof CampaignPlanSchema>;
 // ── Index file that lists all generated campaigns ───────────────────────────
 export const CampaignIndexEntrySchema = z.object({
   campaign_id: z.string().min(1),
+  source: z.enum(["campaign-planner", "figma-adapter"]).optional(),
   brand_id: z.string().min(1),
   campaign_name: z.string().min(1),
   ai_provider: z.enum(["openai", "anthropic", "mock"]),

@@ -13,7 +13,28 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { loadEnvLocalIfPresent } from "./_loadEnvLocal";
 import { planCampaign } from "@/lib/ai/campaignPlanner";
-import { CampaignBriefSchema } from "@/lib/schemas/campaignBrief.schema";
+import {
+  CampaignBriefSchema,
+  type CampaignFormat,
+} from "@/lib/schemas/campaignBrief.schema";
+
+const SUPPORTED_FORMATS: CampaignFormat[] = [
+  "1200x628",
+  "1080x1080",
+  "1080x1920",
+  "1200x1200",
+  "300x250",
+  "336x280",
+  "960x1200",
+  "320x100",
+  "320x50",
+  "300x1050",
+  "300x600",
+  "160x600",
+  "970x250",
+  "728x90",
+  "250x250",
+];
 
 async function main() {
   await loadEnvLocalIfPresent();
@@ -28,7 +49,7 @@ async function main() {
     campaign_goal: "consideration",
     tone: ["confident", "trustworthy", "premium"],
     platforms: ["instagram-feed", "instagram-story", "linkedin"],
-    required_formats: ["1200x628", "1080x1080", "1080x1920"],
+    required_formats: SUPPORTED_FORMATS,
     preferred_contexts: ["stocks", "etfs", "charts"],
     risk_warning_required: true,
     notes: "Sample brief shipped with the repo for end-to-end testing.",

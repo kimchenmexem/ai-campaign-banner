@@ -1,0 +1,102 @@
+
+> ai-campaign-banner@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.160.30.24:3000
+- Environments: .env.local
+✓ Ready in 258ms
+
+ GET / 200 in 240ms (next.js: 119ms, application-code: 120ms)
+ GET /visual-preview 200 in 199ms (next.js: 64ms, application-code: 136ms)
+✓ Compiled in 291ms
+✓ Compiled in 70ms
+✓ Compiled in 48ms
+✓ Compiled in 45ms
+✓ Compiled in 46ms
+✓ Compiled in 66ms
+✓ Compiled in 62ms
+✓ Compiled in 61ms
+✓ Compiled in 50ms
+ GET /visual-preview 200 in 773ms (next.js: 96ms, application-code: 677ms)
+ GET /visual-preview 200 in 90ms (next.js: 11ms, application-code: 79ms)
+ GET /visual-preview 200 in 8ms (next.js: 3ms, application-code: 6ms)
+ GET /visual-preview 200 in 21ms (next.js: 1409µs, application-code: 19ms)
+ GET /visual-preview 200 in 55ms (next.js: 3ms, application-code: 52ms)
+ GET /visual-preview 200 in 86ms (next.js: 9ms, application-code: 77ms)
+ GET /visual-preview 200 in 11ms (next.js: 5ms, application-code: 6ms)
+ GET /visual-preview 200 in 22ms (next.js: 2ms, application-code: 19ms)
+ GET /visual-preview 200 in 9ms (next.js: 3ms, application-code: 6ms)
+ GET /visual-preview 200 in 32ms (next.js: 2ms, application-code: 30ms)
+✓ Compiled in 79ms
+ GET /visual-preview 200 in 328ms (next.js: 95ms, application-code: 233ms)
+ GET /visual-preview 200 in 173ms (next.js: 1567µs, application-code: 172ms)
+ GET /visual-preview 200 in 139ms (next.js: 5ms, application-code: 133ms)
+ GET /visual-preview 200 in 125ms (next.js: 3ms, application-code: 122ms)
+ GET /visual-preview 200 in 117ms (next.js: 4ms, application-code: 113ms)
+ GET /visual-preview 200 in 100ms (next.js: 2ms, application-code: 97ms)
+ GET /visual-preview 200 in 67ms (next.js: 4ms, application-code: 63ms)
+ GET /visual-preview 200 in 45ms (next.js: 4ms, application-code: 41ms)
+ GET /visual-preview 200 in 272ms (next.js: 79ms, application-code: 193ms)
+ GET /visual-preview 200 in 114ms (next.js: 1285µs, application-code: 113ms)
+ GET /visual-preview 200 in 90ms (next.js: 3ms, application-code: 87ms)
+ GET /visual-preview 200 in 75ms (next.js: 2ms, application-code: 73ms)
+ GET /visual-preview 200 in 54ms (next.js: 2ms, application-code: 52ms)
+ GET /visual-preview 200 in 34ms (next.js: 3ms, application-code: 32ms)
+ GET /visual-preview 200 in 307ms (next.js: 83ms, application-code: 223ms)
+ GET /visual-preview 200 in 134ms (next.js: 3ms, application-code: 131ms)
+ GET /visual-preview 200 in 119ms (next.js: 4ms, application-code: 115ms)
+ GET /visual-preview 200 in 107ms (next.js: 4ms, application-code: 102ms)
+ GET /visual-preview 200 in 87ms (next.js: 4ms, application-code: 83ms)
+ GET /visual-preview 200 in 62ms (next.js: 4ms, application-code: 58ms)
+ GET /visual-preview 200 in 30ms (next.js: 4ms, application-code: 26ms)
+✓ Compiled in 47ms
+ GET /visual-preview 200 in 281ms (next.js: 78ms, application-code: 202ms)
+ GET /visual-preview 200 in 106ms (next.js: 975µs, application-code: 105ms)
+ GET /visual-preview 200 in 88ms (next.js: 3ms, application-code: 86ms)
+ GET /visual-preview 200 in 68ms (next.js: 2ms, application-code: 66ms)
+ GET /visual-preview 200 in 51ms (next.js: 2ms, application-code: 48ms)
+ GET /visual-preview 200 in 32ms (next.js: 3ms, application-code: 30ms)
+✓ Compiled in 47ms
+ GET /visual-preview 200 in 273ms (next.js: 75ms, application-code: 198ms)
+ GET /visual-preview 200 in 146ms (next.js: 959µs, application-code: 145ms)
+ GET /visual-preview 200 in 124ms (next.js: 7ms, application-code: 116ms)
+ GET /visual-preview 200 in 81ms (next.js: 12ms, application-code: 69ms)
+ GET /visual-preview 200 in 52ms (next.js: 1797µs, application-code: 50ms)
+ GET /visual-preview 200 in 35ms (next.js: 1643µs, application-code: 33ms)
+✓ Compiled in 75ms
+ GET /visual-preview 200 in 291ms (next.js: 77ms, application-code: 214ms)
+ GET /visual-preview 200 in 161ms (next.js: 2ms, application-code: 158ms)
+ GET /visual-preview 200 in 117ms (next.js: 12ms, application-code: 105ms)
+ GET /visual-preview 200 in 108ms (next.js: 2ms, application-code: 106ms)
+ GET /visual-preview 200 in 97ms (next.js: 3ms, application-code: 93ms)
+ GET /visual-preview 200 in 94ms (next.js: 2ms, application-code: 92ms)
+ GET /visual-preview 200 in 67ms (next.js: 2ms, application-code: 65ms)
+ GET /visual-preview 200 in 54ms (next.js: 1736µs, application-code: 52ms)
+ GET /visual-preview 200 in 39ms (next.js: 3ms, application-code: 36ms)
+ GET /visual-preview 200 in 220ms (next.js: 68ms, application-code: 152ms)
+ GET /visual-preview 200 in 109ms (next.js: 928µs, application-code: 109ms)
+ GET /visual-preview 200 in 104ms (next.js: 961µs, application-code: 103ms)
+ GET /visual-preview 200 in 93ms (next.js: 1809µs, application-code: 91ms)
+ GET /visual-preview 200 in 98ms (next.js: 2ms, application-code: 96ms)
+ GET /visual-preview 200 in 94ms (next.js: 2ms, application-code: 92ms)
+ GET /visual-preview 200 in 74ms (next.js: 1964µs, application-code: 72ms)
+ GET /visual-preview 200 in 64ms (next.js: 1016µs, application-code: 63ms)
+ GET /visual-preview 200 in 46ms (next.js: 1552µs, application-code: 45ms)
+✓ Compiled in 141ms
+ GET /visual-preview 200 in 379ms (next.js: 98ms, application-code: 281ms)
+ GET /visual-preview 200 in 206ms (next.js: 2ms, application-code: 204ms)
+ GET /visual-preview 200 in 144ms (next.js: 1477µs, application-code: 143ms)
+ GET /visual-preview 200 in 89ms (next.js: 5ms, application-code: 84ms)
+ GET /visual-preview 200 in 60ms (next.js: 949µs, application-code: 59ms)
+ GET /visual-preview 200 in 44ms (next.js: 2ms, application-code: 42ms)
+ GET /visual-preview 200 in 29ms (next.js: 874µs, application-code: 28ms)
+ GET /api/generators/registry 200 in 141ms (next.js: 123ms, application-code: 18ms)
+ GET / 200 in 81ms (next.js: 10ms, application-code: 71ms)
+ GET /render/ad/ad_concept_d5ff984d_1_1200x628 200 in 599ms (next.js: 395ms, application-code: 203ms)
+ GET /visual-preview 200 in 37ms (next.js: 19ms, application-code: 18ms)
+ GET /visual-preview 200 in 30ms (next.js: 1148µs, application-code: 29ms)
+ GET /visual-preview?campaign=cam_175b2584 200 in 33ms (next.js: 5ms, application-code: 29ms)
+ GET /visual-preview?campaign=cam_a93b4358 200 in 29ms (next.js: 3ms, application-code: 26ms)
+[?25h

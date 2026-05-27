@@ -49,6 +49,7 @@ import {
   resolveConceptLevelPicks,
   resolveFormatLevelPicks,
   deriveRendererHintsForFormat,
+  type RendererHints,
   type VisualPicksFallback,
 } from "@/lib/ai/mapVisualSpecToInternals";
 import {
@@ -91,11 +92,7 @@ const FORMAT_TO_DEVICE: Record<CampaignFormat, DeviceType> = {
   "1200x628": "laptop",
   "1080x1080": "tablet",
   "1080x1920": "phone",
-  "1080x1350": "tablet",
-  "1200x675": "laptop",
   "1200x1200": "tablet",
-  "1500x500": "laptop",
-  "1920x1080": "laptop",
   // MEXEM display + portrait. 300x250 / 336x280 are too small for a laptop
   // mockup to read; phone-shaped product visual scales down better.
   "300x250": "phone",
@@ -119,11 +116,7 @@ const FORMAT_TO_CHANNEL: Record<CampaignFormat, string> = {
   "1200x628": "leaderboard",
   "1080x1080": "instagram-feed",
   "1080x1920": "instagram-story",
-  "1080x1350": "instagram-portrait",
-  "1200x675": "x-feed",
   "1200x1200": "linkedin-square",
-  "1500x500": "social-cover",
-  "1920x1080": "landscape-hd",
   // IAB display + extra portrait. Channel strings follow the same kebab-
   // case convention as the existing entries.
   "300x250": "medium-rectangle",
@@ -147,11 +140,7 @@ const FORMAT_TO_SIZE: Record<
   "1200x628": { width: 1200, height: 628 },
   "1080x1080": { width: 1080, height: 1080 },
   "1080x1920": { width: 1080, height: 1920 },
-  "1080x1350": { width: 1080, height: 1350 },
-  "1200x675": { width: 1200, height: 675 },
   "1200x1200": { width: 1200, height: 1200 },
-  "1500x500": { width: 1500, height: 500 },
-  "1920x1080": { width: 1920, height: 1080 },
   "300x250": { width: 300, height: 250 },
   "336x280": { width: 336, height: 280 },
   "960x1200": { width: 960, height: 1200 },
@@ -414,6 +403,7 @@ export function buildAdSpecsForConcept(
         device_type: device,
         context: screenshotCtx,
         fallback_contexts,
+        variant_index: conceptIdx,
       },
       selection,
       assets: context.assets,
@@ -430,12 +420,15 @@ export function buildAdSpecsForConcept(
     if (template === "photo_immersive" && selection.background_fill.kind !== "image") {
       template = "mockup_hero";
     }
+    if (usesMexemReferenceStyle(context.brandKit)) {
+      template = "mockup_hero";
+    }
 
     // Resolve the format-level picks (composition, pattern style, motif).
     // The mapping layer reads spec.format_adaptation[format] so per-format
     // overrides flow into the renderer here.
     const formatDowngrades: string[] = [];
-    const formatPicks = resolveFormatLevelPicks({
+    let formatPicks = resolveFormatLevelPicks({
       spec: args.visualSpec,
       format,
       conceptTemplate: template,
@@ -452,11 +445,19 @@ export function buildAdSpecsForConcept(
     // this returns DEFAULT_RENDERER_HINTS (today's exact behavior).
     // Downgrades from headline_position/visual_position/cta.weight/
     // primary_visual collapses are pushed into formatDowngrades.
-    const rendererHints = deriveRendererHintsForFormat(
+    let rendererHints = deriveRendererHintsForFormat(
       args.visualSpec,
       format,
       formatDowngrades,
     );
+    if (usesMexemReferenceStyle(context.brandKit)) {
+      formatPicks = {
+        ...formatPicks,
+        patternStyle: undefined,
+        motif: "none",
+      };
+      rendererHints = applyMexemReferenceHints(rendererHints, format);
+    }
     // Dedupe: per-format downgrade strings already include format context
     // when they were generated inside resolveFormatLevelPicks; the
     // deriveRendererHints downgrades (headline_position etc.) are
@@ -487,6 +488,7 @@ export function buildAdSpecsForConcept(
         cta: ctaText,
         disclaimer: disclaimerText,
       },
+      headlineEmphasisStyle: brief.headline_emphasis_style,
       size: { name: format, width: size.width, height: size.height },
       channel,
       composition: formatPicks.composition,
@@ -532,6 +534,33 @@ export function buildAdSpecsForConcept(
   return specs;
 }
 
+function usesMexemReferenceStyle(brandKit: BrandKitLite): boolean {
+  return (
+    brandKit.colors.background.includes("#00122C") &&
+    brandKit.colors.background.includes("#006A97")
+  );
+}
+
+function applyMexemReferenceHints(
+  hints: RendererHints,
+  format: CampaignFormat,
+): RendererHints {
+  const next: RendererHints = {
+    ...hints,
+    decorativeOpacityMultiplier: 0.3,
+    primaryVisual: hints.primaryVisual === "none" ? "none" : "mockup",
+    suppressSubheadline: true,
+    allowKicker: false,
+  };
+  if (format === "1200x628") {
+    next.ctaPlacement = "bottom_band";
+    next.ctaWidth = "full_text_block";
+  } else if (next.ctaPlacement === "bottom_band") {
+    next.ctaPlacement = "below_subheadline";
+  }
+  return next;
+}
+
 /**
  * For an entire AI plan, build ad_specs for every concept × format pair and
  * return enriched concepts ready to embed in CampaignPlan.
@@ -575,16 +604,15 @@ export function buildConceptsFromPlan(args: {
   //                          campaign_id-only behaviour.
   //   2. `max_diversity`   — forces the 3 concepts to receive DISTINCT
   //                          templates, motifs and background-palette
-  //                          starting indices. Default mode picks
-  //                          independently per concept and a 3-concept
-  //                          campaign can land on the same motif twice
-  //                          (especially within the same context).
+  //                          starting indices. This is now the default for
+  //                          production campaigns; pass false only when a
+  //                          controlled near-identical set is intentional.
   const seedKey =
     args.brief.diversity_seed !== undefined
       ? `${args.campaign_id}::${args.brief.diversity_seed}`
       : args.campaign_id;
   const rng = makeSeededPRNG(seedKey);
-  const enforceDiversity = args.brief.max_diversity === true;
+  const enforceDiversity = args.brief.max_diversity !== false;
 
   // Pick one of 6 template permutations for this campaign. Used as the
   // PRNG fallback when the spec doesn't pin down layout_type.

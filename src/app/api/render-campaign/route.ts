@@ -4,16 +4,21 @@ import { loadCampaignPlanIfExists } from "@/lib/ai/campaignPlanner";
 import { renderCampaign } from "@/lib/render/renderCampaign";
 
 // POST /api/render-campaign
-// Body: { campaign_id: string, base_url?: string }
+// Body: { campaign_id: string, base_url?: string, run_vision_qa?: boolean }
 //
 // Renders all (concept × format) ad PNGs for the given campaign via headless
 // Chromium. Synchronous — typically takes 20-40 seconds. The response carries
 // the render map so the client can render thumbnails immediately.
+//
+// Vision QA is intentionally opt-in here. The campaign page has a separate
+// "Run Vision QA" action; doing QA inside render makes the planner look stuck
+// on "Rendering" after PNGs already finished.
 
 const RequestSchema = z.object({
   campaign_id: z.string().min(1),
   // Optional override; defaults to NEXT_PUBLIC_APP_URL or localhost.
   base_url: z.string().url().optional(),
+  run_vision_qa: z.boolean().optional(),
 });
 
 // Render is long-running — give it room. Next 16 caps at the platform's
@@ -60,7 +65,9 @@ export async function POST(request: Request) {
     "http://localhost:3000";
 
   try {
-    const result = await renderCampaign(plan, baseUrl);
+    const result = await renderCampaign(plan, baseUrl, {
+      runVisionQa: parsed.data.run_vision_qa === true,
+    });
     return NextResponse.json({
       ok: true,
       campaign_id: parsed.data.campaign_id,

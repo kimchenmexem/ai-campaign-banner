@@ -15,11 +15,10 @@ const NAV = [
   { href: "/", label: "Home" },
   { href: "/campaign-planner", label: "Campaign Planner" },
   { href: "/campaigns", label: "Campaigns" },
+  { href: "/figma-adapter", label: "Figma Adapter" },
   { href: "/assets", label: "Assets" },
   { href: "/visual-preview", label: "Visual Preview" },
   { href: "/code-render-preview", label: "Code Render" },
-  { href: "/screenshot-tagger", label: "Screenshot Tagger" },
-  { href: "/mockup-calibrator", label: "Mockup Calibrator" },
   { href: "/settings", label: "Settings" },
 ];
 

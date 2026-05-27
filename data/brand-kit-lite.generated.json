@@ -120,8 +120,7 @@
     ],
     "secondary": [],
     "accent": [
-      "#D81222",
-      "#000000"
+      "#F5C518"
     ],
     "background": [
       "#00122C",
@@ -217,35 +216,7 @@
         "cta": 35,
         "disclaimer": 35
       },
-      "1080x1350": {
-        "headline": 100,
-        "subheadline": 55,
-        "body": 35,
-        "cta": 35,
-        "disclaimer": 35
-      },
-      "1200x675": {
-        "headline": 100,
-        "subheadline": 55,
-        "body": 35,
-        "cta": 35,
-        "disclaimer": 35
-      },
       "1200x1200": {
-        "headline": 100,
-        "subheadline": 55,
-        "body": 35,
-        "cta": 35,
-        "disclaimer": 35
-      },
-      "1500x500": {
-        "headline": 100,
-        "subheadline": 55,
-        "body": 35,
-        "cta": 35,
-        "disclaimer": 35
-      },
-      "1920x1080": {
         "headline": 100,
         "subheadline": 55,
         "body": 35,
@@ -365,16 +336,13 @@
   },
   "cta": {
     "allowed_texts": [
-      "Start investing",
-      "Start trading",
-      "Open an account",
-      "Start now",
-      "Learn more",
+      "Compare markets",
+      "View tools",
       "Explore platform"
     ],
-    "button_background_color": "#204489",
-    "button_text_color": "#FFFFFF",
-    "border_radius": 0,
+    "button_background_color": "#FFFFFF",
+    "button_text_color": "#0A0F1F",
+    "border_radius": 999,
     "padding": {
       "top": 14,
       "right": 36,
@@ -385,7 +353,22 @@
       "width": 180,
       "height": 56
     },
-    "variants": []
+    "variants": [
+      {
+        "id": "white_pill",
+        "name": "White pill",
+        "background_color": "#FFFFFF",
+        "text_color": "#0A0F1F",
+        "border_radius": 999
+      },
+      {
+        "id": "yellow_band",
+        "name": "Yellow reference band",
+        "background_color": "#F5C518",
+        "text_color": "#0A0F1F",
+        "border_radius": 0
+      }
+    ]
   },
   "layout": {
     "spacing": {
@@ -422,32 +405,8 @@
         "bottom": 180,
         "left": 50
       },
-      "1080x1350": {
-        "top": 71,
-        "right": 50,
-        "bottom": 180,
-        "left": 50
-      },
-      "1200x675": {
-        "top": 71,
-        "right": 50,
-        "bottom": 180,
-        "left": 50
-      },
       "1200x1200": {
         "top": 160,
-        "right": 50,
-        "bottom": 180,
-        "left": 50
-      },
-      "1500x500": {
-        "top": 71,
-        "right": 50,
-        "bottom": 180,
-        "left": 50
-      },
-      "1920x1080": {
-        "top": 71,
         "right": 50,
         "bottom": 180,
         "left": 50
@@ -550,32 +509,8 @@
         "bottom": 180,
         "left": 50
       },
-      "1080x1350": {
-        "top": 71,
-        "right": 50,
-        "bottom": 180,
-        "left": 50
-      },
-      "1200x675": {
-        "top": 71,
-        "right": 50,
-        "bottom": 180,
-        "left": 50
-      },
       "1200x1200": {
         "top": 160,
-        "right": 50,
-        "bottom": 180,
-        "left": 50
-      },
-      "1500x500": {
-        "top": 71,
-        "right": 50,
-        "bottom": 180,
-        "left": 50
-      },
-      "1920x1080": {
-        "top": 71,
         "right": 50,
         "bottom": 180,
         "left": 50

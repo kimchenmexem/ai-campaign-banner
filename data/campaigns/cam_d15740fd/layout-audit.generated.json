@@ -1,0 +1,920 @@
+{
+  "campaign_id": "cam_d15740fd",
+  "total": 57,
+  "issues": 0,
+  "reports": [
+    {
+      "ad_id": "ad_concept_efb6d71e_1_1200x628",
+      "format": "1200x628",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.92,
+      "sumCoverage": 0.639,
+      "contentBox": {
+        "x": 0,
+        "y": 50,
+        "width": 1200,
+        "height": 578
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_1080x1080",
+      "format": "1080x1080",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.635,
+      "sumCoverage": 0.43,
+      "contentBox": {
+        "x": 60,
+        "y": 56,
+        "width": 970,
+        "height": 764
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_1080x1920",
+      "format": "1080x1920",
+      "logo": "logo-white-p.png",
+      "expectedLogo": "logo-white-p.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.809,
+      "sumCoverage": 0.554,
+      "contentBox": {
+        "x": 70,
+        "y": 96,
+        "width": 940,
+        "height": 1784
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_1080x1350",
+      "format": "1080x1350",
+      "logo": "logo-white-p.png",
+      "expectedLogo": "logo-white-p.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.795,
+      "sumCoverage": 0.394,
+      "contentBox": {
+        "x": 65,
+        "y": 65,
+        "width": 950,
+        "height": 1220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_1200x675",
+      "format": "1200x675",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.818,
+      "sumCoverage": 0.529,
+      "contentBox": {
+        "x": 41,
+        "y": 41,
+        "width": 1118,
+        "height": 593
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_1200x1200",
+      "format": "1200x1200",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.774,
+      "sumCoverage": 0.345,
+      "contentBox": {
+        "x": 72,
+        "y": 72,
+        "width": 1056,
+        "height": 1056
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_1500x500",
+      "format": "1500x500",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.845,
+      "sumCoverage": 0.45,
+      "contentBox": {
+        "x": 30,
+        "y": 30,
+        "width": 1440,
+        "height": 440
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_1920x1080",
+      "format": "1920x1080",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.82,
+      "sumCoverage": 0.434,
+      "contentBox": {
+        "x": 65,
+        "y": 65,
+        "width": 1790,
+        "height": 950
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_300x250",
+      "format": "300x250",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.792,
+      "sumCoverage": 0.463,
+      "contentBox": {
+        "x": 15,
+        "y": 15,
+        "width": 270,
+        "height": 220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_336x280",
+      "format": "336x280",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.79,
+      "sumCoverage": 0.447,
+      "contentBox": {
+        "x": 17,
+        "y": 17,
+        "width": 302,
+        "height": 246
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_960x1200",
+      "format": "960x1200",
+      "logo": "logo-white-p.png",
+      "expectedLogo": "logo-white-p.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.794,
+      "sumCoverage": 0.39,
+      "contentBox": {
+        "x": 58,
+        "y": 58,
+        "width": 844,
+        "height": 1084
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_320x100",
+      "format": "320x100",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.798,
+      "sumCoverage": 0.31,
+      "contentBox": {
+        "x": 8,
+        "y": 8,
+        "width": 304,
+        "height": 84
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_320x50",
+      "format": "320x50",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.819,
+      "sumCoverage": 0.366,
+      "contentBox": {
+        "x": 4,
+        "y": 4,
+        "width": 312,
+        "height": 42
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_300x1050",
+      "format": "300x1050",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.85,
+      "sumCoverage": 0.691,
+      "contentBox": {
+        "x": 18,
+        "y": 18,
+        "width": 264,
+        "height": 1014
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_300x600",
+      "format": "300x600",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.827,
+      "sumCoverage": 0.65,
+      "contentBox": {
+        "x": 18,
+        "y": 18,
+        "width": 264,
+        "height": 564
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_160x600",
+      "format": "160x600",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.816,
+      "sumCoverage": 0.686,
+      "contentBox": {
+        "x": 12,
+        "y": 12,
+        "width": 136,
+        "height": 576
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_970x250",
+      "format": "970x250",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.853,
+      "sumCoverage": 0.566,
+      "contentBox": {
+        "x": 15,
+        "y": 15,
+        "width": 940,
+        "height": 220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_728x90",
+      "format": "728x90",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.828,
+      "sumCoverage": 0.426,
+      "contentBox": {
+        "x": 7,
+        "y": 7,
+        "width": 714,
+        "height": 76
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_1_250x250",
+      "format": "250x250",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.774,
+      "sumCoverage": 0.395,
+      "contentBox": {
+        "x": 15,
+        "y": 15,
+        "width": 220,
+        "height": 220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_1200x628",
+      "format": "1200x628",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.92,
+      "sumCoverage": 0.639,
+      "contentBox": {
+        "x": 0,
+        "y": 50,
+        "width": 1200,
+        "height": 578
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_1080x1080",
+      "format": "1080x1080",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.635,
+      "sumCoverage": 0.43,
+      "contentBox": {
+        "x": 60,
+        "y": 56,
+        "width": 970,
+        "height": 764
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_1080x1920",
+      "format": "1080x1920",
+      "logo": "logo-white-p.png",
+      "expectedLogo": "logo-white-p.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.809,
+      "sumCoverage": 0.554,
+      "contentBox": {
+        "x": 70,
+        "y": 96,
+        "width": 940,
+        "height": 1784
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_1080x1350",
+      "format": "1080x1350",
+      "logo": "logo-white-p.png",
+      "expectedLogo": "logo-white-p.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.795,
+      "sumCoverage": 0.394,
+      "contentBox": {
+        "x": 65,
+        "y": 65,
+        "width": 950,
+        "height": 1220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_1200x675",
+      "format": "1200x675",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.818,
+      "sumCoverage": 0.484,
+      "contentBox": {
+        "x": 41,
+        "y": 41,
+        "width": 1118,
+        "height": 593
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_1200x1200",
+      "format": "1200x1200",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.774,
+      "sumCoverage": 0.342,
+      "contentBox": {
+        "x": 72,
+        "y": 72,
+        "width": 1056,
+        "height": 1056
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_1500x500",
+      "format": "1500x500",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.845,
+      "sumCoverage": 0.45,
+      "contentBox": {
+        "x": 30,
+        "y": 30,
+        "width": 1440,
+        "height": 440
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_1920x1080",
+      "format": "1920x1080",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.82,
+      "sumCoverage": 0.434,
+      "contentBox": {
+        "x": 65,
+        "y": 65,
+        "width": 1790,
+        "height": 950
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_300x250",
+      "format": "300x250",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.792,
+      "sumCoverage": 0.463,
+      "contentBox": {
+        "x": 15,
+        "y": 15,
+        "width": 270,
+        "height": 220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_336x280",
+      "format": "336x280",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.79,
+      "sumCoverage": 0.447,
+      "contentBox": {
+        "x": 17,
+        "y": 17,
+        "width": 302,
+        "height": 246
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_960x1200",
+      "format": "960x1200",
+      "logo": "logo-white-p.png",
+      "expectedLogo": "logo-white-p.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.794,
+      "sumCoverage": 0.39,
+      "contentBox": {
+        "x": 58,
+        "y": 58,
+        "width": 844,
+        "height": 1084
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_320x100",
+      "format": "320x100",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.798,
+      "sumCoverage": 0.31,
+      "contentBox": {
+        "x": 8,
+        "y": 8,
+        "width": 304,
+        "height": 84
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_320x50",
+      "format": "320x50",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.819,
+      "sumCoverage": 0.366,
+      "contentBox": {
+        "x": 4,
+        "y": 4,
+        "width": 312,
+        "height": 42
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_300x1050",
+      "format": "300x1050",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.85,
+      "sumCoverage": 0.691,
+      "contentBox": {
+        "x": 18,
+        "y": 18,
+        "width": 264,
+        "height": 1014
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_300x600",
+      "format": "300x600",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.827,
+      "sumCoverage": 0.65,
+      "contentBox": {
+        "x": 18,
+        "y": 18,
+        "width": 264,
+        "height": 564
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_160x600",
+      "format": "160x600",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.816,
+      "sumCoverage": 0.686,
+      "contentBox": {
+        "x": 12,
+        "y": 12,
+        "width": 136,
+        "height": 576
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_970x250",
+      "format": "970x250",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.853,
+      "sumCoverage": 0.566,
+      "contentBox": {
+        "x": 15,
+        "y": 15,
+        "width": 940,
+        "height": 220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_728x90",
+      "format": "728x90",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.828,
+      "sumCoverage": 0.426,
+      "contentBox": {
+        "x": 7,
+        "y": 7,
+        "width": 714,
+        "height": 76
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_2_250x250",
+      "format": "250x250",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.774,
+      "sumCoverage": 0.395,
+      "contentBox": {
+        "x": 15,
+        "y": 15,
+        "width": 220,
+        "height": 220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_1200x628",
+      "format": "1200x628",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.92,
+      "sumCoverage": 0.639,
+      "contentBox": {
+        "x": 0,
+        "y": 50,
+        "width": 1200,
+        "height": 578
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_1080x1080",
+      "format": "1080x1080",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.635,
+      "sumCoverage": 0.43,
+      "contentBox": {
+        "x": 60,
+        "y": 56,
+        "width": 970,
+        "height": 764
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_1080x1920",
+      "format": "1080x1920",
+      "logo": "logo-white-p.png",
+      "expectedLogo": "logo-white-p.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.809,
+      "sumCoverage": 0.554,
+      "contentBox": {
+        "x": 70,
+        "y": 96,
+        "width": 940,
+        "height": 1784
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_1080x1350",
+      "format": "1080x1350",
+      "logo": "logo-white-p.png",
+      "expectedLogo": "logo-white-p.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.795,
+      "sumCoverage": 0.394,
+      "contentBox": {
+        "x": 65,
+        "y": 65,
+        "width": 950,
+        "height": 1220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_1200x675",
+      "format": "1200x675",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.818,
+      "sumCoverage": 0.529,
+      "contentBox": {
+        "x": 41,
+        "y": 41,
+        "width": 1118,
+        "height": 593
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_1200x1200",
+      "format": "1200x1200",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.774,
+      "sumCoverage": 0.342,
+      "contentBox": {
+        "x": 72,
+        "y": 72,
+        "width": 1056,
+        "height": 1056
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_1500x500",
+      "format": "1500x500",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.845,
+      "sumCoverage": 0.45,
+      "contentBox": {
+        "x": 30,
+        "y": 30,
+        "width": 1440,
+        "height": 440
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_1920x1080",
+      "format": "1920x1080",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.82,
+      "sumCoverage": 0.434,
+      "contentBox": {
+        "x": 65,
+        "y": 65,
+        "width": 1790,
+        "height": 950
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_300x250",
+      "format": "300x250",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.792,
+      "sumCoverage": 0.463,
+      "contentBox": {
+        "x": 15,
+        "y": 15,
+        "width": 270,
+        "height": 220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_336x280",
+      "format": "336x280",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.79,
+      "sumCoverage": 0.447,
+      "contentBox": {
+        "x": 17,
+        "y": 17,
+        "width": 302,
+        "height": 246
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_960x1200",
+      "format": "960x1200",
+      "logo": "logo-white-p.png",
+      "expectedLogo": "logo-white-p.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.794,
+      "sumCoverage": 0.39,
+      "contentBox": {
+        "x": 58,
+        "y": 58,
+        "width": 844,
+        "height": 1084
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_320x100",
+      "format": "320x100",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.798,
+      "sumCoverage": 0.31,
+      "contentBox": {
+        "x": 8,
+        "y": 8,
+        "width": 304,
+        "height": 84
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_320x50",
+      "format": "320x50",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.819,
+      "sumCoverage": 0.366,
+      "contentBox": {
+        "x": 4,
+        "y": 4,
+        "width": 312,
+        "height": 42
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_300x1050",
+      "format": "300x1050",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.85,
+      "sumCoverage": 0.691,
+      "contentBox": {
+        "x": 18,
+        "y": 18,
+        "width": 264,
+        "height": 1014
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_300x600",
+      "format": "300x600",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.827,
+      "sumCoverage": 0.65,
+      "contentBox": {
+        "x": 18,
+        "y": 18,
+        "width": 264,
+        "height": 564
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_160x600",
+      "format": "160x600",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": true,
+      "overlaps": [],
+      "bboxCoverage": 0.816,
+      "sumCoverage": 0.686,
+      "contentBox": {
+        "x": 12,
+        "y": 12,
+        "width": 136,
+        "height": 576
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_970x250",
+      "format": "970x250",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.853,
+      "sumCoverage": 0.566,
+      "contentBox": {
+        "x": 15,
+        "y": 15,
+        "width": 940,
+        "height": 220
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_728x90",
+      "format": "728x90",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.828,
+      "sumCoverage": 0.426,
+      "contentBox": {
+        "x": 7,
+        "y": 7,
+        "width": 714,
+        "height": 76
+      }
+    },
+    {
+      "ad_id": "ad_concept_efb6d71e_3_250x250",
+      "format": "250x250",
+      "logo": "logo-white-v.png",
+      "expectedLogo": "logo-white-v.png",
+      "visibleVisual": false,
+      "overlaps": [],
+      "bboxCoverage": 0.774,
+      "sumCoverage": 0.395,
+      "contentBox": {
+        "x": 15,
+        "y": 15,
+        "width": 220,
+        "height": 220
+      }
+    }
+  ],
+  "issue_details": []
+}

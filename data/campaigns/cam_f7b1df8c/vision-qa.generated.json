@@ -1,0 +1,937 @@
+{
+  "campaign_id": "cam_f7b1df8c",
+  "generated_at": "2026-05-21T08:22:52.641Z",
+  "total": 7,
+  "with_violations": 7,
+  "banners": [
+    {
+      "ad_id": "ad_concept_1_1200x1200",
+      "format": "1200x1200",
+      "png_path": "public/rendered-ads/campaigns/cam_f7b1df8c/concept_1_1200x1200.png",
+      "violations": [
+        {
+          "rule_id": "accent-color-missing",
+          "severity": "block",
+          "description": "The required yellow accent color is not used for the headline emphasis or the CTA."
+        },
+        {
+          "rule_id": "headline-not-two-color",
+          "severity": "block",
+          "description": "The headline \"MARKET MASTERY AWAITS\" is entirely white, but it must be split into a yellow key claim and a white supporting clause.",
+          "bbox_norm": {
+            "x": 0.20166666666666666,
+            "y": 0.2425,
+            "width": 0.5975,
+            "height": 0.1991666666666667
+          }
+        },
+        {
+          "rule_id": "logo-ib-icon-missing",
+          "severity": "block",
+          "description": "The \"Powered by InteractiveBrokers\" sub-lockup in the logo is missing the required small red 'IB' icon.",
+          "bbox_norm": {
+            "x": 0.05083333333333333,
+            "y": 0.05083333333333333,
+            "width": 0.5916666666666667,
+            "height": 0.11833333333333333
+          }
+        },
+        {
+          "rule_id": "logo-not-centered-top",
+          "severity": "warn",
+          "description": "The logo is placed top-left, but for a square format, it should be centered horizontally at the top.",
+          "bbox_norm": {
+            "x": 0.05083333333333333,
+            "y": 0.05083333333333333,
+            "width": 0.5916666666666667,
+            "height": 0.11833333333333333
+          }
+        },
+        {
+          "rule_id": "decorative-motif-present",
+          "severity": "warn",
+          "description": "A subtle node network motif is present in the background, but decorative motifs are explicitly disallowed for this style.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer font size (20px) is too small; it should be at least 22px for this banner size.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8175,
+            "width": 1,
+            "height": 0.09083333333333334
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-between-headline-cta",
+          "severity": "block",
+          "description": "The disclaimer is placed at the very bottom of the banner, but it must be positioned between the headline/subheadline and the CTA.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8175,
+            "width": 1,
+            "height": 0.09083333333333334
+          }
+        },
+        {
+          "rule_id": "disclaimer-has-background-band",
+          "severity": "block",
+          "description": "The disclaimer text is placed on a colored background band, but it should be directly on the background gradient without a separate band.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8175,
+            "width": 1,
+            "height": 0.1825
+          }
+        },
+        {
+          "rule_id": "cta-form-incorrect-for-square",
+          "severity": "block",
+          "description": "The CTA is a white pill button, but for a square banner, it should be a full-width yellow band anchored to the bottom of the canvas.",
+          "bbox_norm": {
+            "x": 0.20166666666666666,
+            "y": 0.5533333333333333,
+            "width": 0.5975,
+            "height": 0.06416666666666666
+          }
+        }
+      ],
+      "qa_at": "2026-05-21T08:18:45.764Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1080",
+      "format": "1080x1080",
+      "png_path": "public/rendered-ads/campaigns/cam_f7b1df8c/concept_1_1080x1080.png",
+      "violations": [
+        {
+          "rule_id": "accent-color-missing",
+          "severity": "block",
+          "description": "The banner lacks the required yellow accent color, which should be used for headline emphasis and CTA background."
+        },
+        {
+          "rule_id": "ibkr-red-missing",
+          "severity": "block",
+          "description": "The \"Powered by InteractiveBrokers\" lockup within the logo does not include the small red \"IB\" icon, which is reserved for the IBKR partnership color.",
+          "bbox_norm": {
+            "x": 0.056,
+            "y": 0.056,
+            "width": 0.423,
+            "height": 0.092
+          }
+        },
+        {
+          "rule_id": "logo-not-centered-top",
+          "severity": "warn",
+          "description": "The MEXEM logo is placed top-left (x=61, y=61) instead of centered horizontally at the top for a square format.",
+          "bbox_norm": {
+            "x": 0.056,
+            "y": 0.056,
+            "width": 0.423,
+            "height": 0.092
+          }
+        },
+        {
+          "rule_id": "headline-single-color",
+          "severity": "block",
+          "description": "The headline \"MARKET MASTERY AWAITS\" is rendered entirely in white, but it should have a two-color split with the first part in yellow and the rest in white.",
+          "bbox_norm": {
+            "x": 0.203,
+            "y": 0.214,
+            "width": 0.594,
+            "height": 0.221
+          }
+        },
+        {
+          "rule_id": "headline-not-left-aligned",
+          "severity": "warn",
+          "description": "The headline is centered, but for a square format (extrapolated from leaderboard), the headline block should be left-aligned.",
+          "bbox_norm": {
+            "x": 0.203,
+            "y": 0.214,
+            "width": 0.594,
+            "height": 0.221
+          }
+        },
+        {
+          "rule_id": "subheadline-not-left-aligned",
+          "severity": "warn",
+          "description": "The subheadline is centered, but for a square format (extrapolated from leaderboard), the text block should be left-aligned.",
+          "bbox_norm": {
+            "x": 0.203,
+            "y": 0.444,
+            "width": 0.594,
+            "height": 0.033
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer font size (18px) is too small compared to the recommended sizes (e.g., 22-26px for leaderboard).",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.794,
+            "width": 1,
+            "height": 0.104
+          }
+        },
+        {
+          "rule_id": "disclaimer-below-cta",
+          "severity": "block",
+          "description": "The disclaimer is placed below the CTA, but it should always be positioned between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.794,
+            "width": 1,
+            "height": 0.104
+          }
+        },
+        {
+          "rule_id": "disclaimer-has-background-band",
+          "severity": "block",
+          "description": "The disclaimer text is placed on a solid background band (el_disclaimer_band), but it should be rendered directly on the gradient background.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.794,
+            "width": 1,
+            "height": 0.206
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-left-aligned",
+          "severity": "warn",
+          "description": "The disclaimer is centered, but for a square format (extrapolated from leaderboard), it should be left-aligned.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.794,
+            "width": 1,
+            "height": 0.104
+          }
+        },
+        {
+          "rule_id": "cta-style-mismatch",
+          "severity": "block",
+          "description": "The CTA uses a white pill button style, but for a square format (extrapolated from leaderboard), it should be a full-width yellow band anchored to the bottom.",
+          "bbox_norm": {
+            "x": 0.203,
+            "y": 0.514,
+            "width": 0.594,
+            "height": 0.079
+          }
+        },
+        {
+          "rule_id": "cta-not-bottom-anchored",
+          "severity": "block",
+          "description": "The CTA is positioned in the middle of the canvas (y=555) instead of being anchored to the bottom edge.",
+          "bbox_norm": {
+            "x": 0.203,
+            "y": 0.514,
+            "width": 0.594,
+            "height": 0.079
+          }
+        },
+        {
+          "rule_id": "cta-background-color-wrong",
+          "severity": "block",
+          "description": "The CTA background is white, but it should be yellow (#F5C518) if it were a bottom band.",
+          "bbox_norm": {
+            "x": 0.203,
+            "y": 0.514,
+            "width": 0.594,
+            "height": 0.079
+          }
+        },
+        {
+          "rule_id": "visual-region-missing",
+          "severity": "warn",
+          "description": "The banner lacks a device mockup or visual element in the designated visual region, which is expected for this format."
+        }
+      ],
+      "qa_at": "2026-05-21T08:19:34.507Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1920",
+      "format": "1080x1920",
+      "png_path": "public/rendered-ads/campaigns/cam_f7b1df8c/concept_1_1080x1920.png",
+      "violations": [
+        {
+          "rule_id": "disclaimer-band-present",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) has a background band (el_disclaimer_band) which is explicitly forbidden; it should be text on the gradient.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8995,
+            "width": 1,
+            "height": 0.1005
+          }
+        },
+        {
+          "rule_id": "no-yellow-accent",
+          "severity": "block",
+          "description": "The banner uses no yellow accent color, which is the only accent color allowed. The headline (el_headline) is entirely white, but it must always be a two-color split (yellow for the key claim, white for the rest).",
+          "bbox_norm": {
+            "x": 0.0657,
+            "y": 0.1766,
+            "width": 0.8685,
+            "height": 0.1786
+          }
+        },
+        {
+          "rule_id": "incorrect-background-pattern",
+          "severity": "warn",
+          "description": "The banner uses a diagonal line pattern (el_brand_pattern) which is explicitly forbidden; only a subtle ghost candlestick pattern is optional for portrait.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "logo-ibkr-icon-missing",
+          "severity": "block",
+          "description": "The \"Powered by InteractiveBrokers\" sub-lockup below the logo is missing the small red \"IB\" icon.",
+          "bbox_norm": {
+            "x": 0.1361,
+            "y": 0.0318,
+            "width": 0.7287,
+            "height": 0.0891
+          }
+        },
+        {
+          "rule_id": "logo-block-too-high",
+          "severity": "warn",
+          "description": "The logo block (el_logo and sub-lockup) is positioned too high, starting at y=61 (~3% from top) instead of the recommended ~10-15% of canvas height (y=140 in reference layout).",
+          "bbox_norm": {
+            "x": 0.1361,
+            "y": 0.0318,
+            "width": 0.7287,
+            "height": 0.0891
+          }
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline (el_headline) font size is 104px, which is smaller than the recommended 120-160px for portrait banners.",
+          "bbox_norm": {
+            "x": 0.0657,
+            "y": 0.1766,
+            "width": 0.8685,
+            "height": 0.1786
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer (el_disclaimer) font size is 22px, which is smaller than the recommended 28-32px for portrait banners.",
+          "bbox_norm": {
+            "x": 0.0657,
+            "y": 0.8995,
+            "width": 0.8685,
+            "height": 0.0432
+          }
+        },
+        {
+          "rule_id": "disclaimer-below-cta",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) is placed below the CTA, at the very bottom of the banner, instead of between the headline block and the CTA as per reference layout.",
+          "bbox_norm": {
+            "x": 0.0657,
+            "y": 0.8995,
+            "width": 0.8685,
+            "height": 0.0432
+          }
+        },
+        {
+          "rule_id": "cta-width-too-wide",
+          "severity": "warn",
+          "description": "The CTA button (el_cta) width is ~87% of canvas width, which is much wider than the recommended ~60% for portrait banners.",
+          "bbox_norm": {
+            "x": 0.0657,
+            "y": 0.526,
+            "width": 0.8685,
+            "height": 0.0453
+          }
+        },
+        {
+          "rule_id": "cta-has-chevron",
+          "severity": "warn",
+          "description": "The CTA button (el_cta) includes a chevron (right arrow →), but the rule states \"No chevron in the portrait example.\"",
+          "bbox_norm": {
+            "x": 0.0657,
+            "y": 0.526,
+            "width": 0.8685,
+            "height": 0.0453
+          }
+        },
+        {
+          "rule_id": "device-mockup-missing",
+          "severity": "block",
+          "description": "The banner is missing the required device mockup in the bottom 25-30% of the canvas for portrait format."
+        },
+        {
+          "rule_id": "headline-block-too-high",
+          "severity": "warn",
+          "description": "The headline block (el_headline) is positioned too high, starting at y=339 instead of y=400 as per reference layout.",
+          "bbox_norm": {
+            "x": 0.0657,
+            "y": 0.1766,
+            "width": 0.8685,
+            "height": 0.1786
+          }
+        },
+        {
+          "rule_id": "cta-too-high",
+          "severity": "warn",
+          "description": "The CTA button (el_cta) is positioned too high, starting at y=1010 instead of y=1180 as per reference layout.",
+          "bbox_norm": {
+            "x": 0.0657,
+            "y": 0.526,
+            "width": 0.8685,
+            "height": 0.0453
+          }
+        }
+      ],
+      "qa_at": "2026-05-21T08:20:14.708Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_2_1200x1200",
+      "format": "1200x1200",
+      "png_path": "public/rendered-ads/campaigns/cam_f7b1df8c/concept_2_1200x1200.png",
+      "violations": [
+        {
+          "rule_id": "background-color-mismatch",
+          "severity": "block",
+          "description": "The background color (#004267) does not match the specified primary navy colors (#00122C or #006A97).",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "disclaimer-band-color-mismatch",
+          "severity": "block",
+          "description": "The disclaimer band color (#3F6B85) is not part of the approved color palette.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8342,
+            "width": 1,
+            "height": 0.1658
+          }
+        },
+        {
+          "rule_id": "background-not-gradient",
+          "severity": "block",
+          "description": "The background (el_background) is a solid color instead of a linear gradient from #00122C to #006A97.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "decorative-motif-present",
+          "severity": "warn",
+          "description": "A decorative axis grid motif (el_motif_axis_grid) is present, but the rule states 'No motif' for this style.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "logo-not-centered-top",
+          "severity": "warn",
+          "description": "The logo (el_logo) is positioned top-left instead of horizontally centered at the top for a square format.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.0417,
+            "width": 0.5917,
+            "height": 0.1183
+          }
+        },
+        {
+          "rule_id": "headline-not-two-color",
+          "severity": "block",
+          "description": "The headline (el_headline) is entirely white, but it must have a two-color split: the first part in yellow and the rest in white.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.2333,
+            "width": 0.5975,
+            "height": 0.165
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer (el_disclaimer) font size (20px) is too small; it should be larger, estimated ~28-32px for square/portrait formats.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8342,
+            "width": 1,
+            "height": 0.0908
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-between-headline-cta",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) is placed at the very bottom of the canvas, below the CTA, instead of between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8342,
+            "width": 1,
+            "height": 0.0908
+          }
+        },
+        {
+          "rule_id": "disclaimer-has-background-band",
+          "severity": "warn",
+          "description": "The disclaimer (el_disclaimer) has a background band (el_disclaimer_band), but the rule states it should be just text on the gradient.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8342,
+            "width": 1,
+            "height": 0.1658
+          }
+        },
+        {
+          "rule_id": "cta-pill-has-chevron",
+          "severity": "warn",
+          "description": "The CTA (el_cta) is a white pill button but includes a chevron, which is not allowed for this style.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.5275,
+            "width": 0.5975,
+            "height": 0.0642
+          }
+        },
+        {
+          "rule_id": "cta-position-incorrect",
+          "severity": "warn",
+          "description": "The CTA (el_cta) is not positioned correctly for a square format; it should be centered horizontally between the headline and disclaimer.",
+          "bbox_norm": {
+            "x": 0.0417,
+            "y": 0.5275,
+            "width": 0.5975,
+            "height": 0.0642
+          }
+        },
+        {
+          "rule_id": "missing-device-mockup",
+          "severity": "warn",
+          "description": "The banner is missing a device mockup in the visual region, which is a key element for visual variety."
+        }
+      ],
+      "qa_at": "2026-05-21T08:20:46.845Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1080",
+      "format": "1080x1080",
+      "png_path": "public/rendered-ads/campaigns/cam_f7b1df8c/concept_2_1080x1080.png",
+      "violations": [
+        {
+          "rule_id": "background-not-gradient",
+          "severity": "block",
+          "description": "The background (el_background) is a solid color (#004267) instead of a linear gradient from #00122C to #006A97.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "decorative-motif-present",
+          "severity": "warn",
+          "description": "A grid motif (el_motif_axis_grid) is present, but decorative motifs are generally not allowed for this style, which emphasizes a clean design.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "logo-not-top-center",
+          "severity": "warn",
+          "description": "The MEXEM logo (el_logo) is positioned top-left instead of top-center for a square format banner.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.046,
+            "width": 0.423,
+            "height": 0.093
+          }
+        },
+        {
+          "rule_id": "headline-not-two-color",
+          "severity": "block",
+          "description": "The headline (el_headline) is entirely white, but it must be split into two colors (yellow for the key claim, white for the rest).",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.204,
+            "width": 0.594,
+            "height": 0.183
+          }
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline (el_headline) font size (62px) is smaller than the estimated range of 70-80px for square banners.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.204,
+            "width": 0.594,
+            "height": 0.183
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) font size (18px) is too small, falling below the minimum recommended sizes for any format (22-32px).",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.813,
+            "width": 1,
+            "height": 0.104
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-between-headline-cta",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) is placed at the very bottom of the banner, below the CTA, instead of between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.813,
+            "width": 1,
+            "height": 0.104
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-left-aligned",
+          "severity": "warn",
+          "description": "The disclaimer (el_disclaimer) is center-aligned, but for a square format, it should be left-aligned to match the headline block (extrapolated from leaderboard rules).",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.813,
+            "width": 1,
+            "height": 0.104
+          }
+        },
+        {
+          "rule_id": "disclaimer-has-background-band",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) has a background band (el_disclaimer_band) behind it, but it should be text directly on the gradient.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.813,
+            "width": 1,
+            "height": 0.187
+          }
+        },
+        {
+          "rule_id": "cta-not-bottom-band",
+          "severity": "block",
+          "description": "The CTA (el_cta) is a white pill button, but for a square format, it should be a full-width yellow band anchored to the bottom of the canvas (extrapolated from leaderboard rules).",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.482,
+            "width": 0.594,
+            "height": 0.079
+          }
+        },
+        {
+          "rule_id": "missing-device-mockup",
+          "severity": "warn",
+          "description": "The banner is missing a device mockup in the visual region, which is a primary source of visual variety for this style."
+        }
+      ],
+      "qa_at": "2026-05-21T08:21:22.246Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1920",
+      "format": "1080x1920",
+      "png_path": "public/rendered-ads/campaigns/cam_f7b1df8c/concept_2_1080x1920.png",
+      "violations": [
+        {
+          "rule_id": "background-not-gradient",
+          "severity": "block",
+          "description": "The background (el_background) is a solid color (#004267) instead of a linear gradient from #00122C to #006A97."
+        },
+        {
+          "rule_id": "decorative-motif-present",
+          "severity": "warn",
+          "description": "A decorative grid motif (el_motif_axis_grid) is present, but the brand guidelines require no motifs or patterns."
+        },
+        {
+          "rule_id": "logo-too-high",
+          "severity": "warn",
+          "description": "The logo (el_logo) is positioned too high at y=50 (2.6% from top), instead of the required 10-15% of canvas height for portrait format.",
+          "bbox_norm": {
+            "x": 0.136,
+            "y": 0.026,
+            "width": 0.729,
+            "height": 0.089
+          }
+        },
+        {
+          "rule_id": "logo-too-wide",
+          "severity": "warn",
+          "description": "The logo (el_logo) width is 787px, which is larger than the recommended ~700px for portrait format.",
+          "bbox_norm": {
+            "x": 0.136,
+            "y": 0.026,
+            "width": 0.729,
+            "height": 0.089
+          }
+        },
+        {
+          "rule_id": "headline-not-two-color",
+          "severity": "block",
+          "description": "The headline (el_headline) is entirely white, but it must be a two-color split with the first part in yellow and the rest in white.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.171,
+            "width": 0.869,
+            "height": 0.148
+          }
+        },
+        {
+          "rule_id": "headline-font-size-too-small",
+          "severity": "warn",
+          "description": "The headline (el_headline) font size is 86px, which is smaller than the recommended 120-160px for portrait format.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.171,
+            "width": 0.869,
+            "height": 0.148
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer (el_disclaimer) font size is 22px, which is smaller than the recommended 28-32px for portrait format.",
+          "bbox_norm": {
+            "x": 0.066,
+            "y": 0.91,
+            "width": 0.869,
+            "height": 0.043
+          }
+        },
+        {
+          "rule_id": "disclaimer-below-cta",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) is placed below the CTA, but it must be positioned between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0.066,
+            "y": 0.91,
+            "width": 0.869,
+            "height": 0.043
+          }
+        },
+        {
+          "rule_id": "disclaimer-has-background-band",
+          "severity": "warn",
+          "description": "The disclaimer (el_disclaimer) has a background band (el_disclaimer_band), but the brand guidelines require no legal-band rectangle behind it.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.91,
+            "width": 1,
+            "height": 0.09
+          }
+        },
+        {
+          "rule_id": "cta-text-mismatch",
+          "severity": "warn",
+          "description": "The CTA text (el_cta) is 'EXPLORE YOUR OPTIONS', but the recommended text is 'START INVESTING' for portrait format.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.44,
+            "width": 0.869,
+            "height": 0.045
+          }
+        },
+        {
+          "rule_id": "cta-width-too-wide",
+          "severity": "warn",
+          "description": "The CTA (el_cta) width is 938px (86.8% of canvas width), which is wider than the recommended ~60% for portrait format.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.44,
+            "width": 0.869,
+            "height": 0.045
+          }
+        },
+        {
+          "rule_id": "device-mockup-missing",
+          "severity": "block",
+          "description": "The portrait banner is missing the required device mockup in the bottom 25-30% of the canvas."
+        },
+        {
+          "rule_id": "headline-block-not-centered",
+          "severity": "warn",
+          "description": "The headline block (el_eyebrow, el_headline, el_subheadline) is left-aligned, but the portrait layout requires centered editorial.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.153,
+            "width": 0.869,
+            "height": 0.014
+          }
+        },
+        {
+          "rule_id": "cta-too-high",
+          "severity": "warn",
+          "description": "The CTA (el_cta) is positioned at y=845, which is significantly higher than the recommended y=1180 for portrait layout.",
+          "bbox_norm": {
+            "x": 0.046,
+            "y": 0.44,
+            "width": 0.869,
+            "height": 0.045
+          }
+        }
+      ],
+      "qa_at": "2026-05-21T08:22:08.083Z",
+      "model": "gemini-2.5-flash"
+    },
+    {
+      "ad_id": "ad_concept_3_1200x1200",
+      "format": "1200x1200",
+      "png_path": "public/rendered-ads/campaigns/cam_f7b1df8c/concept_3_1200x1200.png",
+      "violations": [
+        {
+          "rule_id": "ibkr-logo-red-missing",
+          "severity": "block",
+          "description": "The 'Powered by InteractiveBrokers' sub-lockup within the logo is entirely white; the brand rules require the 'IB' icon to be in red (#D81222).",
+          "bbox_norm": {
+            "x": 0.0416,
+            "y": 0.0416,
+            "width": 0.5916,
+            "height": 0.1183
+          }
+        },
+        {
+          "rule_id": "decorative-motif-present",
+          "severity": "warn",
+          "description": "A 'node network' motif is present in the background (el_motif_node_network), but brand rules state that decorative motifs should be absent for this banner style."
+        },
+        {
+          "rule_id": "headline-not-two-color-split",
+          "severity": "block",
+          "description": "The headline 'UNIFIED TRADING AWAITS' (el_headline) is entirely white, violating the rule that the first clause should be yellow and the rest white.",
+          "bbox_norm": {
+            "x": 0.2016,
+            "y": 0.2333,
+            "width": 0.5975,
+            "height": 0.1916
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer font size (20px) is smaller than the recommended minimums for other banner formats, potentially impacting legibility.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8341,
+            "width": 1,
+            "height": 0.0908
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-between-headline-cta",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) is placed at the very bottom of the banner, but it should be positioned between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8341,
+            "width": 1,
+            "height": 0.0908
+          }
+        },
+        {
+          "rule_id": "disclaimer-has-background-band",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) is placed on a solid background band (el_disclaimer_band), which violates the rule that it should be text directly on the gradient.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8341,
+            "width": 1,
+            "height": 0.1658
+          }
+        },
+        {
+          "rule_id": "visual-placement-incorrect",
+          "severity": "warn",
+          "description": "The product visual (el_visual) is positioned on the left side of the canvas, whereas for this banner style, it should be on the right or at the bottom.",
+          "bbox_norm": {
+            "x": 0.0416,
+            "y": 0.635,
+            "width": 0.5975,
+            "height": 0.1858
+          }
+        },
+        {
+          "rule_id": "logo-not-top-center",
+          "severity": "warn",
+          "description": "For a square banner, the logo (el_logo) should ideally be centered horizontally at the top, but it is currently aligned to the top-left.",
+          "bbox_norm": {
+            "x": 0.0416,
+            "y": 0.0416,
+            "width": 0.5916,
+            "height": 0.1183
+          }
+        }
+      ],
+      "qa_at": "2026-05-21T08:22:35.996Z",
+      "model": "gemini-2.5-flash"
+    }
+  ],
+  "concept_summary": [
+    {
+      "concept_id": "concept_1",
+      "total_banners": 3,
+      "banners_with_violations": 3,
+      "violation_count": 36,
+      "severities": {
+        "info": 0,
+        "warn": 17,
+        "block": 19
+      }
+    },
+    {
+      "concept_id": "concept_2",
+      "total_banners": 3,
+      "banners_with_violations": 3,
+      "violation_count": 37,
+      "severities": {
+        "info": 0,
+        "warn": 22,
+        "block": 15
+      }
+    },
+    {
+      "concept_id": "concept_3",
+      "total_banners": 1,
+      "banners_with_violations": 1,
+      "violation_count": 8,
+      "severities": {
+        "info": 0,
+        "warn": 4,
+        "block": 4
+      }
+    }
+  ]
+}

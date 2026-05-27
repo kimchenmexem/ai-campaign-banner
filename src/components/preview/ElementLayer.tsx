@@ -129,18 +129,39 @@ export function ElementLayer({
     );
   }
 
-  // Text / headline / subheadline / legal-disclaimer / body etc.
-  // Mirrors the same two-color split path as ProductionElementLayer (so
-  // the live local preview matches the captured PNG byte-for-byte on
-  // headline rendering).
+  // Text / headline / subheadline / legal-disclaimer / body etc. Mirrors
+  // ProductionElementLayer so local previews match captured PNGs.
   if (el.type === "text" || el.type === "legal" || el.text !== undefined) {
     const text = el.text ?? "";
     const useEmphasis =
       el.emphasis_text &&
+      el.emphasis_style !== "solid" &&
       text.startsWith(el.emphasis_text) &&
       el.emphasis_text.length > 0 &&
       el.emphasis_text.length < text.length;
     const restText = useEmphasis ? text.slice(el.emphasis_text!.length) : text;
+    const emphasisColor = el.emphasis_color ?? "#F5C518";
+    const fontSize = el.font_size ?? 16;
+    const emphasisStyle: React.CSSProperties =
+      el.emphasis_style === "underline"
+        ? {
+            color: el.color ?? "#FFFFFF",
+            textDecorationLine: "underline",
+            textDecorationColor: emphasisColor,
+            textDecorationThickness: Math.max(2, Math.round(fontSize * 0.06)),
+            textUnderlineOffset: Math.max(3, Math.round(fontSize * 0.12)),
+          }
+        : el.emphasis_style === "outline"
+          ? {
+              color: el.color ?? "#FFFFFF",
+              textShadow: [
+                `1px 0 0 ${emphasisColor}`,
+                `-1px 0 0 ${emphasisColor}`,
+                `0 1px 0 ${emphasisColor}`,
+                `0 -1px 0 ${emphasisColor}`,
+              ].join(", "),
+            }
+          : { color: emphasisColor };
     return (
       <div
         style={{
@@ -164,9 +185,7 @@ export function ElementLayer({
       >
         <span style={{ width: "100%" }}>
           {useEmphasis && (
-            <span style={{ color: el.emphasis_color ?? "#F5C518" }}>
-              {el.emphasis_text}
-            </span>
+            <span style={emphasisStyle}>{el.emphasis_text}</span>
           )}
           <span>{restText}</span>
         </span>

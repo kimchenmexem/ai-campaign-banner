@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" data-source="figma-adapter" data-format="1200x1200" data-language="it">
+  <defs><clipPath id="clip_1200_1200_it"><rect x="0" y="0" width="1200" height="1200"/></clipPath></defs>
+  <rect x="0" y="0" width="1200" height="1200" fill="#00122C"/>
+  <g clip-path="url(#clip_1200_1200_it)">
+    <g transform="translate(0 286) scale(1) translate(0 0)" data-layer-role="source-artwork" data-source-viewbox="0 0 1200 628">
+<rect width="1200" height="628" fill="#00122C"/><circle cx="980" cy="160" r="120" fill="#006A97" opacity="0.55"/>
+    </g>
+    <g data-layer-role="adaptive-layout">
+      <text x="600" y="136" data-text-role="logo" font-family="Poppins" font-size="46" font-weight="800" fill="#FFFFFF" text-anchor="middle" xml:space="preserve"><tspan x="600" dy="0">MEXEM</tspan></text>
+      <text x="600" y="255.4" data-text-role="headline" font-family="Poppins" font-size="78" font-weight="800" fill="#F5C518" text-anchor="middle" xml:space="preserve"><tspan x="600" dy="0">Confronta i mercati</tspan></text>
+      <text x="600" y="399.58" data-text-role="subheadline" font-family="Poppins" font-size="42" font-weight="600" fill="#FFFFFF" text-anchor="middle" xml:space="preserve"><tspan x="600" dy="0">Segui i dati e agisci con controllo</tspan></text>
+      <rect x="405" y="890" width="390" height="76" rx="38" fill="#FFFFFF" data-layer-role="cta-background"/>
+      <text x="600" y="938.15" data-text-role="cta" font-family="Poppins" font-size="29" font-weight="800" fill="#0A0F1F" text-anchor="middle" xml:space="preserve"><tspan x="600" dy="0">Esplora la piattaforma</tspan></text>
+      <text x="600" y="1090.2" data-text-role="disclaimer" font-family="Poppins" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle" xml:space="preserve"><tspan x="600" dy="0">Attenzione. Investire comporta rischio di perdita. Si applicano commissioni di terzi e Termini e</tspan><tspan x="600" dy="18.9">condizioni.</tspan></text>
+    </g>
+  </g>
+</svg>

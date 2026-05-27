@@ -1,0 +1,283 @@
+{
+  "campaign_id": "cam_0deb4516",
+  "generated_at": "2026-05-25T11:33:30.614Z",
+  "total": 45,
+  "with_violations": 0,
+  "counts": {
+    "info": 0,
+    "warn": 0,
+    "block": 0
+  },
+  "banners": [
+    {
+      "ad_id": "ad_concept_107e396f_1_1200x628",
+      "concept_id": "concept_107e396f_1",
+      "format": "1200x628",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_1080x1080",
+      "concept_id": "concept_107e396f_1",
+      "format": "1080x1080",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_1080x1920",
+      "concept_id": "concept_107e396f_1",
+      "format": "1080x1920",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_1200x1200",
+      "concept_id": "concept_107e396f_1",
+      "format": "1200x1200",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_300x250",
+      "concept_id": "concept_107e396f_1",
+      "format": "300x250",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_336x280",
+      "concept_id": "concept_107e396f_1",
+      "format": "336x280",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_960x1200",
+      "concept_id": "concept_107e396f_1",
+      "format": "960x1200",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_320x100",
+      "concept_id": "concept_107e396f_1",
+      "format": "320x100",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_320x50",
+      "concept_id": "concept_107e396f_1",
+      "format": "320x50",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_300x1050",
+      "concept_id": "concept_107e396f_1",
+      "format": "300x1050",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_300x600",
+      "concept_id": "concept_107e396f_1",
+      "format": "300x600",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_160x600",
+      "concept_id": "concept_107e396f_1",
+      "format": "160x600",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_970x250",
+      "concept_id": "concept_107e396f_1",
+      "format": "970x250",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_728x90",
+      "concept_id": "concept_107e396f_1",
+      "format": "728x90",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_1_250x250",
+      "concept_id": "concept_107e396f_1",
+      "format": "250x250",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_1200x628",
+      "concept_id": "concept_107e396f_2",
+      "format": "1200x628",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_1080x1080",
+      "concept_id": "concept_107e396f_2",
+      "format": "1080x1080",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_1080x1920",
+      "concept_id": "concept_107e396f_2",
+      "format": "1080x1920",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_1200x1200",
+      "concept_id": "concept_107e396f_2",
+      "format": "1200x1200",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_300x250",
+      "concept_id": "concept_107e396f_2",
+      "format": "300x250",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_336x280",
+      "concept_id": "concept_107e396f_2",
+      "format": "336x280",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_960x1200",
+      "concept_id": "concept_107e396f_2",
+      "format": "960x1200",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_320x100",
+      "concept_id": "concept_107e396f_2",
+      "format": "320x100",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_320x50",
+      "concept_id": "concept_107e396f_2",
+      "format": "320x50",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_300x1050",
+      "concept_id": "concept_107e396f_2",
+      "format": "300x1050",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_300x600",
+      "concept_id": "concept_107e396f_2",
+      "format": "300x600",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_160x600",
+      "concept_id": "concept_107e396f_2",
+      "format": "160x600",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_970x250",
+      "concept_id": "concept_107e396f_2",
+      "format": "970x250",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_728x90",
+      "concept_id": "concept_107e396f_2",
+      "format": "728x90",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_2_250x250",
+      "concept_id": "concept_107e396f_2",
+      "format": "250x250",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_1200x628",
+      "concept_id": "concept_107e396f_3",
+      "format": "1200x628",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_1080x1080",
+      "concept_id": "concept_107e396f_3",
+      "format": "1080x1080",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_1080x1920",
+      "concept_id": "concept_107e396f_3",
+      "format": "1080x1920",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_1200x1200",
+      "concept_id": "concept_107e396f_3",
+      "format": "1200x1200",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_300x250",
+      "concept_id": "concept_107e396f_3",
+      "format": "300x250",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_336x280",
+      "concept_id": "concept_107e396f_3",
+      "format": "336x280",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_960x1200",
+      "concept_id": "concept_107e396f_3",
+      "format": "960x1200",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_320x100",
+      "concept_id": "concept_107e396f_3",
+      "format": "320x100",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_320x50",
+      "concept_id": "concept_107e396f_3",
+      "format": "320x50",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_300x1050",
+      "concept_id": "concept_107e396f_3",
+      "format": "300x1050",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_300x600",
+      "concept_id": "concept_107e396f_3",
+      "format": "300x600",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_160x600",
+      "concept_id": "concept_107e396f_3",
+      "format": "160x600",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_970x250",
+      "concept_id": "concept_107e396f_3",
+      "format": "970x250",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_728x90",
+      "concept_id": "concept_107e396f_3",
+      "format": "728x90",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_107e396f_3_250x250",
+      "concept_id": "concept_107e396f_3",
+      "format": "250x250",
+      "violations": []
+    }
+  ]
+}

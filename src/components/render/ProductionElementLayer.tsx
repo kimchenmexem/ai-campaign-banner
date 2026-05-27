@@ -155,18 +155,38 @@ export function ProductionElementLayer({
 
   // ── Text / headline / subheadline / body / legal-disclaimer ──────────────
   if (el.type === "text" || el.type === "legal" || typeof el.text === "string") {
-    // Two-color split rendering for the MEXEM reference headline rule.
-    // When `emphasis_text` is set and is a prefix of `text`, we paint the
-    // prefix in `emphasis_color` and the rest in `color`. Both spans live
-    // in the SAME text block so they wrap as one paragraph — matching
-    // the references' "yellow first clause / white rest" treatment.
+    // Headline emphasis rendering. The style changes color/decoration only:
+    // font family, weight, size, line-height, and layout box stay untouched.
     const text = el.text ?? "";
     const useEmphasis =
       el.emphasis_text &&
+      el.emphasis_style !== "solid" &&
       text.startsWith(el.emphasis_text) &&
       el.emphasis_text.length > 0 &&
       el.emphasis_text.length < text.length;
     const restText = useEmphasis ? text.slice(el.emphasis_text!.length) : text;
+    const emphasisColor = el.emphasis_color ?? "#F5C518";
+    const fontSize = el.font_size ?? 16;
+    const emphasisStyle: React.CSSProperties =
+      el.emphasis_style === "underline"
+        ? {
+            color: el.color ?? "#FFFFFF",
+            textDecorationLine: "underline",
+            textDecorationColor: emphasisColor,
+            textDecorationThickness: Math.max(2, Math.round(fontSize * 0.06)),
+            textUnderlineOffset: Math.max(3, Math.round(fontSize * 0.12)),
+          }
+        : el.emphasis_style === "outline"
+          ? {
+              color: el.color ?? "#FFFFFF",
+              textShadow: [
+                `1px 0 0 ${emphasisColor}`,
+                `-1px 0 0 ${emphasisColor}`,
+                `0 1px 0 ${emphasisColor}`,
+                `0 -1px 0 ${emphasisColor}`,
+              ].join(", "),
+            }
+          : { color: emphasisColor };
     return (
       <div
         style={{
@@ -190,9 +210,7 @@ export function ProductionElementLayer({
       >
         <span style={{ width: "100%" }}>
           {useEmphasis && (
-            <span style={{ color: el.emphasis_color ?? "#F5C518" }}>
-              {el.emphasis_text}
-            </span>
+            <span style={emphasisStyle}>{el.emphasis_text}</span>
           )}
           <span>{restText}</span>
         </span>

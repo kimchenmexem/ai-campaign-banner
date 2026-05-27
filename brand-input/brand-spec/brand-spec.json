@@ -28,17 +28,14 @@
     },
     "cta_buttons": {
       "what_we_need": "colours, boundaries, text size",
-      "background_colors": ["#204489", "#FFFFFF"],
+      "background_colors": ["#FFFFFF", "#F5C518"],
       "text_size_px": 35,
       "allowed_texts": [
-        "Start investing",
-        "Start trading",
-        "Open an account",
-        "Start now",
-        "Learn more",
+        "Compare markets",
+        "View tools",
         "Explore platform"
       ],
-      "notes": "Approved CTA variants (renderer picks one per concept, all are on-brand): navy block (legacy primary), white pill (reference creative), ghost outline (text-only), yellow accent block."
+      "notes": "Approved CTA variants for the reference banners: white pill for compact / in-layout CTAs and yellow full-width band where the reference format requires it."
     },
     "background_gradient": {
       "what_we_need": "brand gradient palette",

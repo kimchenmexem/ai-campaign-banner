@@ -212,13 +212,14 @@ manifest element. Pick at most TWO per concept (clean line over clutter).
   - kicker: a short pull-quote line that complements the headline, ≤ 120
     chars. Examples: "Data you can act on. Tools that get out of the way."
 
-HEADLINE 2-COLOR SPLIT (MEXEM reference style):
-  Every headline ships with a TWO-COLOR split where the first clause renders in
-  brand-accent yellow and the rest in white. You declare the split via the
+HEADLINE EMPHASIS SPLIT (MEXEM reference structure):
+  Every headline may ship with a prefix split where the first clause receives
+  the campaign's selected emphasis treatment and the rest stays in white.
+  You declare the split via the
   copy_package.headline_emphasis field — it must be a verbatim PREFIX of
   copy_package.headline.
     headline:           "ONE INVESTING ACCOUNT. ACCESS ACROSS EVERY DEVICE."
-    headline_emphasis:  "ONE INVESTING ACCOUNT."         ← yellow part
+    headline_emphasis:  "ONE INVESTING ACCOUNT."         ← emphasized prefix
     (renderer paints "ACCESS ACROSS EVERY DEVICE." in white)
   Other valid splits from the brand's reference banners:
     headline: "GLOBAL INVESTING, LOCAL SUPPORT."
@@ -393,7 +394,7 @@ const OUTPUT_TEMPLATE = `{
       },
       "copy_package": {
         "headline": "string (<80 chars)",
-        "headline_emphasis": "string — verbatim PREFIX of headline, painted yellow (rest paints white). Omit if the headline doesn't split cleanly.",
+        "headline_emphasis": "string — verbatim PREFIX of headline for the renderer's emphasis treatment (rest paints white). Omit if the headline doesn't split cleanly.",
         "subheadline": "string",
         "body": "string (optional)",
         "cta": "string (<24 chars)",
@@ -441,6 +442,7 @@ function buildUserPrompt(input: AIProviderInput): string {
     ...brandKit.colors.accent,
     ...brandKit.colors.background,
   ].join(", ");
+  const approvedCtaTexts = brandKit.cta.allowed_texts.join(", ");
   const langMeta = LANG_META[brief.language];
   // Resolve the disclaimer in priority order:
   //   1. Brand kit's per-language override (regulator-vetted exact wording)
@@ -471,6 +473,9 @@ function buildUserPrompt(input: AIProviderInput): string {
     localizedFromKit
       ? `REGULATOR-APPROVED DISCLAIMER for ${langMeta.englishName} (USE VERBATIM, do NOT translate or paraphrase — compliance requires exact wording): ${fallbackDisclaimer}`
       : `Default disclaimer for ${langMeta.englishName} (use verbatim if risk-warning required): ${fallbackDisclaimer}`,
+    approvedCtaTexts
+      ? `Approved CTA text options from Settings: ${approvedCtaTexts}. Adapt or translate them into ${langMeta.englishName} when needed, keeping the CTA short.`
+      : "",
     `Brand color palette (use only these in visual_direction): ${palette}`,
     `Brand font: ${brandKit.typography.families.headline}`,
     brief.notes ? `Notes: ${brief.notes}` : "",
@@ -595,12 +600,17 @@ brand_strategy.background_style: solid | gradient | deep_gradient | split_color
 brand_strategy.palette_intensity: calm | standard | high_contrast
 brand_strategy.accent_usage: none | subtle | cta_only | strong
 brand_strategy.logo_prominence: small | standard | prominent
-cta_strategy.placement: below_headline | below_subheadline | bottom_left | bottom_center | bottom_right | top_right | inline_with_headline
+cta_strategy.placement: below_headline | below_subheadline | bottom_left | bottom_center | bottom_right | top_right | inline_with_headline | bottom_band
 cta_strategy.weight: ghost | standard | loud
 cta_strategy.width: fit_text | fixed | full_text_block
 spacing.density: minimal | balanced | rich
 spacing.padding: tight | standard | airy
 spacing.safe_area_priority: normal | high
+
+REFERENCE-STYLE DEFAULTS:
+  - leaderboard (1200x628): cta_strategy.placement="bottom_band"; use_motif=false; use_pattern=false.
+  - portrait (1080x1920): use_motif=false; use_pattern=false; CTA should be a white pill, not an accent block.
+  - Prefer primary_visual="mockup" or "abstract_gradient". Avoid primary_visual="motif" or "pattern" unless the brief explicitly asks for texture-led creative.
 
 The format_adaptation keys are: leaderboard (1200x628), square (1080x1080), portrait (1080x1920). Each value is a partial override of the top-level fields above (only composition, primary_visual, visual_position, visual_weight, headline_position, headline_scale, text_alignment, max_text_density, cta_placement, density, and a free-text "notes" field are overridable per-format).
 
@@ -1139,30 +1149,51 @@ export class OpenAIProvider implements AIProvider {
     // protect the layout. 1.15 is at the upper end of where gpt-4o still
     // produces valid JSON reliably.
     const isExploratory = opts?.creativeMode === "exploratory";
-    const temperature = isExploratory ? 1.15 : 0.85;
+    const baseTemperature = isExploratory ? 1.15 : 0.85;
     const systemPrompt = isExploratory
       ? SYSTEM_PROMPT + EXPLORATORY_CONCEPT_SUFFIX
       : SYSTEM_PROMPT;
-    let raw: unknown;
-    try {
-      const completion = await client.chat.completions.create({
-        model,
-        response_format: { type: "json_object" },
-        max_tokens: 8192,
-        // Higher temperature encourages the 3 concepts to diverge instead of
-        // collapsing into variants of the same idea.
-        temperature,
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: buildUserPrompt(input) },
-        ],
-      });
-      const text = completion.choices[0]?.message?.content ?? "{}";
-      raw = unwrapIfEnveloped(JSON.parse(text));
-    } catch (err) {
-      throw new Error(`OpenAI call failed: ${redact((err as Error).message)}`);
+    // Retry on schema-validation OR JSON-parse failure. The model can
+    // produce a truncated / malformed response (missing copy_package,
+    // 4th concept as a string, enum-value drift) on a noisy roll. The
+    // retry uses temperature 0.6 — calmer than the first pass — so the
+    // second attempt is much more likely to satisfy the schema even if
+    // the first was 1.15. API errors (network/auth/rate-limit) are NOT
+    // retried here; they fail fast.
+    const userPrompt = buildUserPrompt(input);
+    const MAX_ATTEMPTS = 2;
+    let lastErr: unknown;
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+      const temperature = attempt === 1 ? baseTemperature : 0.6;
+      let raw: unknown;
+      try {
+        const completion = await client.chat.completions.create({
+          model,
+          response_format: { type: "json_object" },
+          max_tokens: 8192,
+          temperature,
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt },
+          ],
+        });
+        const text = completion.choices[0]?.message?.content ?? "{}";
+        raw = unwrapIfEnveloped(JSON.parse(text));
+      } catch (err) {
+        throw new Error(`OpenAI call failed: ${redact((err as Error).message)}`);
+      }
+      const parsed = AICampaignPlanRawSchema.safeParse(raw);
+      if (parsed.success) return parsed.data;
+      lastErr = parsed.error;
+      // Last attempt — fall through and throw the formatted schema error.
     }
-    return AICampaignPlanRawSchema.parse(raw);
+    // All retries exhausted. Surface the last validation error in the
+    // same shape the route's error-handler expects.
+    throw lastErr instanceof Error
+      ? lastErr
+      : new Error(
+          `AI response failed schema after ${MAX_ATTEMPTS} attempts: ${JSON.stringify(lastErr).slice(0, 800)}`,
+        );
   }
 
   // Critique pass — same model, dedicated system prompt. In standard mode

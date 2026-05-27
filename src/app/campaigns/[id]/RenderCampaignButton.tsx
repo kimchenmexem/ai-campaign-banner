@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 // Client island for the "Render now" CTA on /campaigns/[id]. POSTs to
 // /api/render-campaign and reloads the page so the new PNGs show up.
-// Render takes ~20-40s for 9 ads.
+// Render takes ~20-40s for a typical campaign.
 //
 // UX signals operators rely on to know rendering finished:
 //   1. While in flight: button shows "Rendering… 12s" with a live elapsed
@@ -42,7 +42,6 @@ export function RenderCampaignButton({
   // sees forward progress. Cleared as soon as the request settles.
   useEffect(() => {
     if (!pending) {
-      setElapsedSec(0);
       startedAtRef.current = null;
       return;
     }
@@ -58,6 +57,7 @@ export function RenderCampaignButton({
   async function onClick() {
     setError(null);
     setSuccess(null);
+    setElapsedSec(0);
     setPending(true);
     const t0 = Date.now();
     try {
@@ -84,6 +84,7 @@ export function RenderCampaignButton({
     } catch (err) {
       setError((err as Error).message);
     } finally {
+      setElapsedSec(0);
       setPending(false);
     }
   }
@@ -111,7 +112,7 @@ export function RenderCampaignButton({
       </button>
       {pending && (
         <div className="text-xs text-zinc-500 dark:text-zinc-400">
-          Working — typically 20–40s for 9 ads. The page will refresh
+          Working — typically 20–40s. The page will refresh
           automatically when it finishes.
         </div>
       )}
@@ -122,7 +123,7 @@ export function RenderCampaignButton({
         </div>
       )}
       {error && (
-        <div className="rounded-md border border-rose-300 bg-rose-50 p-2 text-xs text-rose-900 dark:border-rose-700 dark:bg-rose-950/40 dark:text-rose-200">
+        <div className="rounded-md border border-amber-300 bg-amber-50 p-2 text-xs text-amber-900 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-200">
           {error}
         </div>
       )}

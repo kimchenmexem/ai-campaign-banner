@@ -16,21 +16,15 @@ import { LanguageSchema } from "@/lib/i18n/language";
 // sizes_per_format / outer_margins / safe_areas) — otherwise the planner
 // will throw on an unknown format.
 export const CampaignFormatSchema = z.enum([
-  // Original 3
+  // Supported campaign sizes. Keep this list in sync with the production
+  // MEXEM size matrix; duplicates in external references are represented once.
   "1200x628",   // LinkedIn / Facebook link share, leaderboard
   "1080x1080",  // Instagram feed square
   "1080x1920",  // Instagram / TikTok story
-  // Added: more sizes
-  "1080x1350",  // Instagram feed portrait (4:5)
-  "1200x675",   // X (Twitter) feed (16:9)
   "1200x1200",  // LinkedIn / generic large square
-  "1500x500",   // X / LinkedIn cover (3:1)
-  "1920x1080",  // YouTube card / landscape HD
-  // Added: MEXEM spec set (Playwright render path only — Bannerbear +
-  // Midjourney paths intentionally not extended yet).
   "300x250",    // IAB Medium Rectangle (compact display)
   "336x280",    // IAB Large Rectangle (compact display)
-  "960x1200",   // Vertical 4:5 (display / social portrait, taller than 1080x1350)
+  "960x1200",   // Vertical 4:5 display / social portrait
   // MEXEM Set 2 — IAB / display standard formats with per-format
   // measurements sourced from MEXEM_Banner_Specifications_Set_2.
   "320x100",    // wide micro banner
@@ -43,6 +37,15 @@ export const CampaignFormatSchema = z.enum([
   "250x250",    // square compact
 ]);
 export type CampaignFormat = z.infer<typeof CampaignFormatSchema>;
+
+export const HeadlineEmphasisStyleSchema = z.enum([
+  "auto",
+  "accent_color",
+  "underline",
+  "outline",
+  "solid",
+]);
+export type HeadlineEmphasisStyle = z.infer<typeof HeadlineEmphasisStyleSchema>;
 
 export const CampaignBriefSchema = z.object({
   brief_id: z.string().min(1),
@@ -105,6 +108,15 @@ export const CampaignBriefSchema = z.object({
   //      free-form notes. Useful when the operator pastes IDs into a generic
   //      brief description without touching the form's dedicated input.
   generated_asset_ids: z.array(z.string().min(1)).optional(),
+  // Headline emphasis treatment. Does not change font family, font weight,
+  // font size, line height, or layout boxes. It only changes the visual
+  // treatment of the existing emphasis prefix:
+  //   auto         — rotate safe treatments across concepts
+  //   accent_color — current MEXEM yellow prefix
+  //   underline    — white text with yellow underline on the prefix
+  //   outline      — white text with subtle yellow stroke on the prefix
+  //   solid        — no prefix treatment; whole headline uses regular color
+  headline_emphasis_style: HeadlineEmphasisStyleSchema.optional(),
   // Diversity controls (added 2026-05). When the operator hits "Generate"
   // with the same brief twice, today's pipeline produces the same visuals
   // because the PRNG is keyed on campaign_id (which depends on brief_id).
@@ -116,12 +128,11 @@ export const CampaignBriefSchema = z.object({
   //                   uses `${campaign_id}::${diversity_seed}` instead of
   //                   just `campaign_id`. Same seed = same visuals. New
   //                   seed = new visuals.
-  //   max_diversity   When true, the per-concept picks are forced to be
-  //                   distinct: 3 different templates, 3 different
-  //                   motifs, 3 different background palette starting
-  //                   indices. Default behaviour is "preferred but not
-  //                   enforced" — a 3-concept campaign can land on the
-  //                   same motif twice. With this flag it can't.
+  //   max_diversity   Unless explicitly false, the per-concept picks are
+  //                   forced to be distinct: 3 different templates, 3
+  //                   different motifs, 3 different background palette
+  //                   starting indices. This keeps a 3-concept campaign
+  //                   from reading as the same ad with only copy swapped.
   diversity_seed: z.number().int().nonnegative().optional(),
   max_diversity: z.boolean().optional(),
   created_at: z.string(),

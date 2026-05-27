@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import type { BrandKitLite } from "@/lib/schemas/brandKit.schema";
+import { LANG_META, type Language } from "@/lib/i18n/language";
 
 interface Props {
   initialKit: BrandKitLite;
@@ -17,6 +18,36 @@ const btnCls =
   "rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-1 text-xs hover:bg-zinc-100 dark:hover:bg-zinc-800";
 const btnPrimaryCls =
   "rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 disabled:opacity-50";
+
+const DISCLAIMER_LANGUAGE_OPTIONS: Array<{
+  countryName: string;
+  language: Language;
+}> = [
+  { countryName: "United Kingdom", language: "en" },
+  { countryName: "France", language: "fr" },
+  { countryName: "Italy", language: "it" },
+  { countryName: "Netherlands", language: "nl" },
+  { countryName: "United Arab Emirates", language: "ar" },
+  { countryName: "Israel", language: "he" },
+];
+
+type TopicDisclaimerKey = keyof NonNullable<BrandKitLite["legal"]["topic_disclaimers"]>;
+
+const TOPIC_DISCLAIMER_OPTIONS: Array<{
+  key: TopicDisclaimerKey;
+  label: string;
+}> = [
+  { key: "etf_free", label: "ETF / free trading" },
+  { key: "complex_products", label: "Complex products" },
+  { key: "tax_advice", label: "Tax advice" },
+];
+
+function linesToArray(value: string): string[] {
+  return value
+    .split(/\r?\n/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
 
 function HexInput({
   value,
@@ -90,6 +121,30 @@ function ColorArray({
   );
 }
 
+function ArrayTextarea({
+  label,
+  values,
+  rows = 4,
+  onChange,
+}: {
+  label: string;
+  values: string[];
+  rows?: number;
+  onChange: (next: string[]) => void;
+}) {
+  return (
+    <div className="space-y-2">
+      <div className={labelCls}>{label}</div>
+      <textarea
+        value={values.join("\n")}
+        onChange={(e) => onChange(linesToArray(e.target.value))}
+        rows={rows}
+        className={textareaCls}
+      />
+    </div>
+  );
+}
+
 export function BrandKitForm({ initialKit }: Props) {
   const [kit, setKit] = useState<BrandKitLite>(initialKit);
   const [status, setStatus] = useState<
@@ -120,6 +175,42 @@ export function BrandKitForm({ initialKit }: Props) {
 
   function patchLegal(patch: Partial<BrandKitLite["legal"]>) {
     setKit((prev) => ({ ...prev, legal: { ...prev.legal, ...patch } }));
+  }
+
+  function patchLocalizedDisclaimer(language: Language, value: string) {
+    setKit((prev) => {
+      const disclaimers = { ...(prev.legal.disclaimers_by_language ?? {}) };
+      if (value.trim().length === 0) {
+        delete disclaimers[language];
+      } else {
+        disclaimers[language] = value;
+      }
+      return {
+        ...prev,
+        legal: {
+          ...prev.legal,
+          disclaimers_by_language: disclaimers,
+        },
+      };
+    });
+  }
+
+  function patchTopicDisclaimer(key: TopicDisclaimerKey, value: string) {
+    setKit((prev) => {
+      const topicDisclaimers = { ...(prev.legal.topic_disclaimers ?? {}) };
+      if (value.trim().length === 0) {
+        delete topicDisclaimers[key];
+      } else {
+        topicDisclaimers[key] = value;
+      }
+      return {
+        ...prev,
+        legal: {
+          ...prev.legal,
+          topic_disclaimers: topicDisclaimers,
+        },
+      };
+    });
   }
 
   function reset() {
@@ -222,6 +313,50 @@ export function BrandKitForm({ initialKit }: Props) {
             </label>
           </div>
         </div>
+        <ArrayTextarea
+          label="legal_claim_rules"
+          values={kit.legal.legal_claim_rules}
+          rows={4}
+          onChange={(v) => patchLegal({ legal_claim_rules: v })}
+        />
+      </section>
+
+      <section className={sectionCls}>
+        <h2 className="text-sm font-semibold">Localized disclaimers</h2>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {DISCLAIMER_LANGUAGE_OPTIONS.map((option) => (
+            <div key={option.language} className="space-y-2">
+              <div className={labelCls}>
+                {option.countryName} · {LANG_META[option.language].nativeName}
+              </div>
+              <textarea
+                value={kit.legal.disclaimers_by_language?.[option.language] ?? ""}
+                onChange={(e) =>
+                  patchLocalizedDisclaimer(option.language, e.target.value)
+                }
+                rows={3}
+                className={textareaCls}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className={sectionCls}>
+        <h2 className="text-sm font-semibold">Topic disclaimers</h2>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {TOPIC_DISCLAIMER_OPTIONS.map((option) => (
+            <div key={option.key} className="space-y-2">
+              <div className={labelCls}>{option.label}</div>
+              <textarea
+                value={kit.legal.topic_disclaimers?.[option.key] ?? ""}
+                onChange={(e) => patchTopicDisclaimer(option.key, e.target.value)}
+                rows={4}
+                className={textareaCls}
+              />
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ── CTA defaults ──────────────────────────────────── */}
@@ -243,15 +378,21 @@ export function BrandKitForm({ initialKit }: Props) {
             />
           </div>
         </div>
+        <ArrayTextarea
+          label="allowed_texts"
+          values={kit.cta.allowed_texts}
+          rows={6}
+          onChange={(v) => patchCta({ allowed_texts: v })}
+        />
       </section>
 
       {/* ── CTA variants ──────────────────────────────────── */}
       <section className={sectionCls}>
         <h2 className="text-sm font-semibold">CTA variants</h2>
         <p className="text-xs text-zinc-500">
-          The contrast guard (PR 3516fa9) picks among these at render time, preferring whichever
-          stays ≥ 3:1 against the canvas background. Editing values here changes what the guard
-          can fall back to.
+          The renderer uses these approved CTA looks for future banners. White pill is the
+          default in-layout CTA; yellow band is used where the reference layout requires a
+          full-width bottom CTA.
         </p>
         <div className="space-y-3">
           {(kit.cta.variants ?? []).map((v, i) => (
@@ -312,7 +453,7 @@ export function BrandKitForm({ initialKit }: Props) {
           </span>
         )}
         {status.kind === "error" && (
-          <div className="text-sm text-red-700 dark:text-red-400 space-y-1">
+          <div className="text-sm text-amber-700 dark:text-amber-400 space-y-1">
             <div>✗ {status.message}</div>
             {status.issues && status.issues.length > 0 && (
               <ul className="ml-4 text-xs list-disc">

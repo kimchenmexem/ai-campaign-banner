@@ -358,7 +358,7 @@ function RenderStatusBadge({ status }: { status: string }) {
     status === "completed"
       ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200"
       : status === "failed"
-        ? "bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-200"
+        ? "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200"
         : "bg-zinc-100 text-zinc-700 dark:bg-zinc-900 dark:text-zinc-300";
   const label = status === "not_rendered" ? "not rendered" : status;
   return (
@@ -384,7 +384,7 @@ function FinalPanel({
   }
   if (record.status !== "completed" || !record.output_public_path) {
     return (
-      <div className="rounded-md border border-red-300 bg-red-50 p-3 text-xs text-red-900 dark:border-red-800 dark:bg-red-950 dark:text-red-100">
+      <div className="rounded-md border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-100">
         <div className="font-medium">Render failed</div>
         {record.error && <div className="mt-1 break-words">{record.error}</div>}
       </div>

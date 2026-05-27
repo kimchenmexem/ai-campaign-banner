@@ -1,0 +1,103 @@
+{
+  "campaign_id": "cam_ea7f4d47",
+  "generated_at": "2026-05-26T06:20:05.713Z",
+  "total": 15,
+  "with_violations": 0,
+  "counts": {
+    "info": 0,
+    "warn": 0,
+    "block": 0
+  },
+  "banners": [
+    {
+      "ad_id": "ad_concept_1_960x1200",
+      "concept_id": "concept_1",
+      "format": "960x1200",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_1_320x50",
+      "concept_id": "concept_1",
+      "format": "320x50",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_1_1200x628",
+      "concept_id": "concept_1",
+      "format": "1200x628",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_1_1080x1920",
+      "concept_id": "concept_1",
+      "format": "1080x1920",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_1_728x90",
+      "concept_id": "concept_1",
+      "format": "728x90",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_2_960x1200",
+      "concept_id": "concept_2",
+      "format": "960x1200",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_2_320x50",
+      "concept_id": "concept_2",
+      "format": "320x50",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_2_1200x628",
+      "concept_id": "concept_2",
+      "format": "1200x628",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_2_1080x1920",
+      "concept_id": "concept_2",
+      "format": "1080x1920",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_2_728x90",
+      "concept_id": "concept_2",
+      "format": "728x90",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_3_960x1200",
+      "concept_id": "concept_3",
+      "format": "960x1200",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_3_320x50",
+      "concept_id": "concept_3",
+      "format": "320x50",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_3_1200x628",
+      "concept_id": "concept_3",
+      "format": "1200x628",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_3_1080x1920",
+      "concept_id": "concept_3",
+      "format": "1080x1920",
+      "violations": []
+    },
+    {
+      "ad_id": "ad_concept_3_728x90",
+      "concept_id": "concept_3",
+      "format": "728x90",
+      "violations": []
+    }
+  ]
+}

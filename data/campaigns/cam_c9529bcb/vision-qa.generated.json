@@ -1,0 +1,150 @@
+{
+  "campaign_id": "cam_c9529bcb",
+  "generated_at": "2026-05-21T09:41:01.043Z",
+  "total": 1,
+  "with_violations": 1,
+  "banners": [
+    {
+      "ad_id": "ad_concept_1_1200x1200",
+      "format": "1200x1200",
+      "png_path": "public/rendered-ads/campaigns/cam_c9529bcb/concept_1_1200x1200.png",
+      "violations": [
+        {
+          "rule_id": "accent-color-missing",
+          "severity": "block",
+          "description": "No yellow accent color is used anywhere in the banner, but yellow is specified as the only accent color."
+        },
+        {
+          "rule_id": "background-not-gradient",
+          "severity": "block",
+          "description": "The banner background is a solid color (#005D8D) instead of the required linear gradient from #00122C to #006A97.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "motif-present",
+          "severity": "warn",
+          "description": "A node network motif (el_motif_node_network) is present in the background, but the brand rules explicitly state \"No motif\".",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "rule_id": "logo-not-top-center",
+          "severity": "warn",
+          "description": "For the square format, the logo (el_logo) should be centered horizontally at the top, but it is placed top-left.",
+          "bbox_norm": {
+            "x": 0.0508,
+            "y": 0.0508,
+            "width": 0.5917,
+            "height": 0.1183
+          }
+        },
+        {
+          "rule_id": "headline-not-two-color",
+          "severity": "block",
+          "description": "The headline (el_headline) is entirely white, but it must always have a two-color split (yellow for the first part, white for the rest).",
+          "bbox_norm": {
+            "x": 0.2017,
+            "y": 0.2425,
+            "width": 0.5975,
+            "height": 0.1917
+          }
+        },
+        {
+          "rule_id": "headline-not-all-caps",
+          "severity": "block",
+          "description": "The headline text \"Access 170 Global Markets\" (el_headline) is not in ALL CAPS.",
+          "bbox_norm": {
+            "x": 0.2017,
+            "y": 0.2425,
+            "width": 0.5975,
+            "height": 0.1917
+          }
+        },
+        {
+          "rule_id": "headline-not-left-aligned",
+          "severity": "warn",
+          "description": "The headline (el_headline) is center-aligned, but the square format's extrapolated layout implies left-aligned text (\"text-leading\").",
+          "bbox_norm": {
+            "x": 0.2017,
+            "y": 0.2425,
+            "width": 0.5975,
+            "height": 0.1917
+          }
+        },
+        {
+          "rule_id": "subheadline-not-left-aligned",
+          "severity": "warn",
+          "description": "The subheadline (el_subheadline) is center-aligned, but the square format's extrapolated layout implies left-aligned text (\"text-leading\").",
+          "bbox_norm": {
+            "x": 0.2017,
+            "y": 0.4425,
+            "width": 0.5975,
+            "height": 0.0642
+          }
+        },
+        {
+          "rule_id": "disclaimer-font-size-too-small",
+          "severity": "warn",
+          "description": "The disclaimer font size (20px) is smaller than the recommended range for similar formats (~22-26px for leaderboard).",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8175,
+            "width": 1,
+            "height": 0.0908
+          }
+        },
+        {
+          "rule_id": "disclaimer-not-between-headline-cta",
+          "severity": "block",
+          "description": "The disclaimer (el_disclaimer) is placed at the very bottom, below the CTA, instead of between the headline block and the CTA.",
+          "bbox_norm": {
+            "x": 0,
+            "y": 0.8175,
+            "width": 1,
+            "height": 0.0908
+          }
+        },
+        {
+          "rule_id": "cta-text-not-all-caps",
+          "severity": "block",
+          "description": "The CTA text \"Explore Your Options\" (el_cta) is not in ALL CAPS.",
+          "bbox_norm": {
+            "x": 0.2017,
+            "y": 0.58,
+            "width": 0.5975,
+            "height": 0.0642
+          }
+        },
+        {
+          "rule_id": "missing-device-mockup",
+          "severity": "block",
+          "description": "The banner lacks a device mockup, which is specified as the primary visual element for visual variety, especially for a square format."
+        }
+      ],
+      "qa_at": "2026-05-21T08:50:33.373Z",
+      "model": "gemini-2.5-flash"
+    }
+  ],
+  "concept_summary": [
+    {
+      "concept_id": "concept_1",
+      "total_banners": 1,
+      "banners_with_violations": 1,
+      "violation_count": 12,
+      "severities": {
+        "info": 0,
+        "warn": 5,
+        "block": 7
+      }
+    }
+  ]
+}

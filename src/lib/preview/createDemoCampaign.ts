@@ -33,6 +33,7 @@ import {
   type RendererHints,
 } from "@/lib/ai/mapVisualSpecToInternals";
 import type { DeviceType } from "@/lib/preview/mockupManifest";
+import type { HeadlineEmphasisStyle } from "@/lib/schemas/campaignBrief.schema";
 import {
   CloudinaryAssetMapSchema,
   CloudinaryCompositeMapSchema,
@@ -102,8 +103,18 @@ export type DemoMidjourneySelection = z.infer<typeof DemoMidjourneySelectionSche
 
 export const DemoAssetSelectionSchema = z.object({
   brand_logo: z.string().nullable(),
+  // Public paths copied from brand-input and approved for logo rendering.
+  // The renderer may choose among these supplied variants only; it must not
+  // synthesize a text logo, favicon-only logo, or derived brand-only crop.
+  brand_logo_paths: z.array(z.string()).default([]),
   powered_by_ib: z.string().nullable(),
   background: z.string().nullable(),
+  // Per-size background assets indexed by format key (e.g. "300x250" →
+  // "/brand-input-preview/backgrounds/background-300x250.png"). Populated
+  // when files named `background_<W>x<H>.{png,jpg,jpeg,webp}` exist in
+  // brand-input/background/. buildElements uses the matching entry for
+  // the current ad size instead of `background` / `background_fill`.
+  backgrounds_by_size: z.record(z.string(), z.string()).default({}),
   mockup: z.string().nullable(),
   platform_screenshot: z.string().nullable(),
   background_fill: DemoBackgroundFillSchema,
@@ -212,6 +223,10 @@ interface AdConceptPlan {
   device_type: DeviceType;
   context: ScreenshotContext;
   fallback_contexts?: ScreenshotContext[];
+  // Optional concept-level variant. Used only after the context/device match
+  // is resolved, so the same campaign can cycle through supplied visual
+  // assets without changing the approved reference layout.
+  variant_index?: number;
 }
 
 const AD_CONCEPT_BY_SIZE: Record<string, AdConceptPlan> = {
@@ -223,6 +238,24 @@ const AD_CONCEPT_BY_SIZE: Record<string, AdConceptPlan> = {
     fallback_contexts: ["green_data"],
   },
 };
+
+const SUPPORTED_CAMPAIGN_SIZE_KEYS = new Set([
+  "1200x628",
+  "1080x1080",
+  "1080x1920",
+  "1200x1200",
+  "300x250",
+  "336x280",
+  "960x1200",
+  "320x100",
+  "320x50",
+  "300x1050",
+  "300x600",
+  "160x600",
+  "970x250",
+  "728x90",
+  "250x250",
+]);
 
 export interface CreateDemoCampaignResult {
   demo: DemoCampaign;
@@ -588,9 +621,16 @@ export function pickVisualForSpec(args: PickVisualArgs): VisualForSpec {
   const mockupPool = [...elementMockups].sort(
     (a, b) => safeFileBytes(b) - safeFileBytes(a),
   );
+  const sameDeviceMockups = mockupPool.filter(
+    (m) => deviceTypeFromAsset(m) === plan.device_type,
+  );
+  const preferredMockups =
+    sameDeviceMockups.length > 0 ? sameDeviceMockups : mockupPool;
+  const variantIndex = Math.max(0, plan.variant_index ?? 0);
   const mockup =
-    mockupPool.find((m) => deviceTypeFromAsset(m) === plan.device_type) ??
-    mockupPool[0];
+    preferredMockups.length > 0
+      ? preferredMockups[variantIndex % preferredMockups.length]
+      : undefined;
 
   const screenshots = assets.items.filter(
     (i) => i.canonical_folder_type === "platform_screenshots",
@@ -854,6 +894,104 @@ function ctaSeedToInt(s: string): number {
   return Math.abs(h) >>> 0;
 }
 
+function getReferenceAccent(brandKit: BrandKitLite): string {
+  return brandKit.colors.accent.find((c) => c.toUpperCase() === "#F5C518")
+    ?? brandKit.colors.accent[0]
+    ?? "#F5C518";
+}
+
+const TEXT_EMPHASIS_RED = "#D81222";
+
+type RenderedHeadlineEmphasisStyle = Exclude<HeadlineEmphasisStyle, "auto">;
+
+const AUTO_HEADLINE_EMPHASIS_STYLES: RenderedHeadlineEmphasisStyle[] = [
+  "accent_color",
+  "underline",
+  "solid",
+];
+
+function conceptSeedIndex(conceptId: string): number {
+  const conceptIndex = Number(conceptId.match(/(\d+)$/)?.[1] ?? NaN);
+  return Number.isFinite(conceptIndex)
+    ? Math.max(0, conceptIndex - 1)
+    : ctaSeedToInt(conceptId);
+}
+
+function resolveHeadlineEmphasisStyle(
+  requested: HeadlineEmphasisStyle,
+  conceptId: string,
+): RenderedHeadlineEmphasisStyle {
+  if (requested !== "auto") return requested;
+  const idx = conceptSeedIndex(conceptId);
+  return AUTO_HEADLINE_EMPHASIS_STYLES[
+    idx % AUTO_HEADLINE_EMPHASIS_STYLES.length
+  ];
+}
+
+function resolveHeadlineEmphasisColor(
+  brandKit: BrandKitLite,
+  conceptId: string,
+  style: RenderedHeadlineEmphasisStyle,
+): string {
+  const yellow = getReferenceAccent(brandKit);
+  if (style === "solid") return yellow;
+  return conceptSeedIndex(conceptId) % 3 === 1 ? TEXT_EMPHASIS_RED : yellow;
+}
+
+function normalizeHex(value: string | undefined): string | null {
+  if (!value) return null;
+  const v = value.trim().toUpperCase();
+  if (/^#[0-9A-F]{6}$/.test(v)) return v;
+  if (/^#[0-9A-F]{3}$/.test(v)) {
+    return `#${v[1]}${v[1]}${v[2]}${v[2]}${v[3]}${v[3]}`;
+  }
+  return null;
+}
+
+function usesMexemReferenceKit(brandKit: BrandKitLite): boolean {
+  return (
+    brandKit.colors.background.includes("#00122C") &&
+    brandKit.colors.background.includes("#006A97")
+  );
+}
+
+const MEXEM_LOGO_P_ASPECT = 871 / 635;
+const MEXEM_LOGO_V_ASPECT = 888 / 192;
+const MEXEM_PORTRAIT_LOGO_FORMATS = new Set(["1080x1920", "960x1200"]);
+
+function shouldUseMexemPortraitLogoVariant(size: { name: string; width: number; height: number }): boolean {
+  return MEXEM_PORTRAIT_LOGO_FORMATS.has(size.name);
+}
+
+function mexemLogoAspectForSize(size: { name: string; width: number; height: number }): number {
+  return shouldUseMexemPortraitLogoVariant(size) ? MEXEM_LOGO_P_ASPECT : MEXEM_LOGO_V_ASPECT;
+}
+
+function shouldUseMexemResponsiveVisual(size: { name: string; width: number; height: number }): boolean {
+  if (
+    size.name === "1200x628" ||
+    size.name === "1080x1080" ||
+    size.name === "1080x1920"
+  ) {
+    return true;
+  }
+  if (size.height <= 120) return false;
+  if (
+    size.name === "300x250" ||
+    size.name === "336x280" ||
+    size.name === "250x250" ||
+    size.name === "728x90" ||
+    size.name === "970x250"
+  ) {
+    return false;
+  }
+  return size.width * size.height >= 90_000;
+}
+
+function _isReferencePortrait(size: { width: number; height: number }): boolean {
+  return size.height > size.width * 1.3;
+}
+
 function pickCtaPalette(args: {
   ctaStyle: "standard" | "ghost" | "accent" | string | undefined;
   brandKit: BrandKitLite;
@@ -987,6 +1125,7 @@ export function pickAssets(
   const logoCandidates = byCanonical("brand_logo").filter(
     (i) => !/fav/i.test(i.original_filename),
   );
+  const brand_logo_paths = logoCandidates.map((i) => i.public_path);
   const logoOnLight = logoCandidates.find((i) => /blue|colour|color/i.test(i.original_filename));
   const logoOnDark = logoCandidates.find((i) => /white/i.test(i.original_filename));
   const brand_logo =
@@ -1009,15 +1148,31 @@ export function pickAssets(
     .slice(0, 2); // demo emits up to 2 decoratives
   const mjHero = approvedUploads.find((u) => u.intended_use === "hero_visual") ?? null;
 
-  const default_background_asset = byCanonical("backgrounds")[0]?.public_path ?? null;
-  const background_asset =
-    mjBackground?.cloudinary_secure_url ??
-    mjBackground?.public_path ??
-    default_background_asset;
-  // Note: when a Midjourney upload drives the background, the upload_id is
-  // recorded on el_background.midjourney for full traceability — no
-  // warning is emitted because this is the designed behaviour when MJ
-  // uploads exist in the inventory.
+  // Per-size backgrounds. The brand owner drops files named
+  // `background_<W>x<H>.{png,jpg,jpeg,webp}` into brand-input/background/;
+  // each banner size pulls its own variant. Generated / Midjourney backgrounds
+  // are intentionally ignored for campaign backgrounds; production banners
+  // must use operator-supplied brand-input background assets only.
+  const SIZE_SUFFIX_RE = /background[_-]?(\d+)x(\d+)/i;
+  const backgroundsAll = byCanonical("backgrounds");
+  const backgrounds_by_size: Record<string, string> = {};
+  for (const bg of backgroundsAll) {
+    const m = bg.original_filename.match(SIZE_SUFFIX_RE) ?? bg.filename.match(SIZE_SUFFIX_RE);
+    if (!m) continue;
+    const key = `${m[1]}x${m[2]}`;
+    if (!SUPPORTED_CAMPAIGN_SIZE_KEYS.has(key)) continue;
+    if (!(key in backgrounds_by_size)) backgrounds_by_size[key] = bg.public_path;
+  }
+  const generic_background_asset =
+    backgroundsAll.find((bg) => !SIZE_SUFFIX_RE.test(bg.original_filename) && !SIZE_SUFFIX_RE.test(bg.filename))?.public_path ??
+    backgroundsAll[0]?.public_path ??
+    null;
+  const background_asset = generic_background_asset;
+  if (mjBackground) {
+    warnings.push(
+      "Ignoring approved Midjourney background upload — campaign backgrounds are locked to brand-input/background assets.",
+    );
+  }
   void mjBackground;
 
   const mockup = byCanonical("mockups")[0]?.public_path ?? null;
@@ -1032,13 +1187,15 @@ export function pickAssets(
 
   return {
     brand_logo,
+    brand_logo_paths,
     powered_by_ib,
     background: background_asset,
+    backgrounds_by_size,
     mockup,
     platform_screenshot,
     background_fill,
     midjourney: {
-      background_upload_id: mjBackground?.upload_id ?? null,
+      background_upload_id: null,
       decorative_upload_ids: mjDecoratives.map((u) => u.upload_id),
       hero_upload_id: mjHero?.upload_id ?? null,
     },
@@ -1151,6 +1308,7 @@ interface BuildAdSpecArgs {
   midjourneyById: Map<string, MidjourneyUpload>;
   midjourneyAssignments: MidjourneyAssignment[];
   copy: { headline: string; headline_emphasis?: string; subheadline: string; cta: string; disclaimer: string };
+  headlineEmphasisStyle?: HeadlineEmphasisStyle;
   size: { name: string; width: number; height: number };
   channel: string;
   composition?: CompositionKind;
@@ -1337,12 +1495,13 @@ export function buildAdSpec(args: BuildAdSpecArgs): DemoAdSpec {
     cta: { ...densityLayout.cta, width: finalCtaWidth },
   };
   const langForLayout = LANG_META[args.language ?? "en"];
-  const layout = applyCompositionFromSpec(
+  const composedLayout = applyCompositionFromSpec(
     ctaSizedLayout,
     size,
     rendererHints,
     langForLayout.rtl,
   );
+  const layout = applyMexemReferenceLayout(composedLayout, size, args.brandKit);
   const elements = buildElements({
     campaignId,
     conceptId,
@@ -1355,6 +1514,7 @@ export function buildAdSpec(args: BuildAdSpecArgs): DemoAdSpec {
     midjourney: resolvedMidjourney,
     brandKit,
     copy,
+    headlineEmphasisStyle: args.headlineEmphasisStyle,
     composition,
     template,
     language: args.language ?? "en",
@@ -1389,9 +1549,320 @@ export function buildAdSpec(args: BuildAdSpecArgs): DemoAdSpec {
   };
 }
 
+function applyMexemReferenceLayout(
+  layout: ComputedLayout,
+  size: { name: string; width: number; height: number },
+  brandKit: BrandKitLite,
+): ComputedLayout {
+  const next: ComputedLayout = {
+    ...layout,
+    logo: { ...layout.logo },
+    headline: { ...layout.headline },
+    subheadline: { ...layout.subheadline },
+    cta: { ...layout.cta },
+    riskWarning: { ...layout.riskWarning },
+    visual: layout.visual ? { ...layout.visual } : null,
+  };
+
+  if (!usesMexemReferenceKit(brandKit)) return next;
+
+  if (size.name === "1200x628") {
+    const ctaH = Math.max(82, Math.round(size.height * 0.13));
+    next.logo = { ...next.logo, x: 50, y: 50, width: 250, height: 50 };
+    next.cta = {
+      ...next.cta,
+      x: 0,
+      y: size.height - ctaH,
+      width: size.width,
+      height: ctaH,
+      fontSize: Math.max(28, next.cta.fontSize),
+    };
+    next.headline = {
+      ...next.headline,
+      x: 50,
+      y: 190,
+      width: 610,
+      height: 250,
+      fontSize: Math.max(84, next.headline.fontSize),
+    };
+    next.subheadline = {
+      ...next.subheadline,
+      x: 50,
+      y: 448,
+      width: 610,
+      height: 0,
+    };
+    next.riskWarning = {
+      ...next.riskWarning,
+      x: 50,
+      y: next.cta.y - 48,
+      width: 610,
+      height: 34,
+      fontSize: Math.max(22, next.riskWarning.fontSize),
+    };
+    if (next.visual) {
+      next.visual = {
+        ...next.visual,
+        x: 680,
+        y: 95,
+        width: 470,
+        height: 420,
+      };
+    }
+  } else if (size.name === "1080x1080") {
+    const textX = 60;
+    const textW = 560;
+    next.logo = {
+      ...next.logo,
+      x: Math.round((size.width - 540) / 2),
+      y: 56,
+      width: 540,
+      height: 118,
+    };
+    next.headline = {
+      ...next.headline,
+      x: textX,
+      y: 230,
+      width: textW,
+      height: 300,
+      fontSize: Math.min(Math.max(60, next.headline.fontSize), 64),
+    };
+    next.subheadline = { ...next.subheadline, x: textX, y: 530, width: textW, height: 0 };
+    next.riskWarning = {
+      ...next.riskWarning,
+      x: textX,
+      y: 596,
+      width: textW,
+      height: 38,
+      fontSize: Math.max(20, next.riskWarning.fontSize),
+    };
+    next.cta = {
+      ...next.cta,
+      x: textX,
+      y: 650,
+      width: textW,
+      height: 82,
+      fontSize: Math.max(32, next.cta.fontSize),
+    };
+    if (next.visual) {
+      next.visual = {
+        ...next.visual,
+        x: 640,
+        y: 300,
+        width: 390,
+        height: 520,
+      };
+    }
+  } else if (size.name === "1080x1920") {
+    const ctaW = 650;
+    const ctaH = 88;
+    const logoH = 260;
+    const logoW = Math.round(logoH * MEXEM_LOGO_P_ASPECT);
+    next.logo = {
+      ...next.logo,
+      x: Math.round((size.width - logoW) / 2),
+      y: 96,
+      width: logoW,
+      height: logoH,
+    };
+    next.headline = {
+      ...next.headline,
+      x: 70,
+      y: 400,
+      width: 940,
+      height: 620,
+      fontSize: Math.min(Math.max(120, next.headline.fontSize), 150),
+    };
+    next.subheadline = { ...next.subheadline, x: 70, y: 1010, width: 940, height: 0 };
+    next.riskWarning = {
+      ...next.riskWarning,
+      x: 80,
+      y: 1058,
+      width: 920,
+      height: 74,
+      fontSize: Math.max(28, next.riskWarning.fontSize),
+    };
+    next.cta = {
+      ...next.cta,
+      x: Math.round((size.width - ctaW) / 2),
+      y: 1160,
+      width: ctaW,
+      height: ctaH,
+      fontSize: Math.max(36, next.cta.fontSize),
+    };
+    if (next.visual) {
+      next.visual = {
+        ...next.visual,
+        x: 230,
+        y: 1320,
+        width: 620,
+        height: 560,
+      };
+    }
+  } else {
+    return applyMexemResponsiveDisplayLayout(next, size);
+  }
+
+  return next;
+}
+
+function applyMexemResponsiveDisplayLayout(
+  layout: ComputedLayout,
+  size: { name: string; width: number; height: number },
+): ComputedLayout {
+  const minDim = Math.min(size.width, size.height);
+  const micro = size.height <= 120;
+  const margin = Math.max(4, Math.min(50, Math.round(minDim * (micro ? 0.08 : 0.06))));
+  const innerW = Math.max(24, size.width - margin * 2);
+
+  const next: ComputedLayout = {
+    ...layout,
+    margin: {
+      ...layout.margin,
+      top: margin,
+      right: margin,
+      bottom: margin,
+      left: margin,
+    },
+    logo: { ...layout.logo },
+    headline: { ...layout.headline },
+    subheadline: { ...layout.subheadline },
+    cta: { ...layout.cta },
+    riskWarning: { ...layout.riskWarning },
+    visual: layout.visual ? { ...layout.visual } : null,
+  };
+
+  if (micro) {
+    const logoH = Math.max(8, Math.min(18, Math.round(size.height * 0.24)));
+    const logoW = Math.min(Math.round(logoH * 4), Math.round(size.width * 0.2));
+    const ctaH = Math.max(10, Math.round(size.height * 0.28));
+    const ctaW = Math.max(58, Math.min(Math.round(size.width * 0.34), 124));
+    const ctaX = Math.max(margin, size.width - margin - ctaW);
+    const ctaY = Math.max(margin, size.height - margin - ctaH);
+    const discH = Math.max(6, Math.min(10, Math.round(size.height * 0.16)));
+    const discY = Math.max(margin, ctaY - discH - 2);
+    const headlineX = margin + logoW + margin;
+    const headlineW = Math.max(30, ctaX - headlineX - margin);
+    const headlineH = Math.max(8, discY - margin - 1);
+    const headlineFont = Math.max(8, Math.min(20, Math.round(headlineH * 0.78)));
+
+    next.logo = {
+      ...next.logo,
+      x: margin,
+      y: margin,
+      width: logoW,
+      height: logoH,
+    };
+    next.headline = {
+      ...next.headline,
+      x: headlineX,
+      y: margin,
+      width: headlineW,
+      height: headlineH,
+      fontSize: headlineFont,
+    };
+    next.subheadline = {
+      ...next.subheadline,
+      x: headlineX,
+      y: margin + headlineH,
+      width: headlineW,
+      height: 0,
+      fontSize: Math.max(7, Math.round(headlineFont * 0.7)),
+    };
+    next.riskWarning = {
+      ...next.riskWarning,
+      x: headlineX,
+      y: discY,
+      width: headlineW,
+      height: discH,
+      fontSize: Math.max(6, Math.min(9, discH)),
+    };
+    next.cta = {
+      ...next.cta,
+      x: ctaX,
+      y: ctaY,
+      width: ctaW,
+      height: ctaH,
+      fontSize: Math.max(7, Math.min(14, Math.round(ctaH * 0.55))),
+    };
+    next.visual = null;
+    return next;
+  }
+
+  const logoH = Math.max(16, Math.min(72, Math.round(size.height * 0.07)));
+  const logoW = Math.min(Math.round(logoH * 4), innerW);
+  const logoX = Math.round((size.width - logoW) / 2);
+  const ctaH = Math.max(22, Math.min(76, Math.round(size.height * 0.08)));
+  const ctaW = Math.max(
+    Math.min(innerW, 96),
+    Math.min(innerW, Math.round(size.width * 0.58)),
+  );
+  const ctaX = Math.round((size.width - ctaW) / 2);
+  const ctaY = size.height - margin - ctaH;
+  const discH = Math.max(10, Math.min(28, Math.round(size.height * 0.04)));
+  const discY = Math.max(margin, ctaY - discH - Math.max(4, Math.round(minDim * 0.02)));
+  const headlineY = margin + logoH + Math.max(6, Math.round(minDim * 0.04));
+  const headlineH = Math.max(16, discY - headlineY - Math.max(6, Math.round(minDim * 0.035)));
+  const headlineFont = Math.max(
+    12,
+    Math.min(layout.headline.fontSize, Math.round(Math.min(headlineH * 0.42, size.width * 0.11))),
+  );
+  const wantsVisual = shouldUseMexemResponsiveVisual(size);
+
+  next.logo = {
+    ...next.logo,
+    x: logoX,
+    y: margin,
+    width: logoW,
+    height: logoH,
+  };
+  next.headline = {
+    ...next.headline,
+    x: margin,
+    y: headlineY,
+    width: innerW,
+    height: headlineH,
+    fontSize: headlineFont,
+  };
+  next.subheadline = {
+    ...next.subheadline,
+    x: margin,
+    y: headlineY + headlineH,
+    width: innerW,
+    height: 0,
+    fontSize: Math.max(8, Math.round(headlineFont * 0.45)),
+  };
+  next.riskWarning = {
+    ...next.riskWarning,
+    x: margin,
+    y: discY,
+    width: innerW,
+    height: discH,
+    fontSize: Math.max(8, Math.min(18, Math.round(discH * 0.75))),
+  };
+  next.cta = {
+    ...next.cta,
+    x: ctaX,
+    y: ctaY,
+    width: ctaW,
+    height: ctaH,
+    fontSize: Math.max(10, Math.min(28, Math.round(ctaH * 0.45))),
+  };
+  next.visual = wantsVisual
+    ? {
+        ...(next.visual ?? { x: margin, y: headlineY + headlineH, width: innerW, height: Math.max(1, discY - headlineY - headlineH) }),
+        x: margin,
+        y: headlineY + headlineH + Math.max(8, Math.round(minDim * 0.04)),
+        width: innerW,
+        height: Math.max(1, discY - headlineY - headlineH - Math.max(16, Math.round(minDim * 0.08))),
+      }
+    : null;
+  return next;
+}
+
 function pickTemplateUid(
   brandKit: BrandKitLite,
-  size: { width: number; height: number },
+  _size: { width: number; height: number },
 ): string | null {
   // brand kit's allowed_templates is a flat list. Without a size-keyed map at
   // this layer we cannot pick the right one — that's a future intake step.
@@ -1428,16 +1899,15 @@ interface ComputedLayout {
 // ── Format classifier ───────────────────────────────────────────────────────
 // Every layout / typography / logo decision in this file used to be gated on
 // `size.name === "1200x628" / "1080x1080" / "1080x1920"`. That worked when
-// only 3 formats existed, but adding new sizes (1200x675, 1500x500, etc.)
-// silently fell through into whichever else-branch was last — so a 1500×500
-// wide banner accidentally got a 1080×1920 portrait layout.
+// only 3 formats existed, but adding more supported production sizes silently
+// fell through into whichever else-branch was last.
 //
 // `classifyFormat` derives the routing intent from aspect ratio + absolute
 // height instead of from a magic string. Buckets:
-//   - ultra_wide : AR > 2.5  (1500x500 = 3.0)
-//   - wide       : AR ≥ 1.4  (1200x628 = 1.91, 1200x675 = 1.78, 1920x1080 = 1.78)
+//   - ultra_wide : AR > 2.5
+//   - wide       : AR ≥ 1.4  (1200x628 = 1.91)
 //   - square     : 0.95–1.05 (1080x1080, 1200x1200)
-//   - portrait   : 0.65–0.94 (1080x1350)
+//   - portrait   : 0.65–0.94 (960x1200)
 //   - tall_portrait : AR < 0.65 (1080x1920 = 0.5625)
 // height_class is independent — drives "is this canvas vertically tight?" so
 // even a wide format gets aggressive font caps when the canvas is short.
@@ -1522,14 +1992,8 @@ function computeLayout(
 
   // Scale the headline down for vertically-tight formats. The original 3
   // sizes (1200x628 wide-tight, 1080x1080 square, 1080x1920 portrait-tall)
-  // keep their historic caps verbatim. New formats are routed through the
-  // bucket+height classifier:
-  //   - ultra_wide (1500x500)   : 56  — very tight, 3:1 AR
-  //   - wide+tight (1200x675)   : 64  — same as 1200x628
-  //   - wide+medium (1920x1080) : 110 — full HD has room, near-cap=brand kit value
-  //   - square+wide (1200x1200) : 96  — slightly bigger than 1080x1080
-  //   - portrait (1080x1350)    : 100 — uncapped (4:5 still has vertical room)
-  //   - tall_portrait (1080x1920): uncapped
+  // keep their historic caps verbatim. Other supported formats are routed
+  // through the bucket+height classifier.
   let headlineSize = baseHeadline;
   if (size.name === "1200x628") headlineSize = Math.min(baseHeadline, 64);
   else if (size.name === "1080x1080") headlineSize = Math.min(baseHeadline, 84);
@@ -1570,30 +2034,30 @@ function computeLayout(
     // disclaimer is meant to be that small). Bumped to 28 so the
     // subheadline reads as readable supporting copy, not legal microtype.
     bodySize = Math.min(baseBody, 28);
-    disclaimerCap = 14;
+    disclaimerCap = 24;
   } else if (size.name === "1080x1080") {
-    disclaimerCap = 18;
-  } else if (size.name === "1080x1920") {
     disclaimerCap = 22;
+  } else if (size.name === "1080x1920") {
+    disclaimerCap = 30;
   } else if (fmt.bucket === "ultra_wide") {
-    // 1500x500 — tight vertical. Body still bumped slightly above the
-    // disclaimer cap so the hierarchy reads.
+    // Tight vertical formats. Body still sits slightly above the disclaimer
+    // cap so the hierarchy reads.
     ctaSize = Math.min(baseCta, 24);
     bodySize = Math.min(baseBody, 22);
     disclaimerCap = 12;
   } else if (fmt.bucket === "wide" && fmt.height_class === "tight") {
-    // 1200x675 — same envelope as 1200x628 (incl. bumped body cap).
+    // Same envelope as 1200x628 (incl. bumped body cap).
     ctaSize = Math.min(baseCta, 28);
     bodySize = Math.min(baseBody, 28);
     disclaimerCap = 14;
   } else if (fmt.bucket === "wide") {
-    // 1920x1080 — generous. Keep brand-kit values, allow bigger disclaimer.
+    // Generous wide formats. Keep brand-kit values, allow bigger disclaimer.
     disclaimerCap = 22;
   } else if (fmt.bucket === "square") {
     // 1200x1200 — slightly more breathing room than 1080x1080.
     disclaimerCap = 20;
   } else {
-    // portrait / tall_portrait (1080x1350) — same envelope as 1080x1920.
+    // portrait / tall_portrait — same envelope as 1080x1920.
     disclaimerCap = 22;
   }
   let riskSize = Math.max(LEGAL_DISCLAIMER_FLOOR, Math.min(baseRisk, disclaimerCap));
@@ -1632,7 +2096,19 @@ function computeLayout(
   const SPEC_CTA_WIDTH = specElements?.cta?.width
     ? Math.round(specElements.cta.width)
     : undefined;
-  const SPEC_CTA_HEIGHT = specElements?.cta?.height
+  // Per the brand-spec converter contract (see convertBrandInputToBrandKit.ts
+  // ~line 76): some formats encode the CTA "layout zone" (the rectangle the
+  // CTA may occupy) under cta.{width,height} rather than the visible button
+  // size. The marker the spec uses is cta.height == text.height — for those,
+  // the height is the zone, not the button. Skip it and let the renderer's
+  // font-derived fallback (Math.max(80, ctaSize * 2.4) etc.) pick a sane
+  // button height. Without this, the 1200x1200 CTA renders at 437px tall,
+  // covering ~36% of canvas and burying the subheadline.
+  const specCtaHeightIsZone =
+    specElements?.cta?.height &&
+    specElements?.text?.height &&
+    Math.abs(specElements.cta.height - specElements.text.height) < 1;
+  const SPEC_CTA_HEIGHT = specElements?.cta?.height && !specCtaHeightIsZone
     ? Math.round(specElements.cta.height)
     : undefined;
   const SPEC_RISK_WIDTH = specElements?.risk_message?.width
@@ -1641,6 +2117,12 @@ function computeLayout(
   const SPEC_RISK_HEIGHT = specElements?.risk_message?.height
     ? Math.round(specElements.risk_message.height)
     : undefined;
+  // The disclaimer's box height comes from the brand spec when present, else
+  // the font-derived computed value. The Y-position must be derived from the
+  // SAME height — using `riskWarningHeight` in the y calc while writing
+  // SPEC_RISK_HEIGHT into the manifest pushes the disclaimer past the canvas
+  // bottom by (spec − computed) whenever the spec value is taller.
+  const FINAL_RISK_HEIGHT = SPEC_RISK_HEIGHT ?? riskWarningHeight;
   // When the spec risk-message width is narrower than the canvas (e.g.
   // 1080x1920 has a 938-wide risk band on a 1080 canvas), center the band
   // horizontally. Otherwise stick to the existing left-anchor at innerLeft.
@@ -1665,24 +2147,28 @@ function computeLayout(
   // back to the canvas-percent + variant-aspect derivation otherwise.
   const logoOverride =
     kit.logo.size_per_format?.[size.name as keyof NonNullable<typeof kit.logo.size_per_format>];
-  const logoH = logoOverride ? Math.round(logoOverride.height) : pickLogoHeight(size, hints);
+  const referenceLandscape = size.name === "1200x628";
+  const logoH = referenceLandscape
+    ? 50
+    : logoOverride
+      ? Math.round(logoOverride.height)
+      : pickLogoHeight(size, hints);
   // Logo aspect ratio depends on which MEXEM variant pickBrandLogoVariant
   // will pick at render time:
-  //   - LANDSCAPE banners (1200x628) use "logo-white-v.png" — wide wordmark
-  //     with the "Powered by IB" sub-line laid out horizontally. ~4:1 ratio.
-  //   - SQUARE / PORTRAIT banners (1080x1080, 1080x1920) use "logo-white-p.png"
-  //     — wordmark with the sub-line STACKED below it. ~1.6:1 ratio.
+  //   - social portrait formats use "logo-white-p.png" — stacked lockup.
+  //   - vertical display + landscape/square formats use "logo-white-v.png".
   //
   // Setting the bbox to the wrong ratio + object-fit:contain produced a
   // visible asymmetry on portrait: the logo bounding box was at (50,50)
   // but the visible wordmark was centered inside an oversized 352×88 box,
   // landing at x≈200. The visible distance from the left edge no longer
   // matched the 50 px top inset. Match the bbox to the actual variant.
-  const isPortraitVariant = size.height > size.width; // matches pickBrandLogoVariant's choice
-  const logoAspect = isPortraitVariant ? 1.6 : 4;
-  const logoW = logoOverride
-    ? Math.round(logoOverride.width)
-    : Math.round(logoH * logoAspect);
+  const logoAspect = mexemLogoAspectForSize(size);
+  const logoW = referenceLandscape
+    ? 250
+    : logoOverride
+      ? Math.round(logoOverride.width)
+      : Math.round(logoH * logoAspect);
   // Brand rule (operator-set): MEXEM logo lives in the top-LEFT corner
   // with EQUAL distance from the top edge and the left edge. The kit's
   // m.top / m.left may differ; we use a single LOGO_CORNER_INSET so the
@@ -1712,8 +2198,7 @@ function computeLayout(
   // (mirror of MEXEM top-left), bottom-right corner on square / portrait /
   // tall_portrait. Same equal-inset rule on landscape so both corners read
   // as a paired set. Was hard-coded to "1200x628" before; now uses the
-  // format bucket so 1200x675, 1500x500, 1920x1080 also get the top-right
-  // pairing.
+  // format bucket so every supported wide format gets the top-right pairing.
   const ibkrW = Math.round(logoW * 0.7);
   const ibkrH = Math.round(logoH * 0.7);
   const ibkrLogo: ComputedLayout["ibkrLogo"] =
@@ -1736,11 +2221,9 @@ function computeLayout(
   // bucket here so they inherit the right composition + spacing logic
   // instead of falling through to the portrait fallback.
   //
-  //   wide / ultra_wide  → wide-banner branch  (1200x628, 1200x675,
-  //                                              1500x500, 1920x1080)
+  //   wide / ultra_wide  → wide-banner branch  (1200x628, 970x250, etc.)
   //   square             → square branch        (1080x1080, 1200x1200)
-  //   portrait / tall_portrait → portrait fall-through  (1080x1350,
-  //                                                       1080x1920)
+  //   portrait / tall_portrait → portrait fall-through  (960x1200, 1080x1920)
   if (fmt.is_wideish) {
     const ctaH = SPEC_CTA_HEIGHT ?? Math.max(56, Math.round(ctaSize * 2));
     const ctaW = SPEC_CTA_WIDTH ?? Math.max(180, Math.round(ctaSize * 8));
@@ -1782,9 +2265,9 @@ function computeLayout(
         visual: { x: visualX, y: visualY, width: visualW, height: visualH },
         riskWarning: {
           x: RISK_X ?? innerLeft,
-          y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
+          y: size.height - m.bottom + riskWarningBottomGap - FINAL_RISK_HEIGHT,
           width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
-          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
+          height: FINAL_RISK_HEIGHT,
           fontSize: riskSize,
         },
       };
@@ -1819,9 +2302,9 @@ function computeLayout(
         visual: { x: 0, y: 0, width: size.width, height: size.height },
         riskWarning: {
           x: RISK_X ?? innerLeft,
-          y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
+          y: size.height - m.bottom + riskWarningBottomGap - FINAL_RISK_HEIGHT,
           width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
-          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
+          height: FINAL_RISK_HEIGHT,
           fontSize: riskSize,
         },
       };
@@ -1849,9 +2332,9 @@ function computeLayout(
       visual: { x: visualX, y: visualY, width: visualW, height: visualH },
       riskWarning: {
         x: RISK_X ?? innerLeft,
-        y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
+        y: size.height - m.bottom + riskWarningBottomGap - FINAL_RISK_HEIGHT,
         width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
-        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
+        height: FINAL_RISK_HEIGHT,
         fontSize: riskSize,
       },
     };
@@ -1895,9 +2378,9 @@ function computeLayout(
         visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
         riskWarning: {
           x: RISK_X ?? innerLeft,
-          y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
+          y: size.height - m.bottom + riskWarningBottomGap - FINAL_RISK_HEIGHT,
           width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
-          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
+          height: FINAL_RISK_HEIGHT,
           fontSize: riskSize,
         },
       };
@@ -1922,9 +2405,9 @@ function computeLayout(
         visual: { x: 0, y: 0, width: size.width, height: size.height },
         riskWarning: {
           x: RISK_X ?? innerLeft,
-          y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
+          y: size.height - m.bottom + riskWarningBottomGap - FINAL_RISK_HEIGHT,
           width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
-          height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
+          height: FINAL_RISK_HEIGHT,
           fontSize: riskSize,
         },
       };
@@ -1948,9 +2431,9 @@ function computeLayout(
       visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
       riskWarning: {
         x: RISK_X ?? innerLeft,
-        y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
+        y: size.height - m.bottom + riskWarningBottomGap - FINAL_RISK_HEIGHT,
         width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
-        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
+        height: FINAL_RISK_HEIGHT,
         fontSize: riskSize,
       },
     };
@@ -1994,9 +2477,9 @@ function computeLayout(
       visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
       riskWarning: {
         x: RISK_X ?? innerLeft,
-        y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
+        y: size.height - m.bottom + riskWarningBottomGap - FINAL_RISK_HEIGHT,
         width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
-        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
+        height: FINAL_RISK_HEIGHT,
         fontSize: riskSize,
       },
     };
@@ -2035,9 +2518,9 @@ function computeLayout(
       visual: { x: 0, y: 0, width: size.width, height: size.height },
       riskWarning: {
         x: RISK_X ?? innerLeft,
-        y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
+        y: size.height - m.bottom + riskWarningBottomGap - FINAL_RISK_HEIGHT,
         width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
-        height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
+        height: FINAL_RISK_HEIGHT,
         fontSize: riskSize,
       },
     };
@@ -2063,9 +2546,9 @@ function computeLayout(
     visual: { x: innerLeft, y: visualY, width: textWidth, height: visualH },
     riskWarning: {
       x: RISK_X ?? innerLeft,
-      y: size.height - m.bottom + riskWarningBottomGap - riskWarningHeight,
+      y: size.height - m.bottom + riskWarningBottomGap - FINAL_RISK_HEIGHT,
       width: SPEC_RISK_WIDTH ?? size.width - m.left - m.right,
-      height: SPEC_RISK_HEIGHT ?? riskWarningHeight,
+      height: FINAL_RISK_HEIGHT,
       fontSize: riskSize,
     },
   };
@@ -2309,18 +2792,14 @@ function applyCompositionFromSpec(
     next.cta.x = placement.x;
     next.cta.y = placement.y;
     // bottom_band requires special handling — full canvas width, sharp
-    // corners. Per the operator's brand rule "CTA always above disclaimer,
-    // disclaimer always at the bottom", the band is positioned RIGHT ABOVE
-    // the disclaimer band rather than at the very bottom edge. The
-    // disclaimer occupies the navy strip below the yellow band.
+    // corners. The reference banners use a true bottom CTA band; the legal
+    // line sits above it in the remaining copy area.
     if (hints.ctaPlacement === "bottom_band") {
       const BAND_HEIGHT = Math.max(72, Math.round(size.height * 0.13));
-      const BAND_DISCLAIMER_GAP = 8;
       next.cta.x = 0;
       next.cta.width = size.width;
       next.cta.height = BAND_HEIGHT;
-      // Disclaimer top edge:
-      next.cta.y = next.riskWarning.y - BAND_HEIGHT - BAND_DISCLAIMER_GAP;
+      next.cta.y = size.height - BAND_HEIGHT;
     }
   }
 
@@ -2333,6 +2812,27 @@ function applyCompositionFromSpec(
   if (hints.ctaPlacement !== "bottom_band") {
     next.cta.x = Math.max(innerLeft, Math.min(next.cta.x, innerRight - next.cta.width));
     next.cta.y = Math.min(next.cta.y, ctaCeiling - next.cta.height);
+    // Final guard: if clamping the CTA above pulled it back over the
+    // subheadline (tight formats like 1200x628 where ctaCeiling lands
+    // mid-subheadline), shrink the subheadline.height to clear the CTA
+    // by MIN_CTA_GAP. Without this, the CTA renders stamped over the
+    // last line of subheadline text. The case-A block below also handles
+    // this, but only when `next.cta.y >= next.subheadline.y` AND
+    // applyCtaPlacement above didn't move the CTA out of that zone. This
+    // guard runs unconditionally on the post-clamp state and is the
+    // load-bearing one for normal-priority safe-area campaigns.
+    if (!hints.suppressSubheadline) {
+      const SUB_BOX_FLOOR = 36;
+      const MIN_GAP_FINAL = 16;
+      const subBottomCurrent = next.subheadline.y + next.subheadline.height;
+      const subBottomTarget = next.cta.y - MIN_GAP_FINAL;
+      if (subBottomCurrent > subBottomTarget && next.cta.y > next.subheadline.y) {
+        next.subheadline.height = Math.max(
+          SUB_BOX_FLOOR,
+          subBottomTarget - next.subheadline.y,
+        );
+      }
+    }
   }
 
   // Always-on subheadline-vs-CTA non-overlap.
@@ -2604,12 +3104,149 @@ function applyCompositionFromSpec(
   // writers that pin the CTA near the disclaimer band. Runs AFTER the
   // logo→headline snap so subheadline's shifted position is what we
   // anchor on.
-  if (next.textToCtaGap != null) {
+  if (next.textToCtaGap != null && hints.ctaPlacement !== "bottom_band") {
     const subBottom = next.subheadline.y + next.subheadline.height;
     next.cta.y = Math.min(
       subBottom + next.textToCtaGap,
       ctaCeiling - next.cta.height,
     );
+  }
+
+  if (hints.ctaPlacement === "bottom_band") {
+    const LEGAL_MIN_HEIGHT = 18;
+    const STACK_GAP = 12;
+    const LEGAL_GAP = 8;
+    const logoBottom = next.logo.y + next.logo.height;
+    const targetHeadlineY = logoBottom + Math.min(next.logoToTextGap ?? 48, 48);
+    const textBottomLimit = next.cta.y - LEGAL_MIN_HEIGHT - LEGAL_GAP * 3;
+    const availableTextH = textBottomLimit - targetHeadlineY;
+
+    if (availableTextH > 0) {
+      const headlineFloor = Math.min(next.headline.height, 72);
+      const subFloor = Math.min(next.subheadline.height, 42);
+      let headlineH = next.headline.height;
+      let subH = next.subheadline.height;
+      const naturalStackH = headlineH + STACK_GAP + subH;
+
+      if (naturalStackH > availableTextH) {
+        const overflow = naturalStackH - availableTextH;
+        const headlineRoom = Math.max(0, headlineH - headlineFloor);
+        const subRoom = Math.max(0, subH - subFloor);
+        const totalRoom = headlineRoom + subRoom;
+
+        if (totalRoom > 0) {
+          const headlineShrink = Math.min(
+            headlineRoom,
+            Math.ceil(overflow * (headlineRoom / totalRoom)),
+          );
+          const subShrink = Math.min(subRoom, overflow - headlineShrink);
+          headlineH -= headlineShrink;
+          subH -= subShrink;
+        }
+
+        const remainingOverflow = Math.max(
+          0,
+          headlineH + STACK_GAP + subH - availableTextH,
+        );
+        if (remainingOverflow > 0) {
+          subH = Math.max(24, subH - remainingOverflow);
+        }
+      }
+
+      next.headline = { ...next.headline, y: targetHeadlineY, height: headlineH };
+      next.subheadline = {
+        ...next.subheadline,
+        y: targetHeadlineY + headlineH + STACK_GAP,
+        height: subH,
+      };
+    }
+  }
+
+  // ── ALWAYS-ON: visual-vs-text non-overlap catch-all ────────────────────
+  // Earlier passes handle the *expected* layout shapes (visualIsStacked
+  // block at ~2445, side-panel clamp at ~2527, hero_overlay full-canvas).
+  // But some composition/format combos — notably layouts where the AI
+  // requests an unrecognised composition string and the visual_leading
+  // branch positions the visual at innerTop+logoH+16 while a later snap
+  // pulls the text up to ~y=220 — leave the visual sitting on top of
+  // the headline stack. Detect substantial overlap (≥30% of any text
+  // element's area) and push the visual BELOW the text. If the slot is
+  // too small for a sane visual, shrink to a 120 px floor; smaller than
+  // that and we leave the visual where it was (the QA gate will block
+  // the campaign downstream and the operator can regenerate).
+  if (next.visual && !visualIsFullCanvas) {
+    const visualLeft = next.visual.x;
+    const visualRight = next.visual.x + next.visual.width;
+    const visualTop = next.visual.y;
+    const visualBottom = next.visual.y + next.visual.height;
+    const textElements = [next.headline, next.subheadline, next.cta];
+    let worstOverlapRatio = 0;
+    for (const t of textElements) {
+      if (t.width <= 0 || t.height <= 0) continue;
+      const hOv = Math.max(0, Math.min(visualRight, t.x + t.width) - Math.max(visualLeft, t.x));
+      const vOv = Math.max(0, Math.min(visualBottom, t.y + t.height) - Math.max(visualTop, t.y));
+      const ratio = (hOv * vOv) / (t.width * t.height);
+      if (ratio > worstOverlapRatio) worstOverlapRatio = ratio;
+    }
+    if (worstOverlapRatio >= 0.3) {
+      const lowestTextBottom = Math.max(
+        next.headline.y + next.headline.height,
+        next.subheadline.y + next.subheadline.height,
+        next.cta.y + next.cta.height,
+      );
+      const highestTextTop = Math.min(
+        next.headline.y,
+        next.subheadline.y,
+        next.cta.y,
+      );
+      const VISUAL_BELOW_TEXT_GAP = 16;
+      const VISUAL_ABOVE_TEXT_GAP = 16;
+      const VISUAL_RESCUE_FLOOR = 120;
+      const visualBottomCeiling = next.riskWarning.y - 16;
+      const logoBottom = next.logo.y + next.logo.height;
+
+      // First try: push the visual BELOW the text stack.
+      const belowVisualY = lowestTextBottom + VISUAL_BELOW_TEXT_GAP;
+      const belowAvailable = visualBottomCeiling - belowVisualY;
+
+      // Second try: push the visual ABOVE the text stack (between logo
+      // and headline). Useful when text fills the lower 2/3 of canvas.
+      const aboveVisualBottom = highestTextTop - VISUAL_ABOVE_TEXT_GAP;
+      const aboveAvailable = aboveVisualBottom - (logoBottom + 16);
+
+      if (belowAvailable >= VISUAL_RESCUE_FLOOR) {
+        next.visual = {
+          ...next.visual,
+          y: belowVisualY,
+          height: Math.min(next.visual.height, belowAvailable),
+        };
+      } else if (aboveAvailable >= VISUAL_RESCUE_FLOOR) {
+        next.visual = {
+          ...next.visual,
+          y: logoBottom + 16,
+          height: Math.min(next.visual.height, aboveAvailable),
+        };
+      } else {
+        // No room either above or below the text without crushing the
+        // visual to invisibility. Drop it entirely — buildElements gates
+        // visual creation on `layout.visual` being truthy, so a null
+        // here produces a clean text-only banner. The QA gate then passes
+        // (no visual ⇒ no visual-overlap violation) and the campaign
+        // saves. Operator sees a banner missing its mockup, which they
+        // can regenerate to recover; better than the campaign being
+        // blocked or the visual covering the headline.
+        next.visual = null;
+      }
+    }
+  }
+
+  if (next.visual) {
+    const maxVisualHeight = size.height - next.visual.y;
+    if (maxVisualHeight <= 0) {
+      next.visual = null;
+    } else if (next.visual.height > maxVisualHeight) {
+      next.visual = { ...next.visual, height: maxVisualHeight };
+    }
   }
 
   return next;
@@ -2776,10 +3413,25 @@ function enforceMinGaps(
   }
   // CTA bottom → disclaimer ceiling.
   next.cta.y = Math.min(next.cta.y, ceiling - next.cta.height);
-  // If clamping the CTA pushed it back up over the subheadline, that
-  // means the stack genuinely doesn't fit; we leave the rest alone (the
-  // higher elements stay where the upstream layout put them) and let
-  // shrink-to-fit downstream do what it can.
+  // If clamping the CTA pushed it back up into the subheadline's box, the
+  // stack genuinely doesn't fit. Earlier this branch punted and let the
+  // CTA overlap, expecting "shrink-to-fit downstream" to recover — but
+  // fitFontToBox shrinks the FONT, not the box height. The overlap stayed
+  // visible (caught in real generations: every 1200x628 banner had 5px of
+  // CTA stamped on the subheadline). So when the conflict is real, shrink
+  // the subheadline.height to clear the CTA by MIN_GAP. This matches the
+  // case-A fallback in applyCtaPlacement.
+  if (!hints.suppressSubheadline) {
+    const SUB_BOX_FLOOR = 36;
+    const subBottomTarget = next.cta.y - MIN_GAP;
+    const currentSubBottom = next.subheadline.y + next.subheadline.height;
+    if (currentSubBottom > subBottomTarget) {
+      next.subheadline.height = Math.max(
+        SUB_BOX_FLOOR,
+        subBottomTarget - next.subheadline.y,
+      );
+    }
+  }
   return next;
 }
 
@@ -2790,9 +3442,8 @@ function pickLogoHeight(
 ): number {
   let base: number;
   // Original-3 lookup is preserved verbatim. New formats route through the
-  // bucket classifier so a 1500x500 ultra-wide doesn't end up with the
-  // portrait 88px logo (which would crowd everything else into 412px of
-  // height). Numbers below match the eyeball test against existing renders.
+  // bucket classifier so ultra-wide formats don't end up with the portrait
+  // 88px logo. Numbers below match the eyeball test against existing renders.
   if (size.name === "1200x628") base = 56;
   else if (size.name === "1080x1080") base = 80;
   else if (size.name === "1080x1920") base = 88;
@@ -2800,9 +3451,9 @@ function pickLogoHeight(
     const fmt = classifyFormat(size);
     if (fmt.bucket === "ultra_wide") base = 48;
     else if (fmt.bucket === "wide" && fmt.height_class === "tight") base = 56;
-    else if (fmt.bucket === "wide") base = 72; // 1920x1080
+    else if (fmt.bucket === "wide") base = 72;
     else if (fmt.bucket === "square") base = 80; // 1200x1200
-    else base = 88; // portrait / tall_portrait (1080x1350)
+    else base = 88; // portrait / tall_portrait
   }
   // Step 6 — brand_strategy.logo_prominence multiplier. Floor at 36px so
   // the logo always reads at any format; ceiling at +35% so "prominent"
@@ -2827,6 +3478,7 @@ interface BuildElementsArgs {
   midjourney: ResolvedMidjourneyForSpec;
   brandKit: BrandKitLite;
   copy: { headline: string; headline_emphasis?: string; subheadline: string; cta: string; disclaimer: string };
+  headlineEmphasisStyle?: HeadlineEmphasisStyle;
   composition: CompositionKind;
   template: TemplateKind;
   language: import("@/lib/i18n/language").Language;
@@ -2865,7 +3517,7 @@ function buildDesignMotifElement(
   if (motif === "none") return null;
   const w = size.width;
   const h = size.height;
-  const accent = brandKit.colors.accent[0] ?? "#D81222";
+  const accent = getReferenceAccent(brandKit);
   const bgMid =
     brandKit.colors.background[Math.floor(brandKit.colors.background.length / 2)] ??
     brandKit.colors.background[0] ??
@@ -3430,9 +4082,21 @@ function pickBrandLogoVariant(
   );
 }
 
+function pickSuppliedBrandLogoVariant(
+  inputPath: string,
+  opts: { portrait: boolean; darkBg: boolean },
+  suppliedPaths: readonly string[],
+): string | null {
+  const supplied = new Set(suppliedPaths);
+  const variantPath = pickBrandLogoVariant(inputPath, opts);
+  if (supplied.has(variantPath)) return variantPath;
+  if (supplied.has(inputPath)) return inputPath;
+  return null;
+}
+
 // IBKR partner logo: brand ships "ibkr-white-logo.png" and "ibkr-colour-logo.png".
 // Dark background → white logo, light background → colour.
-function pickIBKRVariant(
+function _pickIBKRVariant(
   inputPath: string,
   opts: { darkBg: boolean },
 ): string {
@@ -3495,10 +4159,10 @@ function buildElements(args: BuildElementsArgs): Element[] {
     visual,
     cloudinaryDelivery,
     midjourneyById,
-    midjourney: midjourneyResolved,
     brandKit,
     copy,
   } = args;
+  let midjourneyResolved = args.midjourney;
   // Phase 3 — generated-asset hooks. Reading these once at the top so the
   // existing branches further down stay structurally identical to today's
   // code; we just rebind `selection` for the bg branch and patch elements
@@ -3509,17 +4173,26 @@ function buildElements(args: BuildElementsArgs): Element[] {
   const genMockup = genResolver?.getMockup() ?? null;
   const genFx = genResolver?.getFxOverlay() ?? null;
   const genTrading = genResolver?.getTradingUi() ?? null;
-  // Override selection.background_fill when an operator-supplied generated
-  // background exists — flips the bg branch below into the "image" arm using
-  // the asset's URL. Provenance + source are patched onto the pushed element
-  // a few lines down. When no generated bg is supplied, this is a no-op.
   let selection = args.selection;
-  if (genBg) {
+  // Per-size background takes priority over the global Midjourney /
+  // generic background. The brand owner ships size-specific files
+  // (background_300x250.png etc.) and each format must pull its matching
+  // variant. Generated-asset backgrounds are ignored here because the brand
+  // rule for MEXEM is strict: backgrounds come from brand-input only.
+  const perSizeBg = selection.backgrounds_by_size?.[args.size.name];
+  if (perSizeBg) {
     selection = {
       ...selection,
-      background_fill: { kind: "image", public_path: genBg.url },
+      background: perSizeBg,
+      background_fill: { kind: "image", public_path: perSizeBg },
+      midjourney: { ...selection.midjourney, background_upload_id: null },
     };
   }
+  midjourneyResolved = {
+    ...midjourneyResolved,
+    background: { upload_id: null, assignment: null },
+  };
+  void genBg;
   // Language-aware typography. The CSS font-family is a stack:
   //   - the brand's preferred font sits first
   //   - then the script-specific Google Font (Heebo for Hebrew, Cairo for
@@ -3603,7 +4276,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
     paragraphAlignRaw === "center" && !textBlockSpansCanvas
       ? textAlignDefault
       : paragraphAlignRaw;
-  const textAlignCenter: "center" = "center";
+  const textAlignCenter = "center" as const;
   void textAlignCenter; // reserved for future use
   // Pick text colors that contrast with the actual background, rather than
   // blindly using brandKit.colors.text[0] — which is dark blue and invisible
@@ -3642,7 +4315,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
   // When `cta.variants[]` is empty (legacy brand kits) the standard path
   // still falls back to the kit's single `button_*` defaults. So this
   // change is additive — no existing brand breaks.
-  const accentColor = brandKit.colors.accent[0] ?? "#D81222";
+  const accentColor = getReferenceAccent(brandKit);
   const ctaPalette = pickCtaPalette({
     ctaStyle: hints.ctaStyle,
     brandKit,
@@ -3739,17 +4412,6 @@ function buildElements(args: BuildElementsArgs): Element[] {
         parent_frame_hint: `Ad / ${size.name}`,
       },
     });
-    // Phase 3 — when a generated background drove the bg branch, retag the
-    // element we just pushed: source becomes "generated_asset" and we stamp
-    // the generated_asset provenance block. The MJ provenance branch above
-    // is mutually exclusive with this one because genBg flips selection
-    // before the branch runs.
-    if (genBg) {
-      const last = elements[elements.length - 1];
-      last.source = "generated_asset";
-      last.alt_text = `Generated background (${genBg.variant})`;
-      last.generated_asset = provenanceFromAsset(genBg);
-    }
     // Brand tint — a flat, semi-transparent brand-color overlay covering the
     // entire canvas. AI-generated photos look generic in isolation; this
     // multiply-style wash unifies them with brand identity (FT/Bloomberg
@@ -3823,8 +4485,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
   // (diagonal lines, dots, arcs, etc.) varies per campaign so two
   // back-to-back campaigns don't both have the same rhythm.
   if (args.template === "pattern_immersive") {
-    const accentColor =
-      brandKit.colors.accent[0] ?? brandKit.colors.primary[0] ?? "#D81222";
+    const accentColor = getReferenceAccent(brandKit);
     const style: PatternStyle = args.patternStyle ?? "diagonal_lines";
     const patternEl = buildBrandPatternElement(size, accentColor, style);
     // Step 6 — emphasis × density opacity scale, clamped to [0, 1].
@@ -3848,52 +4509,75 @@ function buildElements(args: BuildElementsArgs): Element[] {
     }
   }
 
-  // Brand logo — picks the right variant per ad. Brand ships 4 MEXEM logos:
-  //   logo white P / blue P  (portrait — used on 1080x1920 stories)
-  //   logo white V / blue V  (landscape/square — used on 1200x628, 1080x1080)
-  // Color picked by background luminance: dark bg → white logo,
-  // light bg → blue logo. The substitution is filename-based and falls
-  // back to the original asset if no variant exists for this combo.
+  // Brand logo — picks the right variant per ad. MEXEM must always render as
+  // a full lockup; the lion/fav mark is never valid as a standalone logo.
+  // MEXEM social portrait formats use the P lockup, while vertical display
+  // and all other formats use the V lockup.
+  // Color picked by background luminance: dark bg -> white logo,
+  // light bg -> blue logo. The substitution is filename-based, then checked
+  // against brand_logo_paths so only files copied from brand-input can render.
   const bgIsDark = relLuminance(bgRef) < 0.5;
   const isPortrait = size.height > size.width;
   if (selection.brand_logo) {
-    const variantPath = pickBrandLogoVariant(selection.brand_logo, {
-      portrait: isPortrait,
-      darkBg: bgIsDark,
-    });
-    const d = resolveDelivery(variantPath, cloudinaryDelivery, false);
-    elements.push({
-      id: "el_logo",
-      type: "logo",
-      role: "logo",
-      source: "user-upload",
-      x: layout.logo.x,
-      y: layout.logo.y,
-      width: layout.logo.width,
-      height: layout.logo.height,
-      z_index: 30,
-      opacity: 1,
-      rotation: 0,
-      visible: true,
-      version: 1,
-      file_url: d.file_url,
-      ...(d.local_public_path ? { local_public_path: d.local_public_path } : {}),
-      ...(d.cloudinary_public_id ? { cloudinary_public_id: d.cloudinary_public_id } : {}),
-      delivery_source: d.delivery_source,
-      object_fit: "contain",
-      alt_text: `${brandKit.brand_name} logo`,
-      brand_token_refs: ["logo.primary"],
-      uses_approved_color: true,
-      source_approved: true,
-      bannerbear: { layer_name: "brand_logo", modification_type: "image_url" },
-      figma: {
-        node_type: "INSTANCE",
-        component_role: "logo",
-        style_ref: "component/brand-logo",
-        exportable: false,
-        parent_frame_hint: `Ad / ${size.name} / Header`,
-      },
-    });
+    const isMexem = usesMexemReferenceKit(brandKit);
+    const variantPath = isMexem
+      ? pickSuppliedBrandLogoVariant(
+          selection.brand_logo,
+          {
+            portrait: shouldUseMexemPortraitLogoVariant(size),
+            darkBg: bgIsDark,
+          },
+          selection.brand_logo_paths,
+        )
+      : pickSuppliedBrandLogoVariant(
+          selection.brand_logo,
+          {
+            portrait: isPortrait,
+            darkBg: bgIsDark,
+          },
+          selection.brand_logo_paths,
+        );
+
+    if (variantPath) {
+      const d: ResolvedVisualUrl = {
+        file_url: absolutePreviewUrl(variantPath),
+        local_public_path: variantPath,
+        cloudinary_public_id: null,
+        delivery_source: "local_preview",
+      };
+      elements.push({
+        id: "el_logo",
+        type: "logo",
+        role: "logo",
+        source: "user-upload",
+        x: layout.logo.x,
+        y: layout.logo.y,
+        width: layout.logo.width,
+        height: layout.logo.height,
+        z_index: 30,
+        opacity: 1,
+        rotation: 0,
+        visible: true,
+        version: 1,
+        file_url: d.file_url,
+        ...(d.local_public_path ? { local_public_path: d.local_public_path } : {}),
+        ...(d.cloudinary_public_id ? { cloudinary_public_id: d.cloudinary_public_id } : {}),
+        delivery_source: d.delivery_source,
+        object_fit: "contain",
+        alt_text: `${brandKit.brand_name} logo`,
+        brand_token_refs: ["logo.primary"],
+        uses_approved_color: true,
+        source_approved: true,
+        bannerbear: { layer_name: "brand_logo", modification_type: "image_url" },
+        figma: {
+          node_type: "INSTANCE",
+          component_role: "logo",
+          style_ref: "component/brand-logo",
+          exportable: false,
+          parent_frame_hint: `Ad / ${size.name} / Header`,
+        },
+      });
+    }
   }
 
   // "Powered by Interactive Brokers" is intentionally NOT rendered as a
@@ -3980,7 +4664,17 @@ function buildElements(args: BuildElementsArgs): Element[] {
   // single loudest "AI demo" signal in the renders. Letting the AI bg own
   // the visual gives the ad room to breathe.
   const hasImageBg = selection.background_fill.kind === "image";
-  const wantsMockup = args.template === "mockup_hero" && !hasImageBg;
+  const referenceSize =
+    size.name === "1200x628" ||
+    size.name === "1080x1080" ||
+    size.name === "1080x1920";
+  const wantsResponsiveVisual =
+    usesMexemReferenceKit(brandKit) &&
+    shouldUseMexemResponsiveVisual(size) &&
+    Boolean(layout.visual);
+  const wantsMockup =
+    args.template === "mockup_hero" &&
+    (!hasImageBg || referenceSize || wantsResponsiveVisual);
   if (wantsMockup && visual.visual_public_path && layout.visual) {
     const md = visual.metadata;
     const isComposite = md.fallback_kind === "composite";
@@ -4136,8 +4830,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
   const statFitsCleanly =
     !!args.designElements?.stat && editorialStripHeight >= 110;
   if (args.template === "editorial_type") {
-    const accentColor =
-      brandKit.colors.accent[0] ?? brandKit.colors.primary[0] ?? "#D81222";
+    const accentColor = getReferenceAccent(brandKit);
     if (statFitsCleanly && args.designElements?.stat) {
       const stat = computeStatPlacement(args.composition, size, layout);
       elements.push({
@@ -4286,10 +4979,10 @@ function buildElements(args: BuildElementsArgs): Element[] {
     // the standard fill. Falls back to the contrast-picked color when
     // accent_usage is anything else (today's behavior).
     const eyebrowColor = hints.eyebrowUsesAccent
-      ? brandKit.colors.accent[0] ?? headlineColor
+      ? getReferenceAccent(brandKit)
       : pickHighContrast(
           bgRef,
-          [brandKit.colors.accent[0] ?? "", ...brandKit.colors.text, "#FFFFFF"].filter(Boolean),
+          [getReferenceAccent(brandKit), ...brandKit.colors.text, "#FFFFFF"].filter(Boolean),
           "#FFFFFF",
         ) || headlineColor;
     elements.push({
@@ -4353,20 +5046,18 @@ function buildElements(args: BuildElementsArgs): Element[] {
     // covers Latin / Arabic / Cyrillic without over-counting.
     charWidthRatio: Math.min(0.6, Math.max(0.55, langCharWidthRatio + 0.05)),
   });
-  // Headline emphasis style is a per-concept OPTION (the reference banners
-  // confirmed both looks are valid):
-  //
-  //   "color_split"   → legacy MEXEM look: prefix in brand-accent yellow,
-  //                     remainder in headline color (white on dark navy).
-  //   "single_color"  → reference banners (audit 2026-05-08): the whole
-  //                     headline stays one color (white). Emphasis is
-  //                     conveyed via natural line-break + the accent
-  //                     word landing on its own line.
-  //
-  // Picked deterministically per (campaign, concept, format) so a single
-  // campaign produces both treatments across its specs while staying
-  // reproducible under diversity_seed.
-  const accentYellow = brandKit.colors.accent[0] ?? "#F5C518";
+  // Reference headline rule: first claim can receive an emphasis treatment,
+  // but the treatment must not change font, size, or the layout box.
+  const accentYellow = getReferenceAccent(brandKit);
+  const headlineEmphasisStyle = resolveHeadlineEmphasisStyle(
+    args.headlineEmphasisStyle ?? "auto",
+    args.conceptId,
+  );
+  const headlineEmphasisColor = resolveHeadlineEmphasisColor(
+    brandKit,
+    args.conceptId,
+    headlineEmphasisStyle,
+  );
   const headlineEmphasis =
     copy.headline_emphasis &&
     copy.headline.startsWith(copy.headline_emphasis) &&
@@ -4374,54 +5065,51 @@ function buildElements(args: BuildElementsArgs): Element[] {
     copy.headline_emphasis.length < copy.headline.length
       ? copy.headline_emphasis
       : undefined;
-  const headlineEmphasisStyle: "color_split" | "single_color" =
-    ctaSeedToInt(`${args.campaignId}::${args.conceptId}::${size.name}::headline`) % 2 === 0
-      ? "color_split"
-      : "single_color";
+  const shouldAttachHeadlineEmphasis = Boolean(headlineEmphasis);
   {
     elements.push({
-    id: "el_headline",
-    type: "text",
-    role: "headline",
-    source: "inline-text",
-    x: layout.headline.x,
-    y: layout.headline.y,
-    width: layout.headline.width,
-    height: layout.headline.height,
-    z_index: 40,
-    opacity: 1,
-    rotation: 0,
-    visible: true,
-    version: 1,
-    text: copy.headline,
-    // Honor the per-concept emphasis style. color_split adds the brand
-    // accent color to the prefix; single_color omits the color so the
-    // renderer keeps the whole headline one color (matches the reference
-    // banners that don't use a yellow split).
-    ...(headlineEmphasis
-      ? headlineEmphasisStyle === "color_split"
-        ? { emphasis_text: headlineEmphasis, emphasis_color: accentYellow }
-        : { emphasis_text: headlineEmphasis }
-      : {}),
-    font_family: fontFamily,
-    font_weight: 800,
-    font_size: headlineFontFitted,
-    line_height: headlineLineHeight,
-    letter_spacing: -1.5,
-    text_align: paragraphAlign,
-    color: headlineColor,
-    brand_token_refs: ["color.text", "font.headline"],
-    uses_approved_color: true,
-    uses_approved_font: true,
-    bannerbear: { layer_name: "headline", modification_type: "text" },
-    figma: {
-      node_type: "TEXT",
-      component_role: "headline",
-      style_ref: `text/heading-${size.name}`,
-      exportable: false,
-      parent_frame_hint: `Ad / ${size.name} / Copy`,
-    },
-  });
+      id: "el_headline",
+      type: "text",
+      role: "headline",
+      source: "inline-text",
+      x: layout.headline.x,
+      y: layout.headline.y,
+      width: layout.headline.width,
+      height: layout.headline.height,
+      z_index: 40,
+      opacity: 1,
+      rotation: 0,
+      visible: true,
+      version: 1,
+      text: copy.headline,
+      // Honor the requested emphasis style. All variants keep the same font
+      // and fitted size; only color/decoration changes.
+      ...(shouldAttachHeadlineEmphasis
+        ? {
+            emphasis_text: headlineEmphasis,
+            emphasis_color: headlineEmphasisColor,
+            emphasis_style: headlineEmphasisStyle,
+          }
+        : {}),
+      font_family: fontFamily,
+      font_weight: 800,
+      font_size: headlineFontFitted,
+      line_height: headlineLineHeight,
+      letter_spacing: -1.5,
+      text_align: paragraphAlign,
+      color: headlineColor,
+      brand_token_refs: ["color.text", "font.headline"],
+      uses_approved_color: true,
+      uses_approved_font: true,
+      bannerbear: { layer_name: "headline", modification_type: "text" },
+      figma: {
+        node_type: "TEXT",
+        component_role: "headline",
+        style_ref: `text/heading-${size.name}`,
+        exportable: false,
+        parent_frame_hint: `Ad / ${size.name} / Copy`,
+      },
+    });
   }
 
   // Subheadline — always rendered alongside the headline.
@@ -4576,20 +5264,32 @@ function buildElements(args: BuildElementsArgs): Element[] {
   // "text not positioned well" issue. Estimate width from font + char
   // count and grow the box. The bottom-band variant locks width to the
   // canvas (already set by applyCompositionFromSpec) and skips this path.
-  const ctaCharBudgetPx = Math.ceil(layout.cta.fontSize * 0.58 * ctaText.length);
-  const ctaSafeWidth = ctaCharBudgetPx + 96; // 48 px breathing room each side
+  let ctaFontSize = layout.cta.fontSize;
+  const ctaCharBudgetPx = () => Math.ceil(ctaFontSize * 0.58 * ctaText.length);
+  const ctaMaxWidth = Math.max(
+    24,
+    size.width - Math.max(8, Math.round(Math.min(size.width, size.height) * 0.08)) * 2,
+  );
+  const ctaSafeWidth = ctaCharBudgetPx() + 96; // 48 px breathing room each side
   const ctaWidth = isBottomBand
     ? layout.cta.width
-    : Math.max(layout.cta.width, ctaSafeWidth);
+    : Math.min(ctaMaxWidth, Math.max(Math.min(layout.cta.width, ctaMaxWidth), ctaSafeWidth));
+  while (
+    !isBottomBand &&
+    ctaFontSize > 7 &&
+    ctaCharBudgetPx() + Math.min(32, Math.round(ctaWidth * 0.18)) > ctaWidth
+  ) {
+    ctaFontSize -= 1;
+  }
   // Reference rule: the bottom-band CTA fills with brand-accent yellow and
   // uses dark navy text. ctaPalette (which carries ghost / standard /
   // accent from cta.weight × accent_usage) is overridden here for the
   // band variant — this is the strongest brand-discipline signal in the
-  // reference set. (Reuses the `accentYellow` declared earlier for the
-  // headline 2-color split — same brand token, same source.)
+  // reference set.
   const bandFg = pickHighContrast(accentYellow, ["#0A0F1F", "#FFFFFF"], "#0A0F1F");
-  const finalCtaBg = isBottomBand ? accentYellow : ctaBg;
-  const finalCtaFg = isBottomBand ? bandFg : ctaFg;
+  const forceWhitePill = size.name !== "1200x628" && !isBottomBand;
+  const finalCtaBg = isBottomBand ? accentYellow : forceWhitePill ? "#FFFFFF" : ctaBg;
+  const finalCtaFg = isBottomBand || forceWhitePill ? bandFg : ctaFg;
   // CTA horizontal centering when the paragraph block is center-aligned.
   // applyCompositionFromSpec writes layout.cta.x off the text-region's
   // reading-start side (innerLeft for LTR), which lands the CTA on the LEFT
@@ -4601,6 +5301,9 @@ function buildElements(args: BuildElementsArgs): Element[] {
   if (!isBottomBand && paragraphAlign === "center") {
     const headlineCol = layout.headline;
     ctaX = Math.round(headlineCol.x + (headlineCol.width - ctaWidth) / 2);
+  }
+  if (!isBottomBand) {
+    ctaX = Math.max(0, Math.min(ctaX, size.width - ctaWidth));
   }
   elements.push({
     id: "el_cta",
@@ -4621,7 +5324,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
     // Step 6 — ghost CTAs read better with slightly heavier weight to
     // compensate for the missing fill. Filled variants stay at 600.
     font_weight: hints.ctaStyle === "ghost" ? 700 : isBottomBand ? 700 : 600,
-    font_size: layout.cta.fontSize,
+    font_size: ctaFontSize,
     line_height: brandKit.typography.line_heights?.cta ?? 1.1,
     text_align: "center",
     color: finalCtaFg,
@@ -4743,6 +5446,22 @@ function buildElements(args: BuildElementsArgs): Element[] {
 
   // Risk warning / disclaimer
   if (copy.disclaimer) {
+    const ctaElement = elements.find((e) => e.id === "el_cta");
+    const ctaIsBottomBand =
+      ctaElement?.x === 0 &&
+      ctaElement.width >= size.width - 1 &&
+      normalizeHex(ctaElement.background_color) === "#F5C518";
+    const referenceDisclaimerHeight = layout.riskWarning.height;
+    const referenceDisclaimerY =
+      ctaElement && (ctaIsBottomBand || size.name !== "1080x1920")
+        ? Math.max(0, ctaElement.y - 12 - referenceDisclaimerHeight)
+        : layout.riskWarning.y;
+    const referenceDisclaimerX =
+      size.name === "1200x628" ? layout.headline.x : layout.riskWarning.x;
+    const referenceDisclaimerWidth =
+      size.name === "1200x628" ? layout.headline.width : layout.riskWarning.width;
+    const referenceDisclaimerAlign: "left" | "center" =
+      size.name === "1200x628" ? "left" : "center";
     // Shrink-to-fit the disclaimer too. Disclaimers are often the longest
     // string in the manifest (legal language like "Caution. Investing
     // involves risk of loss…") and the box is shallow — without this,
@@ -4750,8 +5469,8 @@ function buildElements(args: BuildElementsArgs): Element[] {
     const discLineHeight = brandKit.typography.line_heights?.disclaimer ?? 1.2;
     const disclaimerFontFitted = fitFontToBox({
       text: copy.disclaimer,
-      boxWidth: layout.riskWarning.width,
-      boxHeight: layout.riskWarning.height,
+      boxWidth: referenceDisclaimerWidth,
+      boxHeight: referenceDisclaimerHeight,
       baseFontSize: layout.riskWarning.fontSize,
       lineHeight: discLineHeight,
       minFont: 10,
@@ -4762,10 +5481,10 @@ function buildElements(args: BuildElementsArgs): Element[] {
       type: "legal",
       role: "legal-disclaimer",
       source: "inline-text",
-      x: layout.riskWarning.x,
-      y: layout.riskWarning.y,
-      width: layout.riskWarning.width,
-      height: layout.riskWarning.height,
+      x: referenceDisclaimerX,
+      y: referenceDisclaimerY,
+      width: referenceDisclaimerWidth,
+      height: referenceDisclaimerHeight,
       z_index: 45,
       opacity: 1,
       rotation: 0,
@@ -4776,7 +5495,7 @@ function buildElements(args: BuildElementsArgs): Element[] {
       font_weight: 400,
       font_size: disclaimerFontFitted,
       line_height: discLineHeight,
-      text_align: "center",
+      text_align: referenceDisclaimerAlign,
       color: disclaimerColor,
       required: true,
       compliance_status: "approved",
@@ -4790,6 +5509,28 @@ function buildElements(args: BuildElementsArgs): Element[] {
         parent_frame_hint: `Ad / ${size.name} / Legal`,
       },
     });
+
+    // CTA-vs-disclaimer collision. Bottom-band CTA is deliberately pinned
+    // to the canvas edge, so it is exempt; the disclaimer was already placed
+    // above it. Other formats can still be nudged upward if a compact layout
+    // crowds the legal line.
+    const ctaIdx = elements.findIndex((e) => e.id === "el_cta");
+    const referenceSize =
+      size.name === "1200x628" ||
+      size.name === "1080x1080" ||
+      size.name === "1080x1920";
+    if (ctaIdx !== -1 && !ctaIsBottomBand && !referenceSize) {
+      const ctaEl = elements[ctaIdx];
+      const ctaBottom = ctaEl.y + ctaEl.height;
+      const discTop = referenceDisclaimerY;
+      const COLLISION_GAP = 8;
+      if (ctaBottom + COLLISION_GAP > discTop) {
+        elements[ctaIdx] = {
+          ...ctaEl,
+          y: Math.max(0, discTop - COLLISION_GAP - ctaEl.height),
+        };
+      }
+    }
   }
 
   // Phase 3 — append optional generated FX overlay + trading UI.
@@ -4892,7 +5633,322 @@ function buildElements(args: BuildElementsArgs): Element[] {
     }
   }
 
+  if (usesMexemReferenceKit(brandKit)) {
+    normalizeMexemResponsiveElements(elements, size);
+  }
+
   return elements;
+}
+
+function normalizeMexemResponsiveElements(
+  elements: Element[],
+  size: { name: string; width: number; height: number },
+): void {
+  if (
+    size.name === "1200x628" ||
+    size.name === "1080x1080" ||
+    size.name === "1080x1920"
+  ) {
+    return;
+  }
+
+  const headline = elements.find((e) => e.id === "el_headline");
+  const cta = elements.find((e) => e.id === "el_cta");
+  const disclaimer = elements.find((e) => e.id === "el_disclaimer");
+  const logo = elements.find((e) => e.id === "el_logo");
+  const visual = elements.find((e) => e.role === "product_visual");
+  if (!headline || !cta || !disclaimer || !logo) return;
+  const useVisual = Boolean(visual && shouldUseMexemResponsiveVisual(size));
+
+  for (const el of elements) {
+    if (
+      el.id.startsWith("el_motif_") ||
+      el.id === "el_brand_pattern" ||
+      el.id === "el_generated_trading_ui"
+    ) {
+      el.visible = false;
+    }
+    if (el.role === "product_visual" && !useVisual) {
+      el.visible = false;
+    }
+  }
+
+  const w = size.width;
+  const h = size.height;
+  const minDim = Math.min(w, h);
+  const micro = h <= 120;
+  const margin = micro
+    ? Math.max(3, Math.round(minDim * 0.08))
+    : Math.max(12, Math.round(minDim * 0.06));
+  const innerW = Math.max(1, w - margin * 2);
+
+  if (micro) {
+    const logoAspect = mexemLogoAspectForSize(size);
+    const logoH = Math.max(8, Math.min(18, Math.round(h * 0.24)));
+    const logoW = Math.max(24, Math.min(Math.round(logoH * logoAspect), Math.round(w * 0.22)));
+    const ctaH = Math.max(10, Math.min(28, Math.round(h * 0.3)));
+    const ctaW = Math.max(
+      Math.min(52, innerW),
+      Math.min(Math.round(w * 0.32), 128, innerW),
+    );
+    const ctaX = Math.max(margin, w - margin - ctaW);
+    const ctaY = Math.max(margin, h - margin - ctaH);
+    const discH = Math.max(5, Math.min(9, Math.round(h * 0.14)));
+    const discY = Math.max(margin, ctaY - discH - 1);
+    const textX = Math.min(ctaX - margin - 24, margin + logoW + margin);
+    const textW = Math.max(24, ctaX - textX - margin);
+    const headlineY = margin;
+    const headlineH = Math.max(6, discY - headlineY - 1);
+
+    Object.assign(logo, {
+      x: margin,
+      y: Math.max(margin, Math.round((h - logoH) / 2)),
+      width: logoW,
+      height: logoH,
+    });
+    Object.assign(headline, {
+      x: textX,
+      y: headlineY,
+      width: textW,
+      height: headlineH,
+      line_height: 1,
+      letter_spacing: 0,
+      text_align: "left",
+    });
+    fitMexemHeadlineText(headline, {
+      minFont: 7,
+      maxFont: Math.max(7, Math.min(18, Math.floor(headlineH * 0.72))),
+    });
+    Object.assign(disclaimer, {
+      x: textX,
+      y: discY,
+      width: textW,
+      height: discH,
+      font_size: Math.max(5, Math.min(8, Math.floor(discH * 0.82))),
+      line_height: 1,
+      text_align: "left",
+    });
+    fitMexemLegalText(disclaimer, { minFont: 5, maxFont: Number(disclaimer.font_size ?? 8) });
+    Object.assign(cta, {
+      x: ctaX,
+      y: ctaY,
+      width: ctaW,
+      height: ctaH,
+      line_height: 1,
+      border_radius: Math.round(ctaH / 2),
+    });
+    fitMexemCtaText(cta, { minFont: 7, maxFont: Math.max(7, Math.min(13, Math.floor(ctaH * 0.52))) });
+    return;
+  }
+
+  const aspect = w / h;
+  if (useVisual && visual && aspect >= 1.35) {
+    const logoAspect = mexemLogoAspectForSize(size);
+    const logoH = Math.max(16, Math.min(56, Math.round(h * 0.075)));
+    const logoW = Math.max(54, Math.min(Math.round(logoH * logoAspect), Math.round(w * 0.28)));
+    const gap = Math.max(8, Math.round(minDim * 0.045));
+    const visualW = Math.max(120, Math.min(Math.round(w * 0.42), Math.round(h * 0.85)));
+    const visualX = w - margin - visualW;
+    const textW = Math.max(120, visualX - margin * 2);
+    const ctaH = Math.max(22, Math.min(60, Math.round(h * 0.08)));
+    const ctaW = Math.max(Math.min(118, textW), Math.min(360, Math.round(textW * 0.62)));
+    const discH = Math.max(8, Math.min(28, Math.round(h * 0.04)));
+    const headlineY = margin + logoH + gap;
+    const maxHeadlineH = Math.max(24, h - headlineY - discH - ctaH - gap * 4 - margin);
+
+    Object.assign(logo, {
+      x: margin,
+      y: margin,
+      width: logoW,
+      height: logoH,
+    });
+    Object.assign(headline, {
+      x: margin,
+      y: headlineY,
+      width: textW,
+      height: maxHeadlineH,
+      line_height: 1,
+      letter_spacing: 0,
+      text_align: "left",
+    });
+    fitMexemHeadlineText(headline, {
+      minFont: 10,
+      maxFont: Math.max(10, Math.min(64, Math.floor(Math.min(maxHeadlineH * 0.44, textW * 0.11)))),
+    });
+    headline.height = Math.min(
+      maxHeadlineH,
+      estimateMexemTextHeight(headline, headline.role === "headline" ? 0.68 : 0.55),
+    );
+    const discY = headline.y + headline.height + gap;
+    const ctaY = discY + discH + Math.max(6, Math.round(gap * 0.7));
+    Object.assign(disclaimer, {
+      x: margin,
+      y: discY,
+      width: textW,
+      height: discH,
+      font_size: Math.max(7, Math.min(14, Math.floor(discH * 0.72))),
+      line_height: 1.1,
+      text_align: "left",
+    });
+    fitMexemLegalText(disclaimer, { minFont: 5, maxFont: Number(disclaimer.font_size ?? 12) });
+    Object.assign(cta, {
+      x: margin,
+      y: Math.min(ctaY, h - margin - ctaH),
+      width: ctaW,
+      height: ctaH,
+      line_height: 1,
+      border_radius: Math.round(ctaH / 2),
+    });
+    fitMexemCtaText(cta, { minFont: 8, maxFont: Math.max(8, Math.min(20, Math.floor(ctaH * 0.45))) });
+    Object.assign(visual, {
+      visible: true,
+      x: visualX,
+      y: Math.max(margin, margin + logoH),
+      width: visualW,
+      height: Math.max(80, h - margin * 2 - logoH),
+    });
+    return;
+  }
+
+  const usePortraitLogo = shouldUseMexemPortraitLogoVariant(size);
+  const logoAspect = mexemLogoAspectForSize(size);
+  let logoH = usePortraitLogo
+    ? Math.max(96, Math.min(210, Math.round(h * 0.135)))
+    : Math.max(16, Math.min(72, Math.round(h * 0.07)));
+  const logoW = Math.max(
+    usePortraitLogo ? 96 : 48,
+    Math.min(Math.round(logoH * logoAspect), innerW),
+  );
+  if (usePortraitLogo && logoW >= innerW) {
+    logoH = Math.max(72, Math.round(logoW / logoAspect));
+  }
+  const ctaH = Math.max(22, Math.min(76, Math.round(h * 0.08)));
+  const ctaW = Math.max(
+    Math.min(96, innerW),
+    Math.min(Math.round(w * 0.58), 360, innerW),
+  );
+  const ctaX = Math.round((w - ctaW) / 2);
+  const ctaY = Math.max(margin, h - margin - ctaH);
+  const narrowSkyscraper = w <= 180 && h >= 400;
+  const discH = narrowSkyscraper
+    ? Math.max(36, Math.min(54, Math.round(h * 0.075)))
+    : Math.max(8, Math.min(28, Math.round(h * 0.04)));
+  const gap = Math.max(3, Math.round(minDim * 0.018));
+  const discY = Math.max(margin, ctaY - discH - gap);
+  const headlineY = margin + logoH + Math.max(5, Math.round(minDim * 0.035));
+  const headlineH = Math.max(8, discY - headlineY - Math.max(4, gap));
+
+  Object.assign(logo, {
+    x: Math.round((w - logoW) / 2),
+    y: margin,
+    width: logoW,
+    height: logoH,
+  });
+  Object.assign(headline, {
+    x: margin,
+    y: headlineY,
+    width: innerW,
+    height: headlineH,
+    line_height: 1,
+    letter_spacing: 0,
+    text_align: "center",
+  });
+  fitMexemHeadlineText(headline, {
+    minFont: 10,
+    maxFont: Math.max(10, Math.min(64, Math.floor(Math.min(headlineH * 0.42, w * 0.11)))),
+  });
+  headline.height = Math.min(
+    headlineH,
+    estimateMexemTextHeight(headline, headline.role === "headline" ? 0.68 : 0.55),
+  );
+  const visualTop = headline.y + headline.height + Math.max(6, gap * 2);
+  const visualBottom = discY - Math.max(6, gap * 2);
+  Object.assign(disclaimer, {
+    x: margin,
+    y: discY,
+    width: innerW,
+    height: discH,
+    font_size: Math.max(7, Math.min(14, Math.floor(discH * 0.72))),
+    line_height: 1.1,
+    text_align: "center",
+  });
+  fitMexemLegalText(disclaimer, { minFont: 5, maxFont: Number(disclaimer.font_size ?? 12) });
+  Object.assign(cta, {
+    x: ctaX,
+    y: ctaY,
+    width: ctaW,
+    height: ctaH,
+    line_height: 1,
+    border_radius: Math.round(ctaH / 2),
+  });
+  fitMexemCtaText(cta, { minFont: 8, maxFont: Math.max(8, Math.min(22, Math.floor(ctaH * 0.45))) });
+  if (useVisual && visual && visualBottom > visualTop + 24) {
+    const visualH = visualBottom - visualTop;
+    const visualW = Math.min(innerW, Math.max(48, Math.round(Math.min(w * 0.72, visualH * 0.78))));
+    Object.assign(visual, {
+      visible: true,
+      x: Math.round((w - visualW) / 2),
+      y: visualTop,
+      width: visualW,
+      height: visualH,
+    });
+  }
+}
+
+function fitMexemCtaText(
+  cta: Element,
+  opts: { minFont: number; maxFont: number },
+): void {
+  const text = String(cta.text ?? "").replace(/[←-⇿➠-➿]/g, "").trim();
+  const shortText =
+    cta.width < 150 || cta.height <= 28
+      ? text.replace(/\s+PLATFORM$/i, "").trim()
+      : text;
+  const finalText = shortText.length > 0 ? shortText : text;
+  const widthBudget = Math.max(1, cta.width - 10);
+  const widthCap = Math.floor(widthBudget / Math.max(1, finalText.length * 0.64));
+  cta.text = finalText;
+  cta.font_size = Math.max(
+    opts.minFont,
+    Math.min(opts.maxFont, widthCap),
+  );
+}
+
+function fitMexemHeadlineText(
+  headline: Element,
+  opts: { minFont: number; maxFont: number },
+): void {
+  headline.font_size = fitFontToBox({
+    text: String(headline.text ?? ""),
+    boxWidth: headline.width,
+    boxHeight: headline.height,
+    baseFontSize: opts.maxFont,
+    lineHeight: Number(headline.line_height ?? 1),
+    minFont: opts.minFont,
+    charWidthRatio: 0.58,
+  });
+}
+
+function fitMexemLegalText(
+  legal: Element,
+  opts: { minFont: number; maxFont: number },
+): void {
+  legal.font_size = fitFontToBox({
+    text: String(legal.text ?? ""),
+    boxWidth: legal.width,
+    boxHeight: legal.height,
+    baseFontSize: opts.maxFont,
+    lineHeight: Number(legal.line_height ?? 1.1),
+    minFont: opts.minFont,
+    charWidthRatio: 0.52,
+  });
+}
+
+function estimateMexemTextHeight(el: Element, charWidthRatio: number): number {
+  const fontSize = Number(el.font_size ?? 12);
+  const lineHeight = Number(el.line_height ?? 1.1);
+  const charsPerLine = Math.max(1, Math.floor(el.width / Math.max(1, fontSize * charWidthRatio)));
+  return Math.ceil(countWrappedLines(String(el.text ?? ""), charsPerLine) * fontSize * lineHeight);
 }
 
 // Convert "/brand-input-preview/...png" → "https://example.invalid/..." style?

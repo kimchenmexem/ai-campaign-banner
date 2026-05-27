@@ -2,6 +2,7 @@ import Link from "next/link";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { CampaignPlannerForm } from "./CampaignPlannerForm";
+import { loadCampaignDefaults } from "@/lib/settings/campaignDefaultsStore";
 
 // /campaign-planner
 //
@@ -36,6 +37,7 @@ function readDefaultProvider(): "mock" | "openai" | "anthropic" {
 export default async function CampaignPlannerPage() {
   const brandId = await readBrandId();
   const defaultProvider = readDefaultProvider();
+  const campaignDefaults = await loadCampaignDefaults();
 
   return (
     <section className="space-y-6">
@@ -63,7 +65,11 @@ export default async function CampaignPlannerPage() {
             <span className="font-medium text-zinc-900 dark:text-zinc-100">default provider:</span>{" "}
             <code className="font-mono">{defaultProvider}</code>
           </div>
-          <CampaignPlannerForm brandId={brandId} defaultProvider={defaultProvider} />
+          <CampaignPlannerForm
+            brandId={brandId}
+            defaultProvider={defaultProvider}
+            initialDefaults={campaignDefaults.campaign_planner}
+          />
         </>
       )}
 

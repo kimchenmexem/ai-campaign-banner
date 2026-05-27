@@ -11,6 +11,7 @@ import {
   CampaignPlanSchema,
   CampaignIndexFileSchema,
   ActiveCampaignFileSchema,
+  type AIConceptStub,
   type CampaignPlan,
   type CampaignIndexEntry,
   type CampaignIndexFile,
@@ -20,21 +21,26 @@ import {
   CampaignBriefSchema,
   type CampaignBrief,
 } from "@/lib/schemas/campaignBrief.schema";
+import type { BrandKitLite } from "@/lib/schemas/brandKit.schema";
 import {
   loadAdBuildContext,
   buildConceptsFromPlan,
 } from "@/lib/ai/buildAdSpecsFromPlan";
 import {
   generateImageOpenAI,
-  readImageProviderName,
   type ImageProviderName,
 } from "@/lib/ai/imageProvider";
 import {
   loadMidjourneyUploads,
   writeMidjourneyUploads,
 } from "@/lib/midjourney/loadUploads";
-import { fetchCampaignCopy } from "@/lib/marketing-translator/client";
-import type { LocalizedCopyPackage } from "@/lib/marketing-translator/schema";
+import { fetchCampaignCopyBatch } from "@/lib/marketing-translator/client";
+import type { LocalizedCopyBatchConcept } from "@/lib/marketing-translator/schema";
+import {
+  runDeterministicQa,
+  hasBlockingViolations,
+  type DeterministicCampaignReport,
+} from "@/lib/qa/deterministicQa";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Campaign Planner — the orchestrator.
@@ -65,6 +71,25 @@ export const ACTIVE_CAMPAIGN_PATH = path.join(
   "active-campaign.generated.json",
 );
 
+// Progress events surfaced to the route's streaming layer so the
+// /campaign-planner form can show live status while a generation runs.
+// Each `stage` is a stable string the UI maps to a human-readable label;
+// `detail` is optional free text (e.g. "concept 2 of 3").
+export type PlanProgressStage =
+  | "ai_concepts"
+  | "refining"
+  | "translating"
+  | "images"
+  | "visual_planning"
+  | "building"
+  | "qa"
+  | "saving";
+
+export interface PlanProgressEvent {
+  stage: PlanProgressStage;
+  detail?: string;
+}
+
 export interface PlanCampaignOptions {
   brief: CampaignBrief;
   // Override the env var when calling programmatically (tests, scripts).
@@ -72,12 +97,18 @@ export interface PlanCampaignOptions {
   // When true, mark the new campaign as active after saving. Default: false.
   setAsActive?: boolean;
   // When set to "openai", auto-generate one background image per concept via
-  // the OpenAI Images API and append it as an approved upload. The downstream
-  // applyConceptVisuals will then pick it up by context match. When "none" or
-  // omitted (default), no images are generated — manual Midjourney uploads via
-  // /midjourney still work.
+  // the OpenAI Images API and append it as an approved upload. This is not
+  // used by the campaign creation UI/API because production backgrounds are
+  // locked to brand-input/background assets. When "none" or omitted (default),
+  // no images are generated.
   imageProvider?: ImageProviderName;
   cwd?: string;
+  // Optional progress callback. Invoked on each major phase boundary
+  // (AI plan → refine → translate → optional images → visual plan → build → QA →
+  // save). The streaming route translates each call into an NDJSON event
+  // the planner form renders as a stage indicator. Synchronous so the
+  // planner doesn't await arbitrary handler work — keep the handler cheap.
+  onProgress?: (event: PlanProgressEvent) => void;
 }
 
 export interface ImageGenerationSummary {
@@ -128,6 +159,7 @@ export async function planCampaign(
 
   // 1. Ask the AI for the raw plan.
   const provider = getAIProvider(providerName);
+  opts.onProgress?.({ stage: "ai_concepts" });
   let raw;
   try {
     raw = await provider.generateStructuredCampaignPlan(
@@ -158,6 +190,7 @@ export async function planCampaign(
   // we keep the original.
   let refined = parsedRaw.data;
   if (provider.refineCampaignPlan) {
+    opts.onProgress?.({ stage: "refining" });
     try {
       const r = await provider.refineCampaignPlan(
         { brief, brandKit: ctx.brandKit },
@@ -181,12 +214,33 @@ export async function planCampaign(
   // overwritten before manifest construction.
   const targetLocale = mapLanguageToLocale(brief.language);
   const timeoutMs = readTranslatorTimeoutMs();
-  const copyByConceptId = new Map<string, LocalizedCopyPackage>();
-  for (const concept of refined.concepts) {
+  const translatorDisclaimer =
+    ctx.brandKit.legal.disclaimers_by_language?.[brief.language] ??
+    ctx.brandKit.legal.default_disclaimer;
+  const approvedCtaTexts = ctx.brandKit.cta.allowed_texts.join(", ");
+  const translatorComplianceGuidance = [
+    translatorDisclaimer
+      ? `Use this disclaimer verbatim whenever a risk warning is required: "${translatorDisclaimer}"`
+      : "",
+    approvedCtaTexts
+      ? `Preferred CTA label set from Settings: ${approvedCtaTexts}. Translate or adapt only when the output language requires it, and keep the CTA short.`
+      : "",
+    "Keep copy calm, concrete and platform-led. Avoid hype, urgency, performance promises, and vague finance slogans.",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const copyByConceptId = new Map<string, LocalizedCopyBatchConcept>();
+  const translatorWarnings: string[] = [];
+  const totalConcepts = refined.concepts.length;
+  opts.onProgress?.({
+    stage: "translating",
+    detail: `${totalConcepts} concepts`,
+  });
+  if (targetLocale) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
-      const copy = await fetchCampaignCopy(
+      const batch = await fetchCampaignCopyBatch(
         {
           brief: {
             marketingMessage: brief.marketing_message,
@@ -196,44 +250,72 @@ export async function planCampaign(
           },
           targetLocale,
           tone: brief.tone,
+          complianceNotes: translatorComplianceGuidance,
           riskWarningRequired: brief.risk_warning_required,
-          conceptHint: {
+          concepts: refined.concepts.map((concept) => ({
             conceptId: concept.concept_id,
             name: concept.name,
             strategicIdea: concept.strategic_idea,
-          },
+            targetEmotion: concept.target_emotion,
+            tone: concept.tone,
+            composition: concept.desired_visual_context,
+            moodKeywords: [
+              concept.target_emotion,
+              concept.tone,
+              concept.desired_visual_context,
+            ],
+          })),
         },
         { signal: controller.signal },
       );
-      copyByConceptId.set(concept.concept_id, copy);
-    } catch (err) {
-      if (controller.signal.aborted) {
-        throw new Error(
-          `marketing-translator timed out for concept ${concept.concept_id}`,
-        );
+      for (const copy of batch.concepts) {
+        copyByConceptId.set(copy.conceptId, copy);
       }
-      throw new Error(
-        `marketing-translator failed for concept ${concept.concept_id}: ${redactSecret((err as Error).message)}`,
+    } catch (err) {
+      const reason = controller.signal.aborted
+        ? `timed out after ${timeoutMs}ms`
+        : redactSecret((err as Error).message);
+      translatorWarnings.push(
+        `marketing-translator: ${reason} — using AI copy fallback for ${brief.language}.`,
       );
     } finally {
       clearTimeout(timer);
     }
+  } else {
+    translatorWarnings.push(
+      `marketing-translator: language "${brief.language}" is not supported by the external service — using AI copy fallback.`,
+    );
   }
-  // Topic-aware disclaimer appendix. We append the brand-kit's
-  // topic_disclaimers entries (ETF / complex products / tax) to the
-  // translator's localised general disclaimer whenever the concept's copy
-  // mentions the topic's keywords. The general string keeps its locale;
-  // topic appendices today are English-only (see `topic_disclaimers`
-  // docstring in brandKit.schema.ts) — operators with localised compliance
-  // requirements should fill the language-specific disclaimers_by_language
-  // and skip topic auto-append for that brand.
+  for (const concept of refined.concepts) {
+    if (copyByConceptId.has(concept.concept_id)) continue;
+    copyByConceptId.set(
+      concept.concept_id,
+      fallbackCopyFromConcept({
+        concept,
+        brief,
+        disclaimer: translatorDisclaimer,
+      }),
+    );
+  }
+  // Topic-aware disclaimer appendix. The brand-kit topic_disclaimers entries
+  // are English source strings, so only append them to English campaigns.
+  // Non-English campaigns already use the matching disclaimers_by_language
+  // entry verbatim; appending English here is what made Italian banners show
+  // mixed-language legal copy.
   const { appendTopicDisclaimers } = await import("@/lib/ai/disclaimerTopics");
-  const topicTexts = ctx.brandKit.legal.topic_disclaimers;
+  const topicTexts =
+    brief.language === "en" ? ctx.brandKit.legal.topic_disclaimers : undefined;
   refined = {
     ...refined,
     concepts: refined.concepts.map((c) => {
       const localized = copyByConceptId.get(c.concept_id);
       if (!localized) return c;
+      const displayCopy = normalizeCopyForBrand({
+        copy: localized,
+        concept: c,
+        brandKit: ctx.brandKit,
+        brief,
+      });
       // Build the corpus we run keyword detection against. Per-concept so
       // each concept in a multi-concept campaign can get a different
       // appendix when their strategic angles emphasise different topics.
@@ -242,31 +324,38 @@ export async function planCampaign(
         brief.notes ?? "",
         c.strategic_idea,
         c.name,
-        localized.headline,
-        localized.subheadline,
-        localized.body ?? c.copy_package.body,
+        displayCopy.headline,
+        displayCopy.subheadline,
+        displayCopy.body ?? c.copy_package.body,
       ]
         .filter(Boolean)
         .join(" ");
       const disclaimerWithTopics = appendTopicDisclaimers(
-        localized.disclaimer,
+        displayCopy.disclaimer,
         corpus,
         topicTexts,
       );
+      const headline = displayCopy.headline.toUpperCase();
+      const cta = displayCopy.cta.toUpperCase();
       return {
         ...c,
+        design_elements: normalizeDesignElementsForBrand({
+          concept: c,
+          brandKit: ctx.brandKit,
+          brief,
+        }),
         copy_package: {
           ...c.copy_package,
-          headline: localized.headline,
-          subheadline: localized.subheadline,
-          body: localized.body ?? c.copy_package.body,
-          cta: localized.cta,
+          headline,
+          subheadline: displayCopy.subheadline,
+          body: displayCopy.body ?? c.copy_package.body,
+          cta,
           disclaimer: disclaimerWithTopics,
-          // Drop fields that came from the LLM and no longer match the
-          // localized headline/cta. headline_emphasis was a verbatim
-          // prefix of the LLM headline; alternates / platform variations
-          // are out of contract for the translator service.
-          headline_emphasis: undefined,
+          // Recreate the reference-style headline split from the final,
+          // translator-owned headline. The LLM's original prefix no longer
+          // matches after translation, but the renderer needs a real prefix
+          // to paint the first claim in the brand accent.
+          headline_emphasis: inferHeadlineEmphasis(headline),
           alternative_headlines: [],
           alternative_ctas: [],
           platform_copy_variations: [],
@@ -274,23 +363,23 @@ export async function planCampaign(
       };
     }),
   };
-  const translatorWarnings: string[] = [];
-  for (const [conceptId, copy] of copyByConceptId) {
-    for (const note of copy.complianceNotes) {
-      translatorWarnings.push(`marketing-translator [${conceptId}]: ${note}`);
+  if (!usesMexemCopyGuard(ctx.brandKit)) {
+    for (const [conceptId, copy] of copyByConceptId) {
+      for (const note of copy.complianceNotes) {
+        translatorWarnings.push(`marketing-translator [${conceptId}]: ${note}`);
+      }
     }
   }
 
-  // 3. Optional image generation. When the operator opted in, send each
-  // concept's background prompt to OpenAI Images and persist the result as an
-  // approved upload. After this runs we reload the build context so the next
-  // step can see the newly-generated uploads alongside any manual Midjourney
-  // ones. The Element Manifest stays the source of truth — generated images
-  // travel through the same upload schema as manual Midjourney outputs.
-  const imageProviderName = opts.imageProvider ?? readImageProviderName();
+  // 3. Optional image generation. Disabled by default and not used by the
+  // campaign creation UI/API: production backgrounds are always brand-input
+  // assets. This remains only for explicit internal experiments that pass
+  // imageProvider: "openai".
+  const imageProviderName = opts.imageProvider ?? "none";
   let images: ImageGenerationSummary | undefined;
   let buildContext = ctx;
   if (imageProviderName === "openai") {
+    opts.onProgress?.({ stage: "images" });
     images = await generateImagesForConcepts(refined, cwd);
     if (images.generated > 0) {
       buildContext = await loadAdBuildContext({
@@ -310,6 +399,7 @@ export async function planCampaign(
   let visualSpecsByConceptId: Map<string, VisualLayoutSpec> | undefined;
   const visualPlannerWarnings: string[] = [];
   if (provider.planVisualLayoutsForCampaign) {
+    opts.onProgress?.({ stage: "visual_planning" });
     try {
       const batch = await provider.planVisualLayoutsForCampaign(
         { brief, brandKit: ctx.brandKit },
@@ -338,6 +428,7 @@ export async function planCampaign(
   }
 
   // 4. Build ad_specs deterministically.
+  opts.onProgress?.({ stage: "building" });
   const campaign_id = `cam_${shortId(`${brief.brief_id}-${new Date().toISOString()}`)}`;
   const { concepts, warnings, qaWarnings } = buildConceptsFromPlan({
     context: buildContext,
@@ -432,7 +523,22 @@ export async function planCampaign(
     created_at: new Date().toISOString(),
   });
 
+  opts.onProgress?.({ stage: "qa" });
+  // 5b. Deterministic position QA — last gate before the campaign hits disk.
+  // Catches off-canvas elements, zero-area text, missing required roles, and
+  // disclaimer↔CTA / disclaimer↔headline overlaps that the layout clamps in
+  // buildElements failed to resolve. If anything is `block`-severity, we
+  // refuse the save and surface a readable error to the route. Operators can
+  // retry — the next run gets fresh AI temperatures and usually lands clean.
+  const qaReport = runDeterministicQa(planCandidate);
+  if (hasBlockingViolations(qaReport)) {
+    throw new Error(
+      `Position QA blocked save: ${formatQaBlocks(qaReport)}`,
+    );
+  }
+
   // 6. Save.
+  opts.onProgress?.({ stage: "saving" });
   const saved_path = await saveCampaignPlan(cwd, planCandidate);
   const index_path = await upsertCampaignIndex(cwd, planCandidate);
   let active = false;
@@ -521,23 +627,329 @@ function readTranslatorTimeoutMs(): number {
 }
 
 // Map the brief's 2-letter language code to the BCP-47 locale that
-// marketing-translator's /api/campaign-copy expects. The translator only
-// supports a fixed set of EU LTR locales today; ar/he are rejected so the
-// operator picks a different language rather than getting silent fallback.
-function mapLanguageToLocale(language: string): string {
+// marketing-translator's /api/campaign-copy expects. Some country targets are
+// supported by the banner pipeline before the external translator supports
+// them; return null there and let the planner use the AI-copy fallback.
+function mapLanguageToLocale(language: string): string | null {
   const map: Record<string, string> = {
     en: "en-GB",
     fr: "fr-FR",
     it: "it-IT",
     nl: "nl-NL",
   };
-  const locale = map[language];
-  if (!locale) {
-    throw new Error(
-      `marketing-translator does not yet support language "${language}". Supported: ${Object.keys(map).join(", ")}.`,
-    );
+  return map[language] ?? null;
+}
+
+function fallbackCopyFromConcept(args: {
+  concept: AIConceptStub;
+  brief: CampaignBrief;
+  disclaimer: string | undefined;
+}): LocalizedCopyBatchConcept {
+  const copy = args.concept.copy_package;
+  const fallbackDisclaimer =
+    args.brief.risk_warning_required === false
+      ? "Terms apply."
+      : args.disclaimer || copy.disclaimer || "Investing involves risk.";
+  return {
+    conceptId: args.concept.concept_id,
+    headline: copy.headline,
+    subheadline: copy.subheadline,
+    body: copy.body,
+    cta: copy.cta,
+    disclaimer: fallbackDisclaimer,
+    complianceNotes: ["marketing-translator unavailable; used AI copy fallback"],
+  };
+}
+
+function normalizeCopyForBrand(args: {
+  copy: LocalizedCopyBatchConcept;
+  concept: AIConceptStub;
+  brandKit: BrandKitLite;
+  brief: CampaignBrief;
+}): LocalizedCopyBatchConcept {
+  if (!usesMexemCopyGuard(args.brandKit)) return args.copy;
+
+  const fallback = mexemFallbackCopy(args.concept, args.brief);
+  const headline = fallback.headline;
+  const cta = fallback.cta;
+  const subheadline = fallback.subheadline;
+  const body =
+    args.copy.body &&
+    (needsMexemCopyFallback(args.copy.body, "body") ||
+      isEnglishMexemFallbackText(args.copy.body))
+      ? fallback.body
+      : args.copy.body;
+  const disclaimer =
+    args.brandKit.legal.disclaimers_by_language?.[args.brief.language] ??
+    args.brandKit.legal.default_disclaimer ??
+    args.copy.disclaimer;
+
+  return {
+    ...args.copy,
+    headline,
+    subheadline,
+    body,
+    cta,
+    disclaimer,
+  };
+}
+
+type MexemCopyIntent = "etf" | "markets" | "platform";
+type MexemSupportedCopyLanguage = "en" | "fr" | "it" | "nl";
+
+type MexemSafeCopy = Pick<
+  LocalizedCopyBatchConcept,
+  "headline" | "subheadline" | "body" | "cta"
+>;
+
+const MEXEM_SAFE_COPY: Record<
+  MexemSupportedCopyLanguage,
+  Record<MexemCopyIntent, MexemSafeCopy>
+> = {
+  en: {
+    etf: {
+      headline: "Build a broader market view",
+      subheadline: "Compare instruments, follow data and act with a clearer picture.",
+      body: "Bring stocks, ETFs and market insight into one disciplined workflow.",
+      cta: "Compare markets",
+    },
+    markets: {
+      headline: "Move with real-time markets",
+      subheadline: "Watch prices, charts and order tools work together in one flow.",
+      body: "Designed for self-directed investors who follow the market closely.",
+      cta: "View tools",
+    },
+    platform: {
+      headline: "Trade global markets with control",
+      subheadline: "Advanced tools, real-time data and market access in one platform.",
+      body: "A focused platform experience for investors who want depth without noise.",
+      cta: "Explore platform",
+    },
+  },
+  fr: {
+    etf: {
+      headline: "Construisez une vision de marche plus large",
+      subheadline: "Comparez les instruments, suivez les donnees et gardez une vue claire.",
+      body: "Rassemblez actions, ETF et donnees de marche dans un parcours discipline.",
+      cta: "Comparer les marches",
+    },
+    markets: {
+      headline: "Suivez les marches en temps reel",
+      subheadline: "Prix, graphiques et outils d'ordre travaillent ensemble.",
+      body: "Concu pour les investisseurs autonomes qui suivent les marches de pres.",
+      cta: "Voir les outils",
+    },
+    platform: {
+      headline: "Tradez les marches mondiaux avec controle",
+      subheadline: "Outils avances, donnees en temps reel et acces marche en une plateforme.",
+      body: "Une experience claire pour les investisseurs qui veulent de la profondeur.",
+      cta: "Explorer la plateforme",
+    },
+  },
+  it: {
+    etf: {
+      headline: "Amplia la tua visione sui mercati",
+      subheadline: "Confronta strumenti, dati e mercati con un quadro piu chiaro.",
+      body: "Porta azioni, ETF e dati di mercato in un flusso disciplinato.",
+      cta: "Confronta i mercati",
+    },
+    markets: {
+      headline: "Segui i mercati in tempo reale",
+      subheadline: "Prezzi, grafici e strumenti d'ordine lavorano insieme.",
+      body: "Pensato per investitori autonomi che seguono i mercati da vicino.",
+      cta: "Vedi gli strumenti",
+    },
+    platform: {
+      headline: "Opera sui mercati globali con controllo",
+      subheadline: "Strumenti avanzati, dati live e accesso ai mercati in una piattaforma.",
+      body: "Un'esperienza mirata per investitori che cercano profondita senza rumore.",
+      cta: "Scopri la piattaforma",
+    },
+  },
+  nl: {
+    etf: {
+      headline: "Bouw een breder marktbeeld",
+      subheadline: "Vergelijk instrumenten, volg data en handel met meer overzicht.",
+      body: "Breng aandelen, ETF's en marktdata samen in een duidelijke workflow.",
+      cta: "Vergelijk markten",
+    },
+    markets: {
+      headline: "Beweeg mee met realtime markten",
+      subheadline: "Prijzen, grafieken en ordertools werken samen in een flow.",
+      body: "Gemaakt voor zelfstandige beleggers die de markt nauw volgen.",
+      cta: "Bekijk tools",
+    },
+    platform: {
+      headline: "Trade wereldmarkten met controle",
+      subheadline: "Geavanceerde tools, realtime data en markttoegang in een platform.",
+      body: "Een gerichte platformervaring voor beleggers die diepgang willen.",
+      cta: "Verken platform",
+    },
+  },
+};
+
+const MEXEM_SAFE_DESIGN_ELEMENTS: Record<
+  MexemSupportedCopyLanguage,
+  Record<MexemCopyIntent, NonNullable<AIConceptStub["design_elements"]>>
+> = {
+  en: {
+    etf: { eyebrow: "ETF COSTS" },
+    markets: { eyebrow: "GLOBAL ACCESS" },
+    platform: { eyebrow: "CLEAR COSTS" },
+  },
+  fr: {
+    etf: { eyebrow: "COUTS ETF" },
+    markets: { eyebrow: "ACCES GLOBAL" },
+    platform: { eyebrow: "COUTS CLAIRS" },
+  },
+  it: {
+    etf: { eyebrow: "COSTI ETF" },
+    markets: { eyebrow: "ACCESSO GLOBALE" },
+    platform: { eyebrow: "COSTI CHIARI" },
+  },
+  nl: {
+    etf: { eyebrow: "ETF-KOSTEN" },
+    markets: { eyebrow: "WERELDWIJDE TOEGANG" },
+    platform: { eyebrow: "DUIDELIJKE KOSTEN" },
+  },
+};
+
+const ENGLISH_MEXEM_FALLBACK_PHRASES = [
+  "build a broader market view",
+  "compare instruments",
+  "bring stocks",
+  "compare markets",
+  "move with real-time markets",
+  "watch prices",
+  "view tools",
+  "trade global markets with control",
+  "advanced tools",
+  "explore platform",
+];
+
+function isEnglishMexemFallbackText(text: string | undefined): boolean {
+  if (!text) return false;
+  const normalized = text.toLowerCase();
+  return ENGLISH_MEXEM_FALLBACK_PHRASES.some((phrase) =>
+    normalized.includes(phrase),
+  );
+}
+
+function normalizeDesignElementsForBrand(args: {
+  concept: AIConceptStub;
+  brandKit: BrandKitLite;
+  brief: CampaignBrief;
+}): AIConceptStub["design_elements"] {
+  if (!usesMexemCopyGuard(args.brandKit)) return args.concept.design_elements;
+  const language = mexemSupportedCopyLanguage(args.brief);
+  const intent = inferMexemCopyIntent(args.concept, args.brief);
+  return MEXEM_SAFE_DESIGN_ELEMENTS[language][intent];
+}
+
+function usesMexemCopyGuard(brandKit: BrandKitLite): boolean {
+  return (
+    brandKit.brand_name.toLowerCase().includes("mexem") ||
+    (
+      brandKit.colors.background.includes("#00122C") &&
+      brandKit.colors.background.includes("#006A97")
+    )
+  );
+}
+
+function needsMexemCopyFallback(
+  text: string | undefined,
+  field: "headline" | "subheadline" | "body" | "cta",
+): boolean {
+  if (!text) return false;
+  const normalized = text.toLowerCase();
+  const banned = [
+    /\bachiev(e|ing)\b/,
+    /\bmaster\b/,
+    /\bmastery\b/,
+    /\bcommand\b/,
+    /\bdominat(e|ion)\b/,
+    /\bstay ahead\b/,
+    /\bstay aligned\b/,
+    /\bmarket dynamics\b/,
+    /\bportfolio\b/,
+    /\bbeat the market\b/,
+    /\bwin\b/,
+    /\bunlock\b/,
+    /\beffortless\b/,
+    /\beasy\b/,
+    /\bguarantee/,
+    /\bprofit\b/,
+    /\b(profitto|profitti|guadagni?|rendimenti?)\b/,
+    /\b(profits?|gains?|rendements?|winst|rendement)\b/,
+  ];
+  if (banned.some((re) => re.test(normalized))) return true;
+  if (field === "cta") {
+    return /\b(options?|strateg(y|ies)|insights?)\b/.test(normalized);
   }
-  return locale;
+  return false;
+}
+
+function _mirrorsConceptName(headline: string, conceptName: string): boolean {
+  const normalize = (value: string) =>
+    value
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+  const h = normalize(headline);
+  const c = normalize(conceptName);
+  return h === c || h.includes(c) || c.includes(h);
+}
+
+function mexemFallbackCopy(
+  concept: AIConceptStub,
+  brief: CampaignBrief,
+): Pick<LocalizedCopyBatchConcept, "headline" | "subheadline" | "body" | "cta"> {
+  const language = mexemSupportedCopyLanguage(brief);
+  const intent = inferMexemCopyIntent(concept, brief);
+  return MEXEM_SAFE_COPY[language][intent];
+}
+
+function mexemSupportedCopyLanguage(
+  brief: CampaignBrief,
+): MexemSupportedCopyLanguage {
+  return brief.language === "fr" ||
+    brief.language === "it" ||
+    brief.language === "nl"
+    ? brief.language
+    : "en";
+}
+
+function inferMexemCopyIntent(
+  concept: AIConceptStub,
+  brief: CampaignBrief,
+): MexemCopyIntent {
+  const conceptText = [
+    concept.name,
+    concept.strategic_idea,
+    concept.target_emotion,
+    concept.desired_visual_context,
+  ]
+    .join(" ")
+    .toLowerCase();
+  const fullText = [
+    conceptText,
+    brief.marketing_message,
+  ]
+    .join(" ")
+    .toLowerCase();
+  if (/\b(etf|diversif|discipline|balanced)\b/.test(conceptText)) return "etf";
+  if (/\betfs?\b/.test(fullText)) return "etf";
+  if (
+    /\b(stock|equities|move|alert|real-time|instant|access)\b/.test(
+      conceptText,
+    ) ||
+    /\b(mercati|mondo|istantaneo|accesso|globali?|mondiaux|wereld|markten|toegang)\b/.test(
+      conceptText,
+    )
+  ) {
+    return "markets";
+  }
+  return "platform";
 }
 
 // ── File IO ─────────────────────────────────────────────────────────────────
@@ -677,6 +1089,40 @@ function formatIssues(issues: { path: PropertyKey[]; message: string }[]): strin
   return issues
     .map((i) => `${i.path.map(String).join(".")}: ${i.message}`)
     .join("; ");
+}
+
+function inferHeadlineEmphasis(headline: string): string | undefined {
+  const s = headline.trim();
+  if (s.length < 8) return undefined;
+
+  for (const match of s.matchAll(/[,.:;!?]/g)) {
+    const end = (match.index ?? -1) + 1;
+    if (end >= 4 && end < s.length && end <= Math.ceil(s.length * 0.72)) {
+      return s.slice(0, end);
+    }
+  }
+
+  const words = s.split(/\s+/);
+  if (words.length < 2) return undefined;
+  if (words.length === 2) return words[0];
+  const count = Math.min(Math.max(2, Math.ceil(words.length / 2)), words.length - 1);
+  return words.slice(0, count).join(" ");
+}
+
+// Summarise blocking deterministic-QA violations for the planner error.
+// Grouped per banner so the operator can tell which concept/format is broken
+// (a single bad concept usually shows up across all formats).
+function formatQaBlocks(report: DeterministicCampaignReport): string {
+  const lines: string[] = [];
+  for (const b of report.banners) {
+    const blocks = b.violations.filter((v) => v.severity === "block");
+    if (blocks.length === 0) continue;
+    const detail = blocks
+      .map((v) => `${v.check_id}: ${v.description}`)
+      .join(" | ");
+    lines.push(`[${b.concept_id} ${b.format}] ${detail}`);
+  }
+  return lines.join(" — ");
 }
 
 // Drop repeated identical warnings while preserving first-seen order.

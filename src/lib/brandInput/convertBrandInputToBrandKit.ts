@@ -97,6 +97,8 @@ type MexemFormatSpec = {
   visual_anchor?: "right" | "bottom-band";
 };
 
+const MEXEM_REFERENCE_ACCENT = "#F5C518";
+
 const MEXEM_FORMAT_SPECS: Partial<Record<string, MexemFormatSpec>> = {
   "300x250": {
     logo: { width: 153, height: 29 },
@@ -377,7 +379,11 @@ export function convertBrandInputToBrandKitWithProvenance(
   const brandColors = spec.materials.brand_colours.colors;
   const ctaBgColors = spec.materials.cta_buttons.background_colors;
   const ctaBackground = ctaBgColors[0]!;
-  const ctaTextColor = ctaBgColors.find((c) => c.toLowerCase() === "#ffffff") ?? "#FFFFFF";
+  const ctaTextColor =
+    ctaBackground.toUpperCase() === "#FFFFFF" ||
+    ctaBackground.toUpperCase() === MEXEM_REFERENCE_ACCENT
+      ? "#0A0F1F"
+      : "#FFFFFF";
 
   const headlinePx = spec.materials.font_sizes.headline_px;
   const ctaPx = spec.materials.font_sizes.cta_px;
@@ -407,11 +413,7 @@ export function convertBrandInputToBrandKitWithProvenance(
     "1200x628": sizesPerRole,
     "1080x1080": sizesPerRole,
     "1080x1920": sizesPerRole,
-    "1080x1350": sizesPerRole,
-    "1200x675": sizesPerRole,
     "1200x1200": sizesPerRole,
-    "1500x500": sizesPerRole,
-    "1920x1080": sizesPerRole,
     "300x250": sizesPerRole,
     "336x280": sizesPerRole,
     "960x1200": sizesPerRole,
@@ -436,11 +438,7 @@ export function convertBrandInputToBrandKitWithProvenance(
     "1200x628": inset,
     "1080x1080": inset,
     "1080x1920": inset,
-    "1080x1350": inset,
-    "1200x675": inset,
     "1200x1200": inset,
-    "1500x500": inset,
-    "1920x1080": inset,
     "300x250": inset,
     "336x280": inset,
     "960x1200": inset,
@@ -558,7 +556,10 @@ export function convertBrandInputToBrandKitWithProvenance(
     colors: {
       primary: brandColors,
       secondary: spec.materials.logo.colors.filter((c) => !brandColors.includes(c)),
-      accent: spec.materials.powered_by_ib.colors,
+      // MEXEM reference banners use yellow as the campaign accent. The red
+      // in powered_by_ib is reserved for the IBKR lockup only, so it must not
+      // be exposed as the renderer's generic accent token.
+      accent: [MEXEM_REFERENCE_ACCENT],
       background: gradientColors,
       text: brandColors,
       disclaimer: ["#FFFFFF"],
@@ -608,11 +609,22 @@ export function convertBrandInputToBrandKitWithProvenance(
         width: pick(ddCta.min_width_px, 240, "cta.minimum_size.width"),
         height: pick(ddCta.min_height_px, 64, "cta.minimum_size.height"),
       },
-      // CTA variant pool — empty by default. Operators may add approved
-      // looks here (e.g. white_pill, ghost, yellow_block) and the renderer
-      // will pick from them per-concept. Empty list preserves today's
-      // single-look behaviour using the button_* fields above.
-      variants: [],
+      variants: [
+        {
+          id: "white_pill",
+          name: "White pill",
+          background_color: "#FFFFFF",
+          text_color: "#0A0F1F",
+          border_radius: 999,
+        },
+        {
+          id: "yellow_band",
+          name: "Yellow reference band",
+          background_color: MEXEM_REFERENCE_ACCENT,
+          text_color: "#0A0F1F",
+          border_radius: 0,
+        },
+      ],
     },
 
     layout: {
@@ -771,15 +783,10 @@ function buildLogoVariants(
     variants.push(variant);
   }
 
-  // Schema requires at least one variant. Synthesize a placeholder if the
-  // brand-input/MEXEM logo folder is empty so downstream code can run.
   if (variants.length === 0) {
-    variants.push({
-      name: "primary-placeholder",
-      url: "https://example.com/logo-pending-upload.svg",
-      format: "svg",
-      background: "any",
-    });
+    throw new Error(
+      "No supplied brand logo files found in brand-input/MEXEM logo/. The system will not synthesize or invent a logo.",
+    );
   }
   return variants;
 }

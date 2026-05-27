@@ -243,7 +243,7 @@ export const BrandStrategySchema = z
     accent_usage: z
       .enum(["none", "subtle", "cta_only", "strong"])
       .describe(
-        "How the brand accent color (#D81222 in MEXEM) is used. none = pure primary/background. subtle = small decorative tint. cta_only = accent reserved for CTA underline / chip. strong = headline highlight or large accent block.",
+        "How the brand accent color is used. none = pure primary/background. subtle = small decorative tint. cta_only = accent reserved for CTA underline / chip. strong = headline highlight or large accent block.",
       ),
     logo_prominence: z
       .enum(["small", "standard", "prominent"])
@@ -433,11 +433,7 @@ export const FORMAT_KEY_TO_NAME = {
   "1200x628": "leaderboard",
   "1080x1080": "square",
   "1080x1920": "portrait",
-  "1080x1350": "portrait",   // 4:5
-  "1200x675": "leaderboard", // 16:9
   "1200x1200": "square",     // 1:1
-  "1500x500": "leaderboard", // 3:1
-  "1920x1080": "leaderboard",// 16:9
   // MEXEM display + portrait. 300x250 & 336x280 are AR ~1.2 — between the
   // square (0.95-1.05) and leaderboard (≥1.4) buckets above; folded into
   // leaderboard because the AI's "leaderboard" persona handles compact

@@ -11,8 +11,7 @@ import type { Element } from "@/lib/schemas/elementManifest.schema";
 //     the manifest. Designers can ungroup once and edit individual elements.
 //   - Text elements (headline / subheadline / disclaimer / CTA label) render
 //     as real <text> + <tspan> so Figma keeps them as editable text layers.
-//     Emphasis split (yellow prefix + white rest) becomes two <tspan> elements
-//     inside one <text>, which Figma also imports as one editable text node.
+//     Headline emphasis treatments remain editable tspans.
 //   - Image elements (logo / mockup / FX overlay / generated visuals) embed
 //     local PNG/SVG bytes as data: URIs so the file is portable. Cloudinary
 //     URLs (or anything starting with `https://`) stay as remote refs —
@@ -364,8 +363,10 @@ function renderTextElement(el: Element, label: string, layerName: string): strin
   const fg = el.color ?? "#FFFFFF";
   const align = el.text_align ?? "left";
   const text = el.text ?? "";
+  const emphasisStyle = el.emphasis_style ?? "accent_color";
   const useEmphasis =
     el.emphasis_text &&
+    emphasisStyle !== "solid" &&
     text.startsWith(el.emphasis_text) &&
     el.emphasis_text.length > 0 &&
     el.emphasis_text.length < text.length;
@@ -377,6 +378,19 @@ function renderTextElement(el: Element, label: string, layerName: string): strin
   // First baseline ~= 1em below box top so glyphs fit inside the bbox.
   const firstBaselineY = size;
   const baseFontAttrs = `font-family="${escAttr(family)}, sans-serif" font-weight="${weight}" font-size="${size}"`;
+  const emphasisStroke = Math.max(1, Math.round(size * 0.018));
+  const emphasisUnderline = Math.max(2, Math.round(size * 0.06));
+  const emphasisOffset = Math.max(3, Math.round(size * 0.12));
+
+  function emphasisTspan(prefix: string): string {
+    if (emphasisStyle === "underline") {
+      return `<tspan fill="${escAttr(fg)}" text-decoration="underline" style="text-decoration-color: ${escAttr(emphasisColor)}; text-decoration-thickness: ${emphasisUnderline}px; text-underline-offset: ${emphasisOffset}px">${escXml(prefix)}</tspan>`;
+    }
+    if (emphasisStyle === "outline") {
+      return `<tspan fill="${escAttr(fg)}" stroke="${escAttr(emphasisColor)}" stroke-width="${emphasisStroke}" paint-order="stroke fill">${escXml(prefix)}</tspan>`;
+    }
+    return `<tspan fill="${escAttr(emphasisColor)}">${escXml(prefix)}</tspan>`;
+  }
 
   // Helper that emits one <text> for one line.
   function lineText(line: string, lineIndex: number, isEmphasis: boolean): string {
@@ -386,7 +400,7 @@ function renderTextElement(el: Element, label: string, layerName: string): strin
       const prefix = el.emphasis_text;
       const rest = line.slice(prefix.length);
       // No dy/x on tspans — Figma keeps colored split editable.
-      return `    <text ${baseFontAttrs} fill="${escAttr(fg)}" text-anchor="${anchor}" x="${fmtNum(anchorX)}" y="${fmtNum(y)}" xml:space="preserve"><tspan fill="${escAttr(emphasisColor)}">${escXml(prefix)}</tspan>${rest.length > 0 ? `<tspan>${escXml(rest)}</tspan>` : ""}</text>`;
+      return `    <text ${baseFontAttrs} fill="${escAttr(fg)}" text-anchor="${anchor}" x="${fmtNum(anchorX)}" y="${fmtNum(y)}" xml:space="preserve">${emphasisTspan(prefix)}${rest.length > 0 ? `<tspan>${escXml(rest)}</tspan>` : ""}</text>`;
     }
     return `    <text ${baseFontAttrs} fill="${escAttr(fg)}" text-anchor="${anchor}" x="${fmtNum(anchorX)}" y="${fmtNum(y)}" xml:space="preserve">${escXml(line)}</text>`;
   }
